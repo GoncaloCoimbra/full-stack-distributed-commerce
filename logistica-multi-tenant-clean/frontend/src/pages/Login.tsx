@@ -115,7 +115,7 @@ const Login: React.FC = () => {
 
         {/* Logo */}
         <div className="relative z-10">
-          <img src="/logo.png" alt="LogiSphere" className="h-28 w-auto object-contain drop-shadow-lg" />
+          <img src="/logo.png" alt="Tranzor Logistics" className="h-28 w-auto object-contain drop-shadow-lg" />
         </div>
 
         {/* Hero text */}
@@ -141,7 +141,7 @@ const Login: React.FC = () => {
         </div>
 
         <div className="relative z-10 text-xs" style={{ color: ds.textMuted }}>
-          © 2025 LogiSphere · All rights reserved
+          © 2025 Tranzor Logistics · All rights reserved
         </div>
       </div>
 
@@ -151,7 +151,7 @@ const Login: React.FC = () => {
 
           {/* Mobile logo */}
           <div className="lg:hidden flex justify-center mb-10">
-            <img src="/logo.png" alt="LogiSphere" className="h-24 w-auto object-contain drop-shadow-lg" />
+            <img src="/logo.png" alt="Tranzor Logistics" className="h-24 w-auto object-contain drop-shadow-lg" />
           </div>
 
           <div className="mb-8">

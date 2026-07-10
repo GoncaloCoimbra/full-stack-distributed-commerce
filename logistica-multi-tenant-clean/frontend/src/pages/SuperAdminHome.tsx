@@ -90,7 +90,7 @@ const SuperAdminHome: React.FC = () => {
           <div className="relative">
             <img 
               src="/logo.png"
-              alt="LogiSphere Logo" 
+              alt="Tranzor Logistics" 
               className="h-20 w-auto object-contain group-hover:scale-105 transition-transform"
             />
           </div>

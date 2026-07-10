@@ -43,12 +43,12 @@ function CreateGroupModal({ open, onClose, onCreate, members }: {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-card" onClick={e => e.stopPropagation()} style={{ minWidth: 340 }}>
-        <header><h3><UserPlus size={16}/> Novo Grupo Privado</h3></header>
+        <header><h3><UserPlus size={16}/> New Private Group</h3></header>
         <form onSubmit={e => { e.preventDefault(); if (name && selected.length) { onCreate({ name, members: selected }); onClose(); } }}>
-          <label>Nome do grupo
-            <input value={name} onChange={e => setName(e.target.value)} placeholder="ex: Projeto X" required />
+          <label>Group name
+            <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Project X" required />
           </label>
-          <label>Membros
+          <label>Members
             <div style={{ maxHeight: 120, overflowY: 'auto', border: '1px solid var(--rule)', borderRadius: 6, padding: 6, marginTop: 2 }}>
               {members.filter(m => m.id !== currentUserId).map(m => (
                 <label key={m.id} style={{ display: 'block', marginBottom: 2 }}>
@@ -60,8 +60,8 @@ function CreateGroupModal({ open, onClose, onCreate, members }: {
             </div>
           </label>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
-            <button type="button" onClick={onClose}>Cancelar</button>
-            <button type="submit" className="btn-send" disabled={!name || !selected.length}>Criar grupo</button>
+            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="submit" className="btn-send" disabled={!name || !selected.length}>Create group</button>
           </div>
         </form>
       </div>
@@ -73,9 +73,9 @@ function CreateGroupModal({ open, onClose, onCreate, members }: {
 type PresenceStatus = 'online' | 'away' | 'dnd' | 'offline';
 
 const PRESENCE_LABELS: Record<PresenceStatus, string> = {
-  online:  '● Disponível',
-  away:    '◐ Ausente',
-  dnd:     '⊘ Não perturbar',
+  online:  '● Available',
+  away:    '◐ Away',
+  dnd:     '⊘ Do not disturb',
   offline: '○ Offline',
 };
 
@@ -89,20 +89,20 @@ const QUICK_REACTIONS = ['👍','❤️','🔥','✅','⚠️','🚚','📦'];
 
 // ── Commands ──────────────────────────────────────────────────
 const COMMANDS: { label: string; shortcut: string; description: string; icon: ReactNode }[] = [
-  { label: '/stock',          shortcut: '/stock SKU-001',          description: 'Consultar stock de produto',    icon: <Package size={15} /> },
-  { label: '/approve-credit', shortcut: '/approve-credit client-1', description: 'Aprovar crédito B2B',          icon: <CheckCircle2 size={15} /> },
-  { label: '/encomenda',      shortcut: '/encomenda ENC-001',       description: 'Ver estado de encomenda',      icon: <Truck size={15} /> },
-  { label: '/alerta',         shortcut: '/alerta SKU-001 5',        description: 'Definir alerta de stock',      icon: <Bell size={15} /> },
-  { label: '/relatorio',      shortcut: '/relatorio hoje',          description: 'Relatório de vendas do dia',   icon: <BarChart3 size={15} /> },
-  { label: '/desconto',       shortcut: '/desconto SKU-001 10',     description: 'Aplicar desconto a produto',   icon: <Tag size={15} /> },
+  { label: '/stock',          shortcut: '/stock SKU-001',          description: 'Check product stock',          icon: <Package size={15} /> },
+  { label: '/approve-credit', shortcut: '/approve-credit client-1', description: 'Approve B2B credit',           icon: <CheckCircle2 size={15} /> },
+  { label: '/order',          shortcut: '/order ENC-001',            description: 'Check order status',           icon: <Truck size={15} /> },
+  { label: '/alert',         shortcut: '/alert SKU-001 5',         description: 'Set stock alert',              icon: <Bell size={15} /> },
+  { label: '/report',        shortcut: '/report today',            description: 'Daily sales report',           icon: <BarChart3 size={15} /> },
+  { label: '/discount',      shortcut: '/discount SKU-001 10',    description: 'Apply product discount',       icon: <Tag size={15} /> },
 ];
 
 const CHANNELS_LIST = [
-  { id: 'logistica',  name: 'Logística',  icon: <Truck size={15} />,          description: 'Operações e armazém' },
-  { id: 'geral',      name: 'Geral',      icon: <MessageCircle size={15} />,  description: 'Comunicação interna' },
-  { id: 'comercial',  name: 'Comercial',  icon: <TrendingUp size={15} />,     description: 'Vendas e clientes' },
-  { id: 'suporte',    name: 'Suporte',    icon: <Wrench size={15} />,         description: 'Apoio técnico' },
-  { id: 'alertas',    name: 'Alertas',    icon: <AlertTriangle size={15} />,  description: 'Notificações automáticas' },
+  { id: 'logistica',  name: 'Logistics',  icon: <Truck size={15} />,          description: 'Warehouse and dispatch operations' },
+  { id: 'geral',      name: 'General',    icon: <MessageCircle size={15} />,  description: 'Internal communication' },
+  { id: 'comercial',  name: 'Sales',      icon: <TrendingUp size={15} />,     description: 'Sales and customer management' },
+  { id: 'suporte',    name: 'Support',    icon: <Wrench size={15} />,         description: 'Technical support' },
+  { id: 'alertas',    name: 'Alerts',     icon: <AlertTriangle size={15} />,  description: 'Automatic notifications' },
 ];
 
 // Dummy team members for @ mentions
@@ -130,7 +130,7 @@ import {
 function LatencyIcon({ ms }: { ms: number | null }) {
   const cls = ms === null ? 'latency-none' : ms < 80 ? 'latency-good' : ms < 250 ? 'latency-ok' : 'latency-bad';
   return (
-    <span className={`latency-indicator ${cls}`} title={ms !== null ? `${ms} ms` : 'sem dados'}>
+    <span className={`latency-indicator ${cls}`} title={ms !== null ? `${ms} ms` : 'no data'}>
       {[1,2,3,4].map(i => <span key={i} className="latency-bar" />)}
     </span>
   );
@@ -164,35 +164,35 @@ function SettingsModal({ open, settings, compactMode, onClose, onChange, onCompa
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-card" onClick={e => e.stopPropagation()}>
-        <header><h3><Settings2 size={16}/> Definições</h3></header>
+        <header><h3><Settings2 size={16}/> Settings</h3></header>
         <form onSubmit={e => { e.preventDefault(); onClose(); }}>
-          <label>Nome de exibição
+          <label>Display name
             <input value={settings.displayName} onChange={e => onChange({ ...settings, displayName: e.target.value })}/>
           </label>
           <div className="settings-group">
-            <div className="settings-label">Tema</div>
+            <div className="settings-label">Theme</div>
             <div className="settings-row">
-              <label><input type="radio" name="theme" value="light" checked={settings.theme==='light'} onChange={() => onChange({...settings, theme:'light'})}/> Claro</label>
-              <label><input type="radio" name="theme" value="dark"  checked={settings.theme==='dark'}  onChange={() => onChange({...settings, theme:'dark'})}/> Escuro</label>
+              <label><input type="radio" name="theme" value="light" checked={settings.theme==='light'} onChange={() => onChange({...settings, theme:'light'})}/> Light</label>
+              <label><input type="radio" name="theme" value="dark"  checked={settings.theme==='dark'}  onChange={() => onChange({...settings, theme:'dark'})}/> Dark</label>
             </div>
           </div>
           <div className="settings-group">
-            <div className="settings-label">Notificações</div>
-            <label><input type="checkbox" checked={settings.notifications.messages} onChange={e => onChange({...settings, notifications:{...settings.notifications, messages:e.target.checked}})}/> Mensagens novas</label>
-            <label><input type="checkbox" checked={settings.notifications.mentions} onChange={e => onChange({...settings, notifications:{...settings.notifications, mentions:e.target.checked}})}/> Menções e tags</label>
-            <label><input type="checkbox" checked={settings.notifications.sound}    onChange={e => onChange({...settings, notifications:{...settings.notifications, sound:e.target.checked}})}/> Som de notificação</label>
+            <div className="settings-label">Notifications</div>
+            <label><input type="checkbox" checked={settings.notifications.messages} onChange={e => onChange({...settings, notifications:{...settings.notifications, messages:e.target.checked}})}/> New messages</label>
+            <label><input type="checkbox" checked={settings.notifications.mentions} onChange={e => onChange({...settings, notifications:{...settings.notifications, mentions:e.target.checked}})}/> Mentions and tags</label>
+            <label><input type="checkbox" checked={settings.notifications.sound}    onChange={e => onChange({...settings, notifications:{...settings.notifications, sound:e.target.checked}})}/> Notification sound</label>
           </div>
           <div className="settings-group">
-            <label><input type="checkbox" checked={settings.readReceipts} onChange={e => onChange({...settings, readReceipts:e.target.checked})}/> Mostrar recibos de leitura</label>
-            <p className="settings-note">Ver quem viu a mensagem e quando foi visualizada.</p>
+            <label><input type="checkbox" checked={settings.readReceipts} onChange={e => onChange({...settings, readReceipts:e.target.checked})}/> Show read receipts</label>
+            <p className="settings-note">See who read the message and when it was viewed.</p>
           </div>
           <div className="settings-group">
-            <label><input type="checkbox" checked={compactMode} onChange={e => onCompactModeChange(e.target.checked)}/> Modo compacto</label>
-            <p className="settings-note">Aumenta a densidade de informação para conversas rápidas.</p>
+            <label><input type="checkbox" checked={compactMode} onChange={e => onCompactModeChange(e.target.checked)}/> Compact mode</label>
+            <p className="settings-note">Increase information density for faster conversations.</p>
           </div>
           <div style={{display:'flex', gap:8, justifyContent:'flex-end', marginTop:12}}>
-            <button type="button" onClick={onClose}>Cancelar</button>
-            <button type="submit" className="btn-send">Guardar</button>
+            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="submit" className="btn-send">Save</button>
           </div>
         </form>
       </div>
@@ -208,19 +208,19 @@ function InviteModal({ open, target, group, onClose, onSubmit, onTargetChange, o
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-card" onClick={e => e.stopPropagation()}>
-        <header><h3><UserPlus size={16}/> Convidar para o grupo</h3></header>
+        <header><h3><UserPlus size={16}/> Invite to group</h3></header>
         <form onSubmit={e => { e.preventDefault(); onSubmit(); }}>
-          <label>Username ou email
-            <input value={target} onChange={e => onTargetChange(e.target.value)} placeholder="ex: joao.silva" required/>
+          <label>Username or email
+            <input value={target} onChange={e => onTargetChange(e.target.value)} placeholder="e.g. joao.silva" required/>
           </label>
-          <label>Canal / grupo
+          <label>Channel / group
             <select value={group} onChange={e => onGroupChange(e.target.value)}>
               {CHANNELS_LIST.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </label>
           <div style={{display:'flex', gap:8, justifyContent:'flex-end', marginTop:12}}>
-            <button type="button" onClick={onClose}>Cancelar</button>
-            <button type="submit" className="btn-send">Enviar convite</button>
+            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="submit" className="btn-send">Send invite</button>
           </div>
         </form>
       </div>
@@ -237,7 +237,7 @@ function EmojiPicker({ onSelect, onClose }: { onSelect: (e: string) => void; onC
 
   return (
     <div className="emoji-picker-wrapper" onClick={e => e.stopPropagation()}>
-      <input className="emoji-picker-search" placeholder="Pesquisar emoji…" value={query} onChange={e => setQuery(e.target.value)} autoFocus/>
+      <input className="emoji-picker-search" placeholder="Search emoji…" value={query} onChange={e => setQuery(e.target.value)} autoFocus/>
       {filteredCats.map(cat => (
         <div key={cat.label}>
           <div className="emoji-category-label">{cat.label}</div>
@@ -321,11 +321,11 @@ export default function App() {
   const [pendingAttachment, setPendingAttachment] = useState<{ file: File; previewUrl: string } | null>(null);
   const [toasts, setToasts] = useState<{ id: string; text: string; type: 'info' | 'success' | 'error' }[]>([]);
   const [channelTopic, setChannelTopic] = useState<Record<string, string>>({
-    logistica: 'Gestão de armazém e expedição de encomendas',
-    geral:     'Canal de comunicação geral da empresa',
-    comercial: 'Pipeline de vendas e gestão de clientes B2B',
-    suporte:   'Apoio técnico e resolução de problemas',
-    alertas:   'Notificações automáticas do sistema',
+    logistica: 'Warehouse and order dispatch management',
+    geral:     'Company-wide general communication channel',
+    comercial: 'B2B sales pipeline and customer management',
+    suporte:   'Technical support and issue resolution',
+    alertas:   'Automatic system notifications',
   });
   const [editingTopic, setEditingTopic] = useState(false);
   const [topicDraft, setTopicDraft] = useState('');
@@ -986,7 +986,7 @@ export default function App() {
             <LayoutDashboard size={15}/>
           </button>
 
-          <button type="button" className="hdr-btn hdr-btn-icon" data-tooltip="Convidar membro" onClick={() => setInviteOpen(true)}>
+          <button type="button" className="hdr-btn hdr-btn-icon" data-tooltip="Invite member" onClick={() => setInviteOpen(true)}>
             <UserPlus size={15}/>
           </button>
 
@@ -1010,7 +1010,7 @@ export default function App() {
         {/* Canais */}
         <div className="sidebar-section">
           <button className="shortcut-chip" style={{ width: '100%', marginBottom: 8 }} onClick={() => setCreateGroupOpen(true)}>
-            <UserPlus size={15} /> Novo Grupo Privado
+            <UserPlus size={15} /> New Private Group
           </button>
           <div className="sidebar-label" onClick={() => setChannelsCollapsed(v => !v)}>
             <span>Canais</span>
@@ -1077,7 +1077,7 @@ export default function App() {
                 ))}
                 <div className="menu-sep"/>
                 <button onClick={() => { setSettingsOpen(true); setShowProfileMenu(false); }}>
-                  <Settings2 size={13}/> Definições
+                  <Settings2 size={13}/> Settings
                 </button>
                 <button className="popup-danger" onClick={() => addToast('Sessão terminada', 'info')}>
                   <LogOut size={13}/> Terminar sessão
@@ -1279,7 +1279,7 @@ export default function App() {
                           <button onClick={() => { navigator.clipboard.writeText(msg.text || ''); addToast('Copiado!', 'success'); setMessageMenuFor(null); }}><Copy size={13}/> Copiar</button>
                           {isOwn && <>
                             <div className="menu-sep"/>
-                            <button className="menu-danger" onClick={() => { setMessageMenuFor(null); addToast('Mensagem eliminada', 'info'); }}><Trash2 size={13}/> Eliminar</button>
+                            <button className="menu-danger" onClick={() => { setMessageMenuFor(null); addToast('Message deleted', 'info'); }}><Trash2 size={13}/> Delete</button>
                           </>}
                         </div>
                       )}
@@ -1300,7 +1300,7 @@ export default function App() {
                 setShowNewMessagesBadge(false);
                 setNewMsgCount(0);
               }}>
-                ↓ {newMsgCount > 1 ? `${newMsgCount} novas mensagens` : 'Nova mensagem'}
+                ↓ {newMsgCount > 1 ? `${newMsgCount} new messages` : 'New message'}
               </button>
             )}
           </div>
@@ -1315,7 +1315,7 @@ export default function App() {
             {pinnedMessages.filter(p => p.channelId === activeChannel).length === 0 ? (
               <div className="empty-state">
                 <span className="empty-illustration">📌</span>
-                Nenhuma mensagem fixada neste canal.
+                No pinned messages in this channel.
               </div>
             ) : (
               <div className="pins-list">
@@ -1527,9 +1527,9 @@ export default function App() {
                   }
                 }
               }}
-              placeholder={`Mensagem em #${activeChannel}… (/ comandos · @ menções)`}
+              placeholder={`Message in #${activeChannel}… (/ commands · @ mentions)`}
               rows={1}
-              aria-label="Mensagem ChatOps"
+              aria-label="ChatOps message"
               style={{ overflowY: 'hidden' }}
             />
           </div>
@@ -1558,7 +1558,7 @@ export default function App() {
           {connectionState === 'connected' ? 'Ligado' : connectionState === 'reconnecting' ? 'A reconectar…' : 'Sem ligação'}
         </span>
         <span className="statusbar-sep">|</span>
-        <span className="statusbar-item clickable" title="Clica para abrir definições do canal" onClick={() => setSettingsOpen(true)}>
+        <span className="statusbar-item clickable" title="Click to open channel settings" onClick={() => setSettingsOpen(true)}>
           #{activeChannel}
         </span>
         <span className="statusbar-sep">|</span>

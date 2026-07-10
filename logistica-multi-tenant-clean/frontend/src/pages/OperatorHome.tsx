@@ -9,7 +9,7 @@ const OperatorHome: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <header className={`${theme.backgrounds.header} px-6 py-4 flex items-center justify-between border-b border-slate-700`}>
         <div className="flex items-center space-x-3">
-          <img src="/logo.png" alt="LogiSphere" className="h-12 w-auto" />
+          <img src="/logo.png" alt="Tranzor Logistics" className="h-12 w-auto" />
           <h2 className="text-white font-bold text-lg">Área do operator</h2>
         </div>
         <div className="flex items-center gap-4">

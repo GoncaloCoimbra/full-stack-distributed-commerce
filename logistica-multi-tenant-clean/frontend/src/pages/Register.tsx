@@ -192,7 +192,7 @@ const Register: React.FC = () => {
       >
         {/* Header */}
         <div className="flex justify-center mb-2">
-          <img src="/logo.png" alt="LogiSphere" className="h-28 w-auto object-contain drop-shadow-lg" />
+          <img src="/logo.png" alt="Tranzor Logistics" className="h-28 w-auto object-contain drop-shadow-lg" />
         </div>
 
         <h2 className="text-2xl font-bold mt-6 mb-1" style={{ color: ds.textPrimary }}>

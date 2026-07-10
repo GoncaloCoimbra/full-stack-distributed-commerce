@@ -72,7 +72,7 @@ const Header: React.FC = () => {
           <Link to="/dashboard" className="flex items-center group py-2">
             <img
               src="/logo.png"
-              alt="LogiSphere"
+              alt="Tranzor Logistics"
               className="h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             />
           </Link>

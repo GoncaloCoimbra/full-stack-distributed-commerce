@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
             <Link to="/" className="flex items-center group">
               <img
                 src="/logo.png"
-                alt="LogiSphere Logo"
+                alt="Tranzor Logistics"
                 className="h-16 w-auto object-contain group-hover:scale-105 transition-transform"
               />
             </Link>
@@ -122,8 +122,8 @@ const Footer: React.FC = () => {
                 <svg className="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:support@logisphere.io" className="text-sm text-slate-400 hover:text-amber-400 transition-colors">
-                  support@logisphere.io
+                <a href="mailto:support@tranzor.io" className="text-sm text-slate-400 hover:text-amber-400 transition-colors">
+                  support@tranzor.io
                 </a>
               </li>
               <li className="flex items-start space-x-3">
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <span className="text-sm text-slate-400">
-              © {currentYear} LogiSphere. All rights reserved.
+              © {currentYear} Tranzor Logistics. All rights reserved.
             </span>
             <div className="flex items-center gap-5">
               {[
