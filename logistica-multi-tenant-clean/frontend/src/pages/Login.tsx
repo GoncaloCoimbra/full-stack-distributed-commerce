@@ -114,9 +114,11 @@ const Login: React.FC = () => {
           }}
         />
 
-        {/* Logo */}
+        {/* Brand mark */}
         <div className="relative z-10">
-          <img src="/logo.png" alt="Tranzor Logistics" className="h-28 w-auto object-contain drop-shadow-lg" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border" style={{ borderColor: `${ds.accent}30`, color: ds.accent, background: `${ds.accent}12` }}>
+            <span className="text-sm font-semibold tracking-[0.3em] uppercase">Logística</span>
+          </div>
         </div>
 
         {/* Hero text */}
@@ -150,9 +152,11 @@ const Login: React.FC = () => {
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-[360px]">
 
-          {/* Mobile logo */}
+          {/* Mobile brand mark */}
           <div className="lg:hidden flex justify-center mb-10">
-            <img src="/logo.png" alt="Tranzor Logistics" className="h-24 w-auto object-contain drop-shadow-lg" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border" style={{ borderColor: `${ds.accent}30`, color: ds.accent, background: `${ds.accent}12` }}>
+              <span className="text-sm font-semibold tracking-[0.3em] uppercase">Logística</span>
+            </div>
           </div>
 
           <div className="mb-8">

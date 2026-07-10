@@ -193,7 +193,9 @@ const Register: React.FC = () => {
       >
         {/* Header */}
         <div className="flex justify-center mb-2">
-          <img src="/logo.png" alt="Tranzor Logistics" className="h-28 w-auto object-contain drop-shadow-lg" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border" style={{ borderColor: `${ds.border}`, color: ds.accent, background: `${ds.accent}12` }}>
+            <span className="text-sm font-semibold tracking-[0.3em] uppercase">Logística</span>
+          </div>
         </div>
 
         <h2 className="text-2xl font-bold mt-6 mb-1" style={{ color: ds.textPrimary }}>
