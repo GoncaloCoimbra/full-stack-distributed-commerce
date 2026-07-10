@@ -1,0 +1,43 @@
+name: ChatOps Backend CI
+
+on:
+  push:
+    paths:
+      - 'Chatops/backend/**'
+      - '.github/workflows/chatops-backend.yml'
+  pull_request:
+    paths:
+      - 'Chatops/backend/**'
+      - '.github/workflows/chatops-backend.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Chatops/backend
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: chatops
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-timeout=5s
+          --health-retry=5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/chatops
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Chatops/backend/package-lock.json
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npm test

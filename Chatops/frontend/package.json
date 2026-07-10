@@ -1,0 +1,31 @@
+{
+  "name": "chatops-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "npx tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.497.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.1.0",
+    "react-virtuoso": "^3.0.0",
+    "recharts": "^2.5.0",
+    "zustand": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "jsdom": "^22.1.0",
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.5",
+    "vite": "^5.0.0"
+  }
+}

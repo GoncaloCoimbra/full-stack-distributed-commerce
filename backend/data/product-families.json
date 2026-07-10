@@ -1,0 +1,4902 @@
+[
+  {
+    "family": "Family 1",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM001",
+    "description": "Descrição comercial da família 1",
+    "unit_price": 15.75,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 2",
+    "category": "Iluminação",
+    "sku_prefix": "FAM002",
+    "description": "Descrição comercial da família 2",
+    "unit_price": 19.0,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 3",
+    "category": "Tintas",
+    "sku_prefix": "FAM003",
+    "description": "Descrição comercial da família 3",
+    "unit_price": 22.25,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 4",
+    "category": "Segurança",
+    "sku_prefix": "FAM004",
+    "description": "Descrição comercial da família 4",
+    "unit_price": 25.5,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 5",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM005",
+    "description": "Descrição comercial da família 5",
+    "unit_price": 28.75,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 6",
+    "category": "Materiais",
+    "sku_prefix": "FAM006",
+    "description": "Descrição comercial da família 6",
+    "unit_price": 32.0,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 7",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM007",
+    "description": "Descrição comercial da família 7",
+    "unit_price": 35.25,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 8",
+    "category": "Iluminação",
+    "sku_prefix": "FAM008",
+    "description": "Descrição comercial da família 8",
+    "unit_price": 38.5,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 9",
+    "category": "Tintas",
+    "sku_prefix": "FAM009",
+    "description": "Descrição comercial da família 9",
+    "unit_price": 41.75,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 10",
+    "category": "Segurança",
+    "sku_prefix": "FAM010",
+    "description": "Descrição comercial da família 10",
+    "unit_price": 45.0,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 11",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM011",
+    "description": "Descrição comercial da família 11",
+    "unit_price": 48.25,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 12",
+    "category": "Materiais",
+    "sku_prefix": "FAM012",
+    "description": "Descrição comercial da família 12",
+    "unit_price": 51.5,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 13",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM013",
+    "description": "Descrição comercial da família 13",
+    "unit_price": 54.75,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 14",
+    "category": "Iluminação",
+    "sku_prefix": "FAM014",
+    "description": "Descrição comercial da família 14",
+    "unit_price": 58.0,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 15",
+    "category": "Tintas",
+    "sku_prefix": "FAM015",
+    "description": "Descrição comercial da família 15",
+    "unit_price": 61.25,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 16",
+    "category": "Segurança",
+    "sku_prefix": "FAM016",
+    "description": "Descrição comercial da família 16",
+    "unit_price": 64.5,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 17",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM017",
+    "description": "Descrição comercial da família 17",
+    "unit_price": 67.75,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 18",
+    "category": "Materiais",
+    "sku_prefix": "FAM018",
+    "description": "Descrição comercial da família 18",
+    "unit_price": 71.0,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 19",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM019",
+    "description": "Descrição comercial da família 19",
+    "unit_price": 74.25,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 20",
+    "category": "Iluminação",
+    "sku_prefix": "FAM020",
+    "description": "Descrição comercial da família 20",
+    "unit_price": 77.5,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 21",
+    "category": "Tintas",
+    "sku_prefix": "FAM021",
+    "description": "Descrição comercial da família 21",
+    "unit_price": 80.75,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 22",
+    "category": "Segurança",
+    "sku_prefix": "FAM022",
+    "description": "Descrição comercial da família 22",
+    "unit_price": 84.0,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 23",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM023",
+    "description": "Descrição comercial da família 23",
+    "unit_price": 87.25,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 24",
+    "category": "Materiais",
+    "sku_prefix": "FAM024",
+    "description": "Descrição comercial da família 24",
+    "unit_price": 90.5,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 25",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM025",
+    "description": "Descrição comercial da família 25",
+    "unit_price": 93.75,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 26",
+    "category": "Iluminação",
+    "sku_prefix": "FAM026",
+    "description": "Descrição comercial da família 26",
+    "unit_price": 97.0,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 27",
+    "category": "Tintas",
+    "sku_prefix": "FAM027",
+    "description": "Descrição comercial da família 27",
+    "unit_price": 100.25,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 28",
+    "category": "Segurança",
+    "sku_prefix": "FAM028",
+    "description": "Descrição comercial da família 28",
+    "unit_price": 103.5,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 29",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM029",
+    "description": "Descrição comercial da família 29",
+    "unit_price": 106.75,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 30",
+    "category": "Materiais",
+    "sku_prefix": "FAM030",
+    "description": "Descrição comercial da família 30",
+    "unit_price": 110.0,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 31",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM031",
+    "description": "Descrição comercial da família 31",
+    "unit_price": 113.25,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 32",
+    "category": "Iluminação",
+    "sku_prefix": "FAM032",
+    "description": "Descrição comercial da família 32",
+    "unit_price": 116.5,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 33",
+    "category": "Tintas",
+    "sku_prefix": "FAM033",
+    "description": "Descrição comercial da família 33",
+    "unit_price": 119.75,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 34",
+    "category": "Segurança",
+    "sku_prefix": "FAM034",
+    "description": "Descrição comercial da família 34",
+    "unit_price": 123.0,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 35",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM035",
+    "description": "Descrição comercial da família 35",
+    "unit_price": 12.5,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 36",
+    "category": "Materiais",
+    "sku_prefix": "FAM036",
+    "description": "Descrição comercial da família 36",
+    "unit_price": 15.75,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 37",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM037",
+    "description": "Descrição comercial da família 37",
+    "unit_price": 19.0,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 38",
+    "category": "Iluminação",
+    "sku_prefix": "FAM038",
+    "description": "Descrição comercial da família 38",
+    "unit_price": 22.25,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 39",
+    "category": "Tintas",
+    "sku_prefix": "FAM039",
+    "description": "Descrição comercial da família 39",
+    "unit_price": 25.5,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 40",
+    "category": "Segurança",
+    "sku_prefix": "FAM040",
+    "description": "Descrição comercial da família 40",
+    "unit_price": 28.75,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 41",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM041",
+    "description": "Descrição comercial da família 41",
+    "unit_price": 32.0,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 42",
+    "category": "Materiais",
+    "sku_prefix": "FAM042",
+    "description": "Descrição comercial da família 42",
+    "unit_price": 35.25,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 43",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM043",
+    "description": "Descrição comercial da família 43",
+    "unit_price": 38.5,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 44",
+    "category": "Iluminação",
+    "sku_prefix": "FAM044",
+    "description": "Descrição comercial da família 44",
+    "unit_price": 41.75,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 45",
+    "category": "Tintas",
+    "sku_prefix": "FAM045",
+    "description": "Descrição comercial da família 45",
+    "unit_price": 45.0,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 46",
+    "category": "Segurança",
+    "sku_prefix": "FAM046",
+    "description": "Descrição comercial da família 46",
+    "unit_price": 48.25,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 47",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM047",
+    "description": "Descrição comercial da família 47",
+    "unit_price": 51.5,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 48",
+    "category": "Materiais",
+    "sku_prefix": "FAM048",
+    "description": "Descrição comercial da família 48",
+    "unit_price": 54.75,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 49",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM049",
+    "description": "Descrição comercial da família 49",
+    "unit_price": 58.0,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 50",
+    "category": "Iluminação",
+    "sku_prefix": "FAM050",
+    "description": "Descrição comercial da família 50",
+    "unit_price": 61.25,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 51",
+    "category": "Tintas",
+    "sku_prefix": "FAM051",
+    "description": "Descrição comercial da família 51",
+    "unit_price": 64.5,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 52",
+    "category": "Segurança",
+    "sku_prefix": "FAM052",
+    "description": "Descrição comercial da família 52",
+    "unit_price": 67.75,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 53",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM053",
+    "description": "Descrição comercial da família 53",
+    "unit_price": 71.0,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 54",
+    "category": "Materiais",
+    "sku_prefix": "FAM054",
+    "description": "Descrição comercial da família 54",
+    "unit_price": 74.25,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 55",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM055",
+    "description": "Descrição comercial da família 55",
+    "unit_price": 77.5,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 56",
+    "category": "Iluminação",
+    "sku_prefix": "FAM056",
+    "description": "Descrição comercial da família 56",
+    "unit_price": 80.75,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 57",
+    "category": "Tintas",
+    "sku_prefix": "FAM057",
+    "description": "Descrição comercial da família 57",
+    "unit_price": 84.0,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 58",
+    "category": "Segurança",
+    "sku_prefix": "FAM058",
+    "description": "Descrição comercial da família 58",
+    "unit_price": 87.25,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 59",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM059",
+    "description": "Descrição comercial da família 59",
+    "unit_price": 90.5,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 60",
+    "category": "Materiais",
+    "sku_prefix": "FAM060",
+    "description": "Descrição comercial da família 60",
+    "unit_price": 93.75,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 61",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM061",
+    "description": "Descrição comercial da família 61",
+    "unit_price": 97.0,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 62",
+    "category": "Iluminação",
+    "sku_prefix": "FAM062",
+    "description": "Descrição comercial da família 62",
+    "unit_price": 100.25,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 63",
+    "category": "Tintas",
+    "sku_prefix": "FAM063",
+    "description": "Descrição comercial da família 63",
+    "unit_price": 103.5,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 64",
+    "category": "Segurança",
+    "sku_prefix": "FAM064",
+    "description": "Descrição comercial da família 64",
+    "unit_price": 106.75,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 65",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM065",
+    "description": "Descrição comercial da família 65",
+    "unit_price": 110.0,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 66",
+    "category": "Materiais",
+    "sku_prefix": "FAM066",
+    "description": "Descrição comercial da família 66",
+    "unit_price": 113.25,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 67",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM067",
+    "description": "Descrição comercial da família 67",
+    "unit_price": 116.5,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 68",
+    "category": "Iluminação",
+    "sku_prefix": "FAM068",
+    "description": "Descrição comercial da família 68",
+    "unit_price": 119.75,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 69",
+    "category": "Tintas",
+    "sku_prefix": "FAM069",
+    "description": "Descrição comercial da família 69",
+    "unit_price": 123.0,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 70",
+    "category": "Segurança",
+    "sku_prefix": "FAM070",
+    "description": "Descrição comercial da família 70",
+    "unit_price": 12.5,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 71",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM071",
+    "description": "Descrição comercial da família 71",
+    "unit_price": 15.75,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 72",
+    "category": "Materiais",
+    "sku_prefix": "FAM072",
+    "description": "Descrição comercial da família 72",
+    "unit_price": 19.0,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 73",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM073",
+    "description": "Descrição comercial da família 73",
+    "unit_price": 22.25,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 74",
+    "category": "Iluminação",
+    "sku_prefix": "FAM074",
+    "description": "Descrição comercial da família 74",
+    "unit_price": 25.5,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 75",
+    "category": "Tintas",
+    "sku_prefix": "FAM075",
+    "description": "Descrição comercial da família 75",
+    "unit_price": 28.75,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 76",
+    "category": "Segurança",
+    "sku_prefix": "FAM076",
+    "description": "Descrição comercial da família 76",
+    "unit_price": 32.0,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 77",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM077",
+    "description": "Descrição comercial da família 77",
+    "unit_price": 35.25,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 78",
+    "category": "Materiais",
+    "sku_prefix": "FAM078",
+    "description": "Descrição comercial da família 78",
+    "unit_price": 38.5,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 79",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM079",
+    "description": "Descrição comercial da família 79",
+    "unit_price": 41.75,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 80",
+    "category": "Iluminação",
+    "sku_prefix": "FAM080",
+    "description": "Descrição comercial da família 80",
+    "unit_price": 45.0,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 81",
+    "category": "Tintas",
+    "sku_prefix": "FAM081",
+    "description": "Descrição comercial da família 81",
+    "unit_price": 48.25,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 82",
+    "category": "Segurança",
+    "sku_prefix": "FAM082",
+    "description": "Descrição comercial da família 82",
+    "unit_price": 51.5,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 83",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM083",
+    "description": "Descrição comercial da família 83",
+    "unit_price": 54.75,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 84",
+    "category": "Materiais",
+    "sku_prefix": "FAM084",
+    "description": "Descrição comercial da família 84",
+    "unit_price": 58.0,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 85",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM085",
+    "description": "Descrição comercial da família 85",
+    "unit_price": 61.25,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 86",
+    "category": "Iluminação",
+    "sku_prefix": "FAM086",
+    "description": "Descrição comercial da família 86",
+    "unit_price": 64.5,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 87",
+    "category": "Tintas",
+    "sku_prefix": "FAM087",
+    "description": "Descrição comercial da família 87",
+    "unit_price": 67.75,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 88",
+    "category": "Segurança",
+    "sku_prefix": "FAM088",
+    "description": "Descrição comercial da família 88",
+    "unit_price": 71.0,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 89",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM089",
+    "description": "Descrição comercial da família 89",
+    "unit_price": 74.25,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 90",
+    "category": "Materiais",
+    "sku_prefix": "FAM090",
+    "description": "Descrição comercial da família 90",
+    "unit_price": 77.5,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 91",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM091",
+    "description": "Descrição comercial da família 91",
+    "unit_price": 80.75,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 92",
+    "category": "Iluminação",
+    "sku_prefix": "FAM092",
+    "description": "Descrição comercial da família 92",
+    "unit_price": 84.0,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 93",
+    "category": "Tintas",
+    "sku_prefix": "FAM093",
+    "description": "Descrição comercial da família 93",
+    "unit_price": 87.25,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 94",
+    "category": "Segurança",
+    "sku_prefix": "FAM094",
+    "description": "Descrição comercial da família 94",
+    "unit_price": 90.5,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 95",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM095",
+    "description": "Descrição comercial da família 95",
+    "unit_price": 93.75,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 96",
+    "category": "Materiais",
+    "sku_prefix": "FAM096",
+    "description": "Descrição comercial da família 96",
+    "unit_price": 97.0,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 97",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM097",
+    "description": "Descrição comercial da família 97",
+    "unit_price": 100.25,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 98",
+    "category": "Iluminação",
+    "sku_prefix": "FAM098",
+    "description": "Descrição comercial da família 98",
+    "unit_price": 103.5,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 99",
+    "category": "Tintas",
+    "sku_prefix": "FAM099",
+    "description": "Descrição comercial da família 99",
+    "unit_price": 106.75,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 100",
+    "category": "Segurança",
+    "sku_prefix": "FAM100",
+    "description": "Descrição comercial da família 100",
+    "unit_price": 110.0,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 101",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM101",
+    "description": "Descrição comercial da família 101",
+    "unit_price": 113.25,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 102",
+    "category": "Materiais",
+    "sku_prefix": "FAM102",
+    "description": "Descrição comercial da família 102",
+    "unit_price": 116.5,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 103",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM103",
+    "description": "Descrição comercial da família 103",
+    "unit_price": 119.75,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 104",
+    "category": "Iluminação",
+    "sku_prefix": "FAM104",
+    "description": "Descrição comercial da família 104",
+    "unit_price": 123.0,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 105",
+    "category": "Tintas",
+    "sku_prefix": "FAM105",
+    "description": "Descrição comercial da família 105",
+    "unit_price": 12.5,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 106",
+    "category": "Segurança",
+    "sku_prefix": "FAM106",
+    "description": "Descrição comercial da família 106",
+    "unit_price": 15.75,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 107",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM107",
+    "description": "Descrição comercial da família 107",
+    "unit_price": 19.0,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 108",
+    "category": "Materiais",
+    "sku_prefix": "FAM108",
+    "description": "Descrição comercial da família 108",
+    "unit_price": 22.25,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 109",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM109",
+    "description": "Descrição comercial da família 109",
+    "unit_price": 25.5,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 110",
+    "category": "Iluminação",
+    "sku_prefix": "FAM110",
+    "description": "Descrição comercial da família 110",
+    "unit_price": 28.75,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 111",
+    "category": "Tintas",
+    "sku_prefix": "FAM111",
+    "description": "Descrição comercial da família 111",
+    "unit_price": 32.0,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 112",
+    "category": "Segurança",
+    "sku_prefix": "FAM112",
+    "description": "Descrição comercial da família 112",
+    "unit_price": 35.25,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 113",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM113",
+    "description": "Descrição comercial da família 113",
+    "unit_price": 38.5,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 114",
+    "category": "Materiais",
+    "sku_prefix": "FAM114",
+    "description": "Descrição comercial da família 114",
+    "unit_price": 41.75,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 115",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM115",
+    "description": "Descrição comercial da família 115",
+    "unit_price": 45.0,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 116",
+    "category": "Iluminação",
+    "sku_prefix": "FAM116",
+    "description": "Descrição comercial da família 116",
+    "unit_price": 48.25,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 117",
+    "category": "Tintas",
+    "sku_prefix": "FAM117",
+    "description": "Descrição comercial da família 117",
+    "unit_price": 51.5,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 118",
+    "category": "Segurança",
+    "sku_prefix": "FAM118",
+    "description": "Descrição comercial da família 118",
+    "unit_price": 54.75,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 119",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM119",
+    "description": "Descrição comercial da família 119",
+    "unit_price": 58.0,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 120",
+    "category": "Materiais",
+    "sku_prefix": "FAM120",
+    "description": "Descrição comercial da família 120",
+    "unit_price": 61.25,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 121",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM121",
+    "description": "Descrição comercial da família 121",
+    "unit_price": 64.5,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 122",
+    "category": "Iluminação",
+    "sku_prefix": "FAM122",
+    "description": "Descrição comercial da família 122",
+    "unit_price": 67.75,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 123",
+    "category": "Tintas",
+    "sku_prefix": "FAM123",
+    "description": "Descrição comercial da família 123",
+    "unit_price": 71.0,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 124",
+    "category": "Segurança",
+    "sku_prefix": "FAM124",
+    "description": "Descrição comercial da família 124",
+    "unit_price": 74.25,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 125",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM125",
+    "description": "Descrição comercial da família 125",
+    "unit_price": 77.5,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 126",
+    "category": "Materiais",
+    "sku_prefix": "FAM126",
+    "description": "Descrição comercial da família 126",
+    "unit_price": 80.75,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 127",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM127",
+    "description": "Descrição comercial da família 127",
+    "unit_price": 84.0,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 128",
+    "category": "Iluminação",
+    "sku_prefix": "FAM128",
+    "description": "Descrição comercial da família 128",
+    "unit_price": 87.25,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 129",
+    "category": "Tintas",
+    "sku_prefix": "FAM129",
+    "description": "Descrição comercial da família 129",
+    "unit_price": 90.5,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 130",
+    "category": "Segurança",
+    "sku_prefix": "FAM130",
+    "description": "Descrição comercial da família 130",
+    "unit_price": 93.75,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 131",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM131",
+    "description": "Descrição comercial da família 131",
+    "unit_price": 97.0,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 132",
+    "category": "Materiais",
+    "sku_prefix": "FAM132",
+    "description": "Descrição comercial da família 132",
+    "unit_price": 100.25,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 133",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM133",
+    "description": "Descrição comercial da família 133",
+    "unit_price": 103.5,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 134",
+    "category": "Iluminação",
+    "sku_prefix": "FAM134",
+    "description": "Descrição comercial da família 134",
+    "unit_price": 106.75,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 135",
+    "category": "Tintas",
+    "sku_prefix": "FAM135",
+    "description": "Descrição comercial da família 135",
+    "unit_price": 110.0,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 136",
+    "category": "Segurança",
+    "sku_prefix": "FAM136",
+    "description": "Descrição comercial da família 136",
+    "unit_price": 113.25,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 137",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM137",
+    "description": "Descrição comercial da família 137",
+    "unit_price": 116.5,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 138",
+    "category": "Materiais",
+    "sku_prefix": "FAM138",
+    "description": "Descrição comercial da família 138",
+    "unit_price": 119.75,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 139",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM139",
+    "description": "Descrição comercial da família 139",
+    "unit_price": 123.0,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 140",
+    "category": "Iluminação",
+    "sku_prefix": "FAM140",
+    "description": "Descrição comercial da família 140",
+    "unit_price": 12.5,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 141",
+    "category": "Tintas",
+    "sku_prefix": "FAM141",
+    "description": "Descrição comercial da família 141",
+    "unit_price": 15.75,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 142",
+    "category": "Segurança",
+    "sku_prefix": "FAM142",
+    "description": "Descrição comercial da família 142",
+    "unit_price": 19.0,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 143",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM143",
+    "description": "Descrição comercial da família 143",
+    "unit_price": 22.25,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 144",
+    "category": "Materiais",
+    "sku_prefix": "FAM144",
+    "description": "Descrição comercial da família 144",
+    "unit_price": 25.5,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 145",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM145",
+    "description": "Descrição comercial da família 145",
+    "unit_price": 28.75,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 146",
+    "category": "Iluminação",
+    "sku_prefix": "FAM146",
+    "description": "Descrição comercial da família 146",
+    "unit_price": 32.0,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 147",
+    "category": "Tintas",
+    "sku_prefix": "FAM147",
+    "description": "Descrição comercial da família 147",
+    "unit_price": 35.25,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 148",
+    "category": "Segurança",
+    "sku_prefix": "FAM148",
+    "description": "Descrição comercial da família 148",
+    "unit_price": 38.5,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 149",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM149",
+    "description": "Descrição comercial da família 149",
+    "unit_price": 41.75,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 150",
+    "category": "Materiais",
+    "sku_prefix": "FAM150",
+    "description": "Descrição comercial da família 150",
+    "unit_price": 45.0,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 151",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM151",
+    "description": "Descrição comercial da família 151",
+    "unit_price": 48.25,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 152",
+    "category": "Iluminação",
+    "sku_prefix": "FAM152",
+    "description": "Descrição comercial da família 152",
+    "unit_price": 51.5,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 153",
+    "category": "Tintas",
+    "sku_prefix": "FAM153",
+    "description": "Descrição comercial da família 153",
+    "unit_price": 54.75,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 154",
+    "category": "Segurança",
+    "sku_prefix": "FAM154",
+    "description": "Descrição comercial da família 154",
+    "unit_price": 58.0,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 155",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM155",
+    "description": "Descrição comercial da família 155",
+    "unit_price": 61.25,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 156",
+    "category": "Materiais",
+    "sku_prefix": "FAM156",
+    "description": "Descrição comercial da família 156",
+    "unit_price": 64.5,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 157",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM157",
+    "description": "Descrição comercial da família 157",
+    "unit_price": 67.75,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 158",
+    "category": "Iluminação",
+    "sku_prefix": "FAM158",
+    "description": "Descrição comercial da família 158",
+    "unit_price": 71.0,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 159",
+    "category": "Tintas",
+    "sku_prefix": "FAM159",
+    "description": "Descrição comercial da família 159",
+    "unit_price": 74.25,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 160",
+    "category": "Segurança",
+    "sku_prefix": "FAM160",
+    "description": "Descrição comercial da família 160",
+    "unit_price": 77.5,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 161",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM161",
+    "description": "Descrição comercial da família 161",
+    "unit_price": 80.75,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 162",
+    "category": "Materiais",
+    "sku_prefix": "FAM162",
+    "description": "Descrição comercial da família 162",
+    "unit_price": 84.0,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 163",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM163",
+    "description": "Descrição comercial da família 163",
+    "unit_price": 87.25,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 164",
+    "category": "Iluminação",
+    "sku_prefix": "FAM164",
+    "description": "Descrição comercial da família 164",
+    "unit_price": 90.5,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 165",
+    "category": "Tintas",
+    "sku_prefix": "FAM165",
+    "description": "Descrição comercial da família 165",
+    "unit_price": 93.75,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 166",
+    "category": "Segurança",
+    "sku_prefix": "FAM166",
+    "description": "Descrição comercial da família 166",
+    "unit_price": 97.0,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 167",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM167",
+    "description": "Descrição comercial da família 167",
+    "unit_price": 100.25,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 168",
+    "category": "Materiais",
+    "sku_prefix": "FAM168",
+    "description": "Descrição comercial da família 168",
+    "unit_price": 103.5,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 169",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM169",
+    "description": "Descrição comercial da família 169",
+    "unit_price": 106.75,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 170",
+    "category": "Iluminação",
+    "sku_prefix": "FAM170",
+    "description": "Descrição comercial da família 170",
+    "unit_price": 110.0,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 171",
+    "category": "Tintas",
+    "sku_prefix": "FAM171",
+    "description": "Descrição comercial da família 171",
+    "unit_price": 113.25,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 172",
+    "category": "Segurança",
+    "sku_prefix": "FAM172",
+    "description": "Descrição comercial da família 172",
+    "unit_price": 116.5,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 173",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM173",
+    "description": "Descrição comercial da família 173",
+    "unit_price": 119.75,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 174",
+    "category": "Materiais",
+    "sku_prefix": "FAM174",
+    "description": "Descrição comercial da família 174",
+    "unit_price": 123.0,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 175",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM175",
+    "description": "Descrição comercial da família 175",
+    "unit_price": 12.5,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 176",
+    "category": "Iluminação",
+    "sku_prefix": "FAM176",
+    "description": "Descrição comercial da família 176",
+    "unit_price": 15.75,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 177",
+    "category": "Tintas",
+    "sku_prefix": "FAM177",
+    "description": "Descrição comercial da família 177",
+    "unit_price": 19.0,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 178",
+    "category": "Segurança",
+    "sku_prefix": "FAM178",
+    "description": "Descrição comercial da família 178",
+    "unit_price": 22.25,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 179",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM179",
+    "description": "Descrição comercial da família 179",
+    "unit_price": 25.5,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 180",
+    "category": "Materiais",
+    "sku_prefix": "FAM180",
+    "description": "Descrição comercial da família 180",
+    "unit_price": 28.75,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 181",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM181",
+    "description": "Descrição comercial da família 181",
+    "unit_price": 32.0,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 182",
+    "category": "Iluminação",
+    "sku_prefix": "FAM182",
+    "description": "Descrição comercial da família 182",
+    "unit_price": 35.25,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 183",
+    "category": "Tintas",
+    "sku_prefix": "FAM183",
+    "description": "Descrição comercial da família 183",
+    "unit_price": 38.5,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 184",
+    "category": "Segurança",
+    "sku_prefix": "FAM184",
+    "description": "Descrição comercial da família 184",
+    "unit_price": 41.75,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 185",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM185",
+    "description": "Descrição comercial da família 185",
+    "unit_price": 45.0,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 186",
+    "category": "Materiais",
+    "sku_prefix": "FAM186",
+    "description": "Descrição comercial da família 186",
+    "unit_price": 48.25,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 187",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM187",
+    "description": "Descrição comercial da família 187",
+    "unit_price": 51.5,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 188",
+    "category": "Iluminação",
+    "sku_prefix": "FAM188",
+    "description": "Descrição comercial da família 188",
+    "unit_price": 54.75,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 189",
+    "category": "Tintas",
+    "sku_prefix": "FAM189",
+    "description": "Descrição comercial da família 189",
+    "unit_price": 58.0,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 190",
+    "category": "Segurança",
+    "sku_prefix": "FAM190",
+    "description": "Descrição comercial da família 190",
+    "unit_price": 61.25,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 191",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM191",
+    "description": "Descrição comercial da família 191",
+    "unit_price": 64.5,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 192",
+    "category": "Materiais",
+    "sku_prefix": "FAM192",
+    "description": "Descrição comercial da família 192",
+    "unit_price": 67.75,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 193",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM193",
+    "description": "Descrição comercial da família 193",
+    "unit_price": 71.0,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 194",
+    "category": "Iluminação",
+    "sku_prefix": "FAM194",
+    "description": "Descrição comercial da família 194",
+    "unit_price": 74.25,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 195",
+    "category": "Tintas",
+    "sku_prefix": "FAM195",
+    "description": "Descrição comercial da família 195",
+    "unit_price": 77.5,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 196",
+    "category": "Segurança",
+    "sku_prefix": "FAM196",
+    "description": "Descrição comercial da família 196",
+    "unit_price": 80.75,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 197",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM197",
+    "description": "Descrição comercial da família 197",
+    "unit_price": 84.0,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 198",
+    "category": "Materiais",
+    "sku_prefix": "FAM198",
+    "description": "Descrição comercial da família 198",
+    "unit_price": 87.25,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 199",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM199",
+    "description": "Descrição comercial da família 199",
+    "unit_price": 90.5,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 200",
+    "category": "Iluminação",
+    "sku_prefix": "FAM200",
+    "description": "Descrição comercial da família 200",
+    "unit_price": 93.75,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 201",
+    "category": "Tintas",
+    "sku_prefix": "FAM201",
+    "description": "Descrição comercial da família 201",
+    "unit_price": 97.0,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 202",
+    "category": "Segurança",
+    "sku_prefix": "FAM202",
+    "description": "Descrição comercial da família 202",
+    "unit_price": 100.25,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 203",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM203",
+    "description": "Descrição comercial da família 203",
+    "unit_price": 103.5,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 204",
+    "category": "Materiais",
+    "sku_prefix": "FAM204",
+    "description": "Descrição comercial da família 204",
+    "unit_price": 106.75,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 205",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM205",
+    "description": "Descrição comercial da família 205",
+    "unit_price": 110.0,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 206",
+    "category": "Iluminação",
+    "sku_prefix": "FAM206",
+    "description": "Descrição comercial da família 206",
+    "unit_price": 113.25,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 207",
+    "category": "Tintas",
+    "sku_prefix": "FAM207",
+    "description": "Descrição comercial da família 207",
+    "unit_price": 116.5,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 208",
+    "category": "Segurança",
+    "sku_prefix": "FAM208",
+    "description": "Descrição comercial da família 208",
+    "unit_price": 119.75,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 209",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM209",
+    "description": "Descrição comercial da família 209",
+    "unit_price": 123.0,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 210",
+    "category": "Materiais",
+    "sku_prefix": "FAM210",
+    "description": "Descrição comercial da família 210",
+    "unit_price": 12.5,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 211",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM211",
+    "description": "Descrição comercial da família 211",
+    "unit_price": 15.75,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 212",
+    "category": "Iluminação",
+    "sku_prefix": "FAM212",
+    "description": "Descrição comercial da família 212",
+    "unit_price": 19.0,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 213",
+    "category": "Tintas",
+    "sku_prefix": "FAM213",
+    "description": "Descrição comercial da família 213",
+    "unit_price": 22.25,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 214",
+    "category": "Segurança",
+    "sku_prefix": "FAM214",
+    "description": "Descrição comercial da família 214",
+    "unit_price": 25.5,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 215",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM215",
+    "description": "Descrição comercial da família 215",
+    "unit_price": 28.75,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 216",
+    "category": "Materiais",
+    "sku_prefix": "FAM216",
+    "description": "Descrição comercial da família 216",
+    "unit_price": 32.0,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 217",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM217",
+    "description": "Descrição comercial da família 217",
+    "unit_price": 35.25,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 218",
+    "category": "Iluminação",
+    "sku_prefix": "FAM218",
+    "description": "Descrição comercial da família 218",
+    "unit_price": 38.5,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 219",
+    "category": "Tintas",
+    "sku_prefix": "FAM219",
+    "description": "Descrição comercial da família 219",
+    "unit_price": 41.75,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 220",
+    "category": "Segurança",
+    "sku_prefix": "FAM220",
+    "description": "Descrição comercial da família 220",
+    "unit_price": 45.0,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 221",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM221",
+    "description": "Descrição comercial da família 221",
+    "unit_price": 48.25,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 222",
+    "category": "Materiais",
+    "sku_prefix": "FAM222",
+    "description": "Descrição comercial da família 222",
+    "unit_price": 51.5,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 223",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM223",
+    "description": "Descrição comercial da família 223",
+    "unit_price": 54.75,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 224",
+    "category": "Iluminação",
+    "sku_prefix": "FAM224",
+    "description": "Descrição comercial da família 224",
+    "unit_price": 58.0,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 225",
+    "category": "Tintas",
+    "sku_prefix": "FAM225",
+    "description": "Descrição comercial da família 225",
+    "unit_price": 61.25,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 226",
+    "category": "Segurança",
+    "sku_prefix": "FAM226",
+    "description": "Descrição comercial da família 226",
+    "unit_price": 64.5,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 227",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM227",
+    "description": "Descrição comercial da família 227",
+    "unit_price": 67.75,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 228",
+    "category": "Materiais",
+    "sku_prefix": "FAM228",
+    "description": "Descrição comercial da família 228",
+    "unit_price": 71.0,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 229",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM229",
+    "description": "Descrição comercial da família 229",
+    "unit_price": 74.25,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 230",
+    "category": "Iluminação",
+    "sku_prefix": "FAM230",
+    "description": "Descrição comercial da família 230",
+    "unit_price": 77.5,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 231",
+    "category": "Tintas",
+    "sku_prefix": "FAM231",
+    "description": "Descrição comercial da família 231",
+    "unit_price": 80.75,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 232",
+    "category": "Segurança",
+    "sku_prefix": "FAM232",
+    "description": "Descrição comercial da família 232",
+    "unit_price": 84.0,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 233",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM233",
+    "description": "Descrição comercial da família 233",
+    "unit_price": 87.25,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 234",
+    "category": "Materiais",
+    "sku_prefix": "FAM234",
+    "description": "Descrição comercial da família 234",
+    "unit_price": 90.5,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 235",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM235",
+    "description": "Descrição comercial da família 235",
+    "unit_price": 93.75,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 236",
+    "category": "Iluminação",
+    "sku_prefix": "FAM236",
+    "description": "Descrição comercial da família 236",
+    "unit_price": 97.0,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 237",
+    "category": "Tintas",
+    "sku_prefix": "FAM237",
+    "description": "Descrição comercial da família 237",
+    "unit_price": 100.25,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 238",
+    "category": "Segurança",
+    "sku_prefix": "FAM238",
+    "description": "Descrição comercial da família 238",
+    "unit_price": 103.5,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 239",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM239",
+    "description": "Descrição comercial da família 239",
+    "unit_price": 106.75,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 240",
+    "category": "Materiais",
+    "sku_prefix": "FAM240",
+    "description": "Descrição comercial da família 240",
+    "unit_price": 110.0,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 241",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM241",
+    "description": "Descrição comercial da família 241",
+    "unit_price": 113.25,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 242",
+    "category": "Iluminação",
+    "sku_prefix": "FAM242",
+    "description": "Descrição comercial da família 242",
+    "unit_price": 116.5,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 243",
+    "category": "Tintas",
+    "sku_prefix": "FAM243",
+    "description": "Descrição comercial da família 243",
+    "unit_price": 119.75,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 244",
+    "category": "Segurança",
+    "sku_prefix": "FAM244",
+    "description": "Descrição comercial da família 244",
+    "unit_price": 123.0,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 245",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM245",
+    "description": "Descrição comercial da família 245",
+    "unit_price": 12.5,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 246",
+    "category": "Materiais",
+    "sku_prefix": "FAM246",
+    "description": "Descrição comercial da família 246",
+    "unit_price": 15.75,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 247",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM247",
+    "description": "Descrição comercial da família 247",
+    "unit_price": 19.0,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 248",
+    "category": "Iluminação",
+    "sku_prefix": "FAM248",
+    "description": "Descrição comercial da família 248",
+    "unit_price": 22.25,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 249",
+    "category": "Tintas",
+    "sku_prefix": "FAM249",
+    "description": "Descrição comercial da família 249",
+    "unit_price": 25.5,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 250",
+    "category": "Segurança",
+    "sku_prefix": "FAM250",
+    "description": "Descrição comercial da família 250",
+    "unit_price": 28.75,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 251",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM251",
+    "description": "Descrição comercial da família 251",
+    "unit_price": 32.0,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 252",
+    "category": "Materiais",
+    "sku_prefix": "FAM252",
+    "description": "Descrição comercial da família 252",
+    "unit_price": 35.25,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 253",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM253",
+    "description": "Descrição comercial da família 253",
+    "unit_price": 38.5,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 254",
+    "category": "Iluminação",
+    "sku_prefix": "FAM254",
+    "description": "Descrição comercial da família 254",
+    "unit_price": 41.75,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 255",
+    "category": "Tintas",
+    "sku_prefix": "FAM255",
+    "description": "Descrição comercial da família 255",
+    "unit_price": 45.0,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 256",
+    "category": "Segurança",
+    "sku_prefix": "FAM256",
+    "description": "Descrição comercial da família 256",
+    "unit_price": 48.25,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 257",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM257",
+    "description": "Descrição comercial da família 257",
+    "unit_price": 51.5,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 258",
+    "category": "Materiais",
+    "sku_prefix": "FAM258",
+    "description": "Descrição comercial da família 258",
+    "unit_price": 54.75,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 259",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM259",
+    "description": "Descrição comercial da família 259",
+    "unit_price": 58.0,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 260",
+    "category": "Iluminação",
+    "sku_prefix": "FAM260",
+    "description": "Descrição comercial da família 260",
+    "unit_price": 61.25,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 261",
+    "category": "Tintas",
+    "sku_prefix": "FAM261",
+    "description": "Descrição comercial da família 261",
+    "unit_price": 64.5,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 262",
+    "category": "Segurança",
+    "sku_prefix": "FAM262",
+    "description": "Descrição comercial da família 262",
+    "unit_price": 67.75,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 263",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM263",
+    "description": "Descrição comercial da família 263",
+    "unit_price": 71.0,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 264",
+    "category": "Materiais",
+    "sku_prefix": "FAM264",
+    "description": "Descrição comercial da família 264",
+    "unit_price": 74.25,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 265",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM265",
+    "description": "Descrição comercial da família 265",
+    "unit_price": 77.5,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 266",
+    "category": "Iluminação",
+    "sku_prefix": "FAM266",
+    "description": "Descrição comercial da família 266",
+    "unit_price": 80.75,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 267",
+    "category": "Tintas",
+    "sku_prefix": "FAM267",
+    "description": "Descrição comercial da família 267",
+    "unit_price": 84.0,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 268",
+    "category": "Segurança",
+    "sku_prefix": "FAM268",
+    "description": "Descrição comercial da família 268",
+    "unit_price": 87.25,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 269",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM269",
+    "description": "Descrição comercial da família 269",
+    "unit_price": 90.5,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 270",
+    "category": "Materiais",
+    "sku_prefix": "FAM270",
+    "description": "Descrição comercial da família 270",
+    "unit_price": 93.75,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 271",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM271",
+    "description": "Descrição comercial da família 271",
+    "unit_price": 97.0,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 272",
+    "category": "Iluminação",
+    "sku_prefix": "FAM272",
+    "description": "Descrição comercial da família 272",
+    "unit_price": 100.25,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 273",
+    "category": "Tintas",
+    "sku_prefix": "FAM273",
+    "description": "Descrição comercial da família 273",
+    "unit_price": 103.5,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 274",
+    "category": "Segurança",
+    "sku_prefix": "FAM274",
+    "description": "Descrição comercial da família 274",
+    "unit_price": 106.75,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 275",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM275",
+    "description": "Descrição comercial da família 275",
+    "unit_price": 110.0,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 276",
+    "category": "Materiais",
+    "sku_prefix": "FAM276",
+    "description": "Descrição comercial da família 276",
+    "unit_price": 113.25,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 277",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM277",
+    "description": "Descrição comercial da família 277",
+    "unit_price": 116.5,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 278",
+    "category": "Iluminação",
+    "sku_prefix": "FAM278",
+    "description": "Descrição comercial da família 278",
+    "unit_price": 119.75,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 279",
+    "category": "Tintas",
+    "sku_prefix": "FAM279",
+    "description": "Descrição comercial da família 279",
+    "unit_price": 123.0,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 280",
+    "category": "Segurança",
+    "sku_prefix": "FAM280",
+    "description": "Descrição comercial da família 280",
+    "unit_price": 12.5,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 281",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM281",
+    "description": "Descrição comercial da família 281",
+    "unit_price": 15.75,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 282",
+    "category": "Materiais",
+    "sku_prefix": "FAM282",
+    "description": "Descrição comercial da família 282",
+    "unit_price": 19.0,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 283",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM283",
+    "description": "Descrição comercial da família 283",
+    "unit_price": 22.25,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 284",
+    "category": "Iluminação",
+    "sku_prefix": "FAM284",
+    "description": "Descrição comercial da família 284",
+    "unit_price": 25.5,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 285",
+    "category": "Tintas",
+    "sku_prefix": "FAM285",
+    "description": "Descrição comercial da família 285",
+    "unit_price": 28.75,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 286",
+    "category": "Segurança",
+    "sku_prefix": "FAM286",
+    "description": "Descrição comercial da família 286",
+    "unit_price": 32.0,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 287",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM287",
+    "description": "Descrição comercial da família 287",
+    "unit_price": 35.25,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 288",
+    "category": "Materiais",
+    "sku_prefix": "FAM288",
+    "description": "Descrição comercial da família 288",
+    "unit_price": 38.5,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 289",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM289",
+    "description": "Descrição comercial da família 289",
+    "unit_price": 41.75,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 290",
+    "category": "Iluminação",
+    "sku_prefix": "FAM290",
+    "description": "Descrição comercial da família 290",
+    "unit_price": 45.0,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 291",
+    "category": "Tintas",
+    "sku_prefix": "FAM291",
+    "description": "Descrição comercial da família 291",
+    "unit_price": 48.25,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 292",
+    "category": "Segurança",
+    "sku_prefix": "FAM292",
+    "description": "Descrição comercial da família 292",
+    "unit_price": 51.5,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 293",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM293",
+    "description": "Descrição comercial da família 293",
+    "unit_price": 54.75,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 294",
+    "category": "Materiais",
+    "sku_prefix": "FAM294",
+    "description": "Descrição comercial da família 294",
+    "unit_price": 58.0,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 295",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM295",
+    "description": "Descrição comercial da família 295",
+    "unit_price": 61.25,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 296",
+    "category": "Iluminação",
+    "sku_prefix": "FAM296",
+    "description": "Descrição comercial da família 296",
+    "unit_price": 64.5,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 297",
+    "category": "Tintas",
+    "sku_prefix": "FAM297",
+    "description": "Descrição comercial da família 297",
+    "unit_price": 67.75,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 298",
+    "category": "Segurança",
+    "sku_prefix": "FAM298",
+    "description": "Descrição comercial da família 298",
+    "unit_price": 71.0,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 299",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM299",
+    "description": "Descrição comercial da família 299",
+    "unit_price": 74.25,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 300",
+    "category": "Materiais",
+    "sku_prefix": "FAM300",
+    "description": "Descrição comercial da família 300",
+    "unit_price": 77.5,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 301",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM301",
+    "description": "Descrição comercial da família 301",
+    "unit_price": 80.75,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 302",
+    "category": "Iluminação",
+    "sku_prefix": "FAM302",
+    "description": "Descrição comercial da família 302",
+    "unit_price": 84.0,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 303",
+    "category": "Tintas",
+    "sku_prefix": "FAM303",
+    "description": "Descrição comercial da família 303",
+    "unit_price": 87.25,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 304",
+    "category": "Segurança",
+    "sku_prefix": "FAM304",
+    "description": "Descrição comercial da família 304",
+    "unit_price": 90.5,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 305",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM305",
+    "description": "Descrição comercial da família 305",
+    "unit_price": 93.75,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 306",
+    "category": "Materiais",
+    "sku_prefix": "FAM306",
+    "description": "Descrição comercial da família 306",
+    "unit_price": 97.0,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 307",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM307",
+    "description": "Descrição comercial da família 307",
+    "unit_price": 100.25,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 308",
+    "category": "Iluminação",
+    "sku_prefix": "FAM308",
+    "description": "Descrição comercial da família 308",
+    "unit_price": 103.5,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 309",
+    "category": "Tintas",
+    "sku_prefix": "FAM309",
+    "description": "Descrição comercial da família 309",
+    "unit_price": 106.75,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 310",
+    "category": "Segurança",
+    "sku_prefix": "FAM310",
+    "description": "Descrição comercial da família 310",
+    "unit_price": 110.0,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 311",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM311",
+    "description": "Descrição comercial da família 311",
+    "unit_price": 113.25,
+    "stock": 112,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 312",
+    "category": "Materiais",
+    "sku_prefix": "FAM312",
+    "description": "Descrição comercial da família 312",
+    "unit_price": 116.5,
+    "stock": 114,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 313",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM313",
+    "description": "Descrição comercial da família 313",
+    "unit_price": 119.75,
+    "stock": 116,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 314",
+    "category": "Iluminação",
+    "sku_prefix": "FAM314",
+    "description": "Descrição comercial da família 314",
+    "unit_price": 123.0,
+    "stock": 118,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 315",
+    "category": "Tintas",
+    "sku_prefix": "FAM315",
+    "description": "Descrição comercial da família 315",
+    "unit_price": 12.5,
+    "stock": 120,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 316",
+    "category": "Segurança",
+    "sku_prefix": "FAM316",
+    "description": "Descrição comercial da família 316",
+    "unit_price": 15.75,
+    "stock": 122,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 317",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM317",
+    "description": "Descrição comercial da família 317",
+    "unit_price": 19.0,
+    "stock": 124,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 318",
+    "category": "Materiais",
+    "sku_prefix": "FAM318",
+    "description": "Descrição comercial da família 318",
+    "unit_price": 22.25,
+    "stock": 126,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 319",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM319",
+    "description": "Descrição comercial da família 319",
+    "unit_price": 25.5,
+    "stock": 128,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 320",
+    "category": "Iluminação",
+    "sku_prefix": "FAM320",
+    "description": "Descrição comercial da família 320",
+    "unit_price": 28.75,
+    "stock": 50,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 321",
+    "category": "Tintas",
+    "sku_prefix": "FAM321",
+    "description": "Descrição comercial da família 321",
+    "unit_price": 32.0,
+    "stock": 52,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 322",
+    "category": "Segurança",
+    "sku_prefix": "FAM322",
+    "description": "Descrição comercial da família 322",
+    "unit_price": 35.25,
+    "stock": 54,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 323",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM323",
+    "description": "Descrição comercial da família 323",
+    "unit_price": 38.5,
+    "stock": 56,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 324",
+    "category": "Materiais",
+    "sku_prefix": "FAM324",
+    "description": "Descrição comercial da família 324",
+    "unit_price": 41.75,
+    "stock": 58,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 325",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM325",
+    "description": "Descrição comercial da família 325",
+    "unit_price": 45.0,
+    "stock": 60,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 326",
+    "category": "Iluminação",
+    "sku_prefix": "FAM326",
+    "description": "Descrição comercial da família 326",
+    "unit_price": 48.25,
+    "stock": 62,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 327",
+    "category": "Tintas",
+    "sku_prefix": "FAM327",
+    "description": "Descrição comercial da família 327",
+    "unit_price": 51.5,
+    "stock": 64,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 328",
+    "category": "Segurança",
+    "sku_prefix": "FAM328",
+    "description": "Descrição comercial da família 328",
+    "unit_price": 54.75,
+    "stock": 66,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 329",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM329",
+    "description": "Descrição comercial da família 329",
+    "unit_price": 58.0,
+    "stock": 68,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 330",
+    "category": "Materiais",
+    "sku_prefix": "FAM330",
+    "description": "Descrição comercial da família 330",
+    "unit_price": 61.25,
+    "stock": 70,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 331",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM331",
+    "description": "Descrição comercial da família 331",
+    "unit_price": 64.5,
+    "stock": 72,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 332",
+    "category": "Iluminação",
+    "sku_prefix": "FAM332",
+    "description": "Descrição comercial da família 332",
+    "unit_price": 67.75,
+    "stock": 74,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 333",
+    "category": "Tintas",
+    "sku_prefix": "FAM333",
+    "description": "Descrição comercial da família 333",
+    "unit_price": 71.0,
+    "stock": 76,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 334",
+    "category": "Segurança",
+    "sku_prefix": "FAM334",
+    "description": "Descrição comercial da família 334",
+    "unit_price": 74.25,
+    "stock": 78,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 335",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM335",
+    "description": "Descrição comercial da família 335",
+    "unit_price": 77.5,
+    "stock": 80,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 336",
+    "category": "Materiais",
+    "sku_prefix": "FAM336",
+    "description": "Descrição comercial da família 336",
+    "unit_price": 80.75,
+    "stock": 82,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 337",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM337",
+    "description": "Descrição comercial da família 337",
+    "unit_price": 84.0,
+    "stock": 84,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 338",
+    "category": "Iluminação",
+    "sku_prefix": "FAM338",
+    "description": "Descrição comercial da família 338",
+    "unit_price": 87.25,
+    "stock": 86,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 339",
+    "category": "Tintas",
+    "sku_prefix": "FAM339",
+    "description": "Descrição comercial da família 339",
+    "unit_price": 90.5,
+    "stock": 88,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 340",
+    "category": "Segurança",
+    "sku_prefix": "FAM340",
+    "description": "Descrição comercial da família 340",
+    "unit_price": 93.75,
+    "stock": 90,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 341",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM341",
+    "description": "Descrição comercial da família 341",
+    "unit_price": 97.0,
+    "stock": 92,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 342",
+    "category": "Materiais",
+    "sku_prefix": "FAM342",
+    "description": "Descrição comercial da família 342",
+    "unit_price": 100.25,
+    "stock": 94,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 343",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM343",
+    "description": "Descrição comercial da família 343",
+    "unit_price": 103.5,
+    "stock": 96,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  },
+  {
+    "family": "Family 344",
+    "category": "Iluminação",
+    "sku_prefix": "FAM344",
+    "description": "Descrição comercial da família 344",
+    "unit_price": 106.75,
+    "stock": 98,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 345",
+    "category": "Tintas",
+    "sku_prefix": "FAM345",
+    "description": "Descrição comercial da família 345",
+    "unit_price": 110.0,
+    "stock": 100,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 346",
+    "category": "Segurança",
+    "sku_prefix": "FAM346",
+    "description": "Descrição comercial da família 346",
+    "unit_price": 113.25,
+    "stock": 102,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 347",
+    "category": "Hidraólica",
+    "sku_prefix": "FAM347",
+    "description": "Descrição comercial da família 347",
+    "unit_price": 116.5,
+    "stock": 104,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 348",
+    "category": "Materiais",
+    "sku_prefix": "FAM348",
+    "description": "Descrição comercial da família 348",
+    "unit_price": 119.75,
+    "stock": 106,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 349",
+    "category": "Ferramentas",
+    "sku_prefix": "FAM349",
+    "description": "Descrição comercial da família 349",
+    "unit_price": 123.0,
+    "stock": 108,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": false
+  },
+  {
+    "family": "Family 350",
+    "category": "Iluminação",
+    "sku_prefix": "FAM350",
+    "description": "Descrição comercial da família 350",
+    "unit_price": 12.5,
+    "stock": 110,
+    "tags": [
+      "enterprise",
+      "b2b",
+      "catalog"
+    ],
+    "featured": true
+  }
+]

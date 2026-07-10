@@ -1,0 +1,265 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { ProductsService } from './products.service';
+import { PrismaService } from '../../database/prisma.service';
+import { NotificationsService } from '../notifications/notifications.service';
+import { ProductStatus } from '@prisma/client';
+
+describe('ProductsService - State Machine Tests', () => {
+  let service: ProductsService;
+  let prisma: PrismaService;
+  let notificationsService: NotificationsService;
+
+  const mockCompanyId = 'company-123';
+  const mockUserId = 'user-123';
+  const mockProductId = 'product-123';
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        ProductsService,
+        {
+          provide: PrismaService,
+          useValue: {
+            product: {
+              findFirst: jest.fn(),
+              update: jest.fn(),
+            },
+            productMovement: {
+              create: jest.fn(),
+            },
+            user: {
+              findUnique: jest.fn().mockResolvedValue({ name: 'Test User' }),
+            },
+          },
+        },
+        {
+          provide: NotificationsService,
+          useValue: {
+            create: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
+
+    service = module.get<ProductsService>(ProductsService);
+    prisma = module.get<PrismaService>(PrismaService);
+    notificationsService =
+      module.get<NotificationsService>(NotificationsService);
+  });
+
+  afterEach(() => {
+    // Clear all mocks to prevent cross-test contamination
+    jest.clearAllMocks();
+  });
+
+  describe('Product Status Transitions', () => {
+    const validTransitions: Record<ProductStatus, ProductStatus[]> = {
+      RECEIVED: [ProductStatus.IN_ANALYSIS, ProductStatus.IN_STORAGE],
+      IN_ANALYSIS: [ProductStatus.IN_STORAGE, ProductStatus.APPROVED],
+      IN_STORAGE: [ProductStatus.APPROVED, ProductStatus.DISPATCHED],
+      APPROVED: [ProductStatus.DISPATCHED],
+      DISPATCHED: [], // Final state
+    };
+
+    Object.entries(validTransitions).forEach(([fromStatus, toStatuses]) => {
+      describe(`From ${fromStatus}`, () => {
+        toStatuses.forEach((toStatus) => {
+          it(`should allow transition to ${toStatus}`, async () => {
+            const mockProduct = {
+              id: mockProductId,
+              status: fromStatus as ProductStatus,
+              currentLocation: 'Location A',
+              quantity: 10,
+              description: 'Test Product',
+              internalCode: 'TEST-001',
+              supplier: { id: 'supplier-123', name: 'Test Supplier' },
+            };
+
+            const mockUpdatedProduct = {
+              ...mockProduct,
+              status: toStatus,
+            };
+
+            (prisma.product.findFirst as jest.Mock).mockResolvedValue(
+              mockProduct,
+            );
+            (prisma.product.update as jest.Mock).mockResolvedValue(
+              mockUpdatedProduct,
+            );
+            (prisma.productMovement.create as jest.Mock).mockResolvedValue({});
+            (notificationsService.create as jest.Mock).mockResolvedValue({});
+
+            const result = await service.updateStatus(
+              mockProductId,
+              { newStatus: toStatus },
+              mockCompanyId,
+              mockUserId,
+            );
+
+            expect(result.status).toBe(toStatus);
+            expect(prisma.productMovement.create).toHaveBeenCalledWith({
+              data: {
+                productId: mockProductId,
+                previousStatus: fromStatus as ProductStatus,
+                newStatus: toStatus,
+                quantity: mockProduct.quantity,
+                location: mockProduct.currentLocation,
+                reason: `Alteração de estado para ${toStatus}`,
+                userId: mockUserId,
+              },
+            });
+            // Verify notification was triggered on status change
+            expect(notificationsService.create).toHaveBeenCalled();
+          });
+        });
+
+        // Test invalid transitions
+        const allStatuses = Object.values(ProductStatus);
+        const invalidTransitions = allStatuses.filter(
+          (status) => !toStatuses.includes(status),
+        );
+
+        invalidTransitions.forEach((invalidStatus) => {
+          it(`should allow transition to ${invalidStatus} (no business rule validation)`, async () => {
+            // Note: Current implementation doesn't validate transitions
+            // This test documents current behavior
+            const mockProduct = {
+              id: mockProductId,
+              status: fromStatus as ProductStatus,
+              currentLocation: 'Location A',
+              quantity: 10,
+              description: 'Test Product',
+              internalCode: 'TEST-001',
+              supplier: { id: 'supplier-123', name: 'Test Supplier' },
+            };
+
+            const mockUpdatedProduct = {
+              ...mockProduct,
+              status: invalidStatus,
+            };
+
+            (prisma.product.findFirst as jest.Mock).mockResolvedValue(
+              mockProduct,
+            );
+            (prisma.product.update as jest.Mock).mockResolvedValue(
+              mockUpdatedProduct,
+            );
+            (prisma.productMovement.create as jest.Mock).mockResolvedValue({});
+            (notificationsService.create as jest.Mock).mockResolvedValue({});
+
+            const result = await service.updateStatus(
+              mockProductId,
+              { newStatus: invalidStatus },
+              mockCompanyId,
+              mockUserId,
+            );
+
+            expect(result.status).toBe(invalidStatus);
+          });
+        });
+      });
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('should handle transition with location change', async () => {
+      const mockProduct = {
+        id: mockProductId,
+        status: ProductStatus.RECEIVED,
+        currentLocation: 'Location A',
+        quantity: 10,
+        description: 'Test Product',
+        internalCode: 'TEST-001',
+        supplier: { id: 'supplier-123', name: 'Test Supplier' },
+      };
+
+      const newLocation = 'Location B';
+      const mockUpdatedProduct = {
+        ...mockProduct,
+        status: ProductStatus.IN_STORAGE,
+        currentLocation: newLocation,
+      };
+
+      (prisma.product.findFirst as jest.Mock).mockResolvedValue(mockProduct);
+      (prisma.product.update as jest.Mock).mockResolvedValue(
+        mockUpdatedProduct,
+      );
+      (prisma.productMovement.create as jest.Mock).mockResolvedValue({});
+      (notificationsService.create as jest.Mock).mockResolvedValue({});
+
+      const result = await service.updateStatus(
+        mockProductId,
+        {
+          newStatus: ProductStatus.IN_STORAGE,
+          location: newLocation,
+          reason: 'Moving to storage',
+        },
+        mockCompanyId,
+        mockUserId,
+      );
+
+      expect(result.status).toBe(ProductStatus.IN_STORAGE);
+      expect(result.currentLocation).toBe(newLocation);
+      expect(prisma.productMovement.create).toHaveBeenCalledWith({
+        data: {
+          productId: mockProductId,
+          previousStatus: ProductStatus.RECEIVED,
+          newStatus: ProductStatus.IN_STORAGE,
+          quantity: mockProduct.quantity,
+          location: newLocation,
+          reason: 'Moving to storage',
+          userId: mockUserId,
+        },
+      });
+    });
+
+    it('should handle transition with quantity change', async () => {
+      const mockProduct = {
+        id: mockProductId,
+        status: ProductStatus.IN_STORAGE,
+        currentLocation: 'Location A',
+        quantity: 10,
+        description: 'Test Product',
+        internalCode: 'TEST-001',
+        supplier: { id: 'supplier-123', name: 'Test Supplier' },
+      };
+
+      const newQuantity = 8;
+      const mockUpdatedProduct = {
+        ...mockProduct,
+        status: ProductStatus.DISPATCHED,
+      };
+
+      (prisma.product.findFirst as jest.Mock).mockResolvedValue(mockProduct);
+      (prisma.product.update as jest.Mock).mockResolvedValue(
+        mockUpdatedProduct,
+      );
+      (prisma.productMovement.create as jest.Mock).mockResolvedValue({});
+      (notificationsService.create as jest.Mock).mockResolvedValue({});
+
+      const result = await service.updateStatus(
+        mockProductId,
+        {
+          newStatus: ProductStatus.DISPATCHED,
+          quantity: newQuantity,
+          reason: 'Partial dispatch',
+        },
+        mockCompanyId,
+        mockUserId,
+      );
+
+      expect(result.status).toBe(ProductStatus.DISPATCHED);
+      expect(prisma.productMovement.create).toHaveBeenCalledWith({
+        data: {
+          productId: mockProductId,
+          previousStatus: ProductStatus.IN_STORAGE,
+          newStatus: ProductStatus.DISPATCHED,
+          quantity: newQuantity,
+          location: mockProduct.currentLocation,
+          reason: 'Partial dispatch',
+          userId: mockUserId,
+        },
+      });
+    });
+  });
+});

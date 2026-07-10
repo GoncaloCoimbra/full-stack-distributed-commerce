@@ -1,0 +1,1 @@
+export default function LoyaltyCard() { return <div>LoyaltyCard</div>; }

@@ -1,0 +1,48 @@
+# Prometheus Configuration for Tranzor B2B
+# Local para armazenar: backend/config/prometheus.yml
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'Tranzor-monitor'
+    environment: 'development'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - 'alertmanager:9093'
+
+rule_files:
+  - "prometheus-rules.yml"
+
+scrape_configs:
+  # Backend Node.js com métricas
+  - job_name: 'Tranzor-backend'
+    static_configs:
+      - targets: ['localhost:3000']
+        labels:
+          service: 'backend'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # PostgreSQL (se tiver pgexporter)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['localhost:9187']
+        labels:
+          service: 'database'
+
+  # Redis (se tiver redis_exporter)
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['localhost:9121']
+        labels:
+          service: 'cache'
+
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

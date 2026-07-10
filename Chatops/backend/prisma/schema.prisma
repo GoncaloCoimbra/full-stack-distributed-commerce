@@ -1,0 +1,49 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Channel {
+  id        String    @id @default(uuid())
+  name      String
+  messages  Message[]
+  auditLogs AuditLog[]
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  text       String
+  createdAt  DateTime @default(now())
+  userId     String
+  channel    Channel  @relation(fields: [channelId], references: [id])
+  channelId  String
+}
+
+model Product {
+  id    String @id @default(uuid())
+  sku   String @unique
+  name  String
+  stock Int    @default(0)
+}
+
+model B2BClient {
+  id           String  @id @default(uuid())
+  name         String
+  creditStatus String
+  creditLimit  Decimal @db.Decimal(10, 2) @default("0.00")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String
+  channel    Channel? @relation(fields: [channelId], references: [id])
+  channelId  String?
+  command    String
+  details    String?
+  createdAt  DateTime @default(now())
+}

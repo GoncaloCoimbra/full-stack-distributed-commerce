@@ -1,0 +1,13 @@
+node_modules
+backend/node_modules
+frontend/node_modules
+coverage
+backend/coverage
+frontend/coverage
+backend/dist
+frontend/dist
+backend/playwright-report
+backend/logs
+.git
+.env
+.env.local

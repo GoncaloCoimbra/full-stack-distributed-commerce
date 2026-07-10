@@ -1,0 +1,85 @@
+services:
+  chatops-backend:
+    image: node:20-bullseye
+    container_name: chatops-backend
+    working_dir: /workspace/Chatops/backend
+    volumes:
+      - ./Chatops/backend:/workspace/Chatops/backend
+      - /workspace/Chatops/backend/node_modules
+    environment:
+      PORT: 3002
+      WS_PORT: 9001
+      DATABASE_URL: postgresql://chatops:chatops@postgres_chatops:5432/chatops_db
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3002:3002"
+      - "9001:9001"
+    depends_on:
+      postgres_chatops:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: sh -c "apt-get update && apt-get install -y libssl1.1 --no-install-recommends && npm install && npx prisma generate && npm run build && npm start"
+    restart: unless-stopped
+
+  chatops-frontend:
+    image: node:20-bullseye
+    container_name: chatops-frontend
+    working_dir: /workspace/Chatops/frontend
+    volumes:
+      - ./Chatops/frontend:/workspace/Chatops/frontend
+      - /workspace/Chatops/frontend/node_modules
+    environment:
+      VITE_WS_URL: ws://localhost:9001
+      VITE_API_URL: http://localhost:3002
+      HOST: 0.0.0.0
+      PORT: 5173
+      BROWSER: none
+    ports:
+      - "3006:5173"
+    depends_on:
+      - chatops-backend
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    restart: unless-stopped
+
+  logistica-backend:
+    image: node:20-bullseye
+    container_name: logistica-backend
+    working_dir: /workspace/logistica-multi-tenant-clean/backend-nest
+    volumes:
+      - ./logistica-multi-tenant-clean/backend-nest:/workspace/logistica-multi-tenant-clean/backend-nest
+      - /workspace/logistica-multi-tenant-clean/backend-nest/node_modules
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres_logistica:5432/logistica
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: replace-with-a-secure-random-secret
+      PORT: 3000
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres_logistica:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: sh -c "npm install && npm run build && npm start"
+    restart: unless-stopped
+
+  logistica-frontend:
+    image: node:20-bullseye
+    container_name: logistica-frontend
+    working_dir: /workspace/logistica-multi-tenant-clean/frontend
+    volumes:
+      - ./logistica-multi-tenant-clean/frontend:/workspace/logistica-multi-tenant-clean/frontend
+      - /workspace/logistica-multi-tenant-clean/frontend/node_modules
+    environment:
+      DOCKER_BACKEND_URL: http://logistica-backend:3000
+      HOST: 0.0.0.0
+      PORT: 3000
+      BROWSER: none
+    ports:
+      - "3005:3000"
+    depends_on:
+      - logistica-backend
+    command: sh -c "npm install && npm run start -- --host 0.0.0.0 --port 3000"
+    restart: unless-stopped

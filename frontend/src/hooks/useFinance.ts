@@ -1,0 +1,1 @@
+export default function useFinance() { /* hook logic */ }

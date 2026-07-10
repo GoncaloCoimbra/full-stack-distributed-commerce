@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==================== LIGHT MODE STYLES ==================== */
+
+@layer base {
+  :root {
+    /* Brand Colors aligned with the website */
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
+    --text-primary: #0f172a;
+    --text-secondary: #6b7280;
+    --border-color: #ececec;
+    --shadow: rgba(217, 4, 41, 0.08);
+    --brand-red: #d90429;
+    --brand-red-strong: #ff0a35;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-white to-[#fafafa] transition-colors duration-300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900;
+  }
+
+  p {
+    @apply text-gray-700;
+  }
+
+  a {
+    @apply text-[#d90429] hover:text-[#ff0a35] transition-colors;
+  }
+
+  input, textarea, select {
+    @apply bg-white text-gray-900 placeholder-gray-400 border-[#ececec];
+  }
+
+  ::placeholder {
+    @apply text-gray-500;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-white;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
+  }
+}
+
+/* ==================== COMPONENT STYLES ==================== */
+
+@layer components {
+  .card {
+    @apply bg-gradient-to-br from-white to-[#fafafa] border border-[#ececec] rounded-xl shadow-lg transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply border-[#d90429]/40 shadow-xl;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 bg-white border-2 border-[#ececec] text-gray-900 rounded-lg focus:ring-2 focus:ring-[#d90429]/30 focus:border-[#d90429] transition-all placeholder-gray-400 font-medium;
+  }
+
+  .input:focus {
+    @apply border-[#d90429] shadow-md;
+  }
+
+  .button-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-[#d90429] to-[#ff0a35] text-white rounded-lg hover:from-[#ff0a35] hover:to-[#d90429] transition-all font-bold shadow-lg hover:shadow-xl hover:scale-105;
+  }
+
+  .button-dark-secondary {
+    @apply px-6 py-3 bg-[#1e293b] border-2 border-[#334155] text-[#cbd5e1] rounded-lg hover:border-[#3b82f6]/50 hover:bg-[#334155] transition-all font-bold shadow-dark-md;
+  }
+
+  .badge-dark {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-[#1e293b]/50 border border-[#334155] text-[#cbd5e1];
+  }
+
+  .table-dark {
+    @apply bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl overflow-hidden border border-[#334155]/50 shadow-dark-lg;
+  }
+
+  .table-dark th {
+    @apply bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-[#3b82f6] font-black border-b-2 border-[#3b82f6]/30 px-6 py-4 uppercaseercase;
+  }
+
+  .table-dark td {
+    @apply px-6 py-4 border-b border-[#334155]/50 text-[#cbd5e1];
+  }
+
+  .table-dark tbody tr {
+    @apply hover:bg-[#334155]/30 transition-colors duration-200;
+  }
+
+  .section-dark {
+    @apply bg-gradient-to-br from-[#1e293b]/80 via-[#1e293b] to-[#0f172a] backdrop-blur-sm rounded-2xl p-6 border border-[#334155]/50 shadow-dark-lg;
+  }
+
+  .header-dark {
+    @apply bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] border-b-2 border-[#3b82f6]/30 shadow-dark-lg backdrop-blur-sm;
+  }
+
+  .modal-dark {
+    @apply bg-gradient-to-br from-[#1e293b] to-[#0f172a] border border-[#334155]/50 rounded-2xl shadow-2xl;
+  }
+
+  .alert-dark-success {
+    @apply bg-emerald-900/30 border-l-4 border-emerald-500 text-emerald-400 px-4 py-3 rounded-lg shadow-dark-md;
+  }
+
+  .alert-dark-error {
+    @apply bg-red-900/30 border-l-4 border-red-500 text-red-400 px-4 py-3 rounded-lg shadow-dark-md;
+  }
+
+  .alert-dark-warning {
+    @apply bg-amber-900/30 border-l-4 border-amber-500 text-amber-400 px-4 py-3 rounded-lg shadow-dark-md;
+  }
+
+  .alert-dark-info {
+    @apply bg-[#1e293b]/50 border-l-4 border-[#3b82f6] text-[#cbd5e1] px-4 py-3 rounded-lg shadow-dark-md;
+  }
+
+  .divider-dark {
+    @apply h-px bg-gradient-to-r from-transparent via-[#334155] to-transparent;
+  }
+
+  .glow-effect {
+    @apply transition-all duration-300 hover:shadow-neon hover:shadow-neon-lg;
+  }
+
+  .neon-border {
+    @apply border border-[#3b82f6]/30 hover:border-[#3b82f6] transition-all duration-300;
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@layer utilities {
+  /* Gradient Animation */
+  .animate-gradient {
+    @apply bg-gradient-to-r from-[#3b82f6] via-[#2563eb] to-[#3b82f6] bg-[length:200%_auto] animate-pulse;
+  }
+
+  /* Smooth Transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Focus Rings Dark Mode */
+  .focus-ring-dark {
+    @apply focus:ring-2 focus:ring-[#3b82f6]/50 focus:outline-none;
+  }
+
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#3b82f6] to-[#2563eb];
+  }
+
+  .text-gradient-dark {
+    @apply dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-[#60a5fa] dark:to-[#3b82f6];
+  }
+
+  /* Glass Morphism */
+  .glass-dark {
+    @apply backdrop-blur-md bg-white/10 dark:bg-[#1e293b]/40 border border-white/20 dark:border-[#3b82f6]/20;
+  }
+
+  /* Smooth Shadows */
+  .shadow-soft-dark {
+    @apply shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.4)];
+  }
+
+  /* Elevated Cards */
+  .elevated-dark {
+    @apply relative z-10 dark:shadow-dark-xl hover:dark:shadow-neon-lg;
+  }
+
+  /* Light Mode Transitions */
+  .dark-mode-transition {
+    @apply transition-all duration-500 ease-in-out;
+  }
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+
+/* Firefox */
+* {
+  scrollbar-color: #334155 #0f172a;
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white dark:bg-[#0f172a];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-[#334155] rounded-full;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-[#475569];
+}
+
+/* ==================== SELECTION COLORS ==================== */
+
+::selection {
+  @apply bg-blue-500 text-white dark:bg-[#3b82f6] dark:text-[#0f172a];
+}
+
+::-moz-selection {
+  @apply bg-blue-500 text-white dark:bg-[#3b82f6] dark:text-[#0f172a];
+}
+
+/* ==================== LINK STYLES ==================== */
+
+a {
+  @apply transition-colors duration-200;
+}
+
+a:hover {
+  @apply dark:text-[#60a5fa];
+}
+
+/* ==================== CODE BLOCKS ==================== */
+
+code {
+  @apply bg-gray-100 dark:bg-[#0f172a] text-gray-800 dark:text-[#60a5fa] px-2 py-1 rounded font-mono text-sm;
+}
+
+pre {
+  @apply bg-gray-100 dark:bg-[#0f172a] text-gray-800 dark:text-[#cbd5e1] p-4 rounded-lg overflow-x-auto;
+}
+
+pre code {
+  @apply bg-transparent p-0;
+}

@@ -1,0 +1,8 @@
+node_modules/
+node_modules/.prisma
+.prisma
+dist/
+logs/
+.env
+server/**/*.js
+server/**/*.js.map

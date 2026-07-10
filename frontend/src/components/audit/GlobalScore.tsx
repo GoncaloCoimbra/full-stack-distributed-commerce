@@ -1,0 +1,1 @@
+export default function GlobalScore() { return <div>GlobalScore</div>; }

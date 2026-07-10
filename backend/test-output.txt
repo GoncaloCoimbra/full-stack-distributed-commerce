@@ -1,0 +1,984 @@
+﻿node.exe : npm warn Unknown cli config "--runInBand". This will stop working 
+in the next major version of npm.
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn Unknow...version of npm. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+> Tranzor-backend@2.0.0 test
+> jest --config jest.config.cjs --coverage
+
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+PASS tests/unit/checkoutDomain.test.ts
+PASS tests/unit/pricingEngine.test.ts
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+PASS tests/unit/idempotency.test.ts
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is 
+deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at 
+https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+PASS tests/unit/envConfig.test.ts
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be 
+removed in v30.0.0. Please use "isolatedModules: true" in 
+C:/Users/gonca/OneDrive/Ambiente de Trabalho/website/backend/tsconfig.json 
+instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+PASS tests/unit/money.test.ts
+FAIL tests/unit/cache.test.ts
+  ÔùÅ distributed cache ÔÇ║ writes through Redis and reads back the cached 
+value
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "redis://localhost:6379", ObjectContaining {"lazyConnect": true}
+
+    Number of calls: 0
+
+    [0m [90m 47 |[39m     [36mconst[39m value [33m=[39m [36mawait[39m 
+getCachedValue[33m<[39m{ price[33m:[39m number 
+}[33m>[39m([32m'shop:catalog:1'[39m)[33m;[39m
+     [90m 48 |[39m
+    [31m[1m>[22m[39m[90m 49 |[39m     expect([33mRedisMock[39m)[33m.[
+39mtoHaveBeenCalledWith([32m'redis://localhost:6379'[39m[33m,[39m 
+expect[33m.[39mobjectContaining({ lazyConnect[33m:[39m [36mtrue[39m 
+}))[33m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m 50 |[39m     [36mconst[39m setPayload [33m=[39m [33mJSON[39m
+[33m.[39mparse(mockSet[33m.[39mmock[33m.[39mcalls[[35m0[39m][[35m1[39m
+])[33m;[39m
+     [90m 51 |[39m     expect(mockSet)[33m.[39mtoHaveBeenCalledWith([32m's
+hop:catalog:1'[39m[33m,[39m 
+expect[33m.[39many([33mString[39m)[33m,[39m [32m'PX'[39m[33m,[39m 
+[35m5000[39m)[33m;[39m
+     [90m 52 |[39m     
+expect(setPayload[33m.[39mvalue)[33m.[39mtoEqual({ price[33m:[39m 
+[35m25[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (tests/unit/cache.test.ts:49:23)
+
+PASS tests/unit/analyticsSummary.test.ts
+PASS tests/unit/checkoutService.test.ts
+PASS tests/checkoutQueueService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [CHECKOUT QUEUE] Processando ordem order-1...
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:129:13)
+
+    console.log
+      [CHECKOUT QUEUE] Adquirindo locks para 1 produtos...
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:132:13)
+
+    console.warn
+      [CHECKOUT QUEUE] Lock distribu├¡do indispon├¡vel; a continuar sem lock 
+para produto 507f1f77bcf86cd799439011
+
+    [0m [90m 137 |[39m         [36mconst[39m lockDisabled [33m=[39m [33
+m![39mprocess[33m.[39menv[33m.[39m[33mREDIS_URL[39m[33m?[39m[33m.[39
+mtrim() [33m||[39m process[33m.[39menv[33m.[39m[33mDISABLE_REDIS[39m 
+[33m===[39m [32m'true'[39m [33m||[39m 
+process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m [33m||[39m 
+process[33m.[39menv[33m.[39m[33mJEST_WORKER_ID[39m [33m!==[39m 
+undefined[33m;[39m
+     [90m 138 |[39m         [36mif[39m (lockDisabled) {
+    [31m[1m>[22m[39m[90m 139 |[39m           
+console[33m.[39mwarn([32m`[CHECKOUT QUEUE] Lock distribu├¡do indispon├¡vel; 
+a continuar sem lock para produto ${item.productId}`[39m)[33m;[39m
+     [90m     |[39m                   [31m[1m^[22m[39m
+     [90m 140 |[39m           [36mcontinue[39m[33m;[39m
+     [90m 141 |[39m         }
+     [90m 142 |[39m[0m
+
+      at MemoryQueue.warn [as processor] 
+(server/services/checkoutQueueService.ts:139:19)
+      at MemoryQueue.add (server/services/checkoutQueueService.ts:69:24)
+      at enqueueCheckout (server/services/checkoutQueueService.ts:264:15)
+      at Object.<anonymous> (tests/checkoutQueueService.test.ts:52:17)
+
+    console.log
+      [CHECKOUT QUEUE] Verificando stock com locks...
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:150:13)
+
+    console.log
+      [CHECKOUT QUEUE] Stock decrementado: 507f1f77bcf86cd799439011 (-1)
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:184:15)
+
+    console.log
+      [CHECKOUT QUEUE] Confirmando ordem order-1...
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:188:13)
+
+    console.log
+      [CHECKOUT QUEUE] Ô£à Ordem order-1 processada com sucesso
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:195:13)
+
+    console.log
+      [CHECKOUT QUEUE] Libertando 0 locks...
+
+      at MemoryQueue.log [as processor] 
+(server/services/checkoutQueueService.ts:227:13)
+
+    console.log
+      [CHECKOUT QUEUE] Job memory-1783263923988-96b536cab30e2 enfileirado para 
+ordem order-1
+
+      at log (server/services/checkoutQueueService.ts:273:11)
+
+PASS tests/integration/analytics.test.ts (5.054 s)
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "GET /health HTTP/1.1" 200 140 "-" "-"
+PASS tests/integration/health.test.ts (11.181 s)
+  ÔùÅ Console
+
+    console.log
+      2026-07-05 16:05:30 [[32minfo[39m]: Skipping MongoDB connection in 
+test environment {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931030-q0dfl7a81",
+        "method": "GET",
+        "path": "/health",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "GET /health HTTP/1.1" 200 140 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "GET /api/v1/metrics HTTP/1.1" 200 604 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "GET /api/v1/metrics HTTP/1.1" 200 783 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "POST /api/v1/auth/register HTTP/1.1" 201 389 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "POST /api/v1/auth/register HTTP/1.1" 422 209 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:31 +0000] "POST /api/v1/auth/register HTTP/1.1" 422 235 "-" "-"
+PASS tests/integration/metrics.test.ts (11.413 s)
+  ÔùÅ Console
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Skipping MongoDB connection in 
+test environment {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931480-rlx3caowb",
+        "method": "GET",
+        "path": "/health",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931586-sqhsuo7v5",
+        "method": "GET",
+        "path": "/api/v1/metrics",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931613-o3dnstve5",
+        "method": "GET",
+        "path": "/api/v1/metrics",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:32 +0000] "POST /api/v1/auth/register HTTP/1.1" 201 394 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:32 +0000] "POST /api/v1/auth/register HTTP/1.1" 409 162 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:33 +0000] "POST /api/v1/auth/register HTTP/1.1" 201 395 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:33 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 316 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "POST /api/v1/auth/login HTTP/1.1" 401 162 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "POST /api/v1/auth/login HTTP/1.1" 401 162 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "GET /api/v1/products?page=1&limit=10 HTTP/1.1" 200 346 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "GET /api/v1/products?search=laptop HTTP/1.1" 200 346 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "GET /api/v1/products?minPrice=100&maxPrice=500 HTTP/1.1" 200 346 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "GET /api/v1/nonexistent HTTP/1.1" 404 92 "-" "-"
+::ffff:127.0.0.1 - - [05/Jul/2026:15:05:34 +0000] "POST /api/v1/products HTTP/1.1" 401 80 "-" "-"
+PASS tests/unit.test.ts (14.658 s)
+  ÔùÅ Console
+
+    console.log
+      2026-07-05 16:05:30 [[32minfo[39m]: Skipping MongoDB connection in 
+test environment {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:30 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263930836-ydyxf4r7j",
+        "method": "POST",
+        "path": "/api/v1/auth/register",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "te...om",
+          "password": "Te...3!",
+          "confirmPassword": "Te...3!",
+          "name": "Jo...oe"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:30 [[32minfo[39m]: Register attempt for email: 
+test1783263930722@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: User registered successfully: 
+test1783263930722@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931691-vtowoyh0d",
+        "method": "POST",
+        "path": "/api/v1/auth/register",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "in...il",
+          "password": "Te...3!",
+          "confirmPassword": "Te...3!",
+          "name": "Jo...oe"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[33mwarn[39m]: Valida├º├úo de dados falhou {
+        "statusCode": 422,
+        "isOperational": true,
+        "stack": "Error: Valida├º├úo de dados falhou\n    at new 
+ValidationError (C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\utils\\errors.ts:68:3)\n    at 
+C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\middleware\\validate.ts:25:17\n    at 
+processTicksAndRejections (node:internal/process/task_queues:105:5)",
+        "path": "/api/v1/auth/register",
+        "method": "POST",
+        "requestId": "1783263931691-vtowoyh0d",
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931750-rx4xqb0ge",
+        "method": "POST",
+        "path": "/api/v1/auth/register",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "te...om",
+          "password": "****",
+          "confirmPassword": "****",
+          "name": "Jo...oe"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[33mwarn[39m]: Valida├º├úo de dados falhou {
+        "statusCode": 422,
+        "isOperational": true,
+        "stack": "Error: Valida├º├úo de dados falhou\n    at new 
+ValidationError (C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\utils\\errors.ts:68:3)\n    at 
+C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\middleware\\validate.ts:25:17\n    at 
+processTicksAndRejections (node:internal/process/task_queues:105:5)",
+        "path": "/api/v1/auth/register",
+        "method": "POST",
+        "requestId": "1783263931750-rx4xqb0ge",
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263931778-vfvjd820s",
+        "method": "POST",
+        "path": "/api/v1/auth/register",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "du...om",
+          "password": "Te...3!",
+          "confirmPassword": "Te...3!",
+          "name": "Jo...oe"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:31 [[32minfo[39m]: Register attempt for email: 
+duplicate1783263931769@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[32minfo[39m]: User registered successfully: 
+duplicate1783263931769@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263932468-xceqxbj3n",
+        "method": "POST",
+        "path": "/api/v1/auth/register",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "du...om",
+          "password": "Te...3!",
+          "confirmPassword": "Te...3!",
+          "name": "Jo...oe"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[32minfo[39m]: Register attempt for email: 
+duplicate1783263931769@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[33mwarn[39m]: Register failed: email already 
+exists: duplicate1783263931769@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[33mwarn[39m]: Email j├í registado {
+        "statusCode": 409,
+        "isOperational": true,
+        "stack": "Error: Email j├í registado\n    at new ConflictError 
+(C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\utils\\errors.ts:59:3)\n    at 
+C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\routes\\auth.ts:135:9\n    at 
+processTicksAndRejections (node:internal/process/task_queues:105:5)",
+        "path": "/api/v1/auth/register",
+        "method": "POST",
+        "requestId": "1783263932468-xceqxbj3n",
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263932502-9ag17bced",
+        "method": "POST",
+        "path": "/api/v1/auth/register",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "lo...om",
+          "password": "Te...3!",
+          "confirmPassword": "Te...3!",
+          "name": "Te...er"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:32 [[32minfo[39m]: Register attempt for email: 
+login-test1783263932495@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:33 [[32minfo[39m]: User registered successfully: 
+login-test1783263932495@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:33 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263933203-fg3jlelvq",
+        "method": "POST",
+        "path": "/api/v1/auth/login",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "lo...om",
+          "password": "Te...3!"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:33 [[32minfo[39m]: Login attempt for email: 
+login-test1783263932495@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:33 [[32minfo[39m]: User logged in successfully: 
+login-test1783263932495@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:33 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263933832-pgjksura2",
+        "method": "POST",
+        "path": "/api/v1/auth/login",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "lo...om",
+          "password": "Wr...3!"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:33 [[32minfo[39m]: Login attempt for email: 
+login-test1783263932495@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[33mwarn[39m]: Login failed: invalid password for 
+email: login-test1783263932495@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[33mwarn[39m]: Credenciais inv├ílidas {
+        "statusCode": 401,
+        "isOperational": true,
+        "stack": "Error: Credenciais inv├ílidas\n    at new UnauthorizedError 
+(C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\utils\\errors.ts:38:3)\n    at 
+C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\routes\\auth.ts:96:9",
+        "path": "/api/v1/auth/login",
+        "method": "POST",
+        "requestId": "1783263933832-pgjksura2",
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263934479-f8p96z5b8",
+        "method": "POST",
+        "path": "/api/v1/auth/login",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "email": "no...om",
+          "password": "Te...3!"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Login attempt for email: 
+nonexistent@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[33mwarn[39m]: Login failed: user not found for 
+email: nonexistent@example.com {
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[33mwarn[39m]: Credenciais inv├ílidas {
+        "statusCode": 401,
+        "isOperational": true,
+        "stack": "Error: Credenciais inv├ílidas\n    at new UnauthorizedError 
+(C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\utils\\errors.ts:38:3)\n    at 
+C:\\Users\\gonca\\OneDrive\\Ambiente de 
+Trabalho\\website\\backend\\server\\routes\\auth.ts:85:9\n    at 
+processTicksAndRejections (node:internal/process/task_queues:105:5)",
+        "path": "/api/v1/auth/login",
+        "method": "POST",
+        "requestId": "1783263934479-f8p96z5b8",
+        "service": "Tranzor-backend"
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263934504-jfumgfv3w",
+        "method": "GET",
+        "path": "/api/v1/products?page=1&limit=10",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {
+          "page": "1",
+          "limit": "10"
+        },
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263934530-yst42uzbw",
+        "method": "GET",
+        "path": "/api/v1/products?search=laptop",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {
+          "search": "laptop"
+        },
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263934543-wempm9w9v",
+        "method": "GET",
+        "path": "/api/v1/products?minPrice=100&maxPrice=500",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {
+          "minPrice": "100",
+          "maxPrice": "500"
+        },
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263934563-ywjhwki27",
+        "method": "GET",
+        "path": "/api/v1/nonexistent",
+        "ip": "::ffff:127.0.0.1",
+        "body": {},
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+    console.log
+      2026-07-05 16:05:34 [[32minfo[39m]: Incoming request {
+        "service": "Tranzor-backend",
+        "requestId": "1783263934578-v2k5s6u9l",
+        "method": "POST",
+        "path": "/api/v1/products",
+        "ip": "::ffff:127.0.0.1",
+        "body": {
+          "name": "Te...ct"
+        },
+        "query": {},
+        "headers": {}
+      }
+
+      at Console.log 
+(node_modules/winston/lib/winston/transports/console.js:87:23)
+
+A worker process has failed to exit gracefully and has been force exited. This 
+is likely caused by tests leaking due to improper teardown. Try running with 
+--detectOpenHandles to find leaks. Active timers can also cause this, ensure 
+that .unref() was called on them.
+--------------------------------|---------|----------|---------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------
+File                            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                                                                                            
+--------------------------------|---------|----------|---------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------
+All files                       |   34.39 |    17.89 |   28.34 |   35.14 |                                                                                                                                                              
+ config                         |   60.33 |     15.9 |   53.12 |    61.2 |                                                                                                                                                              
+  app.ts                        |      90 |    53.84 |   66.66 |      90 | 45-46,78,95-97,132-134,152                                                                                                                                   
+  cors.ts                       |   86.95 |        0 |      90 |      85 | 35-39                                                                                                                                                        
+  db.ts                         |    38.7 |       20 |      50 |   41.37 | 16-43                                                                                                                                                        
+  env.ts                        |   47.05 |        0 |      50 |   47.05 | 56-62,70-74                                                                                                                                                  
+  logger.ts                     |   92.85 |       40 |     100 |   92.85 | 8                                                                                                                                                            
+  prisma.ts                     |   17.91 |     7.14 |    9.09 |   17.74 | 15-42,47-135,145-150                                                                                                                                         
+ core                           |      50 |       60 |   33.33 |   53.57 |                                                                                                                                                              
+  catalogSeeder.ts              |   28.57 |        0 |       0 |   31.57 | 14-125                                                                                                                                                       
+  queues.ts                     |     100 |      100 |     100 |     100 |                                                                                                                                                              
+  validators.ts                 |     100 |      100 |     100 |     100 |                                                                                                                                                              
+ docs                           |     100 |      100 |     100 |     100 |                                                                                                                                                              
+  swagger.ts                    |     100 |      100 |     100 |     100 |                                                                                                                                                              
+ domain                         |   88.88 |       45 |     100 |   88.23 |                                                                                                                                                              
+  checkout.ts                   |   88.88 |       45 |     100 |   88.23 | 53,60                                                                                                                                                        
+ middleware                     |   44.11 |    34.48 |      50 |   43.01 |                                                                                                                                                              
+  auth.ts                       |   39.77 |    36.36 |   46.15 |   36.61 | 22-26,35-39,61-66,73-86,95-100,105-138,144-146                                                                                                               
+  errorHandler.ts               |    62.5 |       25 |     100 |    62.5 | 37-46,84                                                                                                                                                     
+  logger.ts                     |      76 |    58.33 |     100 |      75 | 29-37,42                                                                                                                                                     
+  rateLimiter.ts                |      15 |        0 |       0 |      15 | 7-36                                                                                                                                                         
+  validate.ts                   |   38.29 |    33.33 |   33.33 |   38.29 | 27,37-54,64-81                                                                                                                                               
+ models                         |   52.83 |        0 |       0 |    54.1 |                                                                                                                                                              
+  AnalyticsEvent.ts             |     100 |      100 |     100 |     100 |                                                                                                                                                              
+  ApprovalRequest.ts            |     100 |      100 |     100 |     100 |                                                                                                                                                              
+  B2BQuote.ts                   |   61.53 |        0 |       0 |   61.53 | 89-94                                                                                                                                                        
+  Cart.ts                       |     100 |      100 |     100 |     100 |                                                                                                                                                              
+  Category.ts                   |   34.48 |        0 |       0 |   34.48 | 49,92-99,104-115,120-133                                                                                                                                     
+  Order.ts                      |   41.86 |        0 |       0 |      45 | 202-207,212,217-221,226-241,246                                                                                                                              
+  Picking.ts                    |   81.81 |      100 |       0 |   81.81 | 116,123                                                                                                                                                      
+  Product.ts                    |   45.65 |        0 |       0 |   46.66 | 99-121,225,230-247,252-253,260-267,272,279-282                                                                                                               
+  Review.ts                     |   41.66 |        0 |       0 |   42.85 | 74,117-118,123-126,132-136,142-147,152-155,162-177                                                                                                           
+  User.ts                       |      80 |      100 |       0 |      80 | 216,221,226                                                                                                                                                  
+ routes                         |   17.26 |     5.27 |    4.73 |   18.28 |                                                                                                                                                              
+  account.ts                    |    7.56 |        0 |       0 |       8 | 12-39,48-118,127-179,188-226,235-259,268-319,328-356,365-402,411-441,450-599,608-654,663-711,720-745,754-802                                                 
+  admin.ts                      |   12.82 |        0 |       0 |   13.94 | 21-74,82-109,117-131,139-149,158-193,202-230,241-273,282-321,327-336,342-358,364-393,402-434,443-463,474-486,495-518,529-565,574-602,613-642,651-674,683-699 
+  analytics.ts                  |   93.33 |       40 |     100 |   93.33 | 23                                                                                                                                                           
+  auth.ts                       |   56.86 |     62.5 |      40 |   56.86 | 34,61-70,89-90,169-170,199-212,220-252,260-276,284-286                                                                                                       
+  b2b.ts                        |    8.99 |        0 |       0 |     9.7 | 18-112,118-158,164-193,199-214,220-281,287-339,345-409,415-455,461-471,477-487,493-543,549-572                                                               
+  cart.ts                       |   11.82 |        0 |       0 |   13.11 | 32-62,72-77,86-129,139-163,173-188,198-201,218-351,355-408                                                                                                   
+  feeds.ts                      |   35.71 |        0 |       0 |   38.46 | 22-43                                                                                                                                                        
+  imports.ts                    |   53.33 |        0 |       0 |   53.33 | 10-28                                                                                                                                                        
+  orders.ts                     |   13.33 |        0 |       0 |   13.71 | 29-37,45-142,146-422,431-483                                                                                                                                 
+  products.ts                   |   57.14 |    73.07 |   42.85 |   57.14 | 44,85,95-125,135-163,173-196,206-226                                                                                                                         
+  shop.ts                       |   11.05 |        0 |       0 |   11.57 | 15-41,56-181,190-235,244-273,282-291,300-342,351-400,409-450,456-471,480-489,498-556                                                                         
+  tenant.ts                     |   83.33 |      100 |       0 |   83.33 | 16                                                                                                                                                           
+  wms.ts                        |   20.93 |        0 |       0 |   21.68 | 30-45,65-77,92-127,143-179,195-235,251-263,281-290,309-320                                                                                                   
+ schemas                        |   92.85 |       75 |      75 |   92.85 |                                                                                                                                                              
+  authSchema.ts                 |      90 |       75 |      75 |      90 | 44                                                                                                                                                           
+  cartSchema.ts                 |     100 |      100 |     100 |     100 |                                                                                                                                                              
+ services                       |   47.92 |    36.57 |    40.9 |   47.68 |                                                                                                                                                              
+  analyticsSummary.ts           |   88.48 |    68.96 |   89.74 |    88.7 | 93,100-101,114,121-122,159-164,171,175,188,195,213,260,289,442,494,497                                                                                       
+  checkoutIntegrationService.ts |   16.66 |        0 |       0 |   17.14 | 36-69,81-98,114-151                                                                                                                                          
+  checkoutQueueService.ts       |   69.47 |    41.93 |    64.7 |   69.47 | 38,46,72-75,95,143-146,157,175,180-181,198-224,229-232,242,246-250,255,281                                                                                   
+  checkoutService.ts            |   79.16 |       50 |      50 |   79.16 | 64,68-76                                                                                                                                                     
+  emailService.ts               |   33.33 |        0 |       0 |      25 | 16-107,116-117,121-122,126-127,131-132                                                                                                                       
+  eventSourcing.ts              |   36.73 |    10.52 |   16.66 |   36.73 | 57-226                                                                                                                                                       
+  packingService.ts             |    3.57 |        0 |       0 |    3.77 | 74-216                                                                                                                                                       
+  pickingQueueService.ts        |   20.33 |        0 |    12.5 |   21.81 | 40-151,163-212                                                                                                                                               
+  rulesEngine.ts                |    7.69 |        0 |       0 |    8.33 | 21-53                                                                                                                                                        
+  saftService.ts                |   24.13 |        0 |       0 |   25.92 | 11-18,22-50,68-75,79-92                                                                                                                                      
+  stockLockService.ts           |   23.28 |    17.64 |   28.57 |   23.61 | 19-39,58-81,90-119,127-134,141-163,169                                                                                                                       
+  stripeReconciliation.ts       |   16.66 |        0 |       0 |   16.66 | 6-42                                                                                                                                                         
+  webhookDispatcher.ts          |   14.28 |      100 |       0 |   14.28 | 4-37                                                                                                                                                         
+ services/payments              |   46.15 |        0 |       0 |   46.15 |                                                                                                                                                              
+  index.ts                      |   42.85 |        0 |       0 |   42.85 | 5-11                                                                                                                                                         
+  stripeGateway.ts              |      50 |        0 |       0 |      50 | 7-11                                                                                                                                                         
+ utils                          |   53.58 |    34.95 |    58.2 |    53.6 |                                                                                                                                                              
+  cache.ts                      |   29.62 |       40 |   57.14 |    29.9 | 26-54,58-67,82-100,116-119,132-158,174-175,182-190,197-211,219-232                                                                                           
+  errors.ts                     |   63.15 |        0 |   36.36 |   63.15 | 31-32,45-46,52-53,76-77,87-88,94-95,101-102                                                                                                                  
+  handlers.ts                   |     100 |      100 |     100 |     100 |                                                                                                                                                              
+  idempotency.ts                |    90.9 |      100 |      80 |    90.9 | 39                                                                                                                                                           
+  metrics.ts                    |     100 |     87.5 |     100 |     100 | 90                                                                                                                                                           
+  money.ts                      |   80.76 |       40 |   72.72 |      80 | 5,29,37-38,42                                                                                                                                                
+  mongoosePlugins.ts            |   24.24 |        0 |   14.28 |   24.24 | 29,35-36,40-49,53-59,63-80                                                                                                                                   
+  pricingEngine.ts              |   74.28 |    38.29 |   66.66 |   74.28 | 42,46,50,54,68,86,93,100-101                                                                                                                                 
+  stripeBreaker.ts              |      40 |        0 |       0 |      40 | 10,20-27                                                                                                                                                     
+--------------------------------|---------|----------|---------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Test Suites: 1 failed, 12 passed, 13 total
+Tests:       1 failed, 34 passed, 35 total
+Snapshots:   0 total
+Time:        19.489 s, estimated 26 s
+Ran all test suites.

@@ -1,0 +1,126 @@
+import mongoose from 'mongoose';
+import { prisma } from '../config/prisma';
+import Category from '../models/Category';
+import Product from '../models/Product';
+import type { CatalogImportRow } from './validators';
+
+const slugify = (value: string) => value
+  .toLowerCase()
+  .trim()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/(^-|-$)+/g, '');
+
+export async function importCatalogRows(rows: CatalogImportRow[]) {
+  const summary: Array<{ sku: string; mongoId: string; prismaId: string }> = [];
+  const batchSize = Number(process.env.BULK_IMPORT_BATCH_SIZE || 250);
+
+  for (let offset = 0; offset < rows.length; offset += batchSize) {
+    const batch = rows.slice(offset, offset + batchSize);
+
+    for (const row of batch) {
+      const categorySlug = slugify(row.category);
+      const productSlug = slugify(`${row.family}-${row.sku_prefix}`);
+      const categoryDoc = await Category.findOneAndUpdate(
+        { slug: categorySlug },
+        {
+          $setOnInsert: {
+            name: row.category,
+            slug: categorySlug,
+            description: row.description,
+            isActive: true,
+            sortOrder: 0,
+          },
+        },
+        { upsert: true, new: true, setDefaultsOnInsert: true }
+      );
+
+      const mongoProduct = await Product.findOneAndUpdate(
+        { sku: row.sku_prefix },
+        {
+          $set: {
+            name: row.family,
+            slug: productSlug,
+            description: row.description,
+            shortDescription: row.description.slice(0, 160),
+            price: row.unit_price,
+            salePrice: undefined,
+            category: categoryDoc._id,
+            sku: row.sku_prefix,
+            images: [],
+            specifications: {
+              source: 'seed',
+              family: row.family,
+            },
+            tags: row.tags,
+            inStock: row.stock > 0,
+            stockQuantity: row.stock,
+            lowStockThreshold: 5,
+            rating: {
+              average: 4.5,
+              count: 42,
+            },
+            isActive: true,
+            isFeatured: row.featured,
+            isNew: true,
+            salesCount: 0,
+            viewCount: 0,
+            createdBy: new mongoose.Types.ObjectId(),
+          },
+        },
+        { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
+      );
+
+      const prismaCategory = await prisma.category.upsert({
+        where: { slug: categorySlug },
+        update: {
+          name: row.category,
+          description: row.description,
+        },
+        create: {
+          name: row.category,
+          slug: categorySlug,
+          description: row.description,
+        },
+      });
+
+      const prismaProduct = await prisma.product.upsert({
+        where: { sku: row.sku_prefix },
+        update: {
+          name: row.family,
+          description: row.description,
+          longDescription: row.description,
+          price: row.unit_price,
+          cost: row.unit_price * 0.65,
+          stock: row.stock,
+          categoryId: prismaCategory.id,
+          slug: productSlug,
+          status: 'ACTIVE',
+          featured: row.featured,
+          tags: row.tags,
+        },
+        create: {
+          sku: row.sku_prefix,
+          name: row.family,
+          description: row.description,
+          longDescription: row.description,
+          price: row.unit_price,
+          cost: row.unit_price * 0.65,
+          stock: row.stock,
+          categoryId: prismaCategory.id,
+          slug: productSlug,
+          status: 'ACTIVE',
+          featured: row.featured,
+          tags: row.tags,
+        },
+      });
+
+      summary.push({
+        sku: row.sku_prefix,
+        mongoId: mongoProduct._id.toString(),
+        prismaId: prismaProduct.id,
+      });
+    }
+  }
+
+  return summary;
+}

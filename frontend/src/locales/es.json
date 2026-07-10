@@ -1,0 +1,1135 @@
+{
+  "common": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "register": "Registrarse",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "language": "Idioma",
+    "search": "Buscar",
+    "cart": "Carrito",
+    "checkout": "Finalizar Compra",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Añadir",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información"
+  },
+  "nav": {
+    "home": "Inicio",
+    "news": "Novedades",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "shop": "Tienda",
+    "products": "Productos",
+    "categories": "Categorías",
+    "account": "Cuenta",
+    "orders": "Pedidos",
+    "profile": "Perfil",
+    "reviews": "Reseñas",
+    "admin": "Admin",
+    "b2b": "B2B",
+    "support": "Soporte",
+    "shopCta": "Ver Productos",
+    "searchPlaceholder": "Buscar productos",
+    "searchAriaLabel": "Búsqueda de productos",
+    "clearSearch": "Borrar búsqueda",
+    "cartAriaLabel": "Carrito de compras con {{count}} artículos",
+    "popularSearches": "Búsquedas populares",
+    "suggestions": "Sugerencias",
+    "searchTypeCategory": "Categoría",
+    "searchTypeProduct": "Producto",
+    "searchTypeSearch": "Búsqueda",
+    "searchNoResults": "Sin resultados para \"{{query}}\"",
+    "searchAllResults": "Ver todos los resultados para \"{{query}}\"",
+    "searchInCategory": "en {{category}}",
+    "searchInternalPage": "Página interna",
+    "searchInternal": "Página",
+    "searchSeeAllResults": "Ver todos los resultados para \"{{query}}\""
+  },
+  "account": {
+    "profile": {
+      "loading": "Cargando perfil…",
+      "pageTitle": "Perfil de usuario",
+      "pageDescription": "Gestione sus datos personales, preferencias y beneficios de Tranzor.",
+      "sections": {
+        "personalInfo": "Información personal",
+        "preferences": "Preferencias",
+        "notifications": "Notificaciones",
+        "studentStatus": "Estado de estudiante",
+        "discountProgram": "Programa de descuentos",
+        "clientCard": "Tarjeta de cliente"
+      },
+      "actions": {
+        "saving": "Guardando…"
+      },
+      "fields": {
+        "name": "Nombre",
+        "email": "Correo",
+        "phone": "Teléfono",
+        "company": "Empresa (opcional)",
+        "taxId": "NIF (opcional)",
+        "address": "Dirección"
+      },
+      "placeholders": {
+        "fullName": "Su nombre completo",
+        "email": "nombre@ejemplo.com",
+        "phone": "+351 912 345 678",
+        "company": "Nombre de la empresa",
+        "taxId": "123456789",
+        "address": "Calle, número, ciudad"
+      },
+      "preferences": {
+        "darkMode": {
+          "title": "Modo oscuro",
+          "description": "Un tema más oscuro para una experiencia más cómoda."
+        },
+        "language": {
+          "title": "Idioma preferido",
+          "description": "Elige tu idioma predeterminado para navegar.",
+          "languages": {
+            "pt": "Portugués (Portugal)",
+            "en": "English",
+            "es": "Español (España)"
+          }
+        }
+      },
+      "notifications": {
+        "email": {
+          "label": "Correo",
+          "description": "Actualizaciones sobre pedidos y promociones."
+        },
+        "push": {
+          "label": "Push",
+          "description": "Alertas instantáneos en el navegador."
+        },
+        "sms": {
+          "label": "SMS",
+          "description": "Mensajes de texto para actualizaciones importantes."
+        },
+        "marketing": {
+          "label": "Marketing",
+          "description": "Ofertas especiales y boletines."
+        }
+      },
+      "student": {
+        "toggleTitle": "Soy estudiante",
+        "toggleDescription": "Actívelo para obtener beneficios exclusivos para estudiantes.",
+        "proofTitle": "Prueba de estudiante",
+        "proofDescription": "Suba una copia de su carné de estudiante o certificado de matrícula.",
+        "fileHint": "PDF, JPG o PNG · Máximo 5 MB"
+      },
+      "discount": {
+        "student": {
+          "status": "Cliente estudiante",
+          "discount": "10% de descuento en material escolar",
+          "benefit1": "Envío gratuito",
+          "benefit2": "Precios especiales",
+          "benefit3": "Validación pendiente"
+        },
+        "regular": {
+          "status": "Cliente habitual",
+          "discount": "5% de descuento en compras superiores a 35€",
+          "benefit": "Envío gratuito por encima de 35€"
+        },
+        "contactSupport": "Para cambiar su tipo de cuenta u obtener más beneficios, contacte con soporte."
+      },
+      "clientCard": {
+        "activeBadge": "Tarjeta activa",
+        "createdOn": "Creada el {{date}}",
+        "viewCard": "Ver tarjeta",
+        "createTitle": "Crear tarjeta de cliente",
+        "createDescription": "Gestione una tarjeta con sus datos para facilitar futuras compras y soporte.",
+        "createButton": "Crear tarjeta",
+        "creating": "Creando…"
+      },
+      "messages": {
+        "profileUpdated": "Perfil actualizado con éxito.",
+        "saveFailed": "No se pudo guardar. Inténtelo de nuevo.",
+        "clientCardCreated": "Tarjeta de cliente creada con éxito.",
+        "clientCardCreateFailed": "No se pudo crear la tarjeta. Inténtelo de nuevo."
+      },
+      "errors": {
+        "fetchProfile": "No se pudo cargar el perfil.",
+        "saveProfile": "No se pudo guardar el perfil.",
+        "createClientCard": "No se pudo crear la tarjeta de cliente."
+      },
+      "validation": {
+        "nameRequired": "El nombre es obligatorio.",
+        "nameTooShort": "El nombre es demasiado corto.",
+        "emailRequired": "El correo es obligatorio.",
+        "emailInvalid": "El correo es inválido.",
+        "phoneInvalid": "El teléfono es inválido.",
+        "companyInvalid": "El nombre de la empresa debe tener al menos 2 caracteres.",
+        "taxIdInvalid": "El NIF debe tener 9 dígitos.",
+        "addressRequired": "La dirección es obligatoria."
+      },
+      "uploadTooLarge": "Archivo demasiado grande. Máximo 5 MB."
+    }
+  },
+  "shop": {
+    "shopPage": {
+      "title": "Tienda — Tranzor",
+      "description": "Explore la tienda Tranzor con más de 25.000 productos para papelería, oficina, escuela y tecnología.",
+      "heroLabel": "Tienda Tranzor",
+      "heroTitle": "Más de 25.000 productos para oficina y escuela",
+      "heroTitleLine1": "Más de",
+      "heroTitleLine2": "25.000",
+      "heroTitleLine3": "productos",
+      "heroSubtitle": "Todo lo que necesitas en papelería, tecnología y soluciones empresariales con envío rápido en Portugal.",
+      "searchPlaceholder": "Producto, marca o categoría...",
+      "promotions": "Promociones",
+      "viewAll": "Ver todo",
+      "highlights": "Productos destacados",
+      "viewPromotions": "Ver promociones",
+      "newArrivalsTitle": "Novedades en Tranzor",
+      "newArrivalsDescription": "Los últimos productos añadidos a nuestro catálogo.",
+      "viewNewArrivals": "Ver novedades",
+      "statsProducts": "Productos",
+      "statsDelivery": "Envío",
+      "statsYears": "Años",
+      "statsAria": "Estadísticas de la tienda",
+      "newArrivalsEyebrow": "Esta semana",
+      "quickFilters": {
+        "pens": "Bolígrafos",
+        "notebooks": "Cuadernos",
+        "paperA4": "Papel A4",
+        "planners": "Agendas",
+        "inks": "Tintas"
+      }
+    },
+    "categoryPage": {
+      "description": "Descubra productos de {{label}} en Tranzor.",
+      "resultsCount": "{{count}} resultado(s)",
+      "noProducts": "Todavía no hay productos para estos filtros.",
+      "subcategoryDescription": "Explore productos en {{sub}}.",
+      "typeDescription": "Explore productos en la categoría {{type}}.",
+      "collectionDescription": "Explore la colección {{label}}."
+    },
+    "categoryPages": {
+      "common": {
+        "exploreStore": "Explorar la tienda",
+        "copyCenter": "Centro de copias",
+        "viewCatalog": "Ver catálogo",
+        "businessSolutions": "Soluciones empresa",
+        "viewStore": "Ver tienda",
+        "viewPromotions": "Ver promociones",
+        "viewOffice": "Ver oficina",
+        "viewAllStore": "Ver toda la tienda",
+        "needHelpTitle": "¿Necesita ayuda para elegir?",
+        "needHelpBody": "Nuestros especialistas están disponibles para ayudarle a elegir los materiales escolares adecuados.",
+        "talkToUs": "Hable con nosotros",
+        "faq": "Preguntas frecuentes",
+        "addToCart": "+ Añadir al carrito",
+        "added": "✓ Añadido"
+      },
+      "artes": {
+        "title": "Artes & Craft — Tranzor",
+        "description": "Explore materiales de arte, craft y DIY en Tranzor: pintura, pinceles, papeles especiales y accesorios creativos.",
+        "heroTitle": "Artes & Craft",
+        "heroBody": "Inspirese con los mejores materiales para creadores: desde pintura y dibujo hasta scrapbooking, decoración y manualidades.",
+        "intro": "La colección Artes & Craft de Tranzor fue pensada para artistas aficionados y profesionales. Descubra productos para dibujo, pintura, trabajos manuales y proyectos educativos.",
+        "items": {
+          "painting": { "title": "Pintura y dibujo", "description": "Pinturas, pinceles, lápices de color y pasteles para la expresión creativa." },
+          "diy": { "title": "DIY y scrapbooking", "description": "Pegatinas, papeles decorativos y materiales para proyectos personalizados." },
+          "textile": { "title": "Textil y acabado", "description": "Colas, cintas, plantillas y soportes para acabados profesionales." },
+          "creative": { "title": "Educación creativa", "description": "Kits y materiales para actividades escolares y talleres." }
+        }
+      },
+      "escolar": {
+        "title": "Material escolar — Tranzor",
+        "description": "Descubra material escolar de calidad para estudiantes de todos los niveles.",
+        "heroTitle": "Material escolar",
+        "heroBody": "Todo lo que necesita para el éxito escolar: mochilas, cuadernos, material de escritura y accesorios.",
+        "intro": "El material escolar de Tranzor se selecciona para garantizar calidad, durabilidad y envío rápido para estudiantes, profesores y padres.",
+        "filters": { "all": "Todo", "promo": "Promoción", "bags": "Mochilas", "writing": "Escritura", "accessories": "Accesorios" },
+        "products": {
+          "backpack": { "name": "Mochila escolar Nike — 25L", "description": "Mochila escolar resistente con compartimentos organizados." },
+          "kit": { "name": "Estuche escolar completo Faber-Castell", "description": "Estuche completo con bolígrafos, lápices y accesorios escolares." },
+          "notebook": { "name": "Cuaderno Oxford A4 pautado — 200 hojas", "description": "Cuaderno de calidad premium para estudiantes." },
+          "calculator": { "name": "Calculadora científica Casio FX-991EX", "description": "Calculadora científica avanzada para matemáticas y ciencias." },
+          "pencils": { "name": "Lápices de color Faber-Castell — 24 colores", "description": "Lápices de color profesionales para arte y educación." },
+          "agenda": { "name": "Agenda escolar 2024-2025", "description": "Agenda escolar organizada con calendario y espacio para notas." }
+        },
+        "badges": { "sale": "Oferta", "new": "Nuevo" },
+        "productsHeading": "Productos",
+        "productCount": "{{count}} referencias",
+        "helpTitle": "¿Necesita ayuda para elegir?",
+        "helpBody": "Nuestros especialistas están disponibles para ayudarle a elegir los materiales escolares ideales.",
+        "talkToUs": "Hable con nosotros",
+        "faq": "Preguntas frecuentes",
+        "addedToCart": "{{name}} añadido al carrito"
+      },
+      "escritorio": {
+        "title": "Material de oficina — Tranzor",
+        "description": "Explore la selección de artículos de oficina de Tranzor: cuadernos, bolígrafos, papelería y mobiliario para profesionales.",
+        "heroTitle": "Material de oficina",
+        "heroBody": "Encuentre todo lo que necesita para equipar su oficina: material de escritura, papeles especiales, organizadores y soluciones de trabajo.",
+        "intro": "En Tranzor, el material de oficina se selecciona para garantizar calidad, durabilidad y entrega rápida. Esta categoría se creó para profesionales, equipos y empresas que valoran una operación eficiente.",
+        "items": {
+          "writing": { "title": "Escritura y escritura técnica", "description": "Bolígrafos, lápices, marcadores y afiladores." },
+          "paper": { "title": "Hojas y blocs", "description": "Papel A4, cuadernos, agendas y resmas premium." },
+          "organization": { "title": "Organización y archivos", "description": "Carpetas, archivadores, cajas de archivo y etiquetas." },
+          "desk": { "title": "Accesorios de escritorio", "description": "Alfombrillas, soportes, clips y artículos de conveniencia." }
+        }
+      },
+      "tecnologia": {
+        "title": "Tecnología — Tranzor",
+        "description": "Encuentre productos de tecnología para oficina: impresoras, consumibles, informática y accesorios de conectividad.",
+        "heroTitle": "Tecnología",
+        "heroBody": "La tecnología adecuada facilita el día a día de su oficina. Explore impresoras, consumibles, periféricos y soluciones de conectividad.",
+        "intro": "Esta categoría reúne artículos de tecnología pensados para oficinas, escuelas y entornos profesionales. Presentamos marcas reconocidas en impresión, informática y equipos de colaboración.",
+        "items": {
+          "printing": { "title": "Impresión y papel", "description": "Impresoras, tóner, cartuchos y papel especial." },
+          "it": { "title": "Informática", "description": "Accesorios, cables, teclados, ratones y hubs USB." },
+          "connectivity": { "title": "Conectividad", "description": "Routers, adaptadores y soluciones de red sencillas." },
+          "mobility": { "title": "Movilidad y energía", "description": "Power banks, cargadores y accesorios para dispositivos." }
+        }
+      },
+      "mobiliario": {
+        "title": "Mobiliario — Tranzor",
+        "description": "Descubra mobiliario de oficina y organización corporativa en Tranzor: sillas, mesas, estanterías y soportes ergonómicos.",
+        "heroTitle": "Mobiliario",
+        "heroBody": "Encuentre soluciones de mobiliario para oficina y espacios de trabajo. Comodidad, ergonomía y diseño práctico para entornos productivos.",
+        "intro": "Nuestra selección de mobiliario se eligió para escuelas, oficinas y espacios de coworking. Desde sillas ergonómicas hasta mesas funcionales, cada pieza combina comodidad y durabilidad.",
+        "items": {
+          "chairs": { "title": "Sillas ergonómicas", "description": "Asientos con apoyo lumbar para largas jornadas de trabajo." },
+          "desks": { "title": "Mesas y escritorios", "description": "Soluciones compactas y amplias para espacios corporativos." },
+          "storage": { "title": "Almacenamiento", "description": "Estanterías, cajoneras y armarios para mantener su espacio organizado." },
+          "accessories": { "title": "Accesorios de oficina", "description": "Soportes, organizadores y elementos complementarios." }
+        }
+      }
+    },
+    "recentlyViewed": {
+      "pageTitle": "Vistos recientemente — Tranzor",
+      "pageDescription": "Retome donde lo dejó con los productos que exploró recientemente.",
+      "historyEyebrow": "Historial",
+      "titlePart1": "Vistos",
+      "titlePart2": "Recientemente",
+      "description": "Retome su flujo de navegación: los artículos que visitó están aquí para ayudarle a decidir.",
+      "emptyTitle": "Todavía no ha visitado ningún producto",
+      "emptyBody": "Explore la tienda y los productos que visite aparecerán aquí.",
+      "exploreShop": "Explorar la tienda",
+      "viewProduct": "Ver producto",
+      "continueExploring": "Seguir explorando la tienda",
+      "sampleItems": {
+        "caderno": { "name": "Cuaderno A4 pautado", "category": "Escolar", "time": "Hace 5 min" },
+        "pen": { "name": "Bolígrafo gel azul", "category": "Escritura", "time": "Hace 20 min" },
+        "folder": { "name": "Carpeta de archivo", "category": "Organización", "time": "Hace 1 h" }
+      }
+    },
+    "newArrivals": {
+      "pageTitle": "Novedades — Tranzor",
+      "pageDescription": "Descubra los últimos lanzamientos de Tranzor. Se añaden productos nuevos regularmente.",
+      "eyebrow": "Acaba de llegar",
+      "titlePart1": "Novedades",
+      "titlePart2": "Tranzor",
+      "description": "Los productos más nuevos añadidos en los últimos días. Sea el primero en descubrirlos.",
+      "stats": {
+        "newThisWeek": "Nuevo esta semana",
+        "categories": "Categorías",
+        "fastShipping": "Envío rápido"
+      },
+      "filters": {
+        "all": "Todo",
+        "school": "Escolar",
+        "writing": "Escritura",
+        "organization": "Organización",
+        "planning": "Planificación"
+      },
+      "badges": {
+        "new": "Nuevo",
+        "featured": "Destacado"
+      },
+      "daysAgo": "hace {{count}}d",
+      "sampleItems": {
+        "executive": { "name": "Cuaderno executive", "category": "Escolar", "price": "€8,90" },
+        "planner": { "name": "Diario planificador", "category": "Escritura", "price": "€5,50" },
+        "file": { "name": "Carpeta A4 colgante", "category": "Organización", "price": "€12,00" },
+        "markers": { "name": "Marcadores dobles", "category": "Escritura", "price": "€7,80" },
+        "agenda": { "name": "Agenda 2025", "category": "Planificación", "price": "€14,90" },
+        "clips": { "name": "Clips metálicos 100 uds", "category": "Organización", "price": "€2,30" }
+      }
+    },
+    "productDetail": {
+      "pageTitle": "Producto — Tranzor",
+      "pageDescription": "Descubra productos Tranzor con detalles, precios y opciones de compra.",
+      "loading": "Cargando producto…",
+      "cartAdded": "¡{{quantity}} unidad(es) de \"{{name}}\" añadida(s) al carrito!",
+      "compare": {
+        "open": "Abrir comparador",
+        "compare": "Comparar productos"
+      },
+      "relatedProducts": {
+        "pilot": { "name": "Bolígrafo Pilot G-2 0.7mm" },
+        "notebook": { "name": "Cuaderno Oxford A4 200 hojas" },
+        "markers": { "name": "Marcadores Stabilo Boss" },
+        "paper": { "name": "Papel Navigator A4 500 hojas" }
+      },
+      "trust": {
+        "fastDelivery": {
+          "title": "Envío rápido",
+          "copy": "Envío en hasta 48 horas para Portugal continental."
+        },
+        "securePayment": {
+          "title": "Pago seguro",
+          "copy": "Transacciones seguras con validación y soporte dedicado."
+        },
+        "easyReturns": {
+          "title": "Devoluciones sencillas",
+          "copy": "Hasta 30 días para cambiar o devolver con facilidad."
+        }
+      },
+      "errors": {
+        "invalidProductId": "ID de producto no válido",
+        "loadProduct": "No se pudo cargar el producto",
+        "notFound": "Producto no encontrado",
+        "updateFavorites": "No se pudieron actualizar los favoritos."
+      },
+      "ratingLabel": "{{rating}} de 5 estrellas",
+      "reviewsCount": "{{count}} reseñas",
+      "b2bPrice": "Precio B2B -{{rate}}%",
+      "quantity": {
+        "decrease": "Disminuir cantidad",
+        "increase": "Aumentar cantidad"
+      },
+      "favorite": {
+        "add": "Añadir a favoritos",
+        "remove": "Eliminar de favoritos",
+        "updating": "Actualizando…"
+      },
+      "faqs": "Ver preguntas frecuentes",
+      "relatedHeading": "Productos relacionados",
+      "viewMore": "Ver más →",
+      "recentlyViewedLink": "Ver productos vistos recientemente"
+    },
+    "shopFilters": {
+      "filterTitle": "🎯 Filtros",
+      "clearFilters": "✕ Limpiar",
+      "sortBy": "📊 Ordenar por",
+      "sortRelevance": "Relevancia",
+      "sortPriceAsc": "Precio: Menor → Mayor",
+      "sortPriceDesc": "Precio: Mayor → Menor",
+      "sortRating": "Calificación (⭐)",
+      "sortNewest": "Más Recientes",
+      "categories": "📂 Categorías",
+      "allCategories": "Todas las Categorías",
+      "subcategories": "📁 Subcategorías",
+      "allSubcategories": "Todas",
+      "priceRange": "💰 Rango de Precio",
+      "minPrice": "Mín: €",
+      "maxPrice": "Máx: €",
+      "brands": "🏷️ Marcas",
+      "viewMoreBrands": "Ver más marcas ({{count}})",
+      "characteristics": "🏷️ Características",
+      "filterSummary": "📊 {{count}} producto(s) encontrado(s)",
+      "filterSummaryCategory": "📂 {{category}}",
+      "filterSummarySubcategory": "📁 {{subcategory}}",
+      "filterSummaryBrands": "🏷️ {{count}} marca(s)"
+    }
+  },
+  "about": {
+    "pageTitle": "Sobre Tranzor",
+    "pageDescription": "Descubra Tranzor: misión, valores y capacidades para el liderazgo empresarial.",
+    "eyebrow": "Visión empresarial",
+    "heroTitle": "Una marca portuguesa con más de 30 años de entrega fiable.",
+    "heroBody": "Tranzor combina tecnología, operaciones y apoyo ejecutivo para ofrecer soluciones sólidas en industria, comercio y servicios.",
+    "missionTitle": "Misión clara",
+    "missionBody": "Transformar procesos y productos con innovación rigurosa manteniendo siempre al cliente en el centro.",
+    "futureTitle": "Visión de futuro",
+    "futureBody": "Ser reconocida como socio estratégico para empresas que quieren crecer con calidad y confianza.",
+    "valuesTitle": "Valores sólidos",
+    "valuesBody": "La integridad, la excelencia y la sostenibilidad son la base de todo lo que entregamos.",
+    "experienceTitle": "+30 años en el mercado",
+    "experienceBody": "Consultoría, implementación y asistencia técnica con un equipo dedicado.",
+    "partnersTitle": "Socios comerciales",
+    "partnersBody": "Soluciones fiables para retail, industria y servicios profesionales.",
+    "innovationTitle": "Innovación continua",
+    "innovationBody": "Desarrollamos procesos y productos que ayudan a las empresas a operar con mayor rapidez y precisión.",
+    "commitmentTitle": "Comprometidos con la excelencia",
+    "commitmentBody": "Tranzor desarrolla proyectos de alto impacto adaptados a cada cliente con transparencia y agilidad en cada etapa."
+  },
+  "contact": {
+    "pageTitle": "Contacto",
+    "pageDescription": "Póngase en contacto con Tranzor para presupuestos, apoyo comercial y soluciones empresariales.",
+    "eyebrow": "Póngase en contacto",
+    "heroTitle": "Hable con nuestro equipo para encontrar la solución adecuada.",
+    "heroBody": "Si necesita apoyo técnico, propuestas de proyecto o alianzas comerciales, estamos preparados para responder con claridad y rapidez.",
+    "detailsTitle": "Datos de contacto",
+    "detailsBody": "Soporte profesional adaptado a su negocio.",
+    "emailLabel": "Correo",
+    "phoneLabel": "Teléfono",
+    "locationLabel": "Ubicación",
+    "locationValue": "Aveiro, Portugal",
+    "hoursLabel": "Horario",
+    "hoursValue": "Lun a Vie 09:00 - 18:00",
+    "nameLabel": "Nombre",
+    "messageLabel": "Mensaje",
+    "submitButton": "Enviar mensaje",
+    "supportTitle": "Soporte personalizado",
+    "supportBody": "Nuestro equipo prepara propuestas objetivas con plazos claros, costes justos y apoyo dedicado desde el primer contacto."
+  },
+  "nav": {
+    "home": "Inicio",
+    "news": "Novedades",
+    "about": "Sobre",
+    "contact": "Contacto",
+    "recent": "Recientes",
+    "shopCta": "Comprar ahora",
+    "searchPlaceholder": "Buscar...",
+    "searchAriaLabel": "Buscar productos",
+    "popularSearches": "Búsquedas populares",
+    "suggestions": "Sugerencias",
+    "searchNoResults": "No hay resultados para \"{{query}}\"",
+    "searchAllResults": "Buscar \"{{query}}\" en la tienda →",
+    "searchSeeAllResults": "Ver todos los resultados para \"{{query}}\"",
+    "searchInCategory": "en {{category}}",
+    "searchInternalPage": "página interna",
+    "searchInternal": "interno",
+    "searchTypeCategory": "categoría",
+    "searchTypeProduct": "producto",
+    "searchTypeSearch": "búsqueda",
+    "clearSearch": "Borrar búsqueda",
+    "openMenu": "Abrir menú",
+    "mainNavigation": "Navegación principal",
+    "cartAriaLabel": "Carrito{{count, plural, =0{} other{ — {{count}} artículos}}}",
+    "cartReminderTitle": "¡Tienes {{count}} artículo{{count, plural, one{} other{s}}} en el carrito!",
+    "cartReminderBody": "No olvide completar su compra.",
+    "viewCart": "Ver carrito",
+    "cartReminderTitleAlt": "Recordatorio del carrito",
+    "cartReminderBodyAlt": "Todavía tiene {{count}} artículo{{count, plural, one{} other{s}}} en el carrito.",
+    "profileAriaLabel": "Mi perfil",
+    "accountAriaLabel": "Iniciar sesión o crear una cuenta",
+    "recentlyViewed": "Vistos recientemente",
+    "orders": "Mis pedidos",
+    "profile": "Mi perfil"
+  },
+  "footer": {
+    "description": "Suministros de oficina, escuela y papelería en Portugal desde 1973.",
+    "shopTitle": "Tienda",
+    "catalog": "Catálogo",
+    "promotions": "Promociones",
+    "schoolSupplies": "Material escolar",
+    "companyTitle": "Empresa",
+    "about": "Sobre nosotros",
+    "contact": "Contacto",
+    "faq": "FAQ",
+    "legalTitle": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "cookies": "Cookies",
+    "copyright": "Todos los derechos reservados."
+  },
+  "privacy": {
+    "pageTitle": "Política de Privacidad",
+    "pageDescription": "Descubra cómo Tranzor recopila, utiliza y protege sus datos personales de conformidad con el RGPD.",
+    "breadcrumb": "Privacidad",
+    "eyebrow": "RGPD Conforme — Actualizado Ene 2026",
+    "heroTitle": "Política de",
+    "heroTitleAccent": "Privacidad",
+    "heroBody": "Tranzor se compromete a tratar sus datos personales con total transparencia, seguridad y respeto por la legislación vigente — en particular el Reglamento General de Protección de Datos (RGPD).",
+    "metaVersion": "Versión",
+    "metaValidity": "Vigencia",
+    "metaRevision": "Revisión",
+    "metaScope": "Ámbito",
+    "toc": "Índice",
+    "sections": {
+      "compromisso": {
+        "title": "Compromiso Tranzor"
+      },
+      "recolha": {
+        "title": "Datos que recopilamos"
+      },
+      "finalidade": {
+        "title": "Finalidad del tratamiento"
+      },
+      "partilha": {
+        "title": "Compartición y transferencias"
+      },
+      "retencao": {
+        "title": "Retención y seguridad"
+      },
+      "direitos": {
+        "title": "Sus derechos"
+      },
+      "cookies": {
+        "title": "Cookies y tecnologías similares"
+      },
+      "contacto": {
+        "title": "Contacto DPO"
+      }
+    }
+  },
+  "faq": {
+    "pageTitle": "FAQ",
+    "pageDescription": "Respuestas claras a las preguntas más habituales sobre las soluciones y servicios de Tranzor.",
+    "eyebrow": "Ayuda y soporte",
+    "heroTitle": "Preguntas frecuentes con respuestas directas.",
+    "heroBody": "Acceda a la información que le ayuda a tomar decisiones rápidas sobre productos, servicios y condiciones de asociación.",
+    "q1Question": "¿Cómo puedo contactar con Tranzor?",
+    "q1Answer": "Utilice el formulario de contacto, envíe un correo a geral@tranzor.pt o llame al +351 234 000 000.",
+    "q2Question": "¿Dónde está Tranzor?",
+    "q2Answer": "Estamos en Aveiro y atendemos a clientes de todo el país con soluciones empresariales completas.",
+    "q3Question": "¿Cuáles son los principales servicios?",
+    "q3Answer": "Distribución, industria 4.0, consultoría técnica, tecnología retail y soporte postventa.",
+    "q4Question": "¿Cómo obtengo un presupuesto?",
+    "q4Answer": "Solicite un presupuesto a través del formulario de contacto o del correo comercial de Tranzor.",
+    "q5Question": "¿Cuáles son los plazos de entrega?",
+    "q5Answer": "Los plazos varían según el producto y el servicio, pero nuestra meta es siempre entregar con rapidez y fiabilidad.",
+    "supportTitle": "¿Necesita ayuda inmediata?",
+    "supportBody": "Si no encontró la respuesta que necesitaba, el equipo de Tranzor está listo para ayudar con proyectos, solicitudes técnicas y consultoría personalizada."
+  },
+  "auth": {
+    "loginTitle": "Iniciar Sesión",
+    "registerTitle": "Crear Cuenta",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "forgotPassword": "¿Olvidó la Contraseña?",
+    "createAccount": "Crear Nueva Cuenta",
+    "haveAccount": "¿Ya tiene cuenta?",
+    "noAccount": "¿No tiene cuenta?",
+    "rememberMe": "Recuérdeme",
+    "emailSent": "Correo enviado correctamente",
+    "resetLinkSent": "Enlace de recuperación de contraseña enviado a su correo",
+    "loginPageTitle": "Iniciar sesión",
+    "loginPageDescription": "Acceda a su cuenta de Tranzor para gestionar pedidos, facturas y listas de compra de forma rápida y segura.",
+    "welcomeBack": "Bienvenido de nuevo",
+    "loginHeroTitle": "Su cuenta.",
+    "loginHeroTitleAccent": "Su oficina.",
+    "loginHeroBody": "Acceda a su cuenta de Tranzor y gestione pedidos, facturas y listas de compra con un clic.",
+    "clientArea": "Área de cliente",
+    "signIn": "Iniciar sesión",
+    "newCustomer": "¿Es cliente nuevo?",
+    "createFreeAccount": "Crear cuenta gratuita →",
+    "businessAccess": "Acceso empresarial / B2B",
+    "legalText": "Al iniciar sesión, acepta nuestros",
+    "terms": "Términos",
+    "privacy": "Política de Privacidad",
+    "emailPlaceholder": "su@correo.com",
+    "passwordPlaceholder": "••••••••",
+    "signInButton": "Iniciar sesión",
+    "signInLoading": "Iniciando sesión…",
+    "forgotLink": "¿Olvidó?",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "invalidLogin": "Correo o contraseña incorrectos.",
+    "registerPageTitle": "Crear cuenta",
+    "registerPageDescription": "Cree su cuenta de Tranzor en menos de 1 minuto para acceder a descuentos, historial de pedidos y servicios exclusivos.",
+    "joinTranzor": "Únase a Tranzor",
+    "registerHeroTitle": "Regístrese y",
+    "registerHeroTitleAccent": "ahorre tiempo",
+    "registerHeroTitleSuffix": "en cada pedido.",
+    "registerHeroBody": "Cree su cuenta gratuita y acceda a precios especiales, historial de pedidos y mucho más.",
+    "registerStep1": "Cree su cuenta",
+    "registerStep2": "Confirme su correo",
+    "registerStep3": "Empiece a comprar",
+    "registerStep1Desc": "Rápido y gratuito — tarda menos de 1 minuto.",
+    "registerStep2Desc": "Le enviamos un enlace de activación.",
+    "registerStep3Desc": "+25.000 productos con entrega en todo Portugal.",
+    "freeRegistration": "Cuenta gratuita",
+    "registerCardEyebrow": "Registro gratuito",
+    "registerCardTitle": "Crear cuenta",
+    "haveAccountLink": "Iniciar sesión →",
+    "registerLegalText": "Al crear una cuenta, acepta nuestros",
+    "registerLegalNote": "Sus datos se tratan conforme al RGPD.",
+    "forgotPageTitle": "Recuperar Contraseña",
+    "forgotPageDescription": "Recupere el acceso a su cuenta de Tranzor en pocos minutos con un enlace seguro enviado a su correo.",
+    "recoveryTitle": "Recuperación de acceso",
+    "recoveryHeroTitle": "¿Olvidó su",
+    "recoveryHeroTitleAccent": "contraseña?",
+    "recoveryHeroTitleSuffix": "No hay problema.",
+    "recoveryHeroBody": "Le enviaremos un enlace seguro a su correo. En menos de 2 minutos recuperará el acceso a su cuenta.",
+    "recoveryStep1": "Introduzca el correo de la cuenta",
+    "recoveryStep2": "Reciba el enlace de recuperación",
+    "recoveryStep3": "Defina una nueva contraseña",
+    "recoveryStep4": "Acceda normalmente a su cuenta",
+    "supportLink": "Contacte con soporte",
+    "forgotCardEyebrow": "Recuperación de cuenta",
+    "forgotCardTitle": "Contraseña olvidada",
+    "forgotCardBody": "Introduzca el correo asociado con su cuenta y le enviaremos las instrucciones.",
+    "forgotNoAccount": "¿No tiene cuenta?",
+    "forgotLinkButton": "Crear cuenta gratuita →",
+    "forgotEmailLabel": "Correo de la cuenta",
+    "forgotInfo": "Si existe una cuenta con este correo, recibirá un enlace de recuperación válido durante 30 minutos.",
+    "forgotSubmit": "Enviar instrucciones",
+    "forgotBack": "Volver al inicio de sesión",
+    "forgotResend": "¿No lo recibió? Reenviar correo",
+    "forgotSuccessTitle": "¡Correo enviado!",
+    "forgotSuccessBody": "Enviamos instrucciones de recuperación a",
+    "forgotSuccessNote": "También revise su carpeta de spam.",
+    "forgotExpiry": "El enlace de recuperación expira en",
+    "forgotMinutes": "30 minutos",
+    "forgotInvalidEmail": "Introduzca un correo válido.",
+    "forgotSendFailed": "No se pudo enviar el correo. Inténtelo de nuevo.",
+    "fullName": "Nombre completo",
+    "contactPerson": "Persona de contacto",
+    "companyName": "Nombre de la empresa",
+    "companyTaxId": "NIF de la empresa",
+    "contactPhone": "Teléfono de contacto",
+    "fullNamePlaceholder": "Maria Silva",
+    "contactPersonPlaceholder": "Nombre del responsable",
+    "companyPlaceholder": "Ej: Tranzor Comercio S.L.",
+    "companyTaxPlaceholder": "999999999",
+    "contactPhonePlaceholder": "+351 912 345 678",
+    "createAccountButton": "Crear cuenta",
+    "createAccountLoading": "Creando cuenta…",
+    "passwordStrength": {
+      "weak": "Débil",
+      "fair": "Razonable",
+      "good": "Buena",
+      "excellent": "Excelente",
+      "minLength": "Al menos 8 caracteres",
+      "uppercase": "Letra mayúscula",
+      "lowercase": "Letra minúscula",
+      "numberOrSymbol": "Número o símbolo"
+    },
+    "validation": {
+      "contactNameRequired": "Indique el nombre de la persona de contacto.",
+      "nameMinLength": "El nombre debe tener al menos 2 caracteres.",
+      "companyRequired": "El nombre de la empresa es obligatorio.",
+      "taxIdInvalid": "NIF no válido. Debe tener 9 dígitos.",
+      "phoneInvalid": "Teléfono no válido.",
+      "emailInvalid": "Introduzca un correo válido.",
+      "passwordWeak": "Elija una contraseña más segura.",
+      "passwordsMismatch": "Las contraseñas no coinciden.",
+      "termsRequired": "Es necesario aceptar los términos.",
+      "registrationFailed": "No se pudo crear la cuenta. Inténtelo de nuevo."
+    }
+  },
+  "products": {
+    "allProducts": "Todos los Productos",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "inStock": "En Stock",
+    "outOfStock": "Agotado",
+    "addToCart": "Añadir al Carrito",
+    "buyNow": "Comprar Ahora",
+    "description": "Descripción",
+    "details": "Detalles",
+    "reviews": "Reseñas",
+    "reviewsCount": "{{count}} reseñas",
+    "b2bPrice": "Precio B2B -{{rate}}%",
+    "rating": "Calificación",
+    "writeReview": "Escribir Reseña",
+    "noReviews": "Sin reseñas aún"
+  },
+  "cart": {
+    "yourCart": "Su Carrito",
+    "empty": "Su carrito está vacío",
+    "continue": "Continuar Comprando",
+    "subtotal": "Subtotal",
+    "tax": "Impuesto",
+    "shipping": "Envío",
+    "total": "Total",
+    "removeItem": "Eliminar Artículo",
+    "updateQuantity": "Actualizar Cantidad",
+    "applyCoupon": "Aplicar Cupón"
+  },
+  "checkout": {
+    "shippingInfo": "Información de Envío",
+    "billingAddress": "Dirección de Facturación",
+    "paymentMethod": "Método de Pago",
+    "orderSummary": "Resumen del Pedido",
+    "completeOrder": "Completar Pedido",
+    "orderPlaced": "Pedido Realizado Correctamente"
+  },
+  "admin": {
+    "dashboard": "Panel de Control",
+    "orders": "Pedidos",
+    "products": "Productos",
+    "users": "Usuarios",
+    "analytics": "Análisis",
+    "settings": "Configuración",
+    "reports": "Informes",
+    "manageUsers": "Gestionar Usuarios",
+    "manageProducts": "Gestionar Productos",
+    "viewAnalytics": "Ver Análisis"
+  },
+  "errors": {
+    "invalidEmail": "Correo inválido",
+    "invalidPassword": "Contraseña inválida",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "userNotFound": "Usuario no encontrado",
+    "emailExists": "Correo ya registrado",
+    "unauthorized": "No autorizado",
+    "forbidden": "Prohibido",
+    "notFound": "No Encontrado",
+    "serverError": "Error del Servidor",
+    "networkError": "Error de Red"  },
+  "cookies": {
+    "title": "Este sitio usa cookies",
+    "description": "Usamos cookies esenciales y, con su permiso, analíticas para mejorar la experiencia.",
+    "learnMore": "Más información",
+    "reject": "Rechazar",
+    "accept": "Aceptar cookies",
+    "ariaLabel": "Consentimiento de cookies"
+  },
+  "footer": {
+    "privacy": "Privacidad",
+    "terms": "Términos de Servicio",
+    "cookies": "Cookies",
+    "company": "© 2025 Tranzor. Todos los derechos reservados."
+  },
+  "navbar": {
+    "categories": "Artes",
+    "artes": "Artes",
+    "school": "Escolar",
+    "office": "Oficina",
+    "gifts": "Regalos",
+    "hygiene": "Higiene y Limpieza",
+    "industry": "Industria",
+    "technology": "Tecnología",
+    "toys": "Juguetes y Juegos",
+    "furniture": "Muebles",
+    "notebooks": "Cuadernos y Bloques",
+    "pens": "Bolígrafos y Lápices",
+    "backpacks": "Mochilas",
+    "calculators": "Calculadoras",
+    "painting": "Pintura",
+    "watercolor": "Acuarela",
+    "canvas": "Lienzo",
+    "toner": "Tóner",
+    "printers": "Impresoras",
+    "paper": "Papel A4",
+    "agendas": "Agendas",
+    "files": "Carpetas",
+    "markers": "Marcadores",
+    "scissors": "Tijeras",
+    "puzzles": "Rompecabezas",
+    "chairs": "Sillas de Oficina",
+    "desks": "Escritorios",
+    "usbdrives": "Memorias USB",
+    "gloves": "Guantes",
+    "masks": "Mascarillas",
+    "disinfectant": "Desinfectantes",
+    "tissue": "Papel Higiénico",
+    "pilotPen": "Bolígrafo Pilot G-2",
+    "oxfordNotebook": "Cuaderno Oxford A4",
+    "stabiloMarkers": "Marcadores Stabilo",
+    "navigatorPaper": "Papel Navigator A4",
+    "hpInk": "Tinta HP 302",
+    "samsungToner": "Tóner Samsung",
+    "bicPen": "BIC Cristal",
+    "postit": "Post-it 3M",
+    "newArrivals": "Novedades",
+    "recentlyViewed": "Vistos Recientemente"
+  },
+  "help": {
+    "title": "Ayuda",
+    "faq": "Preguntas Frecuentes",
+    "contact": "Contacte con Soporte",
+    "chatbot": "Charle con nuestro asistente",
+    "liveChatDescription": "Asistente virtual Tranzor — respuestas inmediatas.",
+    "liveChatHeader": "Asistente Tranzor",
+    "liveChatSubheader": "Soporte automatizado",
+    "liveChatFooter": "Asistente virtual · respuestas automáticas",
+    "onlineStatus": "En línea",
+    "restartChat": "Reiniciar",
+    "email": "soporte@tranzor.es",
+    "phone": "+34 (0) 800 800 800",
+    "hours": "Lunes a viernes, 9 AM a 6 PM",
+    "today": "Hoy",
+    "noAnswerQuestion": "¿No encontraste la respuesta?",
+    "supportEmail": "soporte@Tranzor.pt",
+    "supportHours": "· Lun–Vie 9 AM–6 PM",
+    "bot": {
+      "start": {
+        "message": "Bienvenido al soporte Tranzor.\n¿Cómo puedo ayudarte hoy?",
+        "options": {
+          "key_menu": "Clave o licencia de producto",
+          "order_menu": "Estado de mi pedido",
+          "return_menu": "Devolver o reembolsar",
+          "invoice_menu": "Factura o documento fiscal",
+          "shipping_menu": "Plazos y costes de envío",
+          "account_link": "Acceder a mi cuenta",
+          "other": "Otro asunto"
+        }
+      },
+      "account_link": {
+        "message": "Puedes gestionar tus pedidos, claves y datos personales en tu área de cliente.",
+        "options": {
+          "go_to_account": "Ir a mi cuenta",
+          "back_to_menu": "Volver al menú"
+        }
+      },
+      "key_menu": {
+        "message": "Claves y licencias\n¿Cuál es tu situación?",
+        "options": {
+          "no_email": "No recibí la clave por email",
+          "not_work": "La clave no funciona",
+          "activate": "¿Cómo activo mi licencia?",
+          "lost": "Perdí o no encuentro la clave",
+          "view_keys": "Ver mis claves en la cuenta",
+          "main_menu": "Volver al menú principal"
+        }
+      },
+      "key_no_email": {
+        "message": "Verifica:\n\n· Spam/basura en el email\n· Email correcto en la cuenta\n· Espera hasta 15 min\n\nTambién puedes consultar tus claves directamente en el área de cliente.",
+        "options": {
+          "view_keys": "Ver claves en la cuenta",
+          "checked_all": "Sí, ya verifiqué todo",
+          "resolved": "Resuelto, gracias",
+          "back": "Volver"
+        }
+      },
+      "key_not_work": {
+        "message": "Asegúrate de:\n\n· Copiar sin espacios extra\n· Producto y versión correctos\n· Internet conectada durante la activación\n\nLa clave correcta también está en tu cuenta.",
+        "options": {
+          "view_keys": "Ver claves en la cuenta",
+          "still_failing": "Sí, sigue fallando",
+          "resolved": "Funcionó, gracias",
+          "back": "Volver"
+        }
+      },
+      "key_activate": {
+        "message": "Pasos:\n\n1. Abre el software\n2. Haz clic en 'Activar' o 'Introducir clave'\n3. Pega la clave\n4. Confirma\n\nProductos Microsoft/Adobe → activación en la cuenta online.",
+        "options": {
+          "need_more_help": "Necesito más ayuda",
+          "activated": "Pude activar",
+          "back": "Volver"
+        }
+      },
+      "key_lost": {
+        "message": "Encuentra tu clave en:\n\nCuenta → Pedidos → Ver detalles\n\n(atajo abajo)",
+        "options": {
+          "go_orders": "Ir a mis pedidos",
+          "no_account_access": "No puedo acceder a la cuenta",
+          "found_key": "Encontré la clave",
+          "back": "Volver"
+        }
+      },
+      "key_contact": {
+        "message": "Envía un email a:\n\nkeys@Tranzor.pt\n\nAsunto: Problema con clave — nº de pedido\nRespuesta en 2 horas hábiles.",
+        "options": {
+          "got_it": "Entendido",
+          "back_to_menu": "Volver al menú principal"
+        }
+      },
+      "order_menu": {
+        "message": "Pedidos\n¿Qué te gustaría saber?",
+        "options": {
+          "track_order": "Rastrear mi pedido",
+          "order_not_arrived": "Mi pedido aún no ha llegado",
+          "wrong_product": "Recibí un producto incorrecto",
+          "damaged_product": "El producto llegó dañado",
+          "view_orders": "Ver todos los pedidos",
+          "main_menu": "Volver al menú principal"
+        }
+      },
+      "order_track": {
+        "message": "Seguimiento:\n\nCuenta → Pedidos → número de pedido → 'Rastrear envío'.\n\nTambién en el correo de envío.",
+        "options": {
+          "go_orders": "Ir a mis pedidos",
+          "no_tracking_link": "No recibí enlace de seguimiento",
+          "tracked": "Pude rastrear",
+          "back": "Volver"
+        }
+      },
+      "order_late": {
+        "message": "Plazos:\n\n· Digitales: inmediato\n· Portugal Continental: 2–4 días hábiles\n· Archipiélagos: 5–8 días hábiles\n\n¿Plazo superado? Podemos abrir una investigación.",
+        "options": {
+          "open_investigation": "Quiero abrir una investigación",
+          "wait": "Esperaré",
+          "back": "Volver"
+        }
+      },
+      "order_wrong": {
+        "message": "Lo sentimos.\n\nPara cambio:\n· Guarda el producto y el embalaje\n· Fotografía\n· Contáctanos con el número de pedido\n\nReenvío correcto gratis.",
+        "options": {
+          "contact_support": "Contactar soporte",
+          "back": "Volver"
+        }
+      },
+      "order_damaged": {
+        "message": "Dañado:\n\n· Fotografía el producto y el embalaje\n· No deseches nada\n· Contáctanos — sustitución o reembolso.",
+        "options": {
+          "contact_support": "Contactar soporte",
+          "back": "Volver"
+        }
+      },
+      "order_contact": {
+        "message": "Equipo de pedidos:\n\npedidos@Tranzor.pt\n\nAsunto: Pedido nº ___\nRespuesta en 4 horas hábiles.",
+        "options": {
+          "got_it": "Entendido",
+          "back_to_menu": "Volver al menú principal"
+        }
+      },
+      "return_menu": {
+        "message": "Devoluciones y reembolsos\n¿Cuál es tu situación?",
+        "options": {
+          "return_product": "Quiero devolver un producto",
+          "return_deadline": "¿Plazo de devolución?",
+          "no_refund_yet": "Aún no recibí el reembolso",
+          "start_return_online": "Iniciar devolución en la cuenta",
+          "main_menu": "Volver al menú principal"
+        }
+      },
+      "return_how": {
+        "message": "Devolución online:\n\nCuenta → Pedidos → 'Iniciar devolución'.\nRecibirás etiqueta gratuita.",
+        "options": {
+          "start_return": "Iniciar devolución ahora",
+          "can_t_start_online": "No puedo iniciar online",
+          "started_return": "Devolución iniciada",
+          "back": "Volver"
+        }
+      },
+      "return_deadline": {
+        "message": "Plazos:\n\n· Físicos: 30 días tras la entrega\n· Digitales: sin devolución tras activación (excepto clave defectuosa)\n\nEmbalaje original y buen estado.",
+        "options": {
+          "proceed_return": "Avanzar con la devolución",
+          "more_questions": "Más dudas",
+          "back": "Volver"
+        }
+      },
+      "return_refund": {
+        "message": "Tras la recepción del devuelto:\n\n· Tarjeta/débito: 3–5 días hábiles\n· MB WAY: 1–2 días hábiles\n· Transferencia: 2–3 días hábiles\n\n¿Ya recibiste confirmación de recepción?",
+        "options": {
+          "no_refund_yet": "Sí, pero sin reembolso",
+          "no_confirmation": "No tengo confirmación",
+          "back": "Volver"
+        }
+      },
+      "return_contact": {
+        "message": "Equipo de devoluciones:\n\ndevoluciones@Tranzor.pt\n\nIndica el nº de pedido y el motivo.\nRespuesta en 24 horas hábiles.",
+        "options": {
+          "got_it": "Entendido",
+          "back_to_menu": "Volver al menú principal"
+        }
+      },
+      "invoice_menu": {
+        "message": "Facturas y documentos fiscales\n¿Qué necesitas?",
+        "options": {
+          "where_invoice": "¿Dónde encuentro mi factura?",
+          "company_invoice": "Necesito factura para empresa",
+          "wrong_details": "Los datos están mal",
+          "view_invoices": "Ver mis facturas",
+          "main_menu": "Volver al menú principal"
+        }
+      },
+      "invoice_where": {
+        "message": "Facturas disponibles en:\n\nCuenta → Facturas (descargar PDF).\n\nTambién en el correo de confirmación.",
+        "options": {
+          "go_invoices": "Ir a las facturas",
+          "cant_find": "No lo encuentro",
+          "found_it": "Lo encontré, gracias",
+          "back": "Volver"
+        }
+      },
+      "invoice_company": {
+        "message": "Factura con NIF empresa:\n\nAgrega los datos fiscales antes de la compra: Cuenta → Datos fiscales.\n\nPlazo de cambio para pedidos ya hechos: 30 días.",
+        "options": {
+          "change_order": "Cambiar un pedido ya hecho",
+          "understood": "Entendido, gracias",
+          "back": "Volver"
+        }
+      },
+      "invoice_wrong": {
+        "message": "Rectificación urgente:\n\nEnvía el nº de pedido y los datos correctos.",
+        "options": {
+          "contact_now": "Contactar ahora",
+          "back": "Volver"
+        }
+      },
+      "invoice_contact": {
+        "message": "Equipo de facturación:\n\nfacturas@Tranzor.pt\n\nIndica nº de pedido y corrección.\nRespuesta en 1 día hábil.",
+        "options": {
+          "got_it": "Entendido",
+          "back_to_menu": "Volver al menú principal"
+        }
+      },
+      "shipping_menu": {
+        "message": "Envíos\n¿Qué información necesitas?",
+        "options": {
+          "delivery_times": "Plazos de entrega",
+          "shipping_cost": "Costo de envío",
+          "intl_shipping": "Envíos internacionales",
+          "main_menu": "Volver al menú principal"
+        }
+      },
+      "shipping_times": {
+        "message": "Plazos (días hábiles):\n\n· Portugal Continental: 2–4\n· Azores/Madeira: 5–8\n· España: 3–5\n· Resto de Europa: 5–10\n· Digitales: inmediato",
+        "options": {
+          "order_late": "Pedido atrasado",
+          "thanks": "Gracias",
+          "back": "Volver"
+        }
+      },
+      "shipping_cost": {
+        "message": "Costes:\n\n· Gratis > 35 €\n· < 50 €: 3,99 € (Continente)\n· Europa: desde 7,99 €\n· Digitales: siempre gratis",
+        "options": {
+          "more_questions": "Más dudas",
+          "thanks": "Gracias",
+          "back": "Volver"
+        }
+      },
+      "shipping_intl": {
+        "message": "Envíos a toda la UE.\nFuera de Europa o grandes volúmenes: contacta antes de la compra.",
+        "options": {
+          "contact_team": "Hablar con el equipo",
+          "thanks": "Gracias",
+          "back": "Volver"
+        }
+      },
+      "other": {
+        "message": "Asuntos no cubiertos:\n\nsoporte@Tranzor.pt\n+351 234 000 000\n\nLun–Vie, 09:00–18:00",
+        "options": {
+          "go_faq": "Ir al FAQ",
+          "contact_page": "Página de contacto",
+          "main_menu": "Volver al menú principal"
+        }
+      },
+      "resolved": {
+        "message": "Me alegra haber ayudado.\n\n¿Hay algo más en lo que pueda ayudarte?",
+        "options": {
+          "main_menu": "Volver al menú principal",
+          "go_account": "Ir a mi cuenta"
+        }
+      }
+    },
+    "breadcrumbs": {
+      "start": "Inicio",
+      "key_menu": "Claves",
+      "order_menu": "Pedidos",
+      "return_menu": "Devoluciones",
+      "invoice_menu": "Facturas",
+      "shipping_menu": "Envíos",
+      "other": "Otro",
+      "account_link": "Cuenta",
+      "key_no_email": "Clave no recibida",
+      "key_not_work": "Clave no funciona",
+      "key_activate": "Cómo activar",
+      "key_lost": "Clave perdida",
+      "key_contact": "Contacto claves",
+      "order_track": "Rastrear",
+      "order_late": "Atrasada",
+      "order_wrong": "Incorrecto",
+      "order_damaged": "Dañado",
+      "order_contact": "Contacto pedidos",
+      "return_how": "Cómo devolver",
+      "return_deadline": "Plazo de devolución",
+      "return_refund": "Reembolso",
+      "return_contact": "Contacto devoluciones",
+      "invoice_where": "Localizar factura",
+      "invoice_company": "Factura empresa",
+      "invoice_wrong": "Corregir factura",
+      "invoice_contact": "Contacto facturas",
+      "shipping_times": "Plazos",
+      "shipping_cost": "Costes",
+      "shipping_intl": "Internacional"
+    }
+  }
+}

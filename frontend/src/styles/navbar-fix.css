@@ -1,0 +1,136 @@
+/* Navbar Fix - Website Nível Empresa */
+
+/* Garantir que o header tem altura consistente */
+nav[aria-label="Navegação principal"] {
+  height: 72px !important;
+  min-height: 72px !important;
+}
+
+/* Evitar que conteúdo fique tapado pelo header */
+main {
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+}
+
+/* No mobile, header com altura adequada */
+@media (max-width: 768px) {
+  nav[aria-label="Navegação principal"] {
+    height: 64px !important;
+    min-height: 64px !important;
+  }
+
+  main {
+    margin-top: 72px;
+  }
+}
+
+/* Garantir que elementos dentro do navbar não ultrapassam */
+nav[aria-label="Navegação principal"] > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+/* Dropdowns do navbar não ficam por baixo */
+.language-dropdown,
+.sd-wrap,
+#search-dropdown {
+  position: absolute;
+  top: 100%;
+  z-index: 1100;
+  margin-top: 8px;
+}
+
+/* Corrigir padding/margin de elementos com tradução */
+.language-toggle {
+  white-space: nowrap;
+  min-width: 50px;
+}
+
+/* Garantir que input de search não ficahora do navbar */
+input[placeholder="Pesquisar..."],
+input[placeholder="Search..."] {
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Produto detail page - evitar overlap */
+section[aria-labelledby="related-heading"],
+.product-filters,
+.filter-section {
+  clear: both;
+}
+
+/* Breadcrumb não fica tapado */
+nav[aria-label="Breadcrumb"] {
+  margin-top: 12px;
+  padding-top: 20px;
+}
+
+/* Descrição do produto com espaço adequado */
+section:has(> h1) {
+  padding-top: 30px;
+}
+
+/* Sticky elements devem respeitar header */
+.shop-filters,
+.product-filters {
+  position: sticky;
+  top: 92px;
+  max-height: calc(100vh - 100px);
+}
+
+/* Modals e dropdowns não devem ficar tapados */
+.modal,
+.modal-backdrop {
+  z-index: 1200;
+}
+
+/* Dropdown de pesquisa responsivo */
+.sd-wrap {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+/* Guarantee no layout shift quando idioma muda */
+.language-toggle,
+.nav-actions {
+  position: relative;
+  min-width: max-content;
+}
+
+/* Responsivo para tradução mais longa */
+@media (min-width: 1200px) {
+  nav[aria-label="Navegação principal"] > div {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  nav[aria-label="Navegação principal"] > div {
+    gap: 12px;
+  }
+
+  input[placeholder="Pesquisar..."],
+  input[placeholder="Search..."] {
+    max-width: 150px;
+  }
+}
+
+/* Evitar horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Animação suave quando muda idioma */
+body {
+  transition: none;
+}
+
+/* Fix para header em modo dark */
+.theme-dark nav[aria-label="Navegação principal"] {
+  background: rgba(30, 30, 30, 0.96);
+}

@@ -1,0 +1,1 @@
+export { ProductsController } from '../src/modules/products/controllers/products.controller';

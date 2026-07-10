@@ -1,0 +1,1 @@
+export default function RoleGuard({ children }: { children: React.ReactNode }) { return <>{children}</>; }

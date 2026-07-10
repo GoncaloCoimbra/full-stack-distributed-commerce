@@ -1,0 +1,110 @@
+/* Language Switcher Styles */
+
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 8px;
+  color: var(--text, #333);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+.language-toggle:hover {
+  background: var(--charcoal-2, #f5f5f5);
+  border-color: var(--red, #d9042a);
+  color: var(--red, #d9042a);
+}
+
+.language-code {
+  letter-spacing: 0.5px;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 160px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: white;
+  border: none;
+  color: var(--text, #333);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  text-align: left;
+}
+
+.language-option:hover {
+  background: var(--charcoal-2, #f5f5f5);
+  color: var(--red, #d9042a);
+}
+
+.language-option.active {
+  background: rgba(217, 4, 41, 0.08);
+  color: var(--red, #d9042a);
+  font-weight: 700;
+  border-left: 3px solid var(--red, #d9042a);
+  padding-left: 13px;
+}
+
+.flag {
+  font-size: 18px;
+  display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .language-toggle {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .language-dropdown {
+    min-width: 140px;
+  }
+
+  .language-option {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}

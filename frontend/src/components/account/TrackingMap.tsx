@@ -1,0 +1,1 @@
+export default function TrackingMap() { return <div>TrackingMap</div>; }

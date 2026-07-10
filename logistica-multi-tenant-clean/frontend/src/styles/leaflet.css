@@ -1,0 +1,63 @@
+/* Leaflet Map Styles */
+@import 'leaflet/dist/leaflet.css';
+
+.leaflet-container {
+  font-family: inherit;
+  background: #0f172a;
+}
+
+.leaflet-control-attribution {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  color: #cbd5e1 !important;
+}
+
+.leaflet-control-attribution a {
+  color: #4f85f6 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+  border-radius: 0.5rem;
+}
+
+.leaflet-popup-content {
+  color: #f0f4ff !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #1e293b !important;
+}
+
+.custom-start-icon,
+.custom-end-icon {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Ensure markers are visible */
+.leaflet-marker-pane img {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Custom scrollbar for map container */
+.leaflet-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(79, 133, 246, 0.5) rgba(15, 23, 42, 0.5);
+}
+
+.leaflet-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.leaflet-container::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.leaflet-container::-webkit-scrollbar-thumb {
+  background: rgba(79, 133, 246, 0.5);
+  border-radius: 4px;
+}
+
+.leaflet-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 133, 246, 0.7);
+}

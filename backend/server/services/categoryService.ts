@@ -1,0 +1,1 @@
+export const categoryService = { find: () => {} };

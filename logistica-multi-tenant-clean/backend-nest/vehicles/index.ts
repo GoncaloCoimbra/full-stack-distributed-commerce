@@ -1,0 +1,1 @@
+export { VehiclesController } from '../src/modules/vehicles/controllers/vehicles.controller';

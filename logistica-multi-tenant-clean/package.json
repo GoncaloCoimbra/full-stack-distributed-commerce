@@ -1,0 +1,51 @@
+{
+  "name": "logistica-multi-tenant",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend-nest",
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "lint-all": "npm run --workspace=backend-nest lint && npm run --workspace=frontend lint",
+    "test-all": "npm run --workspace=backend-nest test && npm run --workspace=frontend test",
+    "build-all": "npm run --workspace=backend-nest build && npm run --workspace=frontend build",
+    "start-all": "concurrently \"npm run --workspace=backend-nest start:dev\" \"npm run --workspace=frontend dev\"",
+    "format-all": "npm run --workspace=backend-nest format && npm run --workspace=frontend format"
+  },
+  "lint-staged": {
+    "backend-nest/**/*.{ts,tsx}": [
+      "npm run --workspace=backend-nest lint -- --no-color",
+      "npm run --workspace=backend-nest format -- --no-color"
+    ],
+    "frontend/**/*.{ts,tsx}": [
+      "npm run --workspace=frontend lint -- --no-color",
+      "npm run --workspace=frontend format -- --no-color"
+    ],
+    "*.{js,json}": [
+      "prettier --write --no-color"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "concurrently": "^8.2.0",
+    "husky": "^8.0.0",
+    "jest": "^30.2.0",
+    "lint-staged": "^13.3.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "prom-client": "^15.1.3",
+    "react-icons": "^5.5.0",
+    "zod": "^4.1.12"
+  }
+}

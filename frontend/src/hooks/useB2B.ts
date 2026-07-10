@@ -1,0 +1,1 @@
+export default function useB2B() { /* hook logic */ }

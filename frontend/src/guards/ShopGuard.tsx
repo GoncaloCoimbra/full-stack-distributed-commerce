@@ -1,0 +1,1 @@
+export default function ShopGuard({ children }: { children: React.ReactNode }) { return <>{children}</>; }

@@ -1,0 +1,247 @@
+"""
+Database Models for Enterprise-Level Website
+Sistema completo com tradução, famílias de produtos, filtros, etc.
+"""
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TRANSLATIONS (Tradução de Conteúdo)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model Translation {
+  id        String   @id @default(cuid())
+  key       String   @unique // ex: "shop.catalog", "navigation.home"
+  pt        String   // Português
+  en        String   // English
+  es        String?  // Español (futuro)
+  fr        String?  // Français (futuro)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([key])
+  @@map("translations")
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PRODUCT FAMILIES (350 Famílias)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model ProductFamily {
+  id            String   @id @default(cuid())
+  familyCode    String   @unique // ex: "PAPER-A4-80GSM"
+  nameKey       String   // Translation key para nome
+  descriptionKey String?  // Translation key para descrição
+  categoryId    String
+  category      ProductCategory @relation(fields: [categoryId], references: [id])
+  
+  // Metadados
+  isActive      Boolean  @default(true)
+  order         Int      @default(0)
+  icon          String?  // ex: "📄", "✏️"
+  color         String?  // cor hexadecimal
+  
+  // SKUs desta família (ex: PAPER-A4-80GSM tem ~25.000 variantes)
+  products      Product[] @relation("FamilyProducts")
+  filters       FilterOption[] @relation("FamilyFilters")
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([isActive])
+  @@map("product_families")
+}
+
+model ProductCategory {
+  id        String   @id @default(cuid())
+  nameKey   String   @unique // ex: "shop.categories.paper"
+  descKey   String?  // "shop.descriptions.paper"
+  parentId  String?
+  parent    ProductCategory? @relation("SubCategories", fields: [parentId], references: [id])
+  children  ProductCategory[] @relation("SubCategories")
+  
+  families  ProductFamily[]
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("product_categories")
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PRODUCTS (até 25.000 produtos)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model Product {
+  id              String   @id @default(cuid())
+  sku             String   @unique
+  familyId        String
+  family          ProductFamily @relation("FamilyProducts", fields: [familyId], references: [id])
+  
+  // Tradução
+  nameKey         String   // "products.names.{{sku}}"
+  descriptionKey  String?  // "products.descriptions.{{sku}}"
+  
+  // Preço
+  price           Float    @db.Decimal(10, 2)
+  originalPrice   Float?   @db.Decimal(10, 2)
+  accountPrice    Float?   @db.Decimal(10, 2) // Preço B2B
+  
+  // Informações
+  brand           String?
+  image           String?
+  images          String[] // Array de URLs
+  rating          Float    @default(0) @db.Decimal(3, 2)
+  reviewCount     Int      @default(0)
+  
+  // Stock
+  inStock         Boolean  @default(true)
+  stockQuantity   Int      @default(0)
+  warehouse       String?
+  
+  // Flags
+  isNew           Boolean  @default(false)
+  isPromotion     Boolean  @default(false)
+  isBestSeller    Boolean  @default(false)
+  isLimited       Boolean  @default(false)
+  
+  // Tags e Filtros
+  tags            String[] // Array de tags
+  filterValues    FilterValue[] @relation("ProductFilterValues")
+  
+  // Metadados
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([familyId])
+  @@index([isActive])
+  @@index([brand])
+  @@fulltext([sku, nameKey])
+  @@map("products")
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# FILTERS (Sistema de Filtros - Marca, Tamanho, Material, Cor)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model FilterType {
+  id        String   @id @default(cuid())
+  type      String   @unique // "brand", "size", "material", "color"
+  nameKey   String   // Translation key
+  icon      String?
+  order     Int      @default(0)
+  
+  options   FilterOption[]
+
+  @@map("filter_types")
+}
+
+model FilterOption {
+  id          String   @id @default(cuid())
+  filterTypeId String
+  filterType  FilterType @relation(fields: [filterTypeId], references: [id])
+  
+  valueKey    String   // Translation key: "product_filters.{{type}}.{{value}}"
+  order       Int      @default(0)
+  
+  // Relação com famílias (quais famílias usam este filtro)
+  families    ProductFamily[] @relation("FamilyFilters")
+  
+  // Relação com valores de produtos
+  values      FilterValue[] @relation("OptionValues")
+
+  @@unique([filterTypeId, valueKey])
+  @@map("filter_options")
+}
+
+model FilterValue {
+  id        String @id @default(cuid())
+  productId String
+  product   Product @relation("ProductFilterValues", fields: [productId], references: [id])
+  
+  optionId  String
+  option    FilterOption @relation("OptionValues", fields: [optionId], references: [id])
+
+  @@unique([productId, optionId])
+  @@map("filter_values")
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PRODUCT DESCRIPTIONS (Descrições Detalhadas por Família)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model ProductDescription {
+  id        String   @id @default(cuid())
+  familyId  String   @unique
+  family    ProductFamily @relation(fields: [familyId], references: [id])
+  
+  // Conteúdo (tradução)
+  shortDescPt String
+  shortDescEn String
+  longDescPt  String   @db.Text
+  longDescEn  String   @db.Text
+  
+  // Especificações
+  specs       String[] // JSON array com specs
+  features    String[] // Características principais
+  useCases    String[] // Casos de uso
+  
+  // SEO
+  seoTitlePt  String?
+  seoTitleEn  String?
+  seoDescPt   String?
+  seoDescEn   String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("product_descriptions")
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CONTENT MANAGEMENT
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model ContentPage {
+  id        String   @id @default(cuid())
+  slug      String   @unique // "/sobre", "/faq", etc
+  titleKey  String   // "pages.about.title"
+  bodyKey   String   // "pages.about.body"
+  order     Int      @default(0)
+  isPublished Boolean @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("content_pages")
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# INDEXING & CACHING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+model SearchIndex {
+  id        String   @id @default(cuid())
+  productId String
+  query     String
+  score     Float
+  
+  createdAt DateTime @default(now())
+
+  @@index([query])
+  @@map("search_indexes")
+}
+
+model CacheEntry {
+  id        String   @id @default(cuid())
+  key       String   @unique // "translations:pt", "products:family:123"
+  value     String   @db.Text // JSON stringified
+  expiresAt DateTime
+  
+  createdAt DateTime @default(now())
+
+  @@index([expiresAt])
+  @@map("cache_entries")
+}

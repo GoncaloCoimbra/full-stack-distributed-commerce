@@ -1,0 +1,8 @@
+services:
+  backend:
+    environment:
+      NODE_ENV: staging
+      PORT: 3001
+    ports:
+      - "3101:3001"
+    restart: unless-stopped

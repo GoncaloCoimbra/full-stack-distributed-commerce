@@ -1,0 +1,1 @@
+export default function ShippingEstimator() { return <div>ShippingEstimator</div>; }

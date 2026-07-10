@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "install:all": "npm install && npm run chatops:install && npm run logistica:install",
+    "chatops:backend:install": "npm install --prefix Chatops/backend",
+    "chatops:frontend:install": "npm install --prefix Chatops/frontend",
+    "chatops:install": "npm run chatops:backend:install && npm run chatops:frontend:install",
+    "chatops:backend:test": "npm test --prefix Chatops/backend",
+    "chatops:frontend:test": "npm test --prefix Chatops/frontend",
+    "chatops:test": "npm run chatops:backend:test && npm run chatops:frontend:test",
+    "logistica:install": "npm install --prefix logistica-multi-tenant-clean",
+    "logistica:backend:test": "npm test --prefix logistica-multi-tenant-clean/backend-nest",
+    "logistica:frontend:test": "npm test --prefix logistica-multi-tenant-clean/frontend",
+    "logistica:test": "npm run logistica:backend:test && npm run logistica:frontend:test",
+    "start:all": "node scripts/start-workspace.js",
+    "stop:all": "docker compose down",
+    "status:all": "docker compose ps",
+    "logs:all": "docker compose logs -f",
+    "validate:deploy": "docker compose config",
+    "test:all": "npm run chatops:test && npm run logistica:test"
+  },
+  "dependencies": {
+    "html5-qrcode": "^2.3.8"
+  }
+}

@@ -1,0 +1,1 @@
+export default function MiniCart() { return <div>MiniCart</div>; }

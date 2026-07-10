@@ -1,0 +1,1 @@
+export { SuppliersController } from '../src/modules/suppliers/controllers/suppliers.controller';

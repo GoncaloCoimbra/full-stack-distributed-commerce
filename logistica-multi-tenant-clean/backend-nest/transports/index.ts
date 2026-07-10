@@ -1,0 +1,1 @@
+export { TransportsController } from '../src/modules/transports/controllers/transports.controller';

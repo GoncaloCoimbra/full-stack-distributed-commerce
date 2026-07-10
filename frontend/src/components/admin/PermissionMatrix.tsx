@@ -1,0 +1,1 @@
+export default function PermissionMatrix() { return <div>PermissionMatrix</div>; }
