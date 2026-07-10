@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../common/Button';
+import { useLanguage } from '../../i18n';
 import './UnifiedHeader.css';
 
 interface UnifiedHeaderProps {
@@ -11,6 +12,7 @@ interface UnifiedHeaderProps {
 const UnifiedHeader: React.FC<UnifiedHeaderProps> = ({ variant = 'admin', onThemeToggle }) => {
   const { user, logout } = useAuth();
   const [showMenu, setShowMenu] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   return (
     <header className="unified-header">
@@ -32,6 +34,20 @@ const UnifiedHeader: React.FC<UnifiedHeaderProps> = ({ variant = 'admin', onThem
 
         {/* Right Section */}
         <div className="header-actions">
+          <div className="language-switcher" style={{ display: 'flex', gap: 6, marginRight: 8 }}>
+            {(['pt','en','es'] as const).map((lang) => (
+              <button
+                key={lang}
+                className="header-btn"
+                style={{ padding: '0.35rem 0.6rem', fontSize: 12, borderRadius: 999, background: language === lang ? '#f59e0b' : 'transparent', color: language === lang ? '#111827' : 'inherit' }}
+                onClick={() => setLanguage(lang)}
+                title={lang === 'pt' ? 'Português' : lang === 'en' ? 'English' : 'Español'}
+              >
+                {lang === 'pt' ? 'PT' : lang === 'en' ? 'EN' : 'ES'}
+              </button>
+            ))}
+          </div>
+
           {/* Theme Toggle */}
           <button className="header-btn theme-toggle" onClick={onThemeToggle} title="Alternar tema">
             🌙

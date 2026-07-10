@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import api from '../api/api';
 import UserManagementTable from '../components/UserManagementTable';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme } from '../theme.config';
 
 interface CompanyInfo {
   id: string;

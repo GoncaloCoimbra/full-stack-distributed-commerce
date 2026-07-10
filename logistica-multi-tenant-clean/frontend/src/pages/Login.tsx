@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { debugApi, debugLogin } from '../utils/apiDebug';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme } from '../theme.config';
 
 // ─── Font Injection ────────────────────────────────────────────────────────────
 const injectFonts = () => {
@@ -81,7 +82,7 @@ const Login: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "'Outfit', -apple-system, sans-serif", background: ds.bg }}
-      className="min-h-screen flex"
+      className={`${theme.backgrounds.page} min-h-screen flex`}
     >
       {/* ── Left Panel – Branding ── */}
       <div

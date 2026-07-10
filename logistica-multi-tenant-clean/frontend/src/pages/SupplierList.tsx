@@ -509,7 +509,7 @@ const SupplierList: React.FC = () => {
             </thead>
             <tbody style={{ borderTop: `1px solid var(--color-border)` }}>
               {suppliers.map((supplier) => (
-                <tr key={supplier.id} style={{ borderBottom: `1px solid var(--color-border)`, '&:hover': { backgroundColor: 'var(--color-surface-hover)' } }}>
+                <tr key={supplier.id} style={{ borderBottom: `1px solid var(--color-border)` }}>
                   <td style={{ padding: 'var(--space-lg)', fontSize: 'var(--fs-sm)', fontWeight: '500', color: 'var(--color-text)' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', background: 'linear-gradient(135deg, var(--color-brand-red), var(--color-warning))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-md)' }}>

@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import Footer from '../components/Footer';
 import api from '../api/api';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme } from '../theme.config';
 
 const SuperAdminProfile: React.FC = () => {
   const navigate = useNavigate();

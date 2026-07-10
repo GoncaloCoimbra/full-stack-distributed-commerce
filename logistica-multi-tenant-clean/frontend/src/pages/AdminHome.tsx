@@ -6,8 +6,8 @@ const AdminHome: React.FC = () => {
   const { user, logout } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className={`${theme.backgrounds.header} px-6 py-4 flex items-center justify-between border-b border-slate-700`}>
+    <div className="min-h-screen flex flex-col bg-slate-950">
+      <header className="bg-slate-900/90 px-6 py-4 flex items-center justify-between border-b border-slate-700">
         <div className="flex items-center space-x-3">
           <img src="/logo.png" alt="Tranzor Logistics" className="h-12 w-auto" />
           <h2 className="text-white font-bold text-lg">Administrator Area</h2>
@@ -22,7 +22,7 @@ const AdminHome: React.FC = () => {
           </button>
         </div>
       </header>
-      <main className={`flex-1 ${theme.backgrounds.page} py-8 px-4 sm:px-6 lg:px-8`}> 
+      <main className="flex-1 bg-slate-950 py-8 px-4 sm:px-6 lg:px-8"> 
         <h1 className="text-3xl font-bold text-white mb-4">
           Welcome, {user?.name || 'Administrator'}!
         </h1>

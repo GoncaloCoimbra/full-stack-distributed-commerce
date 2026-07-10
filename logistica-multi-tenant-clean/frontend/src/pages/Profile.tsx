@@ -2,6 +2,7 @@
 import { useAuth } from '../contexts/AuthContext';
 import api from '../api/api';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme, statusLabels, getStatusBadgeClass } from '../theme.config';
 
 const Profile: React.FC = () => {
   const { user, updateUserData } = useAuth();

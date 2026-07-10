@@ -10,6 +10,7 @@ import {
 import api from '../api/api';
 import DashboardFilters, { FilterState } from '../components/DashboardFilters';
 import { Button, Input, Badge, Alert } from '../components/common';
+import { statusLabels, statusColors } from '../theme.config';
 
 // ─── Font Injection ────────────────────────────────────────────────────────────
 const injectFonts = () => {

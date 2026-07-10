@@ -3,6 +3,7 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useProduct, useProductWithMovements } from '../hooks/useProducts';
 import { apiClient } from '../api/config';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { statusLabels, getStatusBadgeClass } from '../theme.config';
 
 interface Product {
   id: string;

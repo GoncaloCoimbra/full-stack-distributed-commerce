@@ -4,6 +4,7 @@ import api from '../api/api';
 import CreateCompanyModal from '../components/CreateCompanyModal';
 import EditCompanyModal from '../components/EditCompanyModal';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme } from '../theme.config';
 
 interface Company {
   id: string;

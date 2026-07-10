@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../api/api';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme } from '../theme.config';
 
 // ─── Font Injection ────────────────────────────────────────────────────────────
 const injectFonts = () => {
@@ -171,7 +172,7 @@ const Register: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "'Outfit', -apple-system, sans-serif", background: ds.bg }}
-      className="min-h-screen flex items-center justify-center py-12 px-4"
+      className={`${theme.backgrounds.page} min-h-screen flex items-center justify-center py-12 px-4`}
     >
       {/* Background grid */}
       <div
@@ -187,7 +188,7 @@ const Register: React.FC = () => {
         style={{ background: 'radial-gradient(circle, rgba(79,133,246,0.07) 0%, transparent 70%)' }} />
 
       <div
-        className="relative z-10 w-full max-w-xl rounded-2xl p-8"
+        className={`${theme.cards.form} relative z-10 w-full max-w-xl rounded-2xl p-8`}
         style={{ background: ds.bgCard, border: `1px solid ${ds.border}` }}
       >
         {/* Header */}

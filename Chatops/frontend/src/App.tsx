@@ -17,6 +17,7 @@ import {
   Minimize2, Pin, Menu,
 } from 'lucide-react';
 import './App.css';
+import { useLanguage } from './i18n';
 import {
   formatTimestamp,
   getDateLabel,
@@ -116,15 +117,6 @@ const TEAM_MEMBERS = [
 
 type ConnectionState = 'connected' | 'reconnecting' | 'offline';
 type TabPanel = 'chat' | 'pins' | 'search';
-
-// ── Helpers ──────────────────────────────────────────────────
-import {
-  formatTimestamp,
-  getDateLabel,
-  formatFileSize,
-  getInitials,
-  getAvatarColor,
-} from './utils/chatopsHelpers';
 
 // ── Latência ─────────────────────────────────────────────────
 function LatencyIcon({ ms }: { ms: number | null }) {
@@ -256,6 +248,7 @@ function EmojiPicker({ onSelect, onClose }: { onSelect: (e: string) => void; onC
 // Main App
 // ════════════════════════════════════════════════════════════════
 export default function App() {
+    const { language, setLanguage } = useLanguage();
     const [createGroupOpen, setCreateGroupOpen] = useState(false);
     const [privateGroups, setPrivateGroups] = useState<{ id: string; name: string; members: string[] }[]>([]);
   // ── State ──────────────────────────────────────────────────
@@ -963,6 +956,19 @@ export default function App() {
         </div>
 
         <div className="header-actions">
+          <div style={{ display: 'flex', gap: 6, marginRight: 8 }}>
+            {(['pt','en','es'] as const).map((lang) => (
+              <button
+                key={lang}
+                type="button"
+                onClick={() => setLanguage(lang)}
+                style={{ padding: '0.35rem 0.55rem', borderRadius: 999, border: language === lang ? '1px solid #f59e0b' : '1px solid var(--rule)', background: language === lang ? '#f59e0b' : 'transparent', color: language === lang ? '#111827' : 'inherit', fontSize: 12 }}
+              >
+                {lang === 'pt' ? 'PT' : lang === 'en' ? 'EN' : 'ES'}
+              </button>
+            ))}
+          </div>
+
           <div className="header-clock">
             {currentTime.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
           </div>

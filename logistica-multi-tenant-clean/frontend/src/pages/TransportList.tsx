@@ -7,6 +7,7 @@ import FilterSelector from '../components/FilterSelector';
 import ProductSelector from '../components/ProductSelector';
 import { Package, Trash2, Play } from 'lucide-react';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme, statusLabels, getStatusBadgeClass } from '../theme.config';
 
 interface Transport {
   id: string;

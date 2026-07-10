@@ -4,6 +4,7 @@ import api from '../api/api';
 import CreateGlobalUserModal from '../components/CreateGlobalUserModal';
 import EditGlobalUserModal from '../components/EditGlobalUserModal';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { theme } from '../theme.config';
 
 interface User {
   id: string;
