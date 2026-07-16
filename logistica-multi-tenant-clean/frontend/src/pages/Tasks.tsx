@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api/api';
 import { useFilters } from '../hooks/useFilters';
 import FilterChips from '../components/FilterChips';
@@ -241,7 +241,7 @@ const Tasks: React.FC = () => {
   const getTaskStatusBadgeClass = (status: Task['status']) => {
     switch (status) {
       case 'PENDING':     return 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 border-2 border-amber-500 text-amber-300';
-      case 'IN_PROGRESS': return 'bg-gradient-to-r from-blue-900/30 to-blue-800/20 border-2 border-blue-500 text-blue-300';
+      case 'IN_PROGRESS': return 'bg-gradient-to-r from-red-900/30 to-red-800/20 border-2 border-red-500 text-red-300';
       case 'COMPLETED':   return 'bg-gradient-to-r from-emerald-900/30 to-emerald-800/20 border-2 border-emerald-500 text-emerald-300';
       case 'CANCELLED':   return 'bg-gradient-to-r from-red-900/30 to-red-800/20 border-2 border-red-500 text-red-300';
       default:            return 'bg-gray-800 border-gray-600 text-gray-300';
@@ -291,20 +291,20 @@ const Tasks: React.FC = () => {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#1e293b', padding: '1.5rem' }}>
 
-      {/* ── Page Header ── */}
+      {/* -- Page Header -- */}
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-white">Tasks</h1>
           <p className="text-sm text-slate-300 mt-1">Task and activity management</p>
 
           {user?.role === 'SUPER_ADMIN' && (
-            <div className="mt-3 bg-gradient-to-r from-blue-900/20 to-blue-800/10 border-2 border-blue-500/30 rounded-lg p-3">
+            <div className="mt-3 bg-gradient-to-r from-red-900/20 to-red-800/10 border-2 border-red-500/30 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded">SUPER ADMIN</span>
+                <span className="px-2 py-1 bg-red-500/20 text-red-300 text-xs font-bold rounded">SUPER ADMIN</span>
                 <span className="text-sm text-slate-300 font-medium">Select a company to view tasks</span>
               </div>
               <select value={selectedCompanyId} onChange={(e) => setSelectedCompanyId(e.target.value)}
-                className="w-full md:w-auto px-4 py-2 bg-slate-900 border-2 border-blue-500/30 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                className="w-full md:w-auto px-4 py-2 bg-slate-900 border-2 border-red-500/30 rounded-lg text-white focus:border-red-500 focus:outline-none">
                 <option value="">All companies</option>
                 {companies.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
@@ -332,7 +332,7 @@ const Tasks: React.FC = () => {
         </button>
       </div>
 
-      {/* ── Stats ── */}
+      {/* -- Stats -- */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         {[
           { label: 'Total Tasks',  value: filteredTasks.length, color: 'amber',
@@ -360,7 +360,7 @@ const Tasks: React.FC = () => {
         ))}
       </div>
 
-      {/* ── Table ── */}
+      {/* -- Table -- */}
       <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl shadow-lg overflow-hidden border-2 border-amber-500/30 hover:border-amber-500/50 transition-all">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -408,7 +408,7 @@ const Tasks: React.FC = () => {
                   </td>
                   <td className="px-8 py-4">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 h-8 w-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-md">
+                      <div className="flex-shrink-0 h-8 w-8 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-md">
                         <span className="text-xs font-bold text-white">
                           {task.assignedTo?.split(' ').map(n => n[0]).join('')}
                         </span>
@@ -419,7 +419,7 @@ const Tasks: React.FC = () => {
                   <td className="px-8 py-4 text-right">
                     <div className="flex justify-end gap-2">
                       <button onClick={() => openViewModal(task)} title="View"
-                        className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all shadow-md">
+                        className="p-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 transition-all shadow-md">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -457,20 +457,20 @@ const Tasks: React.FC = () => {
         )}
       </div>
 
-      {/* ── Create Modal ── */}
+      {/* -- Create Modal -- */}
       {showCreateModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-amber-500/30 rounded-xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
             <h2 className="text-2xl font-bold text-amber-400 mb-4">New Task</h2>
             {user?.role === 'SUPER_ADMIN' && (
-              <div className="mb-4 bg-gradient-to-r from-blue-900/20 to-blue-800/10 border-2 border-blue-500/30 rounded-lg p-4">
+              <div className="mb-4 bg-gradient-to-r from-red-900/20 to-red-800/10 border-2 border-red-500/30 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded">SUPER ADMIN</span>
+                  <span className="px-2 py-1 bg-red-500/20 text-red-300 text-xs font-bold rounded">SUPER ADMIN</span>
                   <span className="text-sm text-slate-300 font-medium">Select the company to create the task for</span>
                 </div>
                 <label className="block text-sm font-bold text-slate-300 mb-2">Company *</label>
                 <select required value={selectedCompanyId} onChange={(e) => setSelectedCompanyId(e.target.value)}
-                  className="w-full px-4 py-2 bg-slate-900 border-2 border-blue-500/30 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                  className="w-full px-4 py-2 bg-slate-900 border-2 border-red-500/30 rounded-lg text-white focus:border-red-500 focus:outline-none">
                   <option value="">Select a company...</option>
                   {companies.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
@@ -521,7 +521,7 @@ const Tasks: React.FC = () => {
         </div>
       )}
 
-      {/* ── Edit Modal ── */}
+      {/* -- Edit Modal -- */}
       {showEditModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-amber-500/30 rounded-xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
@@ -567,7 +567,7 @@ const Tasks: React.FC = () => {
         </div>
       )}
 
-      {/* ── View Modal ── */}
+      {/* -- View Modal -- */}
       {showViewModal && selectedTask && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-amber-500/30 rounded-xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
@@ -630,7 +630,7 @@ const Tasks: React.FC = () => {
         </div>
       )}
 
-      {/* ── Delete Confirm Modal ── */}
+      {/* -- Delete Confirm Modal -- */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-red-500/30 rounded-xl p-6 max-w-md w-full">
@@ -664,4 +664,5 @@ const Tasks: React.FC = () => {
 };
 
 export default Tasks;
+
 

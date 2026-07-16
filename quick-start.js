@@ -150,7 +150,7 @@ ${colors.cyan}Ficheiros importantes:${colors.reset}
   backend/README.md
   └─ API Website
 
-  logistica-multi-tenant/README.md
+  logistica-multi-tenant-clean/README.md
   └─ API Logística
 
   Chatops/README.md

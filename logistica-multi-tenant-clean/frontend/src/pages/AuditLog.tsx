@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api/api';
 import { useFilters } from '../hooks/useFilters';
 import FilterChips from '../components/FilterChips';
@@ -108,7 +108,7 @@ const AuditLog: React.FC = () => {
     } catch (error: any) {
       console.error('Error clearing history:', error);
       
-      // Garantir que errorMsg é sempre uma string
+      // Garantir que errorMsg � sempre uma string
       let errorMsg = 'Error clearing history. Please try again later.';
       
       if (error.response?.data) {
@@ -161,7 +161,7 @@ const AuditLog: React.FC = () => {
         label: 'Delete'
       },
       LOGIN: { 
-        color: 'bg-gradient-to-r from-blue-900/40 to-blue-800/30 text-blue-300 border-blue-500/30',
+        color: 'bg-gradient-to-r from-red-900/40 to-red-800/30 text-red-300 border-red-500/30',
         label: 'Login'
       },
       LOGOUT: { 
@@ -256,8 +256,8 @@ const AuditLog: React.FC = () => {
 
     const config = iconConfig[action] || {
       gradient: 'from-[#1e293b]/50 to-[#0f172a]/50',
-      borderColor: 'border-[#3b82f6]/30',
-      textColor: 'text-[#3b82f6]',
+      borderColor: 'border-[#dc2626]/30',
+      textColor: 'text-[#dc2626]',
       path: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     };
 
@@ -635,4 +635,5 @@ const AuditLog: React.FC = () => {
 };
 
 export default AuditLog;
+
 

@@ -33,7 +33,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
     return (
       <div className={`min-h-screen flex items-center justify-center ${theme.backgrounds.page}`}>
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-red-600 mx-auto mb-4"></div>
           <p className="text-slate-300 font-medium">Loading...</p>
         </div>
       </div>
@@ -66,7 +66,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
           </p>
           <button
             onClick={() => window.history.back()}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
           >
             Voltar
           </button>
@@ -92,7 +92,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
           </p>
           <button
             onClick={() => window.history.back()}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
           >
             Back
           </button>
@@ -118,7 +118,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
           </p>
           <button
             onClick={() => window.history.back()}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
           >
             Back
           </button>

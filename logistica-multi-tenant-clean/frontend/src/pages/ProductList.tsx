@@ -25,12 +25,25 @@ const ProductList: React.FC = () => {
     dateTo: filterDateTo,
   };
 
-  const { data: products = [], isLoading: loading, error } = useProducts(filters);
+  interface Product {
+    id: string;
+    internalCode: string;
+    description: string;
+    quantity: number;
+    unit: string;
+    status: string;
+    supplier?: { id: string; name: string; nif: string };
+    currentLocation?: string;
+    createdAt: string;
+    updatedAt: string;
+  }
+
+  const { data: products = [], isLoading: loading, error } = useProducts(filters) as { data?: Product[]; isLoading: boolean; error?: unknown };
 
   useEffect(() => {
     console.log('[ProductList] Current state:', {
       loading,
-      error: error?.message,
+      error: error instanceof Error ? error.message : JSON.stringify(error),
       productsCount: products.length,
       products: products,
       filters: filters,
@@ -108,7 +121,7 @@ const ProductList: React.FC = () => {
   return (
     <div style={{ padding: 'var(--space-2xl)', minHeight: '100vh', backgroundColor: 'var(--color-surface)', color: 'var(--color-text)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-lg)' }}>
-        <h1 style={{ fontSize: 'var(--fs-3xl)', fontWeight: 'bold', color: 'var(--color-text)' }}>📦 Produtos</h1>
+        <h1 style={{ fontSize: 'var(--fs-3xl)', fontWeight: 'bold', color: 'var(--color-text)' }}>Produtos</h1>
         <Button variant="primary" onClick={() => navigate('/products/new')}>+ Novo Produto</Button>
       </div>
 
@@ -173,7 +186,7 @@ const ProductList: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) => (
+                {products.map((product: Product) => (
                   <tr
                     key={product.id}
                     onClick={() => handleProductClick(product.id)}

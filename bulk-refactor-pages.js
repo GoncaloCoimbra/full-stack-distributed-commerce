@@ -11,7 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const PAGES_DIR = path.join(__dirname, 'logistica-multi-tenant/frontend/src/pages');
+const PAGES_DIR = path.join(__dirname, 'logistica-multi-tenant-clean/frontend/src/pages');
 
 // Padrões de refactoring
 const refactorPatterns = [

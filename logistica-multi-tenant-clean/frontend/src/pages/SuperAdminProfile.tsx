@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import api from '../api/api';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
 import { theme } from '../theme.config';
+import { SITE_FULL_NAME } from '../site.config';
 
 const SuperAdminProfile: React.FC = () => {
   const navigate = useNavigate();
@@ -171,7 +172,7 @@ const SuperAdminProfile: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
           </div>
-          <h1 className="text-xl font-bold bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">Tranzor Logistics</h1>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">{SITE_FULL_NAME}</h1>
         </div>
 
         {/* Ícone do Perfil com Logout */}

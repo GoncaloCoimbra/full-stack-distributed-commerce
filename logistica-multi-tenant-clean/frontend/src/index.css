@@ -83,7 +83,7 @@
   }
 
   .button-dark-secondary {
-    @apply px-6 py-3 bg-[#1e293b] border-2 border-[#334155] text-[#cbd5e1] rounded-lg hover:border-[#3b82f6]/50 hover:bg-[#334155] transition-all font-bold shadow-dark-md;
+    @apply px-6 py-3 bg-[#1e293b] border-2 border-[#334155] text-[#cbd5e1] rounded-lg hover:border-[#dc2626]/50 hover:bg-[#334155] transition-all font-bold shadow-dark-md;
   }
 
   .badge-dark {
@@ -95,7 +95,7 @@
   }
 
   .table-dark th {
-    @apply bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-[#3b82f6] font-black border-b-2 border-[#3b82f6]/30 px-6 py-4 uppercaseercase;
+    @apply bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-[#dc2626] font-black border-b-2 border-[#dc2626]/30 px-6 py-4 uppercaseercase;
   }
 
   .table-dark td {
@@ -111,7 +111,7 @@
   }
 
   .header-dark {
-    @apply bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] border-b-2 border-[#3b82f6]/30 shadow-dark-lg backdrop-blur-sm;
+    @apply bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] border-b-2 border-[#dc2626]/30 shadow-dark-lg backdrop-blur-sm;
   }
 
   .modal-dark {
@@ -131,7 +131,7 @@
   }
 
   .alert-dark-info {
-    @apply bg-[#1e293b]/50 border-l-4 border-[#3b82f6] text-[#cbd5e1] px-4 py-3 rounded-lg shadow-dark-md;
+    @apply bg-[#1e293b]/50 border-l-4 border-[#dc2626] text-[#cbd5e1] px-4 py-3 rounded-lg shadow-dark-md;
   }
 
   .divider-dark {
@@ -143,7 +143,7 @@
   }
 
   .neon-border {
-    @apply border border-[#3b82f6]/30 hover:border-[#3b82f6] transition-all duration-300;
+    @apply border border-[#dc2626]/30 hover:border-[#dc2626] transition-all duration-300;
   }
 }
 
@@ -152,7 +152,7 @@
 @layer utilities {
   /* Gradient Animation */
   .animate-gradient {
-    @apply bg-gradient-to-r from-[#3b82f6] via-[#2563eb] to-[#3b82f6] bg-[length:200%_auto] animate-pulse;
+    @apply bg-gradient-to-r from-[#dc2626] via-[#b91c1c] to-[#dc2626] bg-[length:200%_auto] animate-pulse;
   }
 
   /* Smooth Transitions */
@@ -162,21 +162,21 @@
 
   /* Focus Rings Dark Mode */
   .focus-ring-dark {
-    @apply focus:ring-2 focus:ring-[#3b82f6]/50 focus:outline-none;
+    @apply focus:ring-2 focus:ring-[#dc2626]/50 focus:outline-none;
   }
 
   /* Text Gradient */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#3b82f6] to-[#2563eb];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#dc2626] to-[#b91c1c];
   }
 
   .text-gradient-dark {
-    @apply dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-[#60a5fa] dark:to-[#3b82f6];
+    @apply dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-[#60a5fa] dark:to-[#dc2626];
   }
 
   /* Glass Morphism */
   .glass-dark {
-    @apply backdrop-blur-md bg-white/10 dark:bg-[#1e293b]/40 border border-white/20 dark:border-[#3b82f6]/20;
+    @apply backdrop-blur-md bg-white/10 dark:bg-[#1e293b]/40 border border-white/20 dark:border-[#dc2626]/20;
   }
 
   /* Smooth Shadows */
@@ -225,11 +225,11 @@
 /* ==================== SELECTION COLORS ==================== */
 
 ::selection {
-  @apply bg-blue-500 text-white dark:bg-[#3b82f6] dark:text-[#0f172a];
+  @apply bg-red-500 text-white dark:bg-[#dc2626] dark:text-[#0f172a];
 }
 
 ::-moz-selection {
-  @apply bg-blue-500 text-white dark:bg-[#3b82f6] dark:text-[#0f172a];
+  @apply bg-red-500 text-white dark:bg-[#dc2626] dark:text-[#0f172a];
 }
 
 /* ==================== LINK STYLES ==================== */

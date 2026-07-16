@@ -12,10 +12,10 @@ interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Alert: React.FC<AlertProps> = ({ type, title, message, onClose, variant, children, className, style, ...props }) => {
   const alertType = variant ?? type ?? 'info';
   const icons = {
-    success: '✓',
-    error: '✕',
-    warning: '⚠',
-    info: 'ℹ',
+    success: '✔',
+    error: 'x',
+    warning: '!',
+    info: 'i',
   } as const;
 
   return (
@@ -29,7 +29,7 @@ export const Alert: React.FC<AlertProps> = ({ type, title, message, onClose, var
       </div>
       {onClose && (
         <button className="alert-close" onClick={onClose} type="button">
-          ✕
+          x
         </button>
       )}
     </div>

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   PieChart, Pie, Cell,
@@ -12,7 +12,7 @@ import DashboardFilters, { FilterState } from '../components/DashboardFilters';
 import { Button, Input, Badge, Alert } from '../components/common';
 import { statusLabels, statusColors } from '../theme.config';
 
-// ─── Font Injection ────────────────────────────────────────────────────────────
+// --- Font Injection ------------------------------------------------------------
 const injectFonts = () => {
   if (document.getElementById('ls-fonts')) return;
   const link = document.createElement('link');
@@ -22,7 +22,7 @@ const injectFonts = () => {
   document.head.appendChild(link);
 };
 
-// ─── Design Tokens ─────────────────────────────────────────────────────────────
+// --- Design Tokens -------------------------------------------------------------
 const ds = {
   bg:       '#07090f',
   bgCard:   '#0d1117',
@@ -30,7 +30,7 @@ const ds = {
   bgInput:  '#0a0e17',
   border:   '#1a2234',
   borderHover: '#253248',
-  accent:   '#4f85f6',
+  accent:   '#dc2626',
   accentGlow: 'rgba(79,133,246,0.15)',
   textPrimary:   '#f0f4ff',
   textSecondary: '#7a8fa8',
@@ -42,7 +42,7 @@ const ds = {
   orange:  '#fb923c',
 };
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
+// --- Types ---------------------------------------------------------------------
 interface DashboardStats {
   period: string;
   customDateRange: { startDate: Date; endDate: Date } | null;
@@ -67,7 +67,7 @@ interface DashboardStats {
   trends: { products: string; deliveries: string };
 }
 
-// ─── Sub-components ────────────────────────────────────────────────────────────
+// --- Sub-components ------------------------------------------------------------
 
 /** Card container */
 const Card: React.FC<{ children: React.ReactNode; className?: string; style?: React.CSSProperties }> = ({ children, className = '', style }) => (
@@ -141,7 +141,7 @@ const DarkTooltip: React.FC<any> = ({ active, payload, label }) => {
   );
 };
 
-// ─── Main Component ────────────────────────────────────────────────────────────
+// --- Main Component ------------------------------------------------------------
 const DashboardAdvanced: React.FC = () => {
   const navigate = useNavigate();
   const [stats, setStats]   = useState<DashboardStats | null>(null);
@@ -189,7 +189,7 @@ const DashboardAdvanced: React.FC = () => {
       filterInfo.push(['Period', stats.period]);
     }
     const csvContent = [
-      ['Performance Report – Tranzor Logistics'],
+      ['Performance Report - LogiSphere Logística'],
       ['Export Date', new Date().toLocaleDateString('en-GB')],
       [''], ['APPLIED FILTERS'], ...filterInfo,
       [''], ['GENERAL SUMMARY'],
@@ -225,13 +225,13 @@ const DashboardAdvanced: React.FC = () => {
   const getPeriodLabel = () => {
     if (!stats) return '';
     if (stats.customDateRange) {
-      return `${new Date(stats.customDateRange.startDate).toLocaleDateString('en-GB')} – ${new Date(stats.customDateRange.endDate).toLocaleDateString('en-GB')}`;
+      return `${new Date(stats.customDateRange.startDate).toLocaleDateString('en-GB')} - ${new Date(stats.customDateRange.endDate).toLocaleDateString('en-GB')}`;
     }
     const labels: Record<string, string> = { '7d': 'Last 7 days', '30d': 'Last 30 days', '90d': 'Last 90 days', '1y': 'Last year' };
     return labels[stats.period] || stats.period;
   };
 
-  // ── Loading ──
+  // -- Loading --
   if (loading && !stats) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: ds.bg, fontFamily: "'Outfit', sans-serif" }}>
@@ -265,13 +265,14 @@ const DashboardAdvanced: React.FC = () => {
 
   const formatDate = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
-  const timelineData = stats.movementsByDay.map(m => ({ data: formatDate(m.data),
+  const timelineData = stats.movementsByDay.map((m) => ({
+    data: formatDate(m.data),
     Movimentos: m.count,
-    Entradas: stats.productsCreatedByDay.find(p => p.data === m.data)?.count || 0,
-    Saídas: stats.deliveredByDay.find(d => d.data === m.data)?.count || 0,
+    Entradas: stats.productsCreatedByDay.find((p) => p.data === m.data)?.count || 0,
+    "Saidas": stats.deliveredByDay.find((d) => d.data === m.data)?.count || 0,
   }));
 
-  // ── Icons reused ──
+  // -- Icons reused --
   const iconBox     = <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>;
   const iconStorage = <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>;
   const iconCheck   = <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>;
@@ -280,7 +281,7 @@ const DashboardAdvanced: React.FC = () => {
   return (
     <div style={{ fontFamily: "'Outfit', -apple-system, sans-serif", background: ds.bg, minHeight: '100vh' }}>
 
-      {/* ── Sticky Header ── */}
+      {/* -- Sticky Header -- */}
       <div
         className="sticky top-0 z-40 backdrop-blur-xl"
         style={{ background: `${ds.bg}e8`, borderBottom: `1px solid ${ds.border}` }}
@@ -323,14 +324,14 @@ const DashboardAdvanced: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
 
-        {/* ── Filters ── */}
+        {/* -- Filters -- */}
         <DashboardFilters
           availableSuppliers={stats.availableSuppliers}
           onFilterChange={handleFilterChange}
           loading={loading}
         />
 
-        {/* ── Metric Cards ── */}
+        {/* -- Metric Cards -- */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { icon: iconBox,      label: 'Total Products',  value: stats.totalProducts,       trend: stats.trends.products,    color: ds.accent },
@@ -367,7 +368,7 @@ const DashboardAdvanced: React.FC = () => {
           ))}
         </div>
 
-        {/* ── Quick Actions ── */}
+        {/* -- Quick Actions -- */}
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: ds.textMuted }}>
@@ -404,7 +405,7 @@ const DashboardAdvanced: React.FC = () => {
           </div>
         </Card>
 
-        {/* ── Timeline Chart ── */}
+        {/* -- Timeline Chart -- */}
         <Card style={{ padding: '1.5rem' }}>
           <CardHeader
             icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>}
@@ -440,7 +441,7 @@ const DashboardAdvanced: React.FC = () => {
           </ResponsiveContainer>
         </Card>
 
-        {/* ── Pie + Avg Time ── */}
+        {/* -- Pie + Avg Time -- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card style={{ padding: '1.5rem' }}>
             <CardHeader
@@ -505,7 +506,7 @@ const DashboardAdvanced: React.FC = () => {
           </Card>
         </div>
 
-        {/* ── Rejection Rate ── */}
+        {/* -- Rejection Rate -- */}
         {stats.rejectionRateBySupplier.length > 0 && (
           <Card style={{ padding: '1.5rem' }}>
             <CardHeader
@@ -540,7 +541,7 @@ const DashboardAdvanced: React.FC = () => {
                       </div>
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-xs" style={{ color: ds.textMuted }}>{s.totalProducts} products</span>
-                        <span style={{ color: ds.border }}>·</span>
+                        <span style={{ color: ds.border }}>•</span>
                         <span className="text-xs" style={{ color: ds.danger }}>{s.rejectedProducts} rejected</span>
                       </div>
                       <div className="h-1 rounded-full overflow-hidden" style={{ background: ds.border }}>
@@ -557,7 +558,7 @@ const DashboardAdvanced: React.FC = () => {
           </Card>
         )}
 
-        {/* ── Transport + Vehicles ── */}
+        {/* -- Transport + Vehicles -- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card style={{ padding: '1.5rem' }}>
             <CardHeader
@@ -598,7 +599,7 @@ const DashboardAdvanced: React.FC = () => {
           </Card>
         </div>
 
-        {/* ── Top Suppliers ── */}
+        {/* -- Top Suppliers -- */}
         <Card style={{ padding: '1.5rem' }}>
           <CardHeader
             icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>}
@@ -608,7 +609,7 @@ const DashboardAdvanced: React.FC = () => {
               <button onClick={() => navigate('/fornecedores')}
                 className="text-xs font-semibold transition-colors"
                 style={{ color: ds.accent }}>
-                Ver todos →
+                Ver todos ?
               </button>
             }
           />
@@ -649,7 +650,7 @@ const DashboardAdvanced: React.FC = () => {
           </div>
         </Card>
 
-        {/* ── Summary Bar ── */}
+        {/* -- Summary Bar -- */}
         <div
           className="rounded-2xl p-6"
           style={{ background: ds.bgCard, border: `1px solid ${ds.border}` }}
@@ -684,3 +685,4 @@ const DashboardAdvanced: React.FC = () => {
 };
 
 export default DashboardAdvanced;
+

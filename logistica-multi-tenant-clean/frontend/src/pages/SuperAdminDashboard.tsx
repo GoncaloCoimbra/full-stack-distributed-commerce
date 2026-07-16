@@ -1,9 +1,9 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import { Button, Input, Badge, Alert } from '../components/common';
 
-// ─── Font Injection ────────────────────────────────────────────────────────────
+// --- Font Injection ------------------------------------------------------------
 const injectFonts = () => {
   if (document.getElementById('ls-fonts')) return;
   const link = document.createElement('link');
@@ -13,13 +13,13 @@ const injectFonts = () => {
   document.head.appendChild(link);
 };
 
-// ─── Design Tokens ─────────────────────────────────────────────────────────────
+// --- Design Tokens -------------------------------------------------------------
 const ds = {
   bg:            '#07090f',
   bgCard:        '#0d1117',
   bgInput:       '#0a0e17',
   border:        '#1a2234',
-  accent:        '#4f85f6',
+  accent:        '#dc2626',
   textPrimary:   '#f0f4ff',
   textSecondary: '#7a8fa8',
   textMuted:     '#3a4d63',
@@ -30,7 +30,7 @@ const ds = {
   orange:        '#fb923c',
 };
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
+// --- Types ---------------------------------------------------------------------
 interface GlobalStats {
   totalCompanies: number;
   totalUsers: number;
@@ -44,7 +44,7 @@ interface GlobalStats {
   }>;
 }
 
-// ─── Sub-components ────────────────────────────────────────────────────────────
+// --- Sub-components ------------------------------------------------------------
 const Card: React.FC<{ children: React.ReactNode; className?: string; style?: React.CSSProperties }> = ({ children, className = '', style }) => (
   <div
     className={`rounded-2xl ${className}`}
@@ -54,7 +54,7 @@ const Card: React.FC<{ children: React.ReactNode; className?: string; style?: Re
   </div>
 );
 
-// ─── Main Component ────────────────────────────────────────────────────────────
+// --- Main Component ------------------------------------------------------------
 const SuperAdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState<GlobalStats>({
@@ -90,7 +90,7 @@ const SuperAdminDashboard: React.FC = () => {
     }
   };
 
-  // ── Loading ──
+  // -- Loading --
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center"
@@ -104,7 +104,7 @@ const SuperAdminDashboard: React.FC = () => {
     );
   }
 
-  // ── Metric cards config ──
+  // -- Metric cards config --
   const metricCards = [
     {
       label: 'Companies',
@@ -165,7 +165,7 @@ const SuperAdminDashboard: React.FC = () => {
     },
   ];
 
-  // ── Quick actions ──
+  // -- Quick actions --
   const quickActions = [
     {
       title:    'Company Management',
@@ -196,7 +196,7 @@ const SuperAdminDashboard: React.FC = () => {
   return (
     <div style={{ fontFamily: "'Outfit', -apple-system, sans-serif", background: ds.bg, minHeight: '100vh' }}>
 
-      {/* ── Page Header ── */}
+      {/* -- Page Header -- */}
       <div style={{ background: ds.bgCard, borderBottom: `1px solid ${ds.border}` }}>
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div>
@@ -255,7 +255,7 @@ const SuperAdminDashboard: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
 
-        {/* ── Warning banner ── */}
+        {/* -- Warning banner -- */}
         {error && (
           <div
             className="flex items-start gap-4 p-4 rounded-2xl"
@@ -280,13 +280,13 @@ const SuperAdminDashboard: React.FC = () => {
                 className="text-xs font-semibold mt-2 transition-colors"
                 style={{ color: ds.warning }}
               >
-                Try again →
+                Try again ?
               </button>
             </div>
           </div>
         )}
 
-        {/* ── Metric Cards ── */}
+        {/* -- Metric Cards -- */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {metricCards.map((m, i) => (
             <Card key={i} className="p-5">
@@ -307,7 +307,7 @@ const SuperAdminDashboard: React.FC = () => {
           ))}
         </div>
 
-        {/* ── Top 5 Companies ── */}
+        {/* -- Top 5 Companies -- */}
         <Card style={{ padding: '1.5rem' }}>
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -323,7 +323,7 @@ const SuperAdminDashboard: React.FC = () => {
               className="text-xs font-semibold transition-colors"
               style={{ color: ds.accent }}
             >
-              View all →
+              View all ?
             </button>
           </div>
 
@@ -339,7 +339,7 @@ const SuperAdminDashboard: React.FC = () => {
               </p>
               <button onClick={() => navigate('/empresas')}
                 className="text-xs font-semibold" style={{ color: ds.accent }}>
-                Add company →
+                Add company ?
               </button>
             </div>
           ) : (
@@ -407,7 +407,7 @@ const SuperAdminDashboard: React.FC = () => {
           )}
         </Card>
 
-        {/* ── Quick Actions ── */}
+        {/* -- Quick Actions -- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {quickActions.map(a => (
             <div
@@ -435,13 +435,13 @@ const SuperAdminDashboard: React.FC = () => {
                 className="w-full py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
                 style={{ background: a.color, color: '#fff' }}
               >
-                Access Management →
+                Access Management ?
               </button>
             </div>
           ))}
         </div>
 
-        {/* ── Footer status ── */}
+        {/* -- Footer status -- */}
         <div
           className="flex items-center justify-between py-4 text-xs"
           style={{ borderTop: `1px solid ${ds.border}`, color: ds.textMuted }}
@@ -459,3 +459,4 @@ const SuperAdminDashboard: React.FC = () => {
 };
 
 export default SuperAdminDashboard;
+

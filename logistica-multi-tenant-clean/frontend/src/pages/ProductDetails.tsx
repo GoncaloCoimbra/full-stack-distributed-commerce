@@ -285,12 +285,12 @@ const ProductDetails: React.FC = () => {
       {(activeFilters.length > 0 || showAddFilter) && (
         <div className="bg-gradient-to-br from-[#1e293b]/80 to-[#0f172a]/80 rounded-xl shadow-2xl border border-amber-500/30 p-6 mb-6">
           <div className="flex justify-between items-start mb-6">
-            <h3 className="text-lg font-semibold text-white">🔍 Active Filters</h3>
+            <h3 className="text-lg font-semibold text-white">Active Filters</h3>
             <button
               onClick={() => setShowAddFilter(!showAddFilter)}
               className="text-sm bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-2 rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all border border-amber-500/30 shadow-lg font-medium"
             >
-              {showAddFilter ? '✕ Cancel' : '+ Add Filter'}
+              {showAddFilter ? 'Cancel' : 'Add Filter'}
             </button>
           </div>
 
@@ -307,7 +307,7 @@ const ProductDetails: React.FC = () => {
                   className="ml-2 hover:bg-amber-500/30 rounded-full w-6 h-6 flex items-center justify-center transition-colors"
                   title="Remove filter"
                 >
-                  ✕
+                  <span className="text-sm font-semibold">×</span>
                 </button>
               </div>
             ))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
+import { SITE_FULL_NAME } from '../site.config';
 
 const AdminHome: React.FC = () => {
   const { user, logout } = useAuth();
@@ -9,8 +10,11 @@ const AdminHome: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-slate-950">
       <header className="bg-slate-900/90 px-6 py-4 flex items-center justify-between border-b border-slate-700">
         <div className="flex items-center space-x-3">
-          <img src="/logo.png" alt="Tranzor Logistics" className="h-12 w-auto" />
-          <h2 className="text-white font-bold text-lg">Administrator Area</h2>
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 shadow-lg" />
+          <div>
+            <h2 className="text-white font-bold text-lg">{SITE_FULL_NAME}</h2>
+            <p className="text-slate-400 text-sm">Administrator Area</p>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-sm text-slate-300">{user?.name || 'Administrator'}</span>
@@ -27,7 +31,7 @@ const AdminHome: React.FC = () => {
           Welcome, {user?.name || 'Administrator'}!
         </h1>
         <p className="text-slate-300">
-          Use the side menu to navigate — the main dashboard is already available at <a className="text-blue-400 underline" href="/dashboard">/dashboard</a>.
+          Use the side menu to navigate — the main dashboard is already available at <a className="text-red-400 underline" href="/dashboard">/dashboard</a>.
         </p>
       </main>
     </div>
@@ -35,3 +39,4 @@ const AdminHome: React.FC = () => {
 };
 
 export default AdminHome;
+

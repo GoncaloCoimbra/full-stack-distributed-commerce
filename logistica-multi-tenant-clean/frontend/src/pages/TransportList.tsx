@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import { useFilters } from '../hooks/useFilters';
@@ -127,7 +127,7 @@ const TransportList: React.FC = () => {
     products: [] as SelectedProduct[],
   });
 
-  // Flags e mensagens para UX (salvamento/exclusão)
+  // Flags e mensagens para UX (salvamento/exclus�o)
   const [savingTransport, setSavingTransport] = useState<boolean>(false);
   const [deletingTransportId, setDeletingTransportId] = useState<string | null>(null);
   const [transportMessage, setTransportMessage] = useState<string>('');
@@ -148,7 +148,7 @@ const TransportList: React.FC = () => {
     try {
       const response = await api.get('/auth/me');
       setUser(response.data);
-      console.log('👤 User loaded:', response.data);
+      console.log('?? User loaded:', response.data);
     } catch (error) {
       console.error('Error loading user:', error);
     }
@@ -228,23 +228,23 @@ const TransportList: React.FC = () => {
 
   const nextFilter = getNextFilter();
 
-  //  MÉTODO handleSubmit CORRIGIDO
+  //  M�TODO handleSubmit CORRIGIDO
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     
     try {
       if (!formData.vehicleId || !formData.origin || !formData.destination || !formData.departureDate) {
-        setError('Por favor, preencha todos os campos obrigatórios');
+        setError('Por favor, preencha todos os campos obrigat�rios');
         return;
       }
 
       if (!formData.estimatedArrival) {
-        setError('Date de chegada estimada é obrigatória');
+        setError('Date de chegada estimada � obrigat�ria');
         return;
       }
 
-      // ⚠️ Validation de products APENAS na criação
+      // ?? Validation de products APENAS na cria��o
       if (!editingId && formData.products.length === 0) {
         const confirm = window.confirm(
           'Nenhum product foi adicionado ao transport. Deseja continuar mesmo assim?'
@@ -271,7 +271,7 @@ const TransportList: React.FC = () => {
       let dataToSend: any;
 
       if (editingId) {
-        // ⚠️ EDIT MODE: DOES NOT SEND PRODUCTS
+        // ?? EDIT MODE: DOES NOT SEND PRODUCTS
         dataToSend = {
           vehicleId: formData.vehicleId,
           origin: formData.origin.trim(),
@@ -284,7 +284,7 @@ const TransportList: React.FC = () => {
           //  WITHOUT 'products' field
         };
 
-        console.log('⚠️ EDIT MODE: Products WILL NOT be sent');
+        console.log('?? EDIT MODE: Products WILL NOT be sent');
         
       } else {
         //  CREATE MODE: SENDS PRODUCTS
@@ -316,22 +316,22 @@ const TransportList: React.FC = () => {
         dataToSend.status = 'CANCELED';
       }
 
-      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('📤 Sending transport date');
-      console.log('🔄 Mode:', editingId ? 'EDIT' : 'CREATE');
-      console.log('📦 Products:', editingId ? 'NOT SENT' : formData.products.length);
-      console.log('📊 Date:', JSON.stringify(dataToSend, null, 2));
-      console.log('👤 User Role:', user?.role);
-      console.log('🏢 CompanyId:', companyIdToUse || 'not sent');
+      console.log('????????????????????????????????????');
+      console.log('?? Sending transport date');
+      console.log('?? Mode:', editingId ? 'EDIT' : 'CREATE');
+      console.log('?? Products:', editingId ? 'NOT SENT' : formData.products.length);
+      console.log('?? Date:', JSON.stringify(dataToSend, null, 2));
+      console.log('?? User Role:', user?.role);
+      console.log('?? CompanyId:', companyIdToUse || 'not sent');
 
       try {
         setSavingTransport(true);
         if (editingId) {
-          console.log(`🔧 PATCH /transports/${editingId}`);
+          console.log(`?? PATCH /transports/${editingId}`);
           await api.patch(`/transports/${editingId}`, dataToSend);
           setTransportMessage('Transport updated successfully');
         } else {
-          console.log('🆕 POST /transports');
+          console.log('?? POST /transports');
           await api.post('/transports', dataToSend);
           setTransportMessage('Transport created successfully');
         }
@@ -347,12 +347,12 @@ const TransportList: React.FC = () => {
         setSavingTransport(false);
       }
     } catch (error: any) {
-      console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.error('????????????????????????????????????');
       console.error(' Error saving transport');
-      console.error('📋 Message:', error.message);
-      console.error('📊 Response date:', error.response?.data);
-      console.error('🔢 Response status:', error.response?.status);
-      console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.error('?? Message:', error.message);
+      console.error('?? Response date:', error.response?.data);
+      console.error('?? Response status:', error.response?.status);
+      console.error('????????????????????????????????????');
       setError(extractErrorMessage(error, 'Error saving transport'));
     }
   };
@@ -368,7 +368,7 @@ const TransportList: React.FC = () => {
       notes: transport.notes || '',
       // Normalize backend status (may be 'CANCELED') to the label used in UI ('CANCELLED')
       status: (transport.status as string) === 'CANCELED' ? 'CANCELLED' : transport.status,
-      products: [], // ⚠️ Clear products when editing
+      products: [], // ?? Clear products when editing
     });
     setEditingId(transport.id);
     setShowForm(true);
@@ -541,7 +541,7 @@ const TransportList: React.FC = () => {
           </h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
             {user?.role === 'SUPER_ADMIN' && !editingId && (
-              <div className="col-span-2 bg-gradient-to-r from-[#3b82f6]/20 to-[#1d4ed8]/20 border-2 border-[#3b82f6] rounded-lg p-4 mb-2">
+              <div className="col-span-2 bg-gradient-to-r from-[#dc2626]/20 to-[#991b1b]/20 border-2 border-[#dc2626] rounded-lg p-4 mb-2">
                 <div className="flex items-center gap-2 mb-3">
                   <span className={`${getStatusBadgeClass('user', 'SUPER_ADMIN')} text-xs`}>
                     SUPER ADMIN
@@ -645,13 +645,13 @@ const TransportList: React.FC = () => {
                 className={theme.inputs.base}
               >
                 <option value="PENDING">Pending</option>
-                <option value="IN_TRANSIT">Em Trânsito</option>
+                <option value="IN_TRANSIT">Em Tr�nsito</option>
                 <option value="DELIVERED">Entregue</option>
                 <option value="CANCELLED">Cancelled</option>
               </select>
             </div>
             <div className="col-span-2">
-              <label className="block text-sm font-medium mb-1 text-amber-200">Observações</label>
+              <label className="block text-sm font-medium mb-1 text-amber-200">Observa��es</label>
               <textarea
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -661,7 +661,7 @@ const TransportList: React.FC = () => {
               />
             </div>
 
-            {/*  SEÇÃO DE productS COM LÓGICA CORRIGIDA */}
+            {/*  SE��O DE productS COM L�GICA CORRIGIDA */}
             <div className="col-span-2 border-t border-amber-500/30 pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -671,12 +671,12 @@ const TransportList: React.FC = () => {
                   </h3>
                   {editingId && (
                     <span className="px-2 py-1 bg-orange-900/30 text-orange-400 text-xs font-bold rounded border border-orange-500/30">
-                      ⚠️ Não editáveis
+                      ?? N�o edit�veis
                     </span>
                   )}
                 </div>
                 
-                {/*  Botão só aparece na CRIAÇÃO */}
+                {/*  Bot�o s� aparece na CRIA��O */}
                 {!editingId && (
                   <button
                     type="button"
@@ -689,7 +689,7 @@ const TransportList: React.FC = () => {
                 )}
               </div>
 
-              {/* ⚠️ AVISO na EDIÇÃO */}
+              {/* ?? AVISO na EDI��O */}
               {editingId && (
                 <div className="mb-4 p-4 bg-gradient-to-r from-amber-900/20 to-amber-800/10 border-2 border-amber-500/30 rounded-lg">
                   <div className="flex items-center gap-3">
@@ -698,7 +698,7 @@ const TransportList: React.FC = () => {
                     </svg>
                     <div>
                       <p className="text-amber-300 font-semibold text-sm">
-                        ℹ️ Products cannot be edited after transport creation
+                        ?? Products cannot be edited after transport creation
                       </p>
                       <p className="text-amber-400/70 text-xs mt-1">
                         To change products: cancel this transport and create a new one
@@ -748,7 +748,7 @@ const TransportList: React.FC = () => {
                         </p>
                       </div>
                       
-                      {/*  Botão remove só aparece na CRIAÇÃO */}
+                      {/*  Bot�o remove s� aparece na CRIA��O */}
                       {!editingId && (
                         <button
                           type="button"
@@ -839,7 +839,7 @@ const TransportList: React.FC = () => {
                   Status
                 </th>
                 <th className="bg-gradient-to-r from-[#0f172a] to-black px-8 py-4 text-right text-xs font-black text-amber-400 uppercase tracking-widest border-b-2 border-amber-500/30">
-                  Ações
+                  A��es
                 </th>
               </tr>
             </thead>
@@ -853,7 +853,7 @@ const TransportList: React.FC = () => {
                   <td className="px-8 py-4">
                     <div className="text-sm">
                       <div className="font-bold text-white">{transport.origin}</div>
-                      <div style={{ color: 'var(--color-text-muted)' }}>→ {transport.destination}</div>
+                      <div style={{ color: 'var(--color-text-muted)' }}>? {transport.destination}</div>
                     </div>
                   </td>
                   <td className="px-8 py-4 whitespace-nowrap text-sm text-amber-300">
@@ -905,7 +905,7 @@ const TransportList: React.FC = () => {
                     {transport.status === 'PENDING' && (
                       <button
                         onClick={() => handleSimulate(transport)}
-                        className="text-blue-400 hover:text-blue-300 font-bold inline-flex items-center gap-1 transition-colors hover:bg-blue-900/30 p-2 rounded-lg ml-3"
+                        className="text-red-400 hover:text-red-300 font-bold inline-flex items-center gap-1 transition-colors hover:bg-red-900/30 p-2 rounded-lg ml-3"
                       >
                         <Play className="w-4 h-4" /> Simular
                       </button>
@@ -967,4 +967,5 @@ const TransportList: React.FC = () => {
 };
 
 export default TransportList;
+
 

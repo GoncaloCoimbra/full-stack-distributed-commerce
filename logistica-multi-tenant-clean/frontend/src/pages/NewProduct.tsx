@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSuppliers } from "../hooks/useSuppliers";
 import { useCreateProduct } from "../hooks/useProducts";
@@ -33,7 +33,7 @@ interface FormErrors {
 
 const NewProduct: React.FC = () => {
   const navigate = useNavigate();
-  const { data: suppliers, isLoading: loadingSuppliers } = useSuppliers();
+  const { data: suppliers, isLoading: loadingSuppliers } = useSuppliers() as { data?: Supplier[]; isLoading: boolean };
   const createProductMutation = useCreateProduct();
   
   const [formData, setFormData] = useState<FormState>({
@@ -124,13 +124,13 @@ const NewProduct: React.FC = () => {
 
     try {
       await createProductMutation.mutateAsync(payload);
-      alert("✅ Product created successfully!");
+      alert("? Product created successfully!");
       // Wait a moment for React Query to refetch before navigating
       setTimeout(() => {
         navigate("/products");
       }, 800);
     } catch (error: any) {
-      console.error("❌ Error creating product:", error);
+      console.error("? Error creating product:", error);
       
       if (error.response) {
         const { status, data } = error.response;
@@ -396,7 +396,7 @@ const NewProduct: React.FC = () => {
                         }`}
                       >
                         <option value="" className="bg-[#1e293b] text-amber-300/50">Select a supplier</option>
-                        {suppliers?.map((supplier) => (
+                        {suppliers?.map((supplier: Supplier) => (
                           <option key={supplier.id} value={supplier.id} className="bg-[#1e293b]">
                             {supplier.name} (NIF: {supplier.nif})
                           </option>
@@ -488,7 +488,7 @@ const NewProduct: React.FC = () => {
                       </p>
                     )}
                     <p className="text-xs text-amber-400/70 mt-2">
-                      💡 Default status when creating: <strong>Received</strong>
+                      ?? Default status when creating: <strong>Received</strong>
                     </p>
                   </div>
 
@@ -503,7 +503,7 @@ const NewProduct: React.FC = () => {
                         </div>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-blue-400 font-bold mt-0.5">[ANL]</span>
+                        <span className="text-red-400 font-bold mt-0.5">[ANL]</span>
                         <div>
                           <strong>Under Analysis:</strong> Product being inspected/verified
                         </div>
@@ -570,3 +570,4 @@ const NewProduct: React.FC = () => {
 };
 
 export default NewProduct;
+

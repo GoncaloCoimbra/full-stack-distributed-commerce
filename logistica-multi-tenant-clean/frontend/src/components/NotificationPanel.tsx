@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
+import { useLanguage, translateText, TRANSLATIONS } from '../i18n';
 
 interface Notification {
   id: string;
@@ -31,6 +32,8 @@ const NotificationPanel: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState<string>('');
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = (key: keyof typeof TRANSLATIONS) => translateText(TRANSLATIONS[key], language);
 
   useEffect(() => {
     loadNotifications();
@@ -77,7 +80,7 @@ const NotificationPanel: React.FC = () => {
   };
 
   const clearAllNotifications = async () => {
-    if (!window.confirm('Clear all notifications?')) return;
+    if (!window.confirm(t('clearAllNotificationsConfirm'))) return;
     try {
       await api.delete('/notifications/all');
       setNotifications({ total: 0, critical: 0, high: 0, medium: 0, low: 0, notifications: [] });
@@ -122,8 +125,8 @@ const NotificationPanel: React.FC = () => {
         );
       case 'info':
         return (
-          <div className="bg-gradient-to-br from-blue-900/30 to-blue-900/20 border border-blue-500/30 rounded-lg p-2">
-            <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-gradient-to-br from-red-900/30 to-red-900/20 border border-red-500/30 rounded-lg p-2">
+            <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -147,7 +150,7 @@ const NotificationPanel: React.FC = () => {
       case 'critical': return `border-l-4 border-red-500/70    ${read ? 'bg-red-900/15'    : 'bg-red-900/25'}    ${op}`;
       case 'high':     return `border-l-4 border-amber-500/70  ${read ? 'bg-amber-900/15'  : 'bg-amber-900/25'}  ${op}`;
       case 'medium':   return `border-l-4 border-amber-400/50  ${read ? 'bg-amber-900/10'  : 'bg-amber-900/15'}  ${op}`;
-      default:         return `border-l-4 border-blue-500/50   ${read ? 'bg-blue-900/10'   : 'bg-blue-900/15'}   ${op}`;
+      default:         return `border-l-4 border-red-500/50   ${read ? 'bg-red-900/10'   : 'bg-red-900/15'}   ${op}`;
     }
   };
 
@@ -172,7 +175,7 @@ const NotificationPanel: React.FC = () => {
       <button
         onClick={() => { setIsOpen(!isOpen); if (!isOpen) loadNotifications(); }}
         className="relative p-2 rounded-xl text-slate-400 hover:text-amber-400 hover:bg-amber-900/20 border border-transparent hover:border-amber-500/30 transition-all"
-        title="Notifications"
+        title={t('notificationsTitle')}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -203,7 +206,7 @@ const NotificationPanel: React.FC = () => {
             {/* Header */}
             <div className="p-4 border-b-2 border-amber-500/20 bg-gradient-to-r from-slate-900 to-black">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-base font-bold text-white">Notifications</h3>
+                <h3 className="text-base font-bold text-white">{t('notificationsTitle')}</h3>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-all"
@@ -278,8 +281,8 @@ const NotificationPanel: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <p className="text-amber-400 font-bold">No notifications!</p>
-                  <p className="text-sm text-slate-400 mt-1">Everything is running smoothly</p>
+                  <p className="text-amber-400 font-bold">{t('noNotifications')}</p>
+                  <p className="text-sm text-slate-400 mt-1">{t('notificationsEmptyInfo')}</p>
                 </div>
               ) : (
                 <div className="divide-y divide-amber-500/10">
@@ -322,7 +325,7 @@ const NotificationPanel: React.FC = () => {
                       {!notification.read && (
                         <button
                           onClick={e => markAsRead(notification.id, e)}
-                          title="Mark as read"
+                          title={t('markAsReadTitle')}
                           className="absolute top-2 right-2 p-1 text-amber-400 hover:text-amber-300 hover:bg-amber-900/30 rounded-lg border border-amber-500/20 transition-all"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -44,7 +44,7 @@ const ApiDocumentation: React.FC = () => {
 
           <div className="bg-gray-800 p-4 rounded">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-blue-400 font-semibold">POST</span>
+              <span className="text-xs text-red-400 font-semibold">POST</span>
               <span className="font-mono">/transports</span>
             </div>
             <p className="mt-2 text-gray-400">Creates a new transport; JSON body with origin/destination and load.</p>
@@ -62,3 +62,4 @@ const ApiDocumentation: React.FC = () => {
 };
 
 export default ApiDocumentation;
+

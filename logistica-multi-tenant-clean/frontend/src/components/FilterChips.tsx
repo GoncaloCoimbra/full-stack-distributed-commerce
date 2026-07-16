@@ -21,7 +21,7 @@ const FilterChips: React.FC<FilterChipsProps> = ({ filters, onRemove, onClearAll
     const colors = {
       supplier: 'bg-purple-500/20 border-purple-500 text-purple-300',
       product: 'bg-green-500/20 border-green-500 text-green-300',
-      vehicle: 'bg-blue-500/20 border-blue-500 text-blue-300',
+      vehicle: 'bg-red-500/20 border-red-500 text-red-300',
       transport: 'bg-orange-500/20 border-orange-500 text-orange-300',
       status: 'bg-amber-500/20 border-amber-500 text-amber-300',
       location: 'bg-cyan-500/20 border-cyan-500 text-cyan-300',
@@ -43,7 +43,7 @@ const FilterChips: React.FC<FilterChipsProps> = ({ filters, onRemove, onClearAll
           onClick={onClearAll}
           className="text-xs text-red-400 hover:text-red-300 font-semibold hover:bg-red-900/30 px-3 py-1.5 rounded-lg transition-all border border-red-500/30 hover:border-red-500"
         >
-          ✕ Clear All
+          Clear All
         </button>
       </div>
 
@@ -68,7 +68,7 @@ const FilterChips: React.FC<FilterChipsProps> = ({ filters, onRemove, onClearAll
 
       <div className="mt-3 pt-3 border-t border-amber-500/20">
         <p className="text-xs text-slate-400">
-          💡 <span className="font-semibold">Tip:</span> Click ✕ to remove a specific filter or use "Clear All" to reset.
+          <span className="font-semibold">Tip:</span> Click the remove button to clear a specific filter or use "Clear All" to reset.
         </p>
       </div>
     </div>

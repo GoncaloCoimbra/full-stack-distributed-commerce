@@ -20,7 +20,7 @@ const COLORS = {
   border: {
     default: '#1a2234',          // Border padrão
     hover: '#253248',            // Border ao hover
-    focus: '#4f85f6',            // Border ao focus
+    focus: '#dc2626',            // Border ao focus
   },
 
   // Text
@@ -32,10 +32,10 @@ const COLORS = {
 
   // Accents & Actions
   accent: {
-    primary: '#4f85f6',          // Azul principal (Login/Register)
-    secondary: '#8b5cf6',        // Roxo (Dashboard)
-    tertiary: '#6366f1',         // Indigo alternativo
-    hover: '#3b6fd4',            // Hover do azul
+    primary: '#dc2626',          // Vermelho principal (Login/Register)
+    secondary: '#b91c1c',        // Vermelho escuro (Dashboard)
+    tertiary: '#991b1b',         // Vermelho mais profundo (SuperAdmin)
+    hover: '#b91c1c',            // Hover do vermelho
   },
 
   // Semantic
@@ -43,7 +43,7 @@ const COLORS = {
     success: '#34d399',          // Verde (success)
     warning: '#f59e0b',          // Âmbar (warning)
     danger: '#f87171',           // Vermelho (error)
-    info: '#4f85f6',             // Azul (informação)
+    info: '#dc2626',             // Vermelho (informação)
     purple: '#a78bfa',           // Roxo adicional
     orange: '#fb923c',           // Laranja adicional
   },
@@ -51,14 +51,14 @@ const COLORS = {
 
 // ─── Design Tokens por Página ──────────────────────────────────────────────
 export const DESIGN_TOKENS = {
-  // Login & Register - Azul principal
+  // Login & Register - Vermelho principal
   auth: {
     bg: COLORS.bg.primary,
     bgCard: COLORS.bg.card,
     bgInput: COLORS.bg.input,
     border: COLORS.border.default,
     borderFocus: COLORS.border.focus,
-    accent: COLORS.accent.primary,      // #4f85f6 Azul
+    accent: COLORS.accent.primary,
     accentHover: COLORS.accent.hover,
     textPrimary: COLORS.text.primary,
     textSecondary: COLORS.text.secondary,
@@ -68,7 +68,7 @@ export const DESIGN_TOKENS = {
     warning: COLORS.semantic.warning,
   },
 
-  // Dashboard - Roxo diferenciado
+  // Dashboard - Vermelho escuro
   dashboard: {
     bg: COLORS.bg.primary,
     bgCard: COLORS.bg.card,
@@ -76,8 +76,8 @@ export const DESIGN_TOKENS = {
     bgInput: COLORS.bg.input,
     border: COLORS.border.default,
     borderHover: COLORS.border.hover,
-    accent: COLORS.accent.secondary,    // #8b5cf6 Roxo - DIFERENTE de Login!
-    accentGlow: 'rgba(139,92,246,0.15)',
+    accent: COLORS.accent.secondary,    // Vermelho escuro - mesmo tema
+    accentGlow: 'rgba(220,38,38,0.15)',
     textPrimary: COLORS.text.primary,
     textSecondary: COLORS.text.secondary,
     textMuted: COLORS.text.muted,
@@ -88,13 +88,13 @@ export const DESIGN_TOKENS = {
     orange: COLORS.semantic.orange,
   },
 
-  // SuperAdmin - Indigo diferenciado
+  // SuperAdmin - Vermelho profundo
   superAdmin: {
     bg: COLORS.bg.primary,
     bgCard: COLORS.bg.card,
     bgInput: COLORS.bg.input,
     border: COLORS.border.default,
-    accent: COLORS.accent.tertiary,     // #6366f1 Indigo - DIFERENTE de Login e Dashboard!
+    accent: COLORS.accent.tertiary,     // Vermelho profundo - mesmo tema
     textPrimary: COLORS.text.primary,
     textSecondary: COLORS.text.secondary,
     textMuted: COLORS.text.muted,
@@ -154,11 +154,11 @@ export const COMPONENT_CLASSES = {
   
   inputAuth: `w-full rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none
     bg-[#0a0e17] border border-[#1a2234] text-[#f0f4ff] placeholder-[#3a4d63]
-    focus:border-[#4f85f6] focus:ring-2 focus:ring-[#4f85f6]/10`,
+    focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/10`,
   
   inputDashboard: `w-full rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none
     bg-[#0a0e17] border border-[#1a2234] text-[#f0f4ff] placeholder-[#3a4d63]
-    focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/10`,
+    focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/10`,
   
   labelClass: `block text-xs font-semibold uppercase tracking-wider mb-2`,
   
@@ -170,9 +170,9 @@ export const COMPONENT_CLASSES = {
 export const GRADIENTS = {
   authBg: 'linear-gradient(135deg, #07090f 0%, #0a0d16 100%)',
   dashboardBg: 'linear-gradient(135deg, #07090f 0%, #0f0f1a 100%)',
-  accentAuth: 'linear-gradient(135deg, #4f85f6 0%, #3b6fd4 100%)',
-  accentDashboard: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-  accentSuper: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+  accentAuth: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+  accentDashboard: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+  accentSuper: 'linear-gradient(135deg, #b91c1c 0%, #991b1b 100%)',
 };
 
 // ─── Shadows ────────────────────────────────────────────────────────────

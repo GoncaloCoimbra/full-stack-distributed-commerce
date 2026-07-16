@@ -39,7 +39,7 @@ const HelpCenter: React.FC = () => {
             />
             <button
               onClick={() => { /* mantemos para acessibilidade, busca já reativa */ }}
-              className="bg-blue-600 px-4 rounded-r"
+              className="bg-red-600 px-4 rounded-r"
             >Search</button>
           </div>
 
@@ -77,3 +77,4 @@ const HelpCenter: React.FC = () => {
 };
 
 export default HelpCenter;
+

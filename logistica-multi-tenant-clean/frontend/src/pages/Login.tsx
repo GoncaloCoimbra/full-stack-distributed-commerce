@@ -21,19 +21,19 @@ const ds = {
   bgCard:   '#0d1117',
   bgInput:  '#0a0e17',
   border:   '#1a2234',
-  borderFocus: '#4f85f6',
-  accent:   '#4f85f6',
-  accentHover: '#3b6fd4',
+  borderFocus: '#d90429',
+  accent:   '#d90429',
+  accentHover: '#b90924',
   textPrimary:   '#f0f4ff',
-  textSecondary: '#7a8fa8',
-  textMuted:     '#3a4d63',
+  textSecondary: '#e5e7eb',
+  textMuted:     '#94a3b8',
   success: '#34d399',
   danger:  '#f87171',
 };
 
 const inputClass = `w-full rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none
-  bg-[#0a0e17] border border-[#1a2234] text-[#f0f4ff] placeholder-[#3a4d63]
-  focus:border-[#4f85f6] focus:ring-2 focus:ring-[#4f85f6]/10`;
+  bg-[#0a0e17] border border-[#1a2234] text-[#f0f4ff] placeholder-[#94a3b8]
+  focus:border-[#d90429] focus:ring-2 focus:ring-[#d90429]/10`;
 
 const Login: React.FC = () => {
   const [email, setEmail]       = useState('');
@@ -104,13 +104,13 @@ const Login: React.FC = () => {
         <div
           className="absolute top-[-120px] left-[-120px] w-[480px] h-[480px] rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(79,133,246,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(217,4,41,0.16) 0%, transparent 70%)',
           }}
         />
         <div
           className="absolute bottom-[-80px] right-[-80px] w-[320px] h-[320px] rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(79,133,246,0.07) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(217,4,41,0.08) 0%, transparent 70%)',
           }}
         />
 

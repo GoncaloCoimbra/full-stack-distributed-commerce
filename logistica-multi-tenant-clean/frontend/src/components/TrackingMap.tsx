@@ -34,7 +34,7 @@ const RoutePolyline = ({ route }: { route: TrackingRoute }) => {
 
   const colors: Record<TrackingRoute['status'], string> = {
     completed: '#10b981',
-    in_progress: '#3b82f6',
+    in_progress: '#dc2626',
     pending: '#f59e0b',
   };
 
@@ -105,8 +105,8 @@ const RouteMarkers = ({ route }: { route: TrackingRoute }) => {
           key={`loc-${idx}`}
           center={[loc.lat, loc.lng]}
           radius={20}
-          fillColor="#3b82f6"
-          color="#1e40af"
+          fillColor="#dc2626"
+          color="#7f1d1d"
           weight={1}
           opacity={0.4}
           fillOpacity={0.3}
@@ -201,3 +201,4 @@ const TrackingMap: React.FC<TrackingMapProps> = ({
 };
 
 export default TrackingMap;
+

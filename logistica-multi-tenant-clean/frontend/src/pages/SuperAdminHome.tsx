@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import api from '../api/api';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
 import { theme } from '../theme.config';
+import { SITE_FULL_NAME } from '../site.config';
 
 interface GlobalStats {
   totalCompanies: number;
@@ -88,12 +89,10 @@ const SuperAdminHome: React.FC = () => {
       <header className={`${theme.backgrounds.header} px-6 py-4 flex items-center justify-between border-b border-slate-700`}>
         {/* Logo */}
         <div className="flex items-center space-x-3 group">
-          <div className="relative">
-            <img 
-              src="/logo.png"
-              alt="Tranzor Logistics" 
-              className="h-20 w-auto object-contain group-hover:scale-105 transition-transform"
-            />
+          <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 shadow-lg" />
+          <div>
+            <h2 className="text-white font-bold text-lg">{SITE_FULL_NAME}</h2>
+            <p className="text-slate-400 text-sm">Super Admin Dashboard</p>
           </div>
         </div>
 
@@ -176,7 +175,7 @@ const SuperAdminHome: React.FC = () => {
             {/* Total Users */}
             <div className={theme.cards.stat}>
               <div className="flex items-center justify-between mb-4">
-                <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl p-3 shadow-lg text-blue-400 border border-blue-500/30">
+                <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-xl p-3 shadow-lg text-red-400 border border-red-500/30">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
@@ -280,13 +279,13 @@ const SuperAdminHome: React.FC = () => {
                         <p className="font-semibold text-white">{company.name}</p>
                         <div className="flex items-center gap-4 mt-2">
                           <span className="text-xs text-slate-400">
-                            👥 {company._count.users} users
+                            {company._count.users} users
                           </span>
                           <span className="text-xs text-slate-400">
-                            📦 {company._count.products} products
+                            {company._count.products} products
                           </span>
                           <span className="text-xs text-slate-400">
-                            🏢 {company._count.suppliers} suppliers
+                            {company._count.suppliers} suppliers
                           </span>
                         </div>
                       </div>
@@ -305,23 +304,23 @@ const SuperAdminHome: React.FC = () => {
           {/* Quick Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {/* Company Management */}
-            <div className="bg-gradient-to-br from-blue-600/20 to-blue-700/20 rounded-xl border border-blue-500/30 p-6 hover:border-blue-400/50 transition-all">
+            <div className="bg-gradient-to-br from-red-600/20 to-red-700/20 rounded-xl border border-red-500/30 p-6 hover:border-red-400/50 transition-all">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Company Management</h3>
-                  <p className="text-blue-300 text-sm">
+                  <p className="text-red-300 text-sm">
                     Create, edit, and manage all companies in the system
                   </p>
                 </div>
-                <div className="bg-blue-500/20 rounded-lg p-3 border border-blue-500/30">
-                  <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-red-500/20 rounded-lg p-3 border border-red-500/30">
+                  <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
               </div>
               <button
                 onClick={() => navigate('/empresas')}
-                className={`${theme.buttons.primary} bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 w-full`}
+                className={`${theme.buttons.primary} bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 w-full`}
               >
                 Access Management →
               </button>

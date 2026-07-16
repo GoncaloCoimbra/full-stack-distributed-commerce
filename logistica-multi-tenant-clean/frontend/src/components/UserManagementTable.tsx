@@ -110,7 +110,7 @@ const UserManagementTable: React.FC = () => {
       );
     }
     return (
-      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
         <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
           <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
         </svg>
@@ -154,7 +154,7 @@ const UserManagementTable: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
       </div>
     );
   }
@@ -198,9 +198,9 @@ const UserManagementTable: React.FC = () => {
           <div className="text-sm text-purple-300">Admins</div>
           <div className="text-2xl font-bold text-purple-400">{stats.admins}</div>
         </div>
-        <div className="bg-blue-900/30 rounded-lg border border-blue-700 p-4">
-          <div className="text-sm text-blue-300">Operators</div>
-          <div className="text-2xl font-bold text-blue-400">{stats.operators}</div>
+        <div className="bg-red-900/30 rounded-lg border border-red-700 p-4">
+          <div className="text-sm text-red-300">Operators</div>
+          <div className="text-2xl font-bold text-red-400">{stats.operators}</div>
         </div>
       </div>
 
@@ -228,7 +228,7 @@ const UserManagementTable: React.FC = () => {
 
             <button
               onClick={handleCreateUser}
-              className="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 font-medium min-w-max"
+              className="px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center space-x-2 font-medium min-w-max"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -285,7 +285,7 @@ const UserManagementTable: React.FC = () => {
                         <div className="flex items-center">
                           <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
                             user.isActive 
-                              ? 'bg-gradient-to-br from-blue-500 to-blue-600' 
+                              ? 'bg-gradient-to-br from-red-500 to-red-600' 
                               : 'bg-gray-400'
                           }`}>
                             <span className="text-white font-bold text-sm">
@@ -298,7 +298,7 @@ const UserManagementTable: React.FC = () => {
                                 {user.name}
                               </div>
                               {isCurrentUser && (
-                                <span className="ml-2 px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full">
+                                <span className="ml-2 px-2 py-0.5 text-xs bg-red-100 text-red-700 rounded-full">
                                   You
                                 </span>
                               )}
@@ -322,7 +322,7 @@ const UserManagementTable: React.FC = () => {
                         <div className="flex justify-end space-x-2">
                           <button
                             onClick={() => handleEditUser(user)}
-                            className="text-blue-600 hover:text-blue-900 transition-colors"
+                            className="text-red-600 hover:text-red-900 transition-colors"
                             title="Edit"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

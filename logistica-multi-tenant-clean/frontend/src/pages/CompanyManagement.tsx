@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import CreateCompanyModal from '../components/CreateCompanyModal';
@@ -179,8 +179,8 @@ const CompanyManagement: React.FC = () => {
                     <tr key={company.id} className="hover:bg-slate-800/30 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-full flex items-center justify-center border border-blue-500/30">
-                            <span className="text-blue-400 font-bold text-sm">
+                          <div className="flex-shrink-0 h-10 w-10 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-full flex items-center justify-center border border-red-500/30">
+                            <span className="text-red-400 font-bold text-sm">
                               {company.name.substring(0, 2).toUpperCase()}
                             </span>
                           </div>
@@ -201,14 +201,14 @@ const CompanyManagement: React.FC = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex flex-col gap-2">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-700/30">
-                            👥 {company._count.users} users
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-900/30 text-red-400 border border-red-700/30">
+                            ?? {company._count.users} users
                           </span>
                           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-900/30 text-emerald-400 border border-emerald-700/30">
-                            📦 {company._count.products} products
+                            ?? {company._count.products} products
                           </span>
                           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-700/30">
-                            🏢 {company._count.suppliers} suppliers
+                            ?? {company._count.suppliers} suppliers
                           </span>
                         </div>
                       </td>
@@ -219,7 +219,7 @@ const CompanyManagement: React.FC = () => {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEdit(company)}
-                            className="text-blue-400 hover:text-blue-300 transition-colors p-1 hover:bg-blue-900/20 rounded"
+                            className="text-red-400 hover:text-red-300 transition-colors p-1 hover:bg-red-900/20 rounded"
                             title="Edit"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,3 +283,4 @@ const CompanyManagement: React.FC = () => {
 };
 
 export default CompanyManagement;
+

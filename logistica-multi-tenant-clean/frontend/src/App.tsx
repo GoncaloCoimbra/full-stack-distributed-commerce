@@ -90,7 +90,10 @@ function App() {
 
             {/* Add new public informational routes here */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-use" element={<TermsOfUse />} />
+            <Route path="/terms" element={<TermsOfUse />} />
+            <Route path="/contact" element={<HelpCenter />} />
             <Route path="/cookies" element={<Cookies />} />
 
             {/* ===================
@@ -218,6 +221,14 @@ function App() {
               {/* Settings (only for Admin and SuperAdmin) */}
               <Route
                 path="configuracoes"
+                element={
+                  <PrivateRoute requireAdmin>
+                    <Settings />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="settings"
                 element={
                   <PrivateRoute requireAdmin>
                     <Settings />

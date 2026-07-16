@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../api/api';
@@ -32,7 +32,7 @@ const Settings: React.FC = () => {
     phone: '',
   });
 
-  // ✅ SUPER_ADMIN has no company — redirect to their own dashboard
+  // ? SUPER_ADMIN has no company � redirect to their own dashboard
   if (user?.role === 'SUPER_ADMIN') {
     return <Navigate to="/superadmin-home" replace />;
   }
@@ -72,7 +72,7 @@ const Settings: React.FC = () => {
     setSuccess('');
 
     try {
-      // ✅ PATCH /companies/:id — correct endpoint
+      // ? PATCH /companies/:id � correct endpoint
       await api.patch(`/companies/${companyInfo?.id}`, formData);
       setSuccess('Information updated successfully!');
       await loadCompanyInfo();
@@ -97,7 +97,7 @@ const Settings: React.FC = () => {
     return (
       <div className={`${theme.backgrounds.page} min-h-screen flex items-center justify-center`}>
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#3b82f6] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#dc2626] mx-auto mb-4"></div>
           <p className="text-[#cbd5e1] font-medium">Loading settings...</p>
         </div>
       </div>
@@ -124,7 +124,7 @@ const Settings: React.FC = () => {
               onClick={() => setActiveTab('company')}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                 activeTab === 'company'
-                  ? 'border-[#3b82f6] text-[#3b82f6]'
+                  ? 'border-[#dc2626] text-[#dc2626]'
                   : 'border-transparent text-[#64748b] hover:text-[#cbd5e1] hover:border-[#334155]'
               }`}
             >
@@ -141,7 +141,7 @@ const Settings: React.FC = () => {
                 onClick={() => setActiveTab('users')}
                 className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === 'users'
-                    ? 'border-[#3b82f6] text-[#3b82f6]'
+                    ? 'border-[#dc2626] text-[#dc2626]'
                     : 'border-transparent text-[#64748b] hover:text-[#cbd5e1] hover:border-[#334155]'
                 }`}
               >
@@ -314,3 +314,4 @@ const Settings: React.FC = () => {
 };
 
 export default Settings;
+

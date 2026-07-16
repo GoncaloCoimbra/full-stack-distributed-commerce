@@ -1,4 +1,4 @@
-ï»¿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import CreateGlobalUserModal from '../components/CreateGlobalUserModal';
@@ -32,7 +32,7 @@ const ROLE_LABELS: Record<string, string> = {
 
 const ROLE_COLORS: Record<string, string> = {
   SUPER_ADMIN: 'bg-purple-900/30 text-purple-400 border border-purple-700/30',
-  ADMIN: 'bg-blue-900/30 text-blue-400 border border-blue-700/30',
+  ADMIN: 'bg-red-900/30 text-red-400 border border-red-700/30',
   OPERATOR: 'bg-emerald-900/30 text-emerald-400 border border-emerald-700/30'
 };
 
@@ -210,19 +210,19 @@ const GlobalUserManagement: React.FC = () => {
               {searchTerm && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
                   Search: {searchTerm}
-                  <button onClick={() => setSearchTerm('')} className="ml-2 hover:text-slate-200">Ã—</button>
+                  <button onClick={() => setSearchTerm('')} className="ml-2 hover:text-slate-200">×</button>
                 </span>
               )}
               {filterCompany && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
                   Company: {companies.find(c => c.id === filterCompany)?.name}
-                  <button onClick={() => setFilterCompany('')} className="ml-2 hover:text-slate-200">Ã—</button>
+                  <button onClick={() => setFilterCompany('')} className="ml-2 hover:text-slate-200">×</button>
                 </span>
               )}
               {filterRole && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
                   Role: {ROLE_LABELS[filterRole]}
-                  <button onClick={() => setFilterRole('')} className="ml-2 hover:text-slate-200">Ã—</button>
+                  <button onClick={() => setFilterRole('')} className="ml-2 hover:text-slate-200">×</button>
                 </span>
               )}
               <button
@@ -253,7 +253,7 @@ const GlobalUserManagement: React.FC = () => {
 
           <div className={theme.cards.stat}>
             <div className="flex items-center justify-between mb-4">
-              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl p-3 shadow-lg text-blue-400 border border-blue-500/30">
+              <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-xl p-3 shadow-lg text-red-400 border border-red-500/30">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
@@ -348,7 +348,7 @@ const GlobalUserManagement: React.FC = () => {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEdit(user)}
-                            className="text-blue-400 hover:text-blue-300 transition-colors p-1 hover:bg-blue-900/20 rounded disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                            className="text-red-400 hover:text-red-300 transition-colors p-1 hover:bg-red-900/20 rounded disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
                             title="Edit"
                             disabled={user.role === 'SUPER_ADMIN' || !user.company}
                           >
@@ -412,3 +412,4 @@ const GlobalUserManagement: React.FC = () => {
 };
 
 export default GlobalUserManagement;
+

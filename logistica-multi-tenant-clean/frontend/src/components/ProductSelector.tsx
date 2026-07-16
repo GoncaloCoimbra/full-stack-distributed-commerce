@@ -56,8 +56,8 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
       
       const response = await api.get('/products');
       
-      console.log('📦 [ProductSelector] Backend response:', response.data);
-      console.log('📊 [ProductSelector] Total products:', response.data.length);
+      console.log('[ProductSelector] Backend response:', response.data);
+      console.log('[ProductSelector] Total products:', response.data.length);
       
       // Filter only products available for transport
       const availableProducts = response.data.filter((product: Product) => {
@@ -311,7 +311,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
                               </span>
                             )}
                             <span className="px-2 py-1 bg-emerald-900/30 text-emerald-400 text-xs font-bold rounded border border-emerald-500/30">
-                              {product.status === 'IN_STORAGE' ? '📦 Em Armazém' : product.status}
+                              {product.status === 'IN_STORAGE' ? 'Em Armazém' : product.status}
                             </span>
                           </div>
                           <h4 className="text-white font-semibold mb-1">

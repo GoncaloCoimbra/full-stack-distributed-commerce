@@ -1,16 +1,16 @@
 export const theme = {
   colors: {
-    // Cor primária (tons de azul navy com gradiente melhorado)
+    // Cor primária (tons de vermelho com gradiente mais quente)
     primary: {
-      50: 'bg-blue-50',
-      100: 'bg-blue-100',
-      500: 'bg-gradient-to-r from-[#3b82f6] to-[#2563eb]',
-      600: 'bg-gradient-to-r from-[#2563eb] to-[#1d4ed8]',
-      700: 'bg-gradient-to-r from-[#1d4ed8] to-[#1e40af]',
-      text: 'text-blue-600',
-      textDark: 'text-blue-800',
-      border: 'border-blue-500',
-      ring: 'ring-blue-500',
+      50: 'bg-red-50',
+      100: 'bg-red-100',
+      500: 'bg-gradient-to-r from-[#dc2626] to-[#b91c1c]',
+      600: 'bg-gradient-to-r from-[#b91c1c] to-[#991b1b]',
+      700: 'bg-gradient-to-r from-[#991b1b] to-[#7f1d1d]',
+      text: 'text-red-600',
+      textDark: 'text-red-800',
+      border: 'border-red-500',
+      ring: 'ring-red-500',
     },
     
     // Cor secundária (tons escuros navy com melhor constraste)
@@ -48,9 +48,9 @@ export const theme = {
     },
     
     info: {
-      bg: 'bg-gradient-to-br from-blue-50 to-cyan-50',
-      text: 'text-blue-600',
-      border: 'border-blue-500',
+      bg: 'bg-gradient-to-br from-red-50 to-cyan-50',
+      text: 'text-red-600',
+      border: 'border-red-500',
     },
   },
 
@@ -58,12 +58,12 @@ export const theme = {
   //  BOTÕES COM EFEITOS
   
   buttons: {
-    primary: 'px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white rounded-lg hover:from-[#2563eb] hover:to-[#1d4ed8] transition-all duration-300 font-bold shadow-lg hover:shadow-xl active:scale-95',
-    secondary: 'px-6 py-3 bg-[#1e293b] border-2 border-[#334155] text-[#cbd5e1] rounded-lg hover:border-[#3b82f6] hover:bg-[#334155] transition-all duration-300 font-bold shadow-md focus:ring-2 focus:ring-[#3b82f6]/50',
+    primary: 'px-6 py-3 bg-gradient-to-r from-[#dc2626] to-[#b91c1c] text-white rounded-lg hover:from-[#b91c1c] hover:to-[#991b1b] transition-all duration-300 font-bold shadow-lg hover:shadow-xl active:scale-95',
+    secondary: 'px-6 py-3 bg-[#1e293b] border-2 border-[#334155] text-[#cbd5e1] rounded-lg hover:border-[#dc2626] hover:bg-[#334155] transition-all duration-300 font-bold shadow-md focus:ring-2 focus:ring-[#dc2626]/50',
     success: 'px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 font-bold shadow-lg hover:shadow-xl',
     danger: 'px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-bold shadow-lg hover:shadow-xl',
-    outline: 'px-6 py-3 border-2 border-[#3b82f6]/50 text-[#3b82f6] rounded-lg hover:bg-[#3b82f6]/10 transition-all duration-300 font-bold hover:border-[#3b82f6]',
-    icon: 'p-2 hover:bg-[#3b82f6]/20 rounded-lg transition-all duration-300 text-[#3b82f6] hover:text-[#2563eb]',
+    outline: 'px-6 py-3 border-2 border-[#dc2626]/50 text-[#dc2626] rounded-lg hover:bg-[#dc2626]/10 transition-all duration-300 font-bold hover:border-[#dc2626]',
+    icon: 'p-2 hover:bg-[#dc2626]/20 rounded-lg transition-all duration-300 text-[#dc2626] hover:text-[#b91c1c]',
     ghost: 'px-4 py-2 text-[#cbd5e1] rounded-lg hover:bg-[#334155]/50 transition-all duration-300 font-medium',
   },
 
@@ -71,7 +71,7 @@ export const theme = {
   //  INPUTS E FORMS COM FOCO MELHORADO
   
   inputs: {
-    base: 'w-full px-4 py-3 bg-[#0a0e17] border-2 border-[#1a2234] text-[#f0f4ff] rounded-lg focus:ring-2 focus:ring-[#4f85f6]/50 focus:border-[#4f85f6] transition-all duration-200 placeholder-[#3a4d63] font-medium shadow-sm',
+    base: 'w-full px-4 py-3 bg-[#0a0e17] border-2 border-[#1a2234] text-[#f0f4ff] rounded-lg focus:ring-2 focus:ring-[#dc2626]/50 focus:border-[#dc2626] transition-all duration-200 placeholder-[#3a4d63] font-medium shadow-sm',
     error: 'w-full px-4 py-3 bg-[#0a0e17] border-2 border-red-500/70 text-[#f0f4ff] rounded-lg focus:ring-2 focus:ring-red-500/50 focus:border-red-400 transition-all duration-200 placeholder-[#3a4d63] shadow-sm',
     disabled: 'w-full px-4 py-3 border-2 border-[#1a2234] rounded-lg bg-[#07090f] cursor-not-allowed text-[#3a4d63] font-medium opacity-60',
     success: 'w-full px-4 py-3 bg-[#0a0e17] border-2 border-emerald-500/70 text-[#f0f4ff] rounded-lg focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-400 transition-all duration-200 placeholder-[#3a4d63]',
@@ -110,8 +110,8 @@ export const theme = {
     } as Record<string, string>,
     
     userRoles: {
-      'SUPER_ADMIN': 'bg-gradient-to-r from-[#1d4ed8] to-[#1e40af] text-white font-black px-3 py-1 rounded-lg shadow-md',
-      'ADMIN': 'bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white font-bold px-3 py-1 rounded-lg shadow-sm',
+      'SUPER_ADMIN': 'bg-gradient-to-r from-[#dc2626] to-[#b91c1c] text-white font-black px-3 py-1 rounded-lg shadow-md',
+      'ADMIN': 'bg-gradient-to-r from-[#b91c1c] to-[#991b1b] text-white font-bold px-3 py-1 rounded-lg shadow-sm',
       'OPERATOR': 'bg-[#1e293b]/70 text-[#cbd5e1] border border-[#334155] font-semibold px-3 py-1 rounded-lg shadow-sm',
     } as Record<string, string>,
 
@@ -126,11 +126,11 @@ export const theme = {
   //  CARDS E CONTAINERS COM MELHOR VISUAL
   
   cards: {
-    base: 'bg-gradient-to-br from-[#0d1117] to-[#07090f] rounded-xl shadow-lg border border-[#1a2234] p-6 hover:border-[#4f85f6]/30 transition-all duration-300 hover:shadow-xl',
-    stat: 'bg-gradient-to-br from-[#0d1117] to-[#07090f] rounded-xl shadow-lg border border-[#1a2234] p-6 hover:shadow-xl hover:border-[#4f85f6]/30 transition-all duration-300',
-    form: 'bg-gradient-to-br from-[#0d1117] to-[#07090f] rounded-xl shadow-xl p-6 border-2 border-[#4f85f6]/50',
-    superAdminPrimary: 'bg-gradient-to-br from-[#07090f] to-[#0d1117] rounded-xl shadow-xl p-6 text-[#f0f4ff] border-2 border-[#4f85f6]/50',
-    superAdminSecondary: 'bg-gradient-to-br from-[#4f85f6] to-[#3b6fd4] rounded-xl shadow-xl p-6 text-white border-2 border-[#3b6fd4]',
+    base: 'bg-gradient-to-br from-[#0d1117] to-[#07090f] rounded-xl shadow-lg border border-[#1a2234] p-6 hover:border-[#dc2626]/30 transition-all duration-300 hover:shadow-xl',
+    stat: 'bg-gradient-to-br from-[#0d1117] to-[#07090f] rounded-xl shadow-lg border border-[#1a2234] p-6 hover:shadow-xl hover:border-[#dc2626]/30 transition-all duration-300',
+    form: 'bg-gradient-to-br from-[#0d1117] to-[#07090f] rounded-xl shadow-xl p-6 border-2 border-[#dc2626]/50',
+    superAdminPrimary: 'bg-gradient-to-br from-[#07090f] to-[#0d1117] rounded-xl shadow-xl p-6 text-[#f0f4ff] border-2 border-[#dc2626]/50',
+    superAdminSecondary: 'bg-gradient-to-br from-[#dc2626] to-[#b91c1c] rounded-xl shadow-xl p-6 text-white border-2 border-[#b91c1c]',
     elevated: 'bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl shadow-xl p-6 border border-[#334155]/70 transition-all duration-300',
   },
 
@@ -138,14 +138,14 @@ export const theme = {
   //  ÍCONES E AVATARES
   
   icons: {
-    primary: 'bg-gradient-to-br from-[#3b82f6] to-[#2563eb] rounded-xl p-3 shadow-lg text-white font-bold',
-    secondary: 'bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl p-3 shadow-lg text-[#3b82f6] border border-[#3b82f6]/30',
+    primary: 'bg-gradient-to-br from-[#dc2626] to-[#b91c1c] rounded-xl p-3 shadow-lg text-white font-bold',
+    secondary: 'bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl p-3 shadow-lg text-[#dc2626] border border-[#dc2626]/30',
     success: 'bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-3 shadow-lg text-white',
     warning: 'bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-3 shadow-lg text-slate-900 font-bold',
     danger: 'bg-gradient-to-br from-red-600 to-red-700 rounded-xl p-3 shadow-lg text-white',
-    info: 'bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl p-3 shadow-lg text-[#3b82f6] border border-[#334155]',
-    avatar: 'w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#2563eb] rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md',
-    avatarLarge: 'w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-[#3b82f6] via-[#2563eb] to-[#1d4ed8] flex items-center justify-center border-4 border-[#3b82f6] shadow-xl transition-all duration-300',
+    info: 'bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl p-3 shadow-lg text-[#dc2626] border border-[#334155]',
+    avatar: 'w-10 h-10 bg-gradient-to-br from-[#dc2626] to-[#b91c1c] rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md',
+    avatarLarge: 'w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-[#dc2626] via-[#b91c1c] to-[#991b1b] flex items-center justify-center border-4 border-[#dc2626] shadow-xl transition-all duration-300',
   },
 
   
@@ -176,14 +176,14 @@ export const theme = {
     success: 'bg-[#0d1117] border-l-4 border-[#34d399] text-[#34d399] px-4 py-3 rounded-lg shadow-lg font-semibold',
     error: 'bg-[#0d1117] border-l-4 border-[#f87171] text-[#f87171] px-4 py-3 rounded-lg shadow-lg font-semibold',
     warning: 'bg-[#0d1117] border-l-4 border-[#f59e0b] text-[#f59e0b] px-4 py-3 rounded-lg shadow-lg font-semibold',
-    info: 'bg-[#0d1117] border-l-4 border-[#4f85f6] text-[#4f85f6] px-4 py-3 rounded-lg shadow-lg font-semibold',
+    info: 'bg-[#0d1117] border-l-4 border-[#dc2626] text-[#dc2626] px-4 py-3 rounded-lg shadow-lg font-semibold',
   },
 
   
   // 📑 TABS
   
   tabs: {
-    active: 'py-4 px-6 border-b-4 border-[#4f85f6] text-[#4f85f6] font-black transition-colors uppercase tracking-wide',
+    active: 'py-4 px-6 border-b-4 border-[#dc2626] text-[#dc2626] font-black transition-colors uppercase tracking-wide',
     inactive: 'py-4 px-6 border-b-4 border-transparent text-[#7a8fa8] hover:text-[#f0f4ff] hover:border-[#1a2234] font-bold transition-colors uppercase tracking-wide',
   },
 };
@@ -257,7 +257,7 @@ export const statusColors = {
     'APPROVED': '#059669',
     'IN_STORAGE': '#334155',
     'IN_PREPARATION': '#b45309',
-    'IN_SHIPPING': '#3b82f6',
+    'IN_SHIPPING': '#d97706',
     'DELIVERED': '#10b981',
     'IN_RETURN': '#979797ff',
     'ELIMINATED': '#002782ff',
@@ -271,13 +271,13 @@ export const statusColors = {
   } as Record<string, string>,
   transport: {
     'PENDING': '#d97706',
-    'IN_TRANSIT': '#3b82f6',
+    'IN_TRANSIT': '#d97706',
     'DELIVERED': '#059669',
     'CANCELLED': '#dc2626',
   } as Record<string, string>,
   user: {
-    'SUPER_ADMIN': '#3b82f6',
-    'ADMIN': '#2563eb',
+    'SUPER_ADMIN': '#dc2626',
+    'ADMIN': '#b91c1c',
     'OPERATOR': '#00245fff',
   } as Record<string, string>,
 };

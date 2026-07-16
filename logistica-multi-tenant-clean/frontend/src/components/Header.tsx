@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import NotificationPanel from './NotificationPanel';
+import { SITE_FULL_NAME } from '../site.config';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -70,11 +71,8 @@ const Header: React.FC = () => {
 
           {/* ── Logo ─────────────────────────────────────────────── */}
           <Link to="/dashboard" className="flex items-center group py-2">
-            <img
-              src="/logo.png"
-              alt="Tranzor Logistics"
-              className="h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-            />
+            <span className="sr-only">{SITE_FULL_NAME}</span>
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 shadow-lg" />
           </Link>
 
           {/* ── Right section ────────────────────────────────────── */}
@@ -232,8 +230,9 @@ const Header: React.FC = () => {
                         className="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:text-amber-400 hover:bg-amber-900/20 flex items-center gap-2.5 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="9" strokeWidth={2} />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            d="M12 12a3 3 0 100-6 3 3 0 000 6zM6.5 18.5c1.2-2.2 3.2-3.5 5.5-3.5s4.3 1.3 5.5 3.5" />
                         </svg>
                         Profile
                       </Link>

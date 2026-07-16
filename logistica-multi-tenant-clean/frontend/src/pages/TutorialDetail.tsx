@@ -56,7 +56,7 @@ const TutorialDetail: React.FC = () => {
           </div>
           <div className="mt-3 flex justify-between items-center">
             <p className="text-sm text-gray-400">Duração: {tutorial.duration}</p>
-            <p className="text-sm text-gray-400">Categoria: <span className="text-blue-400">{tutorial.category}</span></p>
+            <p className="text-sm text-gray-400">Categoria: <span className="text-red-400">{tutorial.category}</span></p>
           </div>
         </div>
 
@@ -79,3 +79,4 @@ const TutorialDetail: React.FC = () => {
 };
 
 export default TutorialDetail;
+

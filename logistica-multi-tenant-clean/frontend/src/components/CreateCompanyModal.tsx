@@ -178,7 +178,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ onClose, onSucc
                 id="createAdmin"
                 checked={createAdmin}
                 onChange={(e) => setCreateAdmin(e.target.checked)}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
               />
               <label htmlFor="createAdmin" className="ml-2 block text-sm font-medium text-white">
                 Create company administrator user

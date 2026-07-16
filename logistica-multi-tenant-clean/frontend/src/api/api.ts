@@ -38,7 +38,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error('❌ [REQUEST ERROR]', error);
+    console.error('[REQUEST ERROR]', error);
     return Promise.reject(error);
   }
 );
@@ -49,8 +49,8 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => {
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    console.log(`✅ [RESPONSE] ${response.status} ${response.config.url}`);
-    console.log('📥 [DATA]', response.data);
+    console.log(`[RESPONSE] ${response.status} ${response.config.url}`);
+    console.log('[DATA]', response.data);
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     return response;
   },
@@ -60,9 +60,9 @@ api.interceptors.response.use(
     const errorData = error.response?.data;
     
     console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    console.error(`❌ [ERROR] ${status || 'NETWORK ERROR'} ${url}`);
-    console.error('📥 [ERROR DATA]', errorData);
-    console.error('🔗 [ATTEMPTED URL]', error.config?.baseURL + error.config?.url);
+    console.error(`[ERROR] ${status || 'NETWORK ERROR'} ${url}`);
+    console.error('[ERROR DATA]', errorData);
+    console.error('[ATTEMPTED URL]', error.config?.baseURL + error.config?.url);
     console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
     // ✅ Normalize error date to always be a plain string

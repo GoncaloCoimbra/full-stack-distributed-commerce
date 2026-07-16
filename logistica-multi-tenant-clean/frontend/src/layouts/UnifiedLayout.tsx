@@ -40,7 +40,8 @@ const UnifiedLayout: React.FC<UnifiedLayoutProps> = ({
     <div className="unified-layout">
       {showHeader && (
         <UnifiedHeader 
-          variant={variant} 
+          variant={variant}
+          darkMode={darkMode}
           onThemeToggle={() => setDarkMode(!darkMode)}
         />
       )}

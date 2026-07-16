@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api/api';
 import { useFilters } from '../hooks/useFilters';
 import FilterChips from '../components/FilterChips';
@@ -30,21 +30,21 @@ interface Company {
   name: string;
 }
 
-// 🔧 FUNÇÃO MELHORADA para extrair mensagens de error do backend
+// ?? FUN��O MELHORADA para extrair mensagens de error do backend
 const extractErrorMessage = (error: any, defaultMessage: string): string => {
-  console.log('🔍 [ERROR DEBUG] Estrutura completa do error:', error);
-  console.log('🔍 [ERROR DEBUG] error.response:', error?.response);
-  console.log('🔍 [ERROR DEBUG] error.response.data:', error?.response?.data);
+  console.log('?? [ERROR DEBUG] Estrutura completa do error:', error);
+  console.log('?? [ERROR DEBUG] error.response:', error?.response);
+  console.log('?? [ERROR DEBUG] error.response.data:', error?.response?.data);
   
   if (!error) return defaultMessage;
   
-  // 1️⃣ Tentar extrair de error.response.data
+  // 1?? Tentar extrair de error.response.data
   if (error.response?.data) {
     const date = error.response.data;
-    console.log('📦 [ERROR DEBUG] date type:', typeof date);
-    console.log('📦 [ERROR DEBUG] date.message:', date.message);
+    console.log('?? [ERROR DEBUG] date type:', typeof date);
+    console.log('?? [ERROR DEBUG] date.message:', date.message);
     
-    // Se date é string diretamente
+    // Se date � string diretamente
     if (typeof date === 'string') {
       console.log(' [ERROR DEBUG] Retornando date como string');
       return date;
@@ -52,44 +52,44 @@ const extractErrorMessage = (error: any, defaultMessage: string): string => {
     
     // Se date.message existe
     if (date.message) {
-      // Se é array (validação do NestJS)
+      // Se � array (valida��o do NestJS)
       if (Array.isArray(date.message)) {
         console.log(' [ERROR DEBUG] Retornando primeiro item do array');
         return date.message[0] || defaultMessage;
       }
-      // Se é string
+      // Se � string
       if (typeof date.message === 'string') {
         console.log(' [ERROR DEBUG] Retornando date.message');
         return date.message;
       }
-      // Se é objeto (pode ter nested message)
+      // Se � objeto (pode ter nested message)
       if (typeof date.message === 'object' && date.message.message) {
         console.log(' [ERROR DEBUG] Retornando date.message.message');
         return date.message.message;
       }
     }
     
-    // Se date.error existe e é string
+    // Se date.error existe e � string
     if (date.error && typeof date.error === 'string') {
       console.log(' [ERROR DEBUG] Retornando date.error');
       return date.error;
     }
 
-    // 🆕 Tentar statusText do response
+    // ?? Tentar statusText do response
     if (error.response.statusText) {
       console.log(' [ERROR DEBUG] Retornando statusText');
       return error.response.statusText;
     }
   }
   
-  // 2️⃣ Tentar error.message
+  // 2?? Tentar error.message
   if (error.message && typeof error.message === 'string') {
     console.log(' [ERROR DEBUG] Retornando error.message');
     return error.message;
   }
   
-  // 3️⃣ Se nada funcionar, retornar mensagem padrão
-  console.log('⚠️ [ERROR DEBUG] Retornando mensagem padrão');
+  // 3?? Se nada funcionar, retornar mensagem padr�o
+  console.log('?? [ERROR DEBUG] Retornando mensagem padr�o');
   return defaultMessage;
 };
 
@@ -249,7 +249,7 @@ const VehicleList: React.FC = () => {
         companyId: companyIdToUse
       };
 
-      console.log('📤 Sending vehicle date:', dataToSend);
+      console.log('?? Sending vehicle date:', dataToSend);
 
       if (editingId) {
         await api.patch(`/vehicles/${editingId}`, dataToSend);
@@ -285,20 +285,20 @@ const VehicleList: React.FC = () => {
     if (window.confirm('Do you really want to delete this vehicle?')) {
       try {
         setError('');
-        console.log('🗑️ Trying to delete vehicle:', id);
+        console.log('??? Trying to delete vehicle:', id);
         await api.delete(`/vehicles/${id}`);
-        console.log('✓ Vehicle deleted successfully');
+        console.log('? Vehicle deleted successfully');
         await loadVehicles();
       } catch (error: any) {
-        console.error('❌ Error deleting vehicle:', error);
+        console.error('? Error deleting vehicle:', error);
         console.error(' Status do error:', error?.response?.status);
         console.error(' Date do error:', error?.response?.data);
         
         const errorMsg = extractErrorMessage(error, 'Error deleting vehicle');
-        console.log('📝 Extracted error message:', errorMsg);
+        console.log('?? Extracted error message:', errorMsg);
         setError(errorMsg);
         
-        // 🔔 Scroll suave para o topo para mostrar o error
+        // ?? Scroll suave para o topo para mostrar o error
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
@@ -376,7 +376,7 @@ const VehicleList: React.FC = () => {
         </button>
       </div>
 
-      {/* 🔔 ALERTA DE ERRO MELHORADO */}
+      {/* ?? ALERTA DE ERRO MELHORADO */}
       {error && (
         <div className="bg-gradient-to-r from-red-900/40 to-red-900/30 border-2 border-red-500/80 text-red-300 px-6 py-4 rounded-lg mb-6 shadow-2xl backdrop-blur-sm animate-pulse">
           <div className="flex items-start">
@@ -384,7 +384,7 @@ const VehicleList: React.FC = () => {
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
             </svg>
             <div className="flex-1">
-              <p className="font-bold text-lg text-red-200">⚠️ Error</p>
+              <p className="font-bold text-lg text-red-200">?? Error</p>
               <p className="text-base mt-2 leading-relaxed">{String(error)}</p>
             </div>
             <button
@@ -461,7 +461,7 @@ const VehicleList: React.FC = () => {
           </h2>
           <div className="grid grid-cols-2 gap-4">
             {user?.role === 'SUPER_ADMIN' && !editingId && (
-              <div className="col-span-2 bg-gradient-to-r from-[#3b82f6]/20 to-[#1d4ed8]/20 border-2 border-[#3b82f6] rounded-lg p-4 mb-2">
+              <div className="col-span-2 bg-gradient-to-r from-[#dc2626]/20 to-[#991b1b]/20 border-2 border-[#dc2626] rounded-lg p-4 mb-2">
                 <div className="flex items-center gap-2 mb-3">
                   <span className={`${getStatusBadgeClass('user', 'SUPER_ADMIN')} text-xs`}>
                     SUPER ADMIN
@@ -587,11 +587,11 @@ const VehicleList: React.FC = () => {
                   onClick={() => setFormData({ ...formData, status: 'in_use' })}
                   className={`px-4 py-2 rounded-lg border-2 transition-all ${
                     formData.status === 'in_use'
-                      ? 'border-[#3b82f6] bg-[#1e293b]/50 text-[#3b82f6]'
-                      : 'border-[#334155] hover:border-[#3b82f6]/50 text-[#cbd5e1]'
+                      ? 'border-[#dc2626] bg-[#1e293b]/50 text-[#dc2626]'
+                      : 'border-[#334155] hover:border-[#dc2626]/50 text-[#cbd5e1]'
                   }`}
                 >
-                  🚛 In Use
+                  ?? In Use
                 </button>
                 <button
                   type="button"
@@ -602,7 +602,7 @@ const VehicleList: React.FC = () => {
                       : 'border-[#334155] hover:border-amber-500/50 text-[#cbd5e1]'
                   }`}
                 >
-                  🔧 Maintenance
+                  ?? Maintenance
                 </button>
               </div>
             </div>
@@ -734,7 +734,7 @@ const VehicleList: React.FC = () => {
               {vehicles.filter(v => v.status === 'available').length} available
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#3b82f6] rounded-full"></span>
+              <span className="w-2 h-2 bg-[#dc2626] rounded-full"></span>
               {vehicles.filter(v => v.status === 'in_use').length} in use
             </span>
             <span className="flex items-center gap-1">
@@ -767,3 +767,4 @@ const VehicleList: React.FC = () => {
 };
 
 export default VehicleList;
+

@@ -3,7 +3,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function(app) {
   // In Docker environment with docker-compose, the React dev server
   // can communicate directly with the backend container via hostname
-  const backendUrl = process.env.DOCKER_BACKEND_URL || 'http://localhost:3000';
+  // When running the frontend on localhost:3000, use backend port 3003.
+  const backendUrl = process.env.DOCKER_BACKEND_URL || 'http://localhost:3003';
 
   console.log('[setupProxy] Backend URL configured as:', backendUrl);
 

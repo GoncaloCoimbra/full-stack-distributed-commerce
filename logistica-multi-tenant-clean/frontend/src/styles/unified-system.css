@@ -35,7 +35,7 @@
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
-  --color-info: #3b82f6;
+  --color-info: #dc2626;
 
   /* ── Tipografia ── */
   --font-display: 'Outfit', sans-serif;
@@ -465,3 +465,4 @@ tr:hover {
     padding: var(--space-md);
   }
 }
+

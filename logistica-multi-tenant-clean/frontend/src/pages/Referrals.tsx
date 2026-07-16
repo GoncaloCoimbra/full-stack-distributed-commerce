@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../api/api';
 import { useFilters } from '../hooks/useFilters';
@@ -359,7 +359,7 @@ const Referrals: React.FC = () => {
   const getStatusBadgeClass = (status: Referral['status']) => {
     switch (status) {
       case 'new':       return 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 border-2 border-amber-500 text-amber-300';
-      case 'contacted': return 'bg-gradient-to-r from-blue-900/30 to-blue-800/20 border-2 border-blue-500 text-blue-300';
+      case 'contacted': return 'bg-gradient-to-r from-red-900/30 to-red-800/20 border-2 border-red-500 text-red-300';
       case 'converted': return 'bg-gradient-to-r from-emerald-900/30 to-emerald-800/20 border-2 border-emerald-500 text-emerald-300';
       case 'lost':      return 'bg-gradient-to-r from-red-900/30 to-red-800/20 border-2 border-red-500 text-red-300';
       default:          return 'bg-gray-800 border-gray-600 text-gray-300';
@@ -399,13 +399,13 @@ const Referrals: React.FC = () => {
     ? (convertedCount / filteredReferrals.length * 100).toFixed(1)
     : '0';
 
-  // ── Shared input class ──────────────────────────────────────────────────────
+  // -- Shared input class ------------------------------------------------------
   const inputCls = 'w-full px-4 py-2 bg-slate-900 border-2 border-purple-500/30 rounded-lg text-white focus:border-purple-500 focus:outline-none';
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#1e293b', padding: '1.5rem' }}>
 
-      {/* ── Page Header ── */}
+      {/* -- Page Header -- */}
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-white">References</h1>
@@ -417,7 +417,7 @@ const Referrals: React.FC = () => {
               onClick={toggleAdminMode}
               className={`px-3 py-1 rounded text-sm font-bold ${user?.role === 'SUPER_ADMIN' ? 'bg-purple-600 text-white' : 'bg-slate-700 text-slate-300'}`}
             >
-              {user?.role === 'SUPER_ADMIN' ? '🔒 SUPER ADMIN' : '👤 NORMAL USER'}
+              {user?.role === 'SUPER_ADMIN' ? '?? SUPER ADMIN' : '?? NORMAL USER'}
             </button>
             <span className="text-xs text-slate-400">
               {user?.role === 'SUPER_ADMIN' ? 'Admin mode (sees all companies)' : 'Normal mode (sees own company only)'}
@@ -426,15 +426,15 @@ const Referrals: React.FC = () => {
 
           {/* Super admin company picker */}
           {user?.role === 'SUPER_ADMIN' && (
-            <div className="mt-3 bg-gradient-to-r from-blue-900/20 to-blue-800/10 border-2 border-blue-500/30 rounded-lg p-3">
+            <div className="mt-3 bg-gradient-to-r from-red-900/20 to-red-800/10 border-2 border-red-500/30 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded">SUPER ADMIN</span>
+                <span className="px-2 py-1 bg-red-500/20 text-red-300 text-xs font-bold rounded">SUPER ADMIN</span>
                 <span className="text-sm text-slate-300 font-medium">Select a company to view referrals</span>
               </div>
               <select
                 value={selectedCompanyId}
                 onChange={(e) => setSelectedCompanyId(e.target.value)}
-                className="w-full md:w-auto px-4 py-2 bg-slate-900 border-2 border-blue-500/30 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+                className="w-full md:w-auto px-4 py-2 bg-slate-900 border-2 border-red-500/30 rounded-lg text-white focus:border-red-500 focus:outline-none"
               >
                 <option value="">All companies</option>
                 {companies.map(company => (
@@ -497,7 +497,7 @@ const Referrals: React.FC = () => {
         </button>
       </div>
 
-      {/* ── Stats ── */}
+      {/* -- Stats -- */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         {[
           { label: 'Total Referrals',    value: filteredReferrals.length, color: 'purple', fmt: 'num',
@@ -529,7 +529,7 @@ const Referrals: React.FC = () => {
         ))}
       </div>
 
-      {/* ── Table ── */}
+      {/* -- Table -- */}
       <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl shadow-lg overflow-hidden border-2 border-purple-500/30 hover:border-purple-500/50 transition-all">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -596,7 +596,7 @@ const Referrals: React.FC = () => {
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2">
                       <button onClick={() => openViewModal(referral)} title="View"
-                        className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all shadow-md">
+                        className="p-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 transition-all shadow-md">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -635,7 +635,7 @@ const Referrals: React.FC = () => {
         )}
       </div>
 
-      {/* ── Summary cards ── */}
+      {/* -- Summary cards -- */}
       {filteredReferrals.length > 0 && (
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-purple-500/30 rounded-xl p-4">
@@ -643,7 +643,7 @@ const Referrals: React.FC = () => {
             <div className="space-y-3">
               {[
                 { label: 'New',       color: 'bg-amber-500',   filter: (r: Referral) => r.status === 'new' },
-                { label: 'Contacted', color: 'bg-blue-500',    filter: (r: Referral) => r.status === 'contacted' },
+                { label: 'Contacted', color: 'bg-red-500',    filter: (r: Referral) => r.status === 'contacted' },
                 { label: 'Converted', color: 'bg-emerald-500', filter: (r: Referral) => r.status === 'converted' },
                 { label: 'Lost',      color: 'bg-red-500',     filter: (r: Referral) => r.status === 'lost' },
               ].map(s => (
@@ -684,21 +684,21 @@ const Referrals: React.FC = () => {
         </div>
       )}
 
-      {/* ── Create Modal ── */}
+      {/* -- Create Modal -- */}
       {showCreateModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-purple-500/30 rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <h2 className="text-2xl font-bold text-purple-400 mb-4">New Referral</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {user?.role === 'SUPER_ADMIN' && (
-                <div className="md:col-span-2 bg-gradient-to-r from-blue-900/20 to-blue-800/10 border-2 border-blue-500/30 rounded-lg p-4 mb-2">
+                <div className="md:col-span-2 bg-gradient-to-r from-red-900/20 to-red-800/10 border-2 border-red-500/30 rounded-lg p-4 mb-2">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded">SUPER ADMIN</span>
+                    <span className="px-2 py-1 bg-red-500/20 text-red-300 text-xs font-bold rounded">SUPER ADMIN</span>
                     <span className="text-sm text-slate-300 font-medium">Select the company to create the referral for</span>
                   </div>
                   <label className="block text-sm font-bold text-slate-300 mb-2">Company *</label>
                   <select required value={selectedCompanyId} onChange={(e) => setSelectedCompanyId(e.target.value)}
-                    className="w-full px-4 py-2 bg-slate-900 border-2 border-blue-500/30 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                    className="w-full px-4 py-2 bg-slate-900 border-2 border-red-500/30 rounded-lg text-white focus:border-red-500 focus:outline-none">
                     <option value="">Select a company...</option>
                     {companies.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
@@ -739,7 +739,7 @@ const Referrals: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-300 mb-2">Estimated Value (€)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Estimated Value (�)</label>
                 <Input type="number"  value={formData.estimatedValue} placeholder="0"
                   onChange={(e) => setFormData({...formData, estimatedValue: parseFloat(e.target.value) || 0})} className={inputCls} />
               </div>
@@ -784,7 +784,7 @@ const Referrals: React.FC = () => {
         </div>
       )}
 
-      {/* ── Edit Modal ── */}
+      {/* -- Edit Modal -- */}
       {showEditModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-purple-500/30 rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -822,7 +822,7 @@ const Referrals: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-300 mb-2">Estimated Value (€)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Estimated Value (�)</label>
                 <Input type="number"  value={formData.estimatedValue} onChange={(e) => setFormData({...formData, estimatedValue: parseFloat(e.target.value) || 0})} className={inputCls} />
               </div>
               <div>
@@ -866,7 +866,7 @@ const Referrals: React.FC = () => {
         </div>
       )}
 
-      {/* ── View Modal ── */}
+      {/* -- View Modal -- */}
       {showViewModal && selectedReferral && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-purple-500/30 rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -965,7 +965,7 @@ const Referrals: React.FC = () => {
         </div>
       )}
 
-      {/* ── Delete Confirm Modal ── */}
+      {/* -- Delete Confirm Modal -- */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-red-500/30 rounded-xl p-6 max-w-md w-full">
@@ -1001,4 +1001,5 @@ const Referrals: React.FC = () => {
 };
 
 export default Referrals;
+
 

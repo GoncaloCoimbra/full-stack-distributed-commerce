@@ -80,7 +80,7 @@ export const AuditLogModal: React.FC<AuditLogModalProps> = ({ isOpen, onClose })
       case 'CREATE':
         return 'bg-green-100 text-green-800';
       case 'UPDATE':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-red-100 text-red-800';
       case 'DELETE':
         return 'bg-red-100 text-red-800';
       default:
@@ -169,7 +169,7 @@ export const AuditLogModal: React.FC<AuditLogModalProps> = ({ isOpen, onClose })
             <div className="flex gap-2">
               <button
                 onClick={handleApplyFilters}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium transition-colors"
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium transition-colors"
               >
                 Filter
               </button>
@@ -243,3 +243,4 @@ export const AuditLogModal: React.FC<AuditLogModalProps> = ({ isOpen, onClose })
     </div>
   );
 };
+

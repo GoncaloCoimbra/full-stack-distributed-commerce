@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../api/api';
 import { Button, Input, Card, Badge, Alert } from '../components/common';
@@ -171,7 +171,7 @@ const Profile: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center gap-6">
             {/* Avatar */}
             <div className="relative">
-              <div className="w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-[#3b82f6] via-[#2563eb] to-[#1d4ed8] flex items-center justify-center border-4 border-[#3b82f6] shadow-2xl">
+              <div className="w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-[#dc2626] via-[#b91c1c] to-[#991b1b] flex items-center justify-center border-4 border-[#dc2626] shadow-2xl">
                 {getAvatarUrl() ? (
                   <img 
                     src={getAvatarUrl()!} 
@@ -395,3 +395,4 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
+

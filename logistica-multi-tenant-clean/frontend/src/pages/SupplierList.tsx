@@ -30,9 +30,9 @@ interface Company {
 
 // 🔧 FUNÇÃO MELHORADA para extrair mensagens de error do backend
 const getErrorMessage = (error: any, defaultMessage: string): string => {
-  console.log('🔍 [ERROR DEBUG] Estrutura completa do error:', error);
-  console.log('🔍 [ERROR DEBUG] error.response:', error?.response);
-  console.log('🔍 [ERROR DEBUG] error.response.data:', error?.response?.data);
+  console.log('[ERROR DEBUG] Estrutura completa do error:', error);
+  console.log('[ERROR DEBUG] error.response:', error?.response);
+  console.log('[ERROR DEBUG] error.response.data:', error?.response?.data);
   
   if (!error) return defaultMessage;
   

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Button, Badge, Alert } from '../components/common';
@@ -11,8 +11,9 @@ import { AxiosError } from 'axios';
 import { useDashboardProductStats, useDashboardActivity } from '../hooks/useDashboard';
 import { useSuppliers } from '../hooks/useSuppliers';
 import { statusLabels, statusColors } from '../theme.config';
+import { useLanguage, translateText, TRANSLATIONS } from '../i18n';
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+// --- Types ------------------------------------------------------------------
 interface DashboardStats {
   totalProducts: number;
   productsByStatus: Array<{ status: string; count: number }>;
@@ -33,7 +34,7 @@ interface DashboardStats {
   topSuppliers: Array<{ id: string; name: string; productCount: number }>;
 }
 
-// ─── Palette (matches Tasks component) ──────────────────────────────────────
+// --- Palette (matches Tasks component) --------------------------------------
 const PAL = {
   bg:          'bg-gradient-to-br from-slate-800 to-slate-900',
   bgSolid:     '#0f172a',
@@ -43,7 +44,7 @@ const PAL = {
   amber:       '#f59e0b',
   amberDim:    'rgba(245,158,11,0.12)',
   amberBright: '#fbbf24',
-  blue:        '#3b82f6',
+  blue:        '#dc2626',
   emerald:     '#34d399',
   red:         '#f87171',
   purple:      '#a855f7',
@@ -53,16 +54,16 @@ const PAL = {
   tMuted:      '#475569',
 };
 
-// ─── Bar colours keyed by category ──────────────────────────────────────────
+// --- Bar colours keyed by category ------------------------------------------
 const BAR_COLORS = [
-  { fill: '#3b82f6',  glow: 'rgba(59,130,246,0.35)' },
+  { fill: '#dc2626',  glow: 'rgba(59,130,246,0.35)' },
   { fill: '#f59e0b',  glow: 'rgba(245,158,11,0.35)' },
   { fill: '#a855f7',  glow: 'rgba(168,85,247,0.35)' },
   { fill: '#34d399',  glow: 'rgba(52,211,153,0.35)' },
   { fill: '#f87171',  glow: 'rgba(248,113,113,0.35)' },
 ];
 
-// ─── Gradient defs injected into SVG ────────────────────────────────────────
+// --- Gradient defs injected into SVG ----------------------------------------
 const BarGradientDefs: React.FC = () => (
   <defs>
     {BAR_COLORS.map((c, i) => (
@@ -74,7 +75,7 @@ const BarGradientDefs: React.FC = () => (
   </defs>
 );
 
-// ─── Custom rounded bar shape ────────────────────────────────────────────────
+// --- Custom rounded bar shape ------------------------------------------------
 const RoundedBar = (props: any) => {
   const { x, y, width, height, colorIndex } = props;
   if (!height || height <= 0) return null;
@@ -110,7 +111,7 @@ const RoundedBar = (props: any) => {
   );
 };
 
-// ─── Custom Tooltip ──────────────────────────────────────────────────────────
+// --- Custom Tooltip ----------------------------------------------------------
 const AmberTooltip: React.FC<any> = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
@@ -167,7 +168,7 @@ const AmberTooltip: React.FC<any> = ({ active, payload, label }) => {
   );
 };
 
-// ─── Card ────────────────────────────────────────────────────────────────────
+// --- Card --------------------------------------------------------------------
 const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className = '',
@@ -184,7 +185,7 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({
   </div>
 );
 
-// ─── Expand Icon ─────────────────────────────────────────────────────────────
+// --- Expand Icon -------------------------------------------------------------
 const ExpandIcon = () => (
   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path
@@ -196,12 +197,14 @@ const ExpandIcon = () => (
   </svg>
 );
 
-// ════════════════════════════════════════════════════════════════════════════
+// ----------------------------------------------------------------------------
 // Dashboard
-// ════════════════════════════════════════════════════════════════════════════
+// ----------------------------------------------------------------------------
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { language } = useLanguage();
+  const t = (key: keyof typeof TRANSLATIONS) => translateText(TRANSLATIONS[key], language);
 
   const { data: stats, isLoading: loading, error, refetch: refetchStats } =
     useDashboardProductStats();
@@ -212,11 +215,11 @@ const Dashboard: React.FC = () => {
   const [allSuppliers, setAllSuppliers]             = useState<any[]>([]);
   const [expandedChart, setExpandedChart]           = useState<string | null>(null);
 
-  // ── Export ──
+  // -- Export --
   const handleExportReport = () => {
     if (!stats || stats.totalProducts === 0) { alert('No date to export'); return; }
     const csv = [
-      ['Performance Report – Tranzor Logistics'],
+      ['Performance Report - LogiSphere Logística'],
       ['Date', new Date().toLocaleDateString('en-US')],
       [''],
       ['GENERAL SUMMARY'],
@@ -255,7 +258,7 @@ const Dashboard: React.FC = () => {
     setShowSuppliersModal(true);
   };
 
-  // ── Loading ──
+  // -- Loading --
   if (loading) {
     return (
       <div className="flex items-center justify-center" style={{ minHeight: '100vh', backgroundColor: '#1e293b' }}>
@@ -267,7 +270,7 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  // ── Error ──
+  // -- Error --
   if (error) {
     return (
       <div className="flex items-center justify-center" style={{ minHeight: '100vh', backgroundColor: '#1e293b' }}>
@@ -303,7 +306,7 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  // ── Chart date ──
+  // -- Chart date --
   const pieData = stats.productsByStatus.map((item: any) => ({
     name:  statusLabels.product[item.status] || item.status,
     value: item.count,
@@ -318,7 +321,7 @@ const Dashboard: React.FC = () => {
     { name: 'Rejected',  value: stats.summary.rejected,   colorIndex: 4 },
   ];
 
-  // ── Metric cards ──
+  // -- Metric cards --
   const metricCards = [
     {
       label: 'Total Products',
@@ -359,7 +362,7 @@ const Dashboard: React.FC = () => {
     {
       label: 'Movements (30d)',
       value: stats.recentMovements,
-      color: '#3b82f6',
+      color: '#dc2626',
       badge: 'last 30 days',
       icon: (
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -370,17 +373,17 @@ const Dashboard: React.FC = () => {
     },
   ];
 
-  const rankColors = ['#f59e0b', '#4f85f6', '#34d399', '#a855f7', '#fb923c'];
+  const rankColors = ['#f59e0b', '#dc2626', '#34d399', '#a855f7', '#fb923c'];
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#1e293b', fontFamily: "'Outfit', sans-serif" }}>
 
-      {/* ── Header ─────────────────────────────────────────────────────────── */}
+      {/* -- Header ----------------------------------------------------------- */}
       <div className="bg-gradient-to-r from-slate-900 to-black border-b-2 border-amber-500/20">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white">Performance Report</h1>
-            <p className="text-sm text-slate-300 mt-0.5">Logistics system overview</p>
+            <h1 className="text-3xl font-bold text-white">{t('dashboardTitle')}</h1>
+            <p className="text-sm text-slate-300 mt-0.5">{t('dashboardSubtitle')}</p>
           </div>
           <div className="flex items-center gap-3">
             {/* Period badge */}
@@ -389,7 +392,7 @@ const Dashboard: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              Last 30 days
+              {t('last30Days')}
             </div>
             {/* Refresh */}
             <button
@@ -411,7 +414,7 @@ const Dashboard: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                   d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Export Report
+              {t('exportReport')}
             </button>
           </div>
         </div>
@@ -419,7 +422,7 @@ const Dashboard: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
 
-        {/* ── Metric Cards ─────────────────────────────────────────────────── */}
+        {/* -- Metric Cards --------------------------------------------------- */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {metricCards.map((m, i) => (
             <div
@@ -453,10 +456,10 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
 
-        {/* ── Charts ───────────────────────────────────────────────────────── */}
+        {/* -- Charts --------------------------------------------------------- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-          {/* ── Pie Chart ── */}
+          {/* -- Pie Chart -- */}
           <div
             className={`rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-amber-500/30 hover:border-amber-500/50 p-6 transition-all hover:shadow-xl hover:shadow-amber-900/10 ${
               expandedChart === 'pie' ? 'lg:col-span-2' : ''
@@ -464,8 +467,8 @@ const Dashboard: React.FC = () => {
           >
             <div className="flex items-center justify-between mb-6">
               <div>
-              <h3 className="font-semibold text-sm text-white">Distribution by Status</h3>
-              <p className="text-xs mt-0.5 text-slate-400">Products by current status</p>
+              <h3 className="font-semibold text-sm text-white">{t('distributionByStatus')}</h3>
+              <p className="text-xs mt-0.5 text-slate-400">{t('productsByStatus')}</p>
               </div>
               <button
                 onClick={() => setExpandedChart(expandedChart === 'pie' ? null : 'pie')}
@@ -516,7 +519,7 @@ const Dashboard: React.FC = () => {
             )}
           </div>
 
-          {/* ── Bar Chart (beautiful) ── */}
+          {/* -- Bar Chart (beautiful) -- */}
           {expandedChart !== 'pie' && (
             <div
               className={`rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-amber-500/30 hover:border-amber-500/50 p-6 transition-all hover:shadow-xl hover:shadow-amber-900/10 ${
@@ -624,7 +627,7 @@ const Dashboard: React.FC = () => {
           )}
         </div>
 
-        {/* ── Top 5 Suppliers ─────────────────────────────────────────────── */}
+        {/* -- Top 5 Suppliers ----------------------------------------------- */}
         <Card>
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -635,7 +638,7 @@ const Dashboard: React.FC = () => {
               onClick={loadAllSuppliers}
               className="text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors"
             >
-              View all →
+              View all ?
             </button>
           </div>
 
@@ -647,7 +650,7 @@ const Dashboard: React.FC = () => {
               </svg>
               <p className="text-sm text-amber-400 font-bold">No supplier registered</p>
               <button onClick={() => navigate('/fornecedores')} className="text-xs mt-2 text-amber-500 hover:text-amber-400">
-                Add supplier →
+                Add supplier ?
               </button>
             </div>
           ) : (
@@ -707,7 +710,7 @@ const Dashboard: React.FC = () => {
           )}
         </Card>
 
-        {/* ── Rejected Alert ───────────────────────────────────────────────── */}
+        {/* -- Rejected Alert ------------------------------------------------- */}
         {stats.summary.rejected > 0 && (
           <div className="rounded-2xl p-5 flex items-start gap-4 bg-red-900/10 border-2 border-red-500/30">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-red-900/30 border border-red-500/40">
@@ -728,19 +731,19 @@ const Dashboard: React.FC = () => {
               onClick={() => navigate('/products?status=REJECTED')}
               className="flex-shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition-all bg-red-900/20 text-red-400 border border-red-500/40 hover:bg-red-900/40"
             >
-              View products →
+              View products ?
             </button>
           </div>
         )}
 
-        {/* ── Summary ─────────────────────────────────────────────────────── */}
+        {/* -- Summary ------------------------------------------------------- */}
         <Card>
           <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-5">
             Period Summary
           </p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { label: 'Received',   value: stats.summary.received,   pct: stats.percentages.received,  color: '#3b82f6' },
+              { label: 'Received',   value: stats.summary.received,   pct: stats.percentages.received,  color: '#dc2626' },
               { label: 'Under Analysis',  value: stats.summary.inAnalysis,                                    color: '#f59e0b' },
               { label: 'Stored', value: stats.summary.inStorage,  pct: stats.percentages.inStorage, color: '#a855f7' },
               { label: 'Delivered',   value: stats.summary.delivered,  pct: stats.percentages.delivered, color: '#34d399' },
@@ -764,7 +767,7 @@ const Dashboard: React.FC = () => {
 
       </div>
 
-      {/* ── Suppliers Modal ──────────────────────────────────────────────────── */}
+      {/* -- Suppliers Modal ---------------------------------------------------- */}
       {showSuppliersModal && (
         <div
           className="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/70"
@@ -808,7 +811,7 @@ const Dashboard: React.FC = () => {
                           onClick={() => { navigate('/fornecedores'); setShowSuppliersModal(false); }}
                           className="text-xs font-bold text-amber-400 hover:text-amber-300 flex-shrink-0 ml-3"
                         >
-                          Ver →
+                          Ver ?
                         </button>
                       </div>
                     </div>
@@ -834,3 +837,4 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+

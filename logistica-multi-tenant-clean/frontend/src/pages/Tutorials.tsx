@@ -38,12 +38,12 @@ const Tutorials: React.FC = () => {
       <div className="grid gap-6 md:grid-cols-3">
         {tutorials.map((t: Tutorial) => (
           <article key={t.id} className="bg-gray-900 rounded-lg p-4 shadow-sm">
-            <div className="h-36 bg-gradient-to-r from-blue-700 to-purple-700 rounded-md flex items-center justify-center text-white font-semibold text-sm text-center p-2">{t.category}</div>
+            <div className="h-36 bg-gradient-to-r from-red-700 to-purple-700 rounded-md flex items-center justify-center text-white font-semibold text-sm text-center p-2">{t.category}</div>
             <h3 className="mt-3 text-white font-semibold text-sm">{t.title}</h3>
             <p className="text-xs text-gray-400 mt-1">Duration: {t.duration}</p>
             <p className="text-xs text-gray-500 mt-2">{t.description}</p>
             <div className="mt-4 flex justify-between items-center">
-              <Link to={`/tutorials/${t.id}`} className="bg-blue-600 px-3 py-1 rounded text-sm text-white">View Tutorial</Link>
+              <Link to={`/tutorials/${t.id}`} className="bg-red-600 px-3 py-1 rounded text-sm text-white">View Tutorial</Link>
               <a href={`/tutorials/${t.id}#transcript`} className="text-xs text-gray-400">Transcript</a>
             </div>
           </article>
@@ -81,3 +81,4 @@ const Tutorials: React.FC = () => {
 };
 
 export default Tutorials;
+

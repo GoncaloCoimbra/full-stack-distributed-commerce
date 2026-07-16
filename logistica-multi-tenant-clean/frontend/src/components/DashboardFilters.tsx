@@ -6,7 +6,7 @@ const ds = {
   bgCard:   '#0d1117',
   bgInput:  '#0a0e17',
   border:   '#1a2234',
-  accent:   '#4f85f6',
+  accent:   '#dc2626',
   textPrimary:   '#f0f4ff',
   textSecondary: '#7a8fa8',
   textMuted:     '#3a4d63',
@@ -43,7 +43,7 @@ const PERIODS = [
 
 const inputClass = `w-full rounded-xl px-3 py-2.5 text-sm transition-all duration-200 outline-none
   bg-[#0a0e17] border border-[#1a2234] text-[#f0f4ff] placeholder-[#3a4d63]
-  focus:border-[#4f85f6] focus:ring-2 focus:ring-[#4f85f6]/10
+  focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/10
   disabled:opacity-40 disabled:cursor-not-allowed`;
 
 const DashboardFilters: React.FC<DashboardFiltersProps> = ({

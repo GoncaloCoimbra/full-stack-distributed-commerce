@@ -214,7 +214,7 @@ async function printSummary(results) {
   console.log(`  → INTEGRATION_GUIDE.md - Guia completo`);
   console.log(`  → docker-compose.yml - Configuração dos serviços`);
   console.log(`  → backend/README.md - Documentação Website`);
-  console.log(`  → logistica-multi-tenant/README.md - Documentação Logística`);
+  console.log(`  → logistica-multi-tenant-clean/README.md - Documentação Logística`);
   console.log(`  → Chatops/README.md - Documentação ChatOps`);
 
   console.log(`\n${colors.bright}═════════════════════════════════════════${colors.reset}\n`);

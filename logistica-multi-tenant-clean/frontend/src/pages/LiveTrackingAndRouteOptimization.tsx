@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import api from '../api/api';
 import TrackingMap from '../components/TrackingMap';
@@ -156,7 +156,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
         let anyData = false;
         if (vRes?.data && Array.isArray(vRes.data) && vRes.data.length > 0) {
-          // Ensure ID is always string para evitar problemas de comparação
+          // Ensure ID is always string para evitar problemas de compara��o
           const vehiclesClean = vRes.data.map((v: any) => ({ ...v, id: String(v.id) }));
           setVehicles(vehiclesClean);
           anyData = true;
@@ -166,7 +166,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
         if (aRes?.data && Array.isArray(aRes.data) && aRes.data.length > 0) { setActiveAlerts(aRes.data); anyData = true; }
         if (eRes?.data && Array.isArray(eRes.data) && eRes.data.length > 0) { setEvents(eRes.data); anyData = true; }
         if (!anyData) {
-          setLiveDataError('Real date not available — no local date. Configure the backend.');
+          setLiveDataError('Real date not available � no local date. Configure the backend.');
         } else {
           setLiveDataError('');
         }
@@ -197,24 +197,24 @@ const LiveTrackingRouteOptimization: React.FC = () => {
     // When list arrives from backend, escolhe o primeiro automaticamente
     if (!selectedVehicleId && vehicles.length > 0) {
       setSelectedVehicleId(String(vehicles[0].id));
-      console.log('🚗 Default vehicle selected:', vehicles[0].id);
+      console.log('?? Default vehicle selected:', vehicles[0].id);
     }
   }, [vehicles, selectedVehicleId]);
 
-  // Switch tab based on query string (útil para links de footer/sidebar)
+  // Switch tab based on query string (�til para links de footer/sidebar)
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const tab = params.get('tab');
     const veh = params.get('vehicle');
     if (tab && ['tracking','routes','geofencing','history','analytics'].includes(tab)) {
       setActiveTab(tab as any);
-      console.log('🔖 Tab set by query string:', tab);
+      console.log('?? Tab set by query string:', tab);
     }
     if (veh && vehicles.length > 0) {
       const match = vehicles.find(v => String(v.id) === String(veh));
       if (match) {
         setSelectedVehicleId(String(match.id));
-        console.log('🚗 Vehicle selected via query:', match.id);
+        console.log('?? Vehicle selected via query:', match.id);
       }
     }
   }, [location.search]);
@@ -245,7 +245,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
         const res = await api.get('/transports/tracking-routes/all').catch(() => ({ data: [] }));
         if (res?.data && Array.isArray(res.data)) {
           setTrackingRoutes(res.data);
-          console.log('✅ Tracking routes loaded:', res.data.length);
+          console.log('? Tracking routes loaded:', res.data.length);
         }
       } catch (err) {
         console.error('Error loading tracking routes:', err);
@@ -256,14 +256,14 @@ const LiveTrackingRouteOptimization: React.FC = () => {
     loadTrackingRoutes();
   }, []);
 
-  // Se há transport id na querystring, selecionar route correspondente
+  // Se h� transport id na querystring, selecionar route correspondente
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const transportId = params.get('transport');
     const vehicleId = params.get('vehicle');
     
     if (transportId && trackingRoutes.length > 0) {
-      // Procurar pela route usando várias propriedades possíveis (id, transportId, transport.id)
+      // Procurar pela route usando v�rias propriedades poss�veis (id, transportId, transport.id)
       const match = trackingRoutes.find(r =>
         String(r.id) === String(transportId) ||
         String((r as any).transportId) === String(transportId) ||
@@ -272,12 +272,12 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
       if (match) {
         setSelectedTrackingRoute(match.id);
-        setActiveTab('history'); // Mudar para aba de histórico/rastreamento
-        console.log('🎯 Transport route found for simulation:', match.id);
-        console.log('📍 Origin:', match.origin, '→ Destination:', match.destination);
-        console.log('📊 Locations:', match.locations?.length || 0);
+        setActiveTab('history'); // Mudar para aba de hist�rico/rastreamento
+        console.log('?? Transport route found for simulation:', match.id);
+        console.log('?? Origin:', match.origin, '? Destination:', match.destination);
+        console.log('?? Locations:', match.locations?.length || 0);
       } else {
-        console.warn(`⚠️ Transport ${transportId} not found in tracking routes`);
+        console.warn(`?? Transport ${transportId} not found in tracking routes`);
         console.warn('Available routes:', trackingRoutes.map(r => ({ id: r.id, transportId: (r as any).transportId || (r as any).transport?.id || null, name: r.name })));
       }
     }
@@ -287,7 +287,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
       const vehicleMatch = vehicles.find(v => String(v.id) === String(vehicleId));
       if (vehicleMatch) {
         setSelectedVehicleId(String(vehicleMatch.id));
-        console.log('🚗 Vehicle selected via transport:', vehicleMatch.id);
+        console.log('?? Vehicle selected via transport:', vehicleMatch.id);
       }
     }
   }, [location.search, trackingRoutes, vehicles]);
@@ -300,17 +300,17 @@ const LiveTrackingRouteOptimization: React.FC = () => {
       setTrackingRoutes([]);
       setSelectedTrackingRoute(undefined);
       setShowDeleteConfirm(false);
-      alert('✅ GPS tracking successfully deleted!');
+      alert('? GPS tracking successfully deleted!');
     } catch (error: any) {
       console.error('Error deleting tracking:', error);
       const msg = error.response?.data?.message || 'Error deleting GPS tracking. Please try again.';
-      alert('❌ ' + msg);
+      alert('? ' + msg);
     } finally {
       setIsDeleteLoading(false);
     }
   };
 
-  // Deletar rastreamento de uma route específica
+  // Deletar rastreamento de uma route espec�fica
   const handleDeleteRoute = async (routeId: string) => {
     try {
       await api.delete(`/transports/tracking-routes/${routeId}`);
@@ -331,7 +331,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
   const getStatusColor = (status: Vehicle['status']) => {
     switch (status) {
       case 'active': return 'bg-emerald-500';
-      case 'in_transit': return 'bg-blue-500';
+      case 'in_transit': return 'bg-red-500';
       case 'loading': return 'bg-purple-500';
       case 'unloading': return 'bg-indigo-500';
       case 'inactive': return 'bg-gray-500';
@@ -354,7 +354,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
   const getPriorityColor = (priority: Alert['priority']) => {
     switch (priority) {
-      case 'low': return 'bg-blue-500';
+      case 'low': return 'bg-red-500';
       case 'medium': return 'bg-amber-500';
       case 'high': return 'bg-orange-500';
       case 'critical': return 'bg-red-500';
@@ -399,7 +399,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
   const getEventColor = (type: Event['type']) => {
     switch (type) {
-      case 'trip_start': return 'bg-blue-600';
+      case 'trip_start': return 'bg-red-600';
       case 'trip_end': return 'bg-emerald-600';
       case 'stop': return 'bg-slate-600';
       case 'refuel': return 'bg-amber-600';
@@ -425,7 +425,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
       case 'danger': return 'bg-red-500';
       case 'restricted': return 'bg-amber-500';
       case 'preferred': return 'bg-emerald-500';
-      default: return 'bg-blue-500';
+      default: return 'bg-red-500';
     }
   };
 
@@ -489,7 +489,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
       id: Date.now().toString(),
       type: 'trip_start',
       vehicle: newRoute.vehicle,
-      description: `New optimized route: ${newRoute.origin} → ${newRoute.destination}`,
+      description: `New optimized route: ${newRoute.origin} ? ${newRoute.destination}`,
       timestamp: new Date().toISOString(),
       location: selectedVehicle?.location || { lat: 0, lng: 0 }
     };
@@ -530,12 +530,12 @@ const LiveTrackingRouteOptimization: React.FC = () => {
               GPS Tracking & Route Optimization
             </h1>
             <p className="text-sm mt-0.5" style={{ color: '#3a4d63' }}>
-              Real-time monitoring · Route intelligence
+              Real-time monitoring � Route intelligence
             </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm" style={{ background: '#07090f', border: '1px solid #1a2234', color: '#7a8fa8' }}>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#4f85f6' }}>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#dc2626' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
               Active Vehicles: {vehicles.filter(v => v.status === 'in_transit').length}/{vehicles.length}
@@ -560,14 +560,14 @@ const LiveTrackingRouteOptimization: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-900/30 via-blue-800/20 to-blue-900/10 border-2 border-blue-500/30 rounded-xl p-4 backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-red-900/30 via-red-800/20 to-red-900/10 border-2 border-red-500/30 rounded-xl p-4 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Time Saved</p>
+                <p className="text-sm text-red-300">Time Saved</p>
                 <p className="text-2xl font-bold text-white">{statistics.timeSaved}h</p>
-                <p className="text-xs text-blue-400/70 mt-1">Optimized hours</p>
+                <p className="text-xs text-red-400/70 mt-1">Optimized hours</p>
               </div>
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
                 <span className="text-xs font-bold text-white">TIM</span>
               </div>
             </div>
@@ -576,7 +576,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
           <div className="bg-gradient-to-br from-purple-900/30 via-purple-800/20 to-purple-900/10 border-2 border-purple-500/30 rounded-xl p-4 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-purple-300">CO₂ Avoided</p>
+                <p className="text-sm text-purple-300">CO2 Avoided</p>
                 <p className="text-2xl font-bold text-white">{statistics.co2Avoided}kg</p>
                 <p className="text-xs text-purple-400/70 mt-1">Environmental reduction</p>
               </div>
@@ -675,12 +675,12 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                   onClick={() => setActiveTab(tab)}
                   className={`flex-1 min-w-[140px] px-4 py-3 text-sm font-bold transition-all relative ${
                     activeTab === tab
-                      ? 'text-blue-400'
+                      ? 'text-red-400'
                       : 'text-slate-400 hover:text-white'
                   }`}
                   style={{
                     backgroundColor: activeTab === tab ? '#1a2a4a' : 'transparent',
-                    borderBottom: activeTab === tab ? '2px solid #4f85f6' : 'none',
+                    borderBottom: activeTab === tab ? '2px solid #dc2626' : 'none',
                     paddingBottom: activeTab === tab ? 'calc(0.75rem - 2px)' : '0.75rem'
                   }}
                 >
@@ -692,7 +692,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                     {tab === 'analytics' && 'Analytics'}
                   </div>
                   {activeTab === tab && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-red-500 to-cyan-500"></div>
                   )}
                 </button>
               ))}
@@ -710,19 +710,19 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                       <div className="flex items-center bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden">
                         <button
                           onClick={() => setViewMode('map')}
-                          className={`px-4 py-2 text-sm ${viewMode === 'map' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}
+                          className={`px-4 py-2 text-sm ${viewMode === 'map' ? 'bg-red-600 text-white' : 'text-slate-300 hover:text-white'}`}
                         >
                           Map
                         </button>
                         <button
                           onClick={() => setViewMode('list')}
-                          className={`px-4 py-2 text-sm ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}
+                          className={`px-4 py-2 text-sm ${viewMode === 'list' ? 'bg-red-600 text-white' : 'text-slate-300 hover:text-white'}`}
                         >
                           List
                         </button>
                         <button
                           onClick={() => setViewMode('grid')}
-                          className={`px-4 py-2 text-sm ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}
+                          className={`px-4 py-2 text-sm ${viewMode === 'grid' ? 'bg-red-600 text-white' : 'text-slate-300 hover:text-white'}`}
                         >
                           Grid
                         </button>
@@ -735,7 +735,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                     <select
                       value={statusFilter}
                       onChange={(e) => setStatusFilter(e.target.value)}
-                      className="px-4 py-2 bg-slate-800 border-2 border-blue-500/30 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+                      className="px-4 py-2 bg-slate-800 border-2 border-red-500/30 rounded-lg text-white focus:border-red-500 focus:outline-none"
                     >
                       <option value="todos">All Status</option>
                       <option value="em_viagem">On Trip</option>
@@ -788,12 +788,12 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
                   {/* Map */}
                   {viewMode === 'map' && (
-                    <div className="relative bg-gradient-to-br from-slate-900 to-gray-950 rounded-xl h-[500px] border-2 border-blue-500/30 overflow-hidden">
+                    <div className="relative bg-gradient-to-br from-slate-900 to-gray-950 rounded-xl h-[500px] border-2 border-red-500/30 overflow-hidden">
                       {trackingRoutes.length > 0 ? (
                         <TrackingMap
                           routes={trackingRoutes.map(r => ({
                             id: r.id,
-                            name: r.name || r.origin + ' → ' + r.destination,
+                            name: r.name || r.origin + ' ? ' + r.destination,
                             locations: r.locations || [],
                             status: (r.status === 'in_transit' || r.status === 'pending' || r.status === 'completed') 
                               ? r.status as 'in_progress' | 'pending' | 'completed'
@@ -814,7 +814,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                   {viewMode === 'list' && (
                     <div className="space-y-4">
                       {filteredVehicles.map(vehicle => (
-                        <div key={vehicle.id} className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 hover:border-blue-500/50 transition-colors">
+                        <div key={vehicle.id} className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 hover:border-red-500/50 transition-colors">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
                               <div className={`w-12 h-12 ${getStatusColor(vehicle.status)} rounded-xl flex items-center justify-center`}>
@@ -840,7 +840,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                             <div className="text-center">
                               <p className="text-slate-400">Temperature</p>
                               <p className={`font-bold ${vehicle.temperature > 90 ? 'text-red-400' : 'text-white'}`}>
-                                {vehicle.temperature}°C
+                                {vehicle.temperature}�C
                               </p>
                             </div>
                             <div className="text-center">
@@ -896,17 +896,17 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
                   {/* Selected Vehicle Details */}
                   {selectedVehicleId && selectedVehicle && (
-                    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-xl p-6 border-2 border-blue-500/30">
+                    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-xl p-6 border-2 border-red-500/30">
                       <div className="flex justify-between items-start mb-6">
                         <div>
-                          <h4 className="text-xl font-bold text-blue-400">Vehicle Diagnostics</h4>
+                          <h4 className="text-xl font-bold text-red-400">Vehicle Diagnostics</h4>
                           <p className="text-sm text-slate-400">Complete real-time analysis</p>
                         </div>
                         <button
                           onClick={() => setSelectedVehicleId(null)}
                           className="w-8 h-8 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors"
                         >
-                          ✕
+                          ?
                         </button>
                       </div>
 
@@ -958,12 +958,12 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                                 <div className="flex justify-between mb-1">
                                   <span className="text-xs text-slate-400">Engine Temperature</span>
                                   <span className={`text-xs font-bold ${selectedVehicle.temperature > 90 ? 'text-red-400' : 'text-emerald-400'}`}>
-                                    {selectedVehicle.temperature}°C
+                                    {selectedVehicle.temperature}�C
                                   </span>
                                 </div>
                                 <div className="w-full bg-slate-700 rounded-full h-1.5">
                                   <div
-                                    className={`h-1.5 rounded-full ${selectedVehicle.temperature > 90 ? 'bg-red-500' : 'bg-blue-500'}`}
+                                    className={`h-1.5 rounded-full ${selectedVehicle.temperature > 90 ? 'bg-red-500' : 'bg-red-500'}`}
                                     style={{ width: `${Math.min(100, selectedVehicle.temperature)}%` }}
                                   ></div>
                                 </div>
@@ -989,7 +989,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                         <div className="flex gap-3">
                           <button
                             onClick={() => alert('Contact driver functionality not yet implemented')}
-                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors"
+                            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm transition-colors"
                           >
                             Contact Driver
                           </button>
@@ -1134,7 +1134,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                     >
                       CALCULATE OPTIMIZED ROUTE
                       <div className="text-sm font-normal opacity-90 mt-1">
-                        Estimated savings: 20–30% on operational costs
+                        Estimated savings: 20�30% on operational costs
                       </div>
                     </button>
                   </div>
@@ -1145,14 +1145,14 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                       <h3 className="text-xl font-bold text-white">Routes in Progress</h3>
                       <div className="flex gap-2">
                         <button className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm">All</button>
-                        <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm">In Progress</button>
+                        <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm">In Progress</button>
                         <button className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm">Planned</button>
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       {routes.map(route => (
-                        <div key={route.id} className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-5 border border-slate-700 hover:border-blue-500/50 transition-all">
+                        <div key={route.id} className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-5 border border-slate-700 hover:border-red-500/50 transition-all">
                           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-5">
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-2">
@@ -1161,7 +1161,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                                 </span>
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                                   route.status === 'completed' ? 'bg-emerald-900/30 text-emerald-300' :
-                                  route.status === 'in_progress' ? 'bg-blue-900/30 text-blue-300' :
+                                  route.status === 'in_progress' ? 'bg-red-900/30 text-red-300' :
                                   route.status === 'delayed' ? 'bg-red-900/30 text-red-300' :
                                   'bg-slate-700 text-slate-300'
                                 }`}>
@@ -1171,9 +1171,9 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                                 </span>
                               </div>
                               <h5 className="font-bold text-white text-lg">
-                                {route.origin} → {route.destination}
+                                {route.origin} ? {route.destination}
                               </h5>
-                              <p className="text-sm text-slate-400">Vehicle: {route.assignedVehicle} · {route.stops.length} stops</p>
+                              <p className="text-sm text-slate-400">Vehicle: {route.assignedVehicle} � {route.stops.length} stops</p>
                             </div>
                             <div className="text-right">
                               <p className="text-2xl font-bold text-emerald-400">{route.savings}%</p>
@@ -1210,7 +1210,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                                 <div key={stop.id} className={`bg-slate-900/60 rounded-lg p-3 border ${stop.completed ? 'border-emerald-500/30' : 'border-slate-700'}`}>
                                   <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center gap-2">
-                                      <div className={`w-2 h-2 rounded-full ${stop.completed ? 'bg-emerald-500' : 'bg-blue-500'}`}></div>
+                                      <div className={`w-2 h-2 rounded-full ${stop.completed ? 'bg-emerald-500' : 'bg-red-500'}`}></div>
                                       <span className="text-sm font-medium text-white">{stop.type.toUpperCase()}</span>
                                     </div>
                                     <span className="text-xs text-slate-400">{stop.estimatedTime} min</span>
@@ -1226,7 +1226,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                             {route.status === 'planned' && (
                               <button
                                 onClick={() => handleStartRoute(route.id)}
-                                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-medium"
+                                className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-lg font-medium"
                               >
                                 Start Route
                               </button>
@@ -1263,7 +1263,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                       <h3 className="text-xl font-bold text-white">Zone Management</h3>
                       <p className="text-sm text-slate-400">Configure monitoring and restriction areas</p>
                     </div>
-                    <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg">
+                    <button className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-lg">
                       New Zone
                     </button>
                   </div>
@@ -1322,7 +1322,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 
                         <div className="mt-4 pt-4 border-t border-slate-700 flex gap-2">
                           <button className="flex-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded text-sm">Edit</button>
-                          <button className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm">Monitor</button>
+                          <button className="flex-1 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm">Monitor</button>
                         </div>
                       </div>
                     ))}
@@ -1378,7 +1378,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                       <TrackingMap
                         routes={trackingRoutes.map(r => ({
                           id: r.id,
-                          name: r.name || r.origin + ' → ' + r.destination,
+                          name: r.name || r.origin + ' ? ' + r.destination,
                           locations: r.locations || [],
                           status: r.status || 'pending'
                         }))}
@@ -1412,15 +1412,15 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                           onClick={() => setSelectedTrackingRoute(route.id)}
                           className={`p-4 rounded-lg border cursor-pointer transition-all ${
                             selectedTrackingRoute === route.id
-                              ? 'bg-blue-600/20 border-blue-500'
+                              ? 'bg-red-600/20 border-red-500'
                               : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700 hover:border-slate-600'
                           }`}
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-2">
-                                <MapPin size={16} className="text-blue-400" />
-                                <p className="font-medium text-white">{route.origin} → {route.destination}</p>
+                                <MapPin size={16} className="text-red-400" />
+                                <p className="font-medium text-white">{route.origin} ? {route.destination}</p>
                               </div>
                               <p className="text-xs text-slate-400 mt-1">ID: {route.id}</p>
                               <div className="flex gap-4 mt-2">
@@ -1429,7 +1429,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                                 </span>
                                 <span className={`text-xs px-2 py-1 rounded ${
                                   route.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' :
-                                  route.status === 'in_progress' ? 'bg-blue-500/20 text-blue-400' :
+                                  route.status === 'in_progress' ? 'bg-red-500/20 text-red-400' :
                                   'bg-amber-500/20 text-amber-400'
                                 }`}>
                                   {route.status}
@@ -1520,7 +1520,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                             </div>
                             <div className="w-full bg-slate-700 rounded-full h-2">
                               <div
-                                className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500"
+                                className="h-2 rounded-full bg-gradient-to-r from-red-500 to-emerald-500"
                                 style={{ width: `${Math.min(100, (vehicle.odometer / 200000) * 100)}%` }}
                               ></div>
                             </div>
@@ -1535,7 +1535,7 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                         {[
                           { label: 'Speed', pct: 45, color: 'bg-red-500' },
                           { label: 'Zones', pct: 30, color: 'bg-amber-500' },
-                          { label: 'Maintenance', pct: 15, color: 'bg-blue-500' },
+                          { label: 'Maintenance', pct: 15, color: 'bg-red-500' },
                           { label: 'Other', pct: 10, color: 'bg-purple-500' },
                         ].map(({ label, pct, color }) => (
                           <div key={label}>
@@ -1571,15 +1571,15 @@ const LiveTrackingRouteOptimization: React.FC = () => {
                       </div>
                       <div className="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                            <span className="text-xs font-bold text-blue-400">OPT</span>
+                          <div className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
+                            <span className="text-xs font-bold text-red-400">OPT</span>
                           </div>
                           <div>
                             <p className="font-medium text-white">Route Optimization</p>
                             <p className="text-sm text-slate-400">Potential additional savings: 12%</p>
                           </div>
                         </div>
-                        <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm">
+                        <button className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-sm">
                           Optimize
                         </button>
                       </div>
@@ -1596,4 +1596,5 @@ const LiveTrackingRouteOptimization: React.FC = () => {
 };
 
 export default LiveTrackingRouteOptimization;
+
 

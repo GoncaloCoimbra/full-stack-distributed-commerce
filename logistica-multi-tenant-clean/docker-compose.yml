@@ -18,6 +18,21 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7
+    container_name: logistica-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - logistica-network
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   backend:
     build:
       context: ./backend-nest
@@ -25,6 +40,7 @@ services:
     container_name: logistica-backend
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/logistica
+      REDIS_URL: redis://redis:6379
       JWT_SECRET: replace-with-a-secure-random-secret
       PORT: 3000
       NODE_ENV: development
@@ -33,8 +49,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL","node -e \"require('http').get('http://localhost:3000/api/health', res => process.exit(res.statusCode===200?0:1)).on('error',()=>process.exit(1))\""]
+      test: ["CMD-SHELL","node -e \"require('http').get('http://localhost:3000/health', res => process.exit(res.statusCode===200?0:1)).on('error',()=>process.exit(1))\""]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -63,6 +81,7 @@ services:
 
 volumes:
   postgres_data:
+  redis_data:
 
 networks:
   logistica-network:

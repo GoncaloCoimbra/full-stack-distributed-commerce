@@ -137,7 +137,7 @@ const RouteSimulator: React.FC<RouteSimulatorProps> = ({
         </div>
         <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full transition-all duration-300"
+            className="h-full bg-gradient-to-r from-red-500 to-emerald-500 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -150,7 +150,7 @@ const RouteSimulator: React.FC<RouteSimulatorProps> = ({
           className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
             simulation.isPlaying
               ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
-              : 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30'
+              : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
           }`}
         >
           {simulation.isPlaying ? (
@@ -180,7 +180,7 @@ const RouteSimulator: React.FC<RouteSimulatorProps> = ({
         <select
           value={simulation.speed}
           onChange={e => setSimulation(prev => ({ ...prev, speed: Number(e.target.value) }))}
-          className="px-2 py-2 rounded-lg text-sm bg-slate-700 text-slate-300 border border-slate-600 focus:border-blue-500 focus:outline-none"
+          className="px-2 py-2 rounded-lg text-sm bg-slate-700 text-slate-300 border border-slate-600 focus:border-red-500 focus:outline-none"
         >
           <option value={0.5}>0.5x</option>
           <option value={1}>1x</option>
@@ -206,3 +206,4 @@ const RouteSimulator: React.FC<RouteSimulatorProps> = ({
 };
 
 export default RouteSimulator;
+
