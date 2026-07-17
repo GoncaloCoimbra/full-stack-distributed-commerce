@@ -7,6 +7,7 @@ import fastifyMultipart from '@fastify/multipart';
 import fastifyStatic from '@fastify/static';
 import { createServer } from 'http';
 import WebSocket, { WebSocketServer } from 'ws';
+import Redis from 'ioredis';
 import { publishPortfolioEvent } from './redisClient';
 import { ChatOpsEngine } from './chatOpsEngine';
 import { prisma } from './prismaClient';
@@ -17,7 +18,7 @@ const WS_PORT = Number(process.env.WS_PORT || 9001);
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
-const fastify = Fastify({ logger: false });
+export const fastify = Fastify({ logger: false });
 fastify.register(fastifyCors, {
   origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
   credentials: true,
@@ -147,6 +148,7 @@ const registerConnection = (ws: WebSocket, channelId: string, userId: string) =>
   set.add(ws);
   activeConnections.set(channelId, set);
   connectionMeta.set(ws, { userId, channelId });
+  console.log(`[WS] subscribe channel=${channelId} user=${userId} active=${set.size}`);
   publishToChannel(channelId, {
     type: 'presence',
     channelId,
@@ -159,6 +161,7 @@ const removeConnection = (ws: WebSocket) => {
   if (!meta || !meta.channelId) return;
   const set = activeConnections.get(meta.channelId);
   if (set) { set.delete(ws); }
+  console.log(`[WS] unsubscribe channel=${meta.channelId} user=${meta.userId} active=${set?.size ?? 0}`);
   publishToChannel(meta.channelId, {
     type: 'presence',
     channelId: meta.channelId,
@@ -167,7 +170,59 @@ const removeConnection = (ws: WebSocket) => {
   connectionMeta.delete(ws);
 };
 
-fastify.get('/health', async () => ({ ok: true }));
+fastify.get('/health', async () => {
+  const redisHealth = await checkRedisHealth();
+  return {
+    ok: true,
+    db: process.env.SKIP_PRISMA
+      ? { enabled: false, status: 'skipped' }
+      : { enabled: true, status: 'connected' },
+    redis: redisHealth,
+    websocket: WS_PORT ? 'enabled' : 'disabled',
+    timestamp: new Date().toISOString(),
+  };
+});
+
+async function checkRedisHealth() {
+  const redisUrl = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+  const configured = Boolean(process.env.REDIS_URL);
+  const health = {
+    configured,
+    connected: false,
+    source: 'redis',
+    latencyMs: null as number | null,
+    error: null as string | null,
+  };
+
+  if (process.env.DISABLE_REDIS === 'true') {
+    health.error = 'disabled';
+    return health;
+  }
+
+  const redis = new Redis(redisUrl, {
+    lazyConnect: true,
+    maxRetriesPerRequest: 1,
+    enableOfflineQueue: false,
+  });
+
+  try {
+    const start = Date.now();
+    await redis.connect();
+    const result = await redis.ping();
+    health.connected = result === 'PONG';
+    health.latencyMs = Date.now() - start;
+  } catch (error) {
+    health.error = String(error instanceof Error ? error.message : error);
+  } finally {
+    try {
+      await redis.disconnect();
+    } catch {
+      // ignore disconnect failures
+    }
+  }
+
+  return health;
+}
 
 fastify.get('/history', async (request, reply) => {
   const query = request.query as { channelId?: string; before?: string };
@@ -211,7 +266,7 @@ const wss = new WebSocketServer({ server: httpServer });
 
 let hasStarted = false;
 
-async function startServer() {
+export async function startServer() {
   if (hasStarted) return;
   hasStarted = true;
 
@@ -243,7 +298,32 @@ async function startServer() {
   }
 }
 
-startServer();
+export async function stopServer() {
+  if (!hasStarted) return;
+  hasStarted = false;
+
+  try {
+    await fastify.close();
+  } catch {
+    // ignore close errors
+  }
+
+  try {
+    wss.close();
+  } catch {
+    // ignore close errors
+  }
+
+  try {
+    httpServer.close();
+  } catch {
+    // ignore close errors
+  }
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  void startServer();
+}
 
 wss.on('connection', (ws: WebSocket, req) => {
   const rawAuth = req.headers.authorization;
@@ -255,6 +335,7 @@ wss.on('connection', (ws: WebSocket, req) => {
   // provided token is missing or invalid to avoid silently allowing
   // unauthenticated access under the 'anon' identity.
   if (!userId) {
+    console.warn('[WS] rejected connection: invalid token');
     try {
       ws.close(4001, 'invalid token');
     } catch (err) {
@@ -263,6 +344,7 @@ wss.on('connection', (ws: WebSocket, req) => {
     return;
   }
 
+  console.log(`[WS] connection accepted user=${userId}`);
   connectionMeta.set(ws, { userId });
 
   ws.on('message', async (raw: WebSocket.RawData) => {
@@ -271,11 +353,13 @@ wss.on('connection', (ws: WebSocket, req) => {
       const data = JSON.parse(msgStr);
       if (data.type === 'subscribe' && data.channelId) {
         const effectiveUserId = data.userId || connectionMeta.get(ws)?.userId || 'anon';
+        console.log(`[WS] subscribe request user=${effectiveUserId} channel=${data.channelId}`);
         registerConnection(ws, data.channelId, effectiveUserId);
         return;
       }
 
       if (data.type === 'ping') {
+        console.log(`[WS] ping from user=${connectionMeta.get(ws)?.userId ?? 'anon'}`);
         ws.send(JSON.stringify({ type: 'pong', ts: Date.now() }));
         return;
       }
@@ -302,6 +386,7 @@ wss.on('connection', (ws: WebSocket, req) => {
 
       if (data.type === 'message' && data.channelId && data.text) {
         const userId = data.userId || connectionMeta.get(ws)?.userId || 'anon';
+        console.log(`[WS] message user=${userId} channel=${data.channelId} text=${data.text}`);
         const message: ChatMessage = {
           id: data.tempId || `msg-${Date.now()}-${Math.random().toString(36).slice(2)}`,
           tempId: data.tempId,
@@ -327,6 +412,7 @@ wss.on('connection', (ws: WebSocket, req) => {
 
         const cmdReply = await ChatOpsEngine.handleCommand(data.text, userId);
         if (cmdReply) {
+          console.log(`[ChatOps] command reply user=${userId} channel=${data.channelId} reply=${cmdReply}`);
           const systemMessage: ChatMessage = {
             id: `system-${Date.now()}-${Math.random().toString(36).slice(2)}`,
             channelId: data.channelId,
@@ -349,28 +435,30 @@ wss.on('connection', (ws: WebSocket, req) => {
   ws.on('error', () => { removeConnection(ws); });
 });
 
-void (async () => {
-  try {
-    const redis = new (require('ioredis').default)(process.env.REDIS_URL || 'redis://127.0.0.1:6379', {
-      lazyConnect: true,
-      maxRetriesPerRequest: 1,
-      enableOfflineQueue: false,
-      reconnectOnError: () => false,
-    });
-    redis.on('error', () => undefined);
-    await redis.psubscribe('channel:*');
-    redis.on('pmessage', (_pattern: string, channel: string, message: string) => {
-      const channelId = channel.replace('channel:', '');
-      try {
-        const payload = JSON.parse(message);
-        broadcastToChannel(channelId, payload);
-      } catch (err) {
-        console.warn('Invalid pubsub payload', err);
-      }
-    });
-  } catch {
-    // Ignore Redis subscription errors in local/test environments.
-  }
-})();
+if (process.env.NODE_ENV !== 'test') {
+  void (async () => {
+    try {
+      const redis = new (require('ioredis').default)(process.env.REDIS_URL || 'redis://127.0.0.1:6379', {
+        lazyConnect: true,
+        maxRetriesPerRequest: 1,
+        enableOfflineQueue: false,
+        reconnectOnError: () => false,
+      });
+      redis.on('error', () => undefined);
+      await redis.psubscribe('channel:*');
+      redis.on('pmessage', (_pattern: string, channel: string, message: string) => {
+        const channelId = channel.replace('channel:', '');
+        try {
+          const payload = JSON.parse(message);
+          broadcastToChannel(channelId, payload);
+        } catch (err) {
+          console.warn('Invalid pubsub payload', err);
+        }
+      });
+    } catch {
+      // Ignore Redis subscription errors in local/test environments.
+    }
+  })();
 
-console.log('ChatOps server initialized');
+  console.log('ChatOps server initialized');
+}

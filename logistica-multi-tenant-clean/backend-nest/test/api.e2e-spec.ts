@@ -1,17 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
+import { createApp } from './../src/main';
 import { AppModule } from './../src/app.module';
 
 describe('API Health Checks - E2E', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
+    app = await createApp();
     await app.init();
   });
 
@@ -20,11 +17,26 @@ describe('API Health Checks - E2E', () => {
   });
 
   describe('GET /api', () => {
-    it('should return 200 OK from health endpoint', async () => {
+    it('should return 200 OK from root endpoint', async () => {
       const response = await request(app.getHttpServer()).get('/api');
 
       expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty('message');
+      expect(response.text).toBe('Hello World!');
+    });
+  });
+
+  describe('GET /health', () => {
+    it('should return 200 OK and health metadata', async () => {
+      const response = await request(app.getHttpServer()).get('/health');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('status', 'ok');
+      expect(response.body).toHaveProperty('database');
+      expect(response.body).toHaveProperty('redis');
+      expect(response.body.database).toHaveProperty('configured');
+      expect(response.body.database).toHaveProperty('connected');
+      expect(response.body.redis).toHaveProperty('configured');
+      expect(response.body.redis).toHaveProperty('connected');
     });
   });
 

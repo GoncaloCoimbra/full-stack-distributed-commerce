@@ -219,7 +219,7 @@ const Dashboard: React.FC = () => {
   const handleExportReport = () => {
     if (!stats || stats.totalProducts === 0) { alert('No date to export'); return; }
     const csv = [
-      ['Performance Report - LogiSphere Logística'],
+      ['Performance Report - Tranzor Logística'],
       ['Date', new Date().toLocaleDateString('en-US')],
       [''],
       ['GENERAL SUMMARY'],

@@ -26,6 +26,7 @@ import { getAllowedOrigins } from './cors';
 import { requestIdMiddleware } from '../utils/handlers';
 import { getMetricsSnapshot, metricsMiddleware } from '../utils/metrics';
 import { getCacheStatus } from '../utils/cache';
+import { getDatabaseStatus } from './db';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from '../docs/swagger';
 import feedsRoutes from '../routes/feeds';
@@ -119,23 +120,27 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Health check
 app.get('/health', async (req, res) => {
 	const redis = await getCacheStatus();
+	const database = getDatabaseStatus();
 
 	res.json({
 		status: 'OK',
 		timestamp: new Date().toISOString(),
 		environment: process.env.NODE_ENV || 'development',
+		database,
 		redis,
 	});
 });
 
 app.get('/api/v1/health', async (req, res) => {
 	const redis = await getCacheStatus();
+	const database = getDatabaseStatus();
 
 	res.json({
 		status: 'healthy',
 		timestamp: new Date().toISOString(),
 		uptime: process.uptime(),
 		environment: process.env.NODE_ENV || 'development',
+		database,
 		redis,
 	});
 });

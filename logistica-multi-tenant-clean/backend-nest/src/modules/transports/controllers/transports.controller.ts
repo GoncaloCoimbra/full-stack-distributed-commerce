@@ -19,6 +19,7 @@ import {
 import { TransportsService } from '../transports.service';
 import { CreateTransportDto } from '../dto/create-transport.dto';
 import { UpdateTransportDto } from '../dto/update-transport.dto';
+import { AddTransportProductDto } from '../dto/add-transport-product.dto';
 import { FilterTransportDto } from '../dto/filter-transport.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
@@ -61,6 +62,38 @@ export class TransportsController {
     );
 
     this.logger.log(` Transport criado: ${result.id}`);
+    this.logger.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+
+    return result;
+  }
+
+  @Post(':id/add-product')
+  @Roles(Role.ADMIN, Role.OPERATOR, Role.SUPER_ADMIN)
+  async addProduct(
+    @Param('id') id: string,
+    @Body() addProductDto: AddTransportProductDto,
+    @Request() req,
+  ) {
+    const user = req.user;
+    this.logger.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    this.logger.log(`📥 POST /transports/${id}/add-product`);
+    this.logger.log(`👤 User: ${user.email} (${user.role})`);
+
+    const companyId = user.companyId;
+    if (!companyId) {
+      this.logger.error(' CompanyId não encontrado');
+      throw new HttpException('CompanyId obrigatório', HttpStatus.BAD_REQUEST);
+    }
+
+    const result = await this.transportsService.addProduct(
+      id,
+      addProductDto.productId,
+      addProductDto.quantity ?? 1,
+      companyId,
+      user.id,
+    );
+
+    this.logger.log(` Product added to transport: ${result.id}`);
     this.logger.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 
     return result;

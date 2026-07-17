@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage, translateText, TRANSLATIONS } from '../../i18n';
+import { SITE_FULL_NAME } from '../../site.config';
 
 const UnifiedFooter: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +12,7 @@ const UnifiedFooter: React.FC = () => {
   return (
     <footer className="layout-footer">
       <div className="footer-content">
-        <p>&copy; {currentYear} LogiSphere Logística. Todos os direitos reservados.</p>
+        <p>&copy; {currentYear} {SITE_FULL_NAME}. Todos os direitos reservados.</p>
         <div className="footer-links">
           <Link to="/privacy-policy">{t('footerPrivacy')}</Link>
           <span className="divider">•</span>

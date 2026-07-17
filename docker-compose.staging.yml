@@ -2,7 +2,22 @@ services:
   backend:
     environment:
       NODE_ENV: staging
-      PORT: 3001
+      PORT: 3101
+      APP_SHUTDOWN_TIMEOUT_MS: 10000
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://${POSTGRES_USER:-tranzor_app}:${POSTGRES_PASSWORD:-TranzorAppPass2026}@postgres_Tranzor:5432/${POSTGRES_DB:-tranzor}}
+      CLICKHOUSE_HTTP_URL: ${CLICKHOUSE_HTTP_URL:-http://clickhouse:8123}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:-default}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-}
     ports:
       - "3101:3001"
-    restart: unless-stopped
+    depends_on:
+      postgres_Tranzor:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy

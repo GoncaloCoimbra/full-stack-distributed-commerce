@@ -16,6 +16,9 @@
     "status:all": "docker compose ps",
     "logs:all": "docker compose logs -f",
     "validate:deploy": "docker compose config",
+    "start:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml up -d",
+    "stop:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml down",
+    "validate:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml config",
     "test:all": "npm run chatops:test && npm run logistica:test"
   },
   "dependencies": {

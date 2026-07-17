@@ -6,6 +6,22 @@ import { INestApplication } from '@nestjs/common';
 const prisma = new PrismaClient();
 const describeOrSkip = process.env.DATABASE_URL ? describe : describe.skip;
 
+async function createSupplier(server: any, token: string, ts: number) {
+  const numericNif = String(ts % 1000000000).padStart(9, '0');
+  const response = await request(server)
+    .post('/api/suppliers')
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      name: `Supplier ${ts}`,
+      nif: numericNif,
+      email: `supplier.${ts}@example.com`,
+      phone: '+351912345678',
+    });
+
+  expect(response.status).toBe(201);
+  return response.body.id;
+}
+
 describeOrSkip('Registration e2e', () => {
   let app: INestApplication;
   let server: any;
@@ -49,6 +65,8 @@ describeOrSkip('Registration e2e', () => {
     companyId = res.body.user.companyId;
 
     // Create a product using the token
+    const supplierId = await createSupplier(server, token, ts + 1);
+
     const createProduct = await request(server)
       .post('/api/products')
       .set('Authorization', `Bearer ${token}`)
@@ -57,6 +75,7 @@ describeOrSkip('Registration e2e', () => {
         description: 'Product e2e',
         quantity: 1,
         unit: 'pcs',
+        supplierId,
       });
 
     expect(createProduct.status).toBe(201);
@@ -82,9 +101,9 @@ describeOrSkip('Registration e2e', () => {
       .set('Authorization', `Bearer ${token}`);
 
     expect(movements.status).toBe(200);
-    expect(Array.isArray(movements.body)).toBe(true);
-    expect(movements.body.some((m: any) => m.newStatus === 'IN_ANALYSIS')).toBe(
-      true,
-    );
+    expect(Array.isArray(movements.body.movements)).toBe(true);
+    expect(
+      movements.body.movements.some((m: any) => m.newStatus === 'IN_ANALYSIS'),
+    ).toBe(true);
   }, 30000);
 });

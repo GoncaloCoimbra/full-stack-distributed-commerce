@@ -80,13 +80,15 @@ export class VehiclesService {
 
       try {
         year = Number(data.year);
-        if (isNaN(year) || year < 1900 || year > new data().getFullYear() + 1) {
+        const currentYear = new Date().getFullYear();
+        if (isNaN(year) || year < 1900 || year > currentYear + 1) {
           throw new Error('Invalid year');
         }
       } catch (error) {
         this.logger.error(`? Invalid year: ${data.year}`);
+        const currentYear = new Date().getFullYear();
         throw new BadRequestException(
-          `Year must be between 1900 and ${new data().getFullYear() + 1}`,
+          `Year must be between 1900 and ${currentYear + 1}`,
         );
       }
 

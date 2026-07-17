@@ -45,6 +45,15 @@ const connectDB = async (): Promise<void> => {
 	}
 };
 
+export function getDatabaseStatus() {
+	const configured = Boolean(env.DATABASE_URL);
+	return {
+		configured,
+		connected: configured ? dbConnected || mongoose.connection.readyState === 1 : false,
+		source: 'mongodb',
+	};
+}
+
 export { dbConnected };
 
 export default connectDB;

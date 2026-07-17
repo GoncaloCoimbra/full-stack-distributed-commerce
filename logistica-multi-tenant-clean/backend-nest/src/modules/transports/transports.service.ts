@@ -534,6 +534,108 @@ export class TransportsService {
     return transport;
   }
 
+  async addProduct(
+    transportId: string,
+    productId: string,
+    quantity: number,
+    companyId: string,
+    userId: string,
+  ) {
+    this.logger.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    this.logger.log(`📥 Adding product to transport ${transportId}`);
+    this.logger.log(`📦 Product: ${productId} quantity: ${quantity}`);
+
+    const transport = await this.findOne(transportId, companyId);
+
+    if (transport.status !== TransportStatus.PENDING) {
+      throw new BadRequestException(
+        `Cannot add products to transport in status ${transport.status}. Only PENDING transports can be modified.`,
+      );
+    }
+
+    const product = await this.prisma.product.findFirst({
+      where: {
+        id: productId,
+        companyId,
+      },
+    });
+
+    if (!product) {
+      throw new NotFoundException(`Product ${productId} not found`);
+    }
+
+    if (product.quantity < quantity) {
+      throw new BadRequestException(
+        `Insufficient stock for product ${product.internalCode}. Requested ${quantity}, available ${product.quantity}.`,
+      );
+    }
+
+    const updatedTransport = await this.prisma.$transaction(async (tx) => {
+      await tx.transportProduct.create({
+        data: {
+          transportId,
+          productId,
+          quantity,
+        },
+      });
+
+      await tx.product.update({
+        where: { id: productId },
+        data: {
+          status: ProductStatus.DISPATCHED,
+          quantity: {
+            decrement: quantity,
+          },
+        },
+      });
+
+      await tx.productMovement.create({
+        data: {
+          productId,
+          previousStatus: ProductStatus.IN_STORAGE,
+          newStatus: ProductStatus.DISPATCHED,
+          quantity,
+          location: transport.origin,
+          reason: `Adicionado ao transport ${transport.internalCode}`,
+          userId,
+        },
+      });
+
+      await tx.vehicle.update({
+        where: { id: transport.vehicleId },
+        data: { status: VehicleStatus.in_use },
+      });
+
+      return tx.transport.findFirst({
+        where: { id: transportId },
+        include: {
+          vehicle: true,
+          company: true,
+          products: {
+            include: {
+              product: {
+                include: {
+                  supplier: true,
+                },
+              },
+            },
+          },
+        },
+      });
+    });
+
+    if (!updatedTransport) {
+      throw new InternalServerErrorException(
+        'Failed to add product to transport',
+      );
+    }
+
+    this.logger.log(`✅ Product added to transport ${transportId}`);
+    this.logger.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+
+    return updatedTransport;
+  }
+
   async update(
     id: string,
     data: UpdateTransportDto,

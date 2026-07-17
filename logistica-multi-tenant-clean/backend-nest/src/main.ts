@@ -131,20 +131,12 @@ export async function createApp(): Promise<NestExpressApplication> {
   });
   logger.log('📁 Pasta de uploads configurada: /uploads/');
 
-  // Ensure a public /health endpoint is always available (bypass guards/prefix)
-  try {
-    const httpAdapter = app.getHttpAdapter().getInstance();
-    // express-style API
-    if (httpAdapter && typeof httpAdapter.get === 'function') {
-      httpAdapter.get('/health', (_req, res) => res.json({ status: 'ok' }));
-      logger.log('🔎 Public /health route registered');
-    }
-  } catch (e) {
-    logger.warn('Could not register raw /health route', e?.message || e);
-  }
-
   const redisSubscriber = new LogisticsRedisSubscriber();
-  await redisSubscriber.start();
+  if (process.env.NODE_ENV !== 'test') {
+    await redisSubscriber.start();
+  } else {
+    logger.log('⚠️ Skipping Redis subscriber initialization in test environment');
+  }
 
   // INITIALIZATION LOGS (just information — `listen` is controlled by the caller)
   logger.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');

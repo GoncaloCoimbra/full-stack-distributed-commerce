@@ -6,6 +6,22 @@ import { INestApplication } from '@nestjs/common';
 const prisma = new PrismaClient();
 const describeOrSkip = process.env.DATABASE_URL ? describe : describe.skip;
 
+async function createSupplier(server: any, token: string, ts: number) {
+  const numericNif = String(ts % 1000000000).padStart(9, '0');
+  const response = await request(server)
+    .post('/api/suppliers')
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      name: `Supplier ${ts}`,
+      nif: numericNif,
+      email: `supplier.${ts}@example.com`,
+      phone: '+351912345678',
+    });
+
+  expect(response.status).toBe(201);
+  return response.body.id;
+}
+
 describeOrSkip('Transports e2e', () => {
   let app: INestApplication;
   let server: any;
@@ -36,6 +52,8 @@ describeOrSkip('Transports e2e', () => {
     token = res.body.token;
     companyId = res.body.user.companyId;
 
+    const supplierId = await createSupplier(server, token, ts + 1);
+
     // create a product
     const p = await request(server)
       .post('/api/products')
@@ -45,6 +63,7 @@ describeOrSkip('Transports e2e', () => {
         description: 'Transport product',
         quantity: 1,
         unit: 'pcs',
+        supplierId,
       });
 
     productId = p.body.id;
@@ -93,8 +112,7 @@ describeOrSkip('Transports e2e', () => {
         estimatedArrival: new Date(Date.now() + 24 * 3600 * 1000)
           .toISOString()
           .slice(0, 10),
-        totalWeight: 10,
-        products: [{ productId, quantity: 1 }],
+        totalWeight: 0,
       });
 
     expect(createTransport.status).toBe(201);
@@ -104,23 +122,29 @@ describeOrSkip('Transports e2e', () => {
     const addRes = await request(server)
       .post(`/api/transports/${transportId}/add-product`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ productId });
+      .send({ productId, quantity: 1 });
 
-    expect(addRes.status).toBe(200);
+    expect(addRes.status).toBe(201);
 
     // mark transport as IN_TRANSIT
     const inTransit = await request(server)
       .patch(`/api/transports/${transportId}/status`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ newStatus: 'IN_TRANSIT' });
+      .send({ status: 'IN_TRANSIT' });
 
     expect(inTransit.status).toBe(200);
 
-    // mark delivered
+    const arrived = await request(server)
+      .patch(`/api/transports/${transportId}/status`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({ status: 'ARRIVED' });
+
+    expect(arrived.status).toBe(200);
+
     const delivered = await request(server)
       .patch(`/api/transports/${transportId}/status`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ newStatus: 'DELIVERED' });
+      .send({ status: 'DELIVERED' });
 
     expect(delivered.status).toBe(200);
 

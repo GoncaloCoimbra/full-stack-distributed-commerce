@@ -14,6 +14,7 @@ export class ChatOpsEngine {
         const sku = args[0];
         if (!sku) return '❗ Especifica um SKU: /stock [sku]';
 
+        console.log(`[ChatOpsEngine] executing /stock sku=${sku} logisticsUrl=${LOGISTICS_URL}`);
         try {
           const response = await fetch(`${LOGISTICS_URL}/api/products/stock?sku=${encodeURIComponent(sku)}`);
           const data = await response.json().catch(() => null);
@@ -34,18 +35,23 @@ export class ChatOpsEngine {
           try {
             await publishPortfolioEvent('portfolio:stock-sync', JSON.stringify(eventPayload));
           } catch (redisError: any) {
-            console.warn('[chatops] Redis publish failed, continuing anyway:', redisError?.message || redisError);
+            console.warn('[ChatOpsEngine] Redis publish failed, continuing anyway:', redisError?.message || redisError);
           }
 
-          return `📦 Stock real via Logistics: ${data?.description || sku} tem ${data?.stock ?? 'N/A'} unidades.`;
+          const result = `📦 Stock real via Logistics: ${data?.description || sku} tem ${data?.stock ?? 'N/A'} unidades.`;
+          console.log(`[ChatOpsEngine] /stock result user=${userId} sku=${sku} response=${result}`);
+          return result;
         } catch (error: any) {
-          return `❌ SKU ${sku} não encontrado ou logística indisponível: ${error.message}`;
+          const message = `❌ SKU ${sku} não encontrado ou logística indisponível: ${error.message}`;
+          console.warn(`[ChatOpsEngine] /stock failed user=${userId} sku=${sku} error=${error?.message}`);
+          return message;
         }
       }
       case '/approve-credit': {
         const companyId = args[0];
         if (!companyId) return '❗ Especifica um id de empresa: /approve-credit [id_empresa]';
 
+        console.log(`[ChatOpsEngine] executing /approve-credit companyId=${companyId}`);
         try {
           await prisma.b2BClient.update({
             where: { id: companyId },
@@ -53,6 +59,7 @@ export class ChatOpsEngine {
           });
           return `✅ Crédito aprovado para empresa ${companyId}.`;
         } catch (error: any) {
+          console.warn(`[ChatOpsEngine] /approve-credit failed companyId=${companyId} error=${error?.message}`);
           return `❌ Não foi possível aprovar crédito para empresa ${companyId}: ${error?.message || 'erro desconhecido'}`;
         }
       }

@@ -189,7 +189,7 @@ const DashboardAdvanced: React.FC = () => {
       filterInfo.push(['Period', stats.period]);
     }
     const csvContent = [
-      ['Performance Report - LogiSphere Logística'],
+      ['Performance Report - Tranzor Logística'],
       ['Export Date', new Date().toLocaleDateString('en-GB')],
       [''], ['APPLIED FILTERS'], ...filterInfo,
       [''], ['GENERAL SUMMARY'],

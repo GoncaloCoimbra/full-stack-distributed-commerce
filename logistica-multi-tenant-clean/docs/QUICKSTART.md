@@ -60,7 +60,7 @@ npm run start-all
 - **Frontend**: http://localhost:5173 (Vite) or http://localhost:3000 (React Scripts)
 - **Backend**: http://localhost:3000 (with /api prefix)
 - **API Docs**: http://localhost:3000/api/docs (Swagger)
-- **Health Check**: http://localhost:3000/api/health
+- **Health Check**: http://localhost:3000/health
 
 You should see JSON: `{"status":"ok","timestamp":"..."}`
 

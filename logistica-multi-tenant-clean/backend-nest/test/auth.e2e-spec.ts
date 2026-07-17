@@ -1,3 +1,4 @@
+import { Test, TestingModule } from '@nestjs/testing';
 import request from 'supertest';
 import { createApp } from '../src/main';
 import { INestApplication } from '@nestjs/common';
@@ -5,6 +6,21 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 const describeOrSkip = process.env.DATABASE_URL ? describe : describe.skip;
+
+async function createSupplier(server: any, token: string, ts: number) {
+  const response = await request(server)
+    .post('/api/suppliers')
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      name: `Supplier ${ts}`,
+      nif: `NIF${ts}`,
+      email: `supplier.${ts}@example.com`,
+      phone: '+351912345678',
+    });
+
+  expect(response.status).toBe(201);
+  return response.body.id;
+}
 
 describeOrSkip('Auth e2e: refresh/revoke', () => {
   let app: INestApplication;
@@ -104,6 +120,10 @@ describeOrSkip('Multi-tenant isolation', () => {
     company2Token = reg2.body.token;
     company1Id = reg1.body.user.companyId;
     company2Id = reg2.body.user.companyId;
+
+    const supplier1Id = await createSupplier(server, company1Token, ts + 1);
+    const supplier2Id = await createSupplier(server, company2Token, ts + 2);
+    (global as any).companySupplierIds = { supplier1Id, supplier2Id };
   }, 20000);
 
   afterAll(async () => {
@@ -131,6 +151,7 @@ describeOrSkip('Multi-tenant isolation', () => {
         description: 'Product 1',
         quantity: 10,
         unit: 'pcs',
+        supplierId: (global as any).companySupplierIds.supplier1Id,
       });
 
     expect(product1.status).toBe(201);
@@ -145,6 +166,7 @@ describeOrSkip('Multi-tenant isolation', () => {
         description: 'Product 2',
         quantity: 20,
         unit: 'pcs',
+        supplierId: (global as any).companySupplierIds.supplier2Id,
       });
 
     expect(product2.status).toBe(201);

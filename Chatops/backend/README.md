@@ -1,6 +1,6 @@
 # ChatOps backend
 
-Este README resume a execução local do backend do módulo ChatOps.
+Este README documenta o backend do módulo ChatOps, incluindo health checks, WebSocket e deployment.
 
 ## Quick start
 ```bash
@@ -16,24 +16,41 @@ cd Chatops/backend
 npm test
 ```
 
-## Variáveis de ambiente
+## Production / staging
+O backend pode ser executado em `NODE_ENV=staging` ou `NODE_ENV=production`.
+
+Exemplo:
+```bash
+NODE_ENV=staging PORT=3002 DATABASE_URL=postgresql://chatops:chatops@localhost:5432/chatops_db \ 
+REDIS_URL=redis://127.0.0.1:6379 WS_PORT=9001 npm start
+```
+
+### Variáveis de ambiente
 ```bash
 DATABASE_URL=postgresql://chatops:chatops@localhost:5432/chatops_db
 REDIS_URL=redis://127.0.0.1:6379
 PORT=3002
 WS_PORT=9001
+CORS_ORIGIN=http://localhost:5173
+NODE_ENV=development
 ```
 
-## CI
-Este backend é verificado automaticamente pelo workflow de GitHub Actions em `.github/workflows/chatops-backend.yml`.
+### Health check
+- `GET /health` — valida Redis, estado do WebSocket e retorna `ok: true`
 
-## Endpoints principais
-- GET /health
-- GET /history?channelId=<id>
-- GET /channels/:channelId/members
-- POST /upload
+### WebSocket
+- `ws://localhost:9001`
+- Autenticação: `Authorization: Bearer <token>` header
+- Fechamento de conexões inválidas: close code `4001`
+- Comandos suportados:
+  - `/stock [sku]`
+  - `/approve-credit [id_empresa]`
 
-## WebSocket
-- ws://localhost:9001
-- mensagens e presença por canal
-- comandos como /stock e /approve-credit
+## Deployment
+Este backend é verificado pelo workflow de GitHub Actions em `.github/workflows/chatops-backend.yml`.
+
+Para staging ou produção com Docker Compose, use o arquivo de compose relevante no diretório raiz do projeto.
+
+## Notes
+- O endpoint `/health` agora retorna metadata de Redis e do WebSocket.
+- O servidor registra eventos de conexão/desconexão, subscrição e comandos para facilitar a operação.

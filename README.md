@@ -4,15 +4,17 @@ Ecossistema integrado de três serviços em produção: **Commerce** (e-commerce
 
 **Stack:** 52k+ linhas TypeScript | React + NestJS + Fastify | Docker | Redis | PostgreSQL | Prisma
 
+> Consulte o plano de melhorias detalhado em [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) para as ações necessárias para atingir 8/10 em cada módulo.
+
 ---
 
 ## 📋 Componentes
 
 | Serviço | Descrição | Tech Stack | Status |
 |---------|-----------|-----------|--------|
-| **Commerce** | E-commerce com lock distribuído, checkout resiliente, rollback automático | Express/Node, Mongoose, Prisma, Redis | ✅ 8/10 |
-| **Logistics** | Sistema WMS/TMS multi-tenant, isolamento por empresa, RBAC | NestJS, React, Prisma, PostgreSQL | ✅ 8/10 |
-| **ChatOps** | Motor de comunicação em tempo real, comandos operacionais, autenticação por token | Fastify, WebSocket, Redis pub/sub, React | ✅ 8/10 |
+| **Commerce** | E-commerce com lock distribuído, checkout resiliente, rollback automático | Express/Node, Mongoose, Prisma, Redis | ⚠ 7.5/10 (produção não totalmente validada) |
+| **Logistics** | Sistema WMS/TMS multi-tenant, isolamento por empresa, RBAC | NestJS, React, Prisma, PostgreSQL | ⚠ 7.5/10 (validação em cluster pendente) |
+| **ChatOps** | Motor de comunicação em tempo real, comandos operacionais, autenticação por token | Fastify, WebSocket, Redis pub/sub, React | ⚠ 7.0/10 (demo/integrado, falta maturidade de produto) |
 
 ---
 
@@ -136,6 +138,33 @@ npm test
 - ✅ `/approve-credit` ChatOps: aprovação de crédito com sucesso/falha
 - ✅ Token inválido no WebSocket: rejeição com close code 4001
 - ✅ Redis fallback não silencioso: erro em produção se variável indefinida
+
+---
+
+## 🧭 Roadmap para atingir 8/10
+Este projeto tem uma base técnica sólida, mas cada módulo precisa de melhorias específicas para ser considerado 8/10 em maturidade e produção.
+
+### Commerce
+- Completar validação de produção real em ambiente de staging ou cluster.
+- Adicionar observabilidade e métricas (logs estruturados, health checks aprimorados, alertas).
+- Documentar deployment de produção e ambiente seguro.
+- Criar testes E2E para os fluxos críticos de checkout e rollback.
+
+### Logistics
+- Validar o `k8s/` em cluster real (minikube, Kind ou ambiente cloud leve).
+- Separar/limpar o código legado e histórico que não faz parte do fluxo ativo.
+- Adicionar testes de integração tenant-aware e RBAC automatizados.
+- Configurar monitoramento e alertas para isolamento de empresa e segurança.
+
+### ChatOps
+- Formalizar deployment em produção e operação do WebSocket.
+- Adicionar métricas e logs de uso do canal (presença, comandos, retries).
+- Implementar testes E2E que validem o fluxo ChatOps → Logistics.
+- Documentar de forma completa as variáveis de ambiente e dependências Redis/PostgreSQL.
+
+> Nota: esta seção reflete o estado atual do repositório e as ações necessárias para tornar a plataforma mais madura.
+>
+> Para ver o plano de melhoria completo com tarefas concretas e uso recomendado, consulte [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md).
 
 ---
 
