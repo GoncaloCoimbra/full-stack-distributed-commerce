@@ -8,13 +8,7 @@ Ecossistema integrado de três serviços em produção: **Commerce** (e-commerce
 
 ---
 
-## 📋 Componentes
 
-| Serviço | Descrição | Tech Stack | Status |
-|---------|-----------|-----------|--------|
-| **Commerce** | E-commerce com lock distribuído, checkout resiliente, rollback automático | Express/Node, Mongoose, Prisma, Redis | ⚠ 7.5/10 (produção não totalmente validada) |
-| **Logistics** | Sistema WMS/TMS multi-tenant, isolamento por empresa, RBAC | NestJS, React, Prisma, PostgreSQL | ⚠ 7.5/10 (validação em cluster pendente) |
-| **ChatOps** | Motor de comunicação em tempo real, comandos operacionais, autenticação por token | Fastify, WebSocket, Redis pub/sub, React | ⚠ 7.0/10 (demo/integrado, falta maturidade de produto) |
 
 ---
 
