@@ -175,7 +175,7 @@ jobs:
   # ============ CODE QUALITY ============
   code-quality:
     runs-on: ubuntu-latest
-    if: ${{ secrets.SONAR_TOKEN != '' }}
+    if: ${{ secrets.SONAR_TOKEN != '' && secrets.SONAR_PROJECT_KEY != '' && secrets.SONAR_ORGANIZATION != '' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -195,11 +195,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          # Provide Sonar project and organization via repo secrets:
-          # - SONAR_PROJECT_KEY
-          # - SONAR_ORGANIZATION
-          # If these are not set the job will be skipped because the job itself
-          # is gated by `if: ${{ secrets.SONAR_TOKEN != '' }}` above.
           projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
           organization: ${{ secrets.SONAR_ORGANIZATION }}
 
