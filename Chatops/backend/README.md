@@ -19,24 +19,28 @@ npm test
 ## Production / staging
 O backend pode ser executado em `NODE_ENV=staging` ou `NODE_ENV=production`.
 
-Exemplo:
+### Setup de staging
 ```bash
-NODE_ENV=staging PORT=3002 DATABASE_URL=postgresql://chatops:chatops@localhost:5432/chatops_db \ 
-REDIS_URL=redis://127.0.0.1:6379 WS_PORT=9001 npm start
+cp staging.env.example .env.staging
+npm run staging:validate
+npm run staging:start
 ```
 
 ### Variáveis de ambiente
 ```bash
-DATABASE_URL=postgresql://chatops:chatops@localhost:5432/chatops_db
+DATABASE_URL=postgresql://chatops:chatops@localhost:5434/chatops_db
 REDIS_URL=redis://127.0.0.1:6379
 PORT=3002
 WS_PORT=9001
 CORS_ORIGIN=http://localhost:5173
-NODE_ENV=development
+NODE_ENV=staging
+JWT_SECRET=change-me-in-staging
+LOGISTICS_URL=http://localhost:3000
 ```
 
-### Health check
-- `GET /health` — valida Redis, estado do WebSocket e retorna `ok: true`
+### Health check e observabilidade
+- `GET /health` — retorna readiness, Redis status, disponibilidade do WebSocket e um snapshot de runtime.
+- `GET /metrics` — expõe contadores de pedidos HTTP, conexões WebSocket, comandos executados e mensagens armazenadas.
 
 ### WebSocket
 - `ws://localhost:9001`

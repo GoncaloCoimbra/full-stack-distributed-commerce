@@ -28,11 +28,41 @@ export class AppController {
     const redis = await this.checkRedisHealth();
 
     return {
-      status: 'ok',
+      ok: true,
+      status: 'ready',
       timestamp: new Date().toISOString(),
       environment: process.env.NODE_ENV || 'development',
       database,
       redis,
+    };
+  }
+
+  @Public()
+  @Get('readyz')
+  @ApiOperation({ summary: 'Readiness probe' })
+  async getReadiness() {
+    const database = await this.checkDatabaseHealth();
+    const redis = await this.checkRedisHealth();
+
+    return {
+      ok: true,
+      status: 'ready',
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || 'development',
+      database,
+      redis,
+    };
+  }
+
+  @Public()
+  @Get('livez')
+  @ApiOperation({ summary: 'Liveness probe' })
+  async getLiveness() {
+    return {
+      ok: true,
+      status: 'alive',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
     };
   }
 

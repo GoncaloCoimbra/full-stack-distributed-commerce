@@ -8,6 +8,7 @@ import fastifyStatic from '@fastify/static';
 import { createServer } from 'http';
 import WebSocket, { WebSocketServer } from 'ws';
 import Redis from 'ioredis';
+import client from 'prom-client';
 import { publishPortfolioEvent } from './redisClient';
 import { ChatOpsEngine } from './chatOpsEngine';
 import { prisma } from './prismaClient';
@@ -18,9 +19,19 @@ const WS_PORT = Number(process.env.WS_PORT || 9001);
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
+const allowedCorsOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:3006')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 export const fastify = Fastify({ logger: false });
+fastify.addHook('onReady', () => {
+  if (!startupError) {
+    startupCompleted = true;
+  }
+});
 fastify.register(fastifyCors, {
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: allowedCorsOrigins,
   credentials: true,
 });
 fastify.register(fastifyMultipart);
@@ -67,6 +78,61 @@ const TEAM_MEMBERS = [
   { id: 'pedro', name: 'Pedro Martins' },
   { id: 'bot', name: 'ChatBot' },
 ];
+
+const metrics = {
+  httpRequests: 0,
+  websocketConnections: 0,
+  commandsExecuted: 0,
+  messagesStored: 0,
+};
+
+client.collectDefaultMetrics({ prefix: 'chatops_' });
+
+const httpRequestTotal = new client.Counter({
+  name: 'chatops_http_requests_total',
+  help: 'Total number of ChatOps HTTP requests',
+  labelNames: ['method', 'route', 'status_code'],
+});
+
+const httpRequestDurationMs = new client.Histogram({
+  name: 'chatops_http_request_duration_ms',
+  help: 'ChatOps HTTP request duration in milliseconds',
+  labelNames: ['method', 'route', 'status_code'],
+  buckets: [50, 100, 200, 300, 500, 1000, 2000, 5000],
+});
+
+const websocketConnectionsGauge = new client.Gauge({
+  name: 'chatops_websocket_connections',
+  help: 'Current active ChatOps WebSocket connections',
+});
+
+const commandsExecutedCounter = new client.Counter({
+  name: 'chatops_commands_executed_total',
+  help: 'Total number of ChatOps commands executed',
+});
+
+const messagesStoredCounter = new client.Counter({
+  name: 'chatops_messages_stored_total',
+  help: 'Total number of ChatOps messages stored',
+});
+
+const startedAt = Date.now();
+let startupCompleted = false;
+let startupError: string | null = null;
+
+function getHealthSnapshot() {
+  return {
+    ok: true,
+    status: 'ready',
+    uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000),
+    metrics: {
+      activeConnections: activeConnections.size,
+      activeChannels: activeConnections.size,
+      activeUsers: connectionMeta.size,
+      messagesStored: metrics.messagesStored,
+    },
+  };
+}
 
 const ensureChannel = async (channelId: string) => {
   if (messageHistory.has(channelId)) return;
@@ -148,6 +214,8 @@ const registerConnection = (ws: WebSocket, channelId: string, userId: string) =>
   set.add(ws);
   activeConnections.set(channelId, set);
   connectionMeta.set(ws, { userId, channelId });
+  metrics.websocketConnections += 1;
+  websocketConnectionsGauge.set(activeConnections.size);
   console.log(`[WS] subscribe channel=${channelId} user=${userId} active=${set.size}`);
   publishToChannel(channelId, {
     type: 'presence',
@@ -161,6 +229,7 @@ const removeConnection = (ws: WebSocket) => {
   if (!meta || !meta.channelId) return;
   const set = activeConnections.get(meta.channelId);
   if (set) { set.delete(ws); }
+  websocketConnectionsGauge.set(activeConnections.size);
   console.log(`[WS] unsubscribe channel=${meta.channelId} user=${meta.userId} active=${set?.size ?? 0}`);
   publishToChannel(meta.channelId, {
     type: 'presence',
@@ -170,17 +239,88 @@ const removeConnection = (ws: WebSocket) => {
   connectionMeta.delete(ws);
 };
 
+fastify.addHook('onRequest', async (request) => {
+  (request as any).metricsStartTime = Date.now();
+});
+
+fastify.addHook('onResponse', async (request, reply) => {
+  const start = (request as any).metricsStartTime || Date.now();
+  const durationMs = Date.now() - start;
+  const route = (request as any).routerPath || request.raw.url || 'unknown';
+  httpRequestTotal.inc({ method: request.method, route, status_code: String(reply.statusCode) }, 1);
+  httpRequestDurationMs.observe({ method: request.method, route, status_code: String(reply.statusCode) }, durationMs);
+});
+
 fastify.get('/health', async () => {
   const redisHealth = await checkRedisHealth();
+  metrics.httpRequests += 1;
   return {
-    ok: true,
+    ok: startupCompleted && !startupError,
+    status: startupCompleted ? 'ready' : 'starting',
+    startup: {
+      completed: startupCompleted,
+      error: startupError,
+    },
     db: process.env.SKIP_PRISMA
       ? { enabled: false, status: 'skipped' }
       : { enabled: true, status: 'connected' },
     redis: redisHealth,
     websocket: WS_PORT ? 'enabled' : 'disabled',
     timestamp: new Date().toISOString(),
+    uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000),
+    metrics: {
+      activeConnections: activeConnections.size,
+      activeChannels: activeConnections.size,
+      activeUsers: connectionMeta.size,
+      messagesStored: metrics.messagesStored,
+    },
   };
+});
+
+fastify.get('/readyz', async () => {
+  metrics.httpRequests += 1;
+  return {
+    ok: startupCompleted && !startupError,
+    status: startupCompleted ? 'ready' : 'starting',
+    startup: {
+      completed: startupCompleted,
+      error: startupError,
+    },
+    timestamp: new Date().toISOString(),
+  };
+});
+
+fastify.get('/livez', async () => {
+  metrics.httpRequests += 1;
+  return {
+    ok: true,
+    status: 'alive',
+    uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000),
+    timestamp: new Date().toISOString(),
+  };
+});
+
+fastify.get('/metrics', async () => {
+  metrics.httpRequests += 1;
+  return {
+    counters: {
+      httpRequests: metrics.httpRequests,
+      websocketConnections: metrics.websocketConnections,
+      commandsExecuted: metrics.commandsExecuted,
+      messagesStored: metrics.messagesStored,
+    },
+    runtime: {
+      uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000),
+      activeConnections: activeConnections.size,
+      activeChannels: activeConnections.size,
+      activeUsers: connectionMeta.size,
+    },
+  };
+});
+
+fastify.get('/metrics/prometheus', async (request, reply) => {
+  reply.header('Content-Type', client.register.contentType);
+  return client.register.metrics();
 });
 
 async function checkRedisHealth() {
@@ -203,6 +343,11 @@ async function checkRedisHealth() {
     lazyConnect: true,
     maxRetriesPerRequest: 1,
     enableOfflineQueue: false,
+    retryStrategy: () => null,
+  });
+
+  redis.on('error', () => {
+    // silence expected connection failures so health checks stay stable
   });
 
   try {
@@ -269,6 +414,8 @@ let hasStarted = false;
 export async function startServer() {
   if (hasStarted) return;
   hasStarted = true;
+  startupCompleted = false;
+  startupError = null;
 
   try {
     // SKIP_PRISMA is a development/test flag only. It skips the database
@@ -292,7 +439,10 @@ export async function startServer() {
         resolve();
       });
     });
+
+    startupCompleted = true;
   } catch (err) {
+    startupError = err instanceof Error ? err.message : String(err);
     console.error('Failed to start ChatOps backend:', err);
     process.exit(1);
   }
@@ -319,9 +469,15 @@ export async function stopServer() {
   } catch {
     // ignore close errors
   }
+
+  try {
+    await prisma.$disconnect();
+  } catch {
+    // ignore disconnect failures
+  }
 }
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' || process.env.FORCE_START === 'true') {
   void startServer();
 }
 
@@ -399,6 +555,8 @@ wss.on('connection', (ws: WebSocket, req) => {
         };
 
         await addMessageToHistory(data.channelId, message);
+        metrics.messagesStored += 1;
+        messagesStoredCounter.inc();
         publishToChannel(data.channelId, { ...message, type: 'message' });
 
         await prisma.auditLog.create({
@@ -412,6 +570,8 @@ wss.on('connection', (ws: WebSocket, req) => {
 
         const cmdReply = await ChatOpsEngine.handleCommand(data.text, userId);
         if (cmdReply) {
+          metrics.commandsExecuted += 1;
+          commandsExecutedCounter.inc();
           console.log(`[ChatOps] command reply user=${userId} channel=${data.channelId} reply=${cmdReply}`);
           const systemMessage: ChatMessage = {
             id: `system-${Date.now()}-${Math.random().toString(36).slice(2)}`,

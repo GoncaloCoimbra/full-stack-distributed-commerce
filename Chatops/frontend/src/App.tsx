@@ -7,6 +7,7 @@ import StockCard from './components/StockCard';
 import MiniChart from './components/MiniChart';
 import CommandModal from './components/CommandModal';
 import SidebarRight from './components/SidebarRight';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import { useChatStore, ChatMessage } from './store/chatStore';
 import {
   Package, CheckCircle2, Truck, Bell, BarChart3, Tag, MessageCircle,
@@ -994,16 +995,7 @@ export default function App() {
 
         <div className="header-actions">
           <div style={{ display: 'flex', gap: 6, marginRight: 8 }}>
-            {(['pt','en','es'] as const).map((lang) => (
-              <button
-                key={lang}
-                type="button"
-                onClick={() => setLanguage(lang)}
-                style={{ padding: '0.35rem 0.55rem', borderRadius: 999, border: language === lang ? '1px solid #f59e0b' : '1px solid var(--rule)', background: language === lang ? '#f59e0b' : 'transparent', color: language === lang ? '#111827' : 'inherit', fontSize: 12 }}
-              >
-                {lang === 'pt' ? 'PT' : lang === 'en' ? 'EN' : 'ES'}
-              </button>
-            ))}
+            <LanguageSwitcher />
           </div>
 
           <div className="header-clock">

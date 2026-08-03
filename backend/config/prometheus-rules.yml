@@ -1,0 +1,43 @@
+groups:
+  - name: Tranzor-alerts
+    interval: 30s
+    rules:
+      - alert: BackendDown
+        expr: up{job="Tranzor-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: backend
+        annotations:
+          summary: "Commerce backend is down"
+          description: "Prometheus cannot scrape Tranzor backend at /metrics for more than 1 minute."
+
+      - alert: ChatOpsBackendDown
+        expr: up{job="ChatOps-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: chatops
+        annotations:
+          summary: "ChatOps backend is down"
+          description: "Prometheus cannot scrape ChatOps backend at /metrics/prometheus for more than 1 minute."
+
+      - alert: LogisticaBackendDown
+        expr: up{job="Logistica-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: logistics
+        annotations:
+          summary: "Logistics backend is down"
+          description: "Prometheus cannot scrape Logistics backend at /metrics for more than 1 minute."
+
+      - alert: HighBackendErrorRate
+        expr: rate(tranzor_http_requests_total{status_code=~"5.."}[5m]) / rate(tranzor_http_requests_total[5m]) > 0.02
+        for: 5m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "Commerce backend error rate high"
+          description: "More than 2% of HTTP requests to the Commerce backend are failing with 5xx errors over 5m."

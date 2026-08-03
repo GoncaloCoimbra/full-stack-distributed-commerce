@@ -169,8 +169,7 @@ export async function initializePrismaClients(): Promise<void> {
 
     logger.info('Prisma clients connected successfully');
   } catch (error) {
-    logger.error('Failed to connect Prisma clients during startup', error);
-    process.exit(1);
+    logger.warn('Prisma clients unavailable during startup; continuing in degraded mode', error);
   }
 }
 

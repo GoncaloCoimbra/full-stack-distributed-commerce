@@ -34,7 +34,7 @@ describe('AppController', () => {
     it('should return structured health metadata', async () => {
       const health = await appController.getHealth();
 
-      expect(health).toHaveProperty('status', 'ok');
+      expect(health).toHaveProperty('status', 'ready');
       expect(health).toHaveProperty('database');
       expect(health).toHaveProperty('redis');
       expect(health.database).toHaveProperty('configured');

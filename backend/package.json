@@ -16,7 +16,9 @@
 		"db:seed": "ts-node scripts/seed.ts",
 		"db:seed:excel": "ts-node scripts/seedExcel.ts",
 		"db:rollback": "ts-node scripts/dbRollback.ts",
-		"lint": "eslint \"server/**/*.ts\" --ext .ts"
+		"lint": "eslint \"server/**/*.ts\" --ext .ts",
+		"staging:validate": "bash scripts/validate-staging.sh",
+		"staging:start": "bash scripts/start-staging.sh"
 	},
 	"dependencies": {
 		"@opentelemetry/api": "^1.9.1",
@@ -52,6 +54,7 @@
 		"opossum": "^9.0.0",
 		"pino": "^8.17.2",
 		"pino-http": "^8.6.1",
+		"prom-client": "^15.1.3",
 		"socket.io": "^4.8.1",
 		"stripe": "^14.8.0",
 		"swagger-jsdoc": "^6.2.8",

@@ -10,7 +10,9 @@
     "test:watch": "jest --watch",
     "lint": "npm run check",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "staging:validate": "bash scripts/validate-staging.sh",
+    "staging:start": "bash scripts/start-staging.sh"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
@@ -20,6 +22,7 @@
     "fastify": "^5.8.5",
     "ioredis": "^5.0.0",
     "prisma": "^4.0.0",
+    "prom-client": "^15.1.3",
     "ws": "^8.13.0"
   },
   "devDependencies": {

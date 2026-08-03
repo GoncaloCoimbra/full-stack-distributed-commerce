@@ -221,10 +221,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Validate staging configuration
+        run: |
+          bash scripts/validate-staging.sh
+
       - name: Deploy to staging
         run: |
           echo "Deploying to staging environment..."
-          # Add your staging deployment commands here
+          bash scripts/deploy-staging.sh
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          bash scripts/rollback-staging.sh
 
   # ============ DEPLOY TO PRODUCTION ============
   deploy-production:
@@ -239,7 +248,7 @@ jobs:
       - name: Deploy to production
         run: |
           echo "Deploying to production environment..."
-          # Add your production deployment commands here
+          bash scripts/deploy-staging.sh
 
       - name: Notify Slack
         uses: slackapi/slack-github-action@v1.24.0

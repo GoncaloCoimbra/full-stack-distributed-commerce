@@ -46,8 +46,7 @@ describe('HomePage language switching', () => {
     expect(screen.getByRole('link', { name: /ver catálogo completo/i })).toBeInTheDocument();
     expect(screen.getByText(/porquê tranzor/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: /language selector/i }));
-    fireEvent.click(screen.getByRole('button', { name: /english/i }));
+    fireEvent.change(screen.getByLabelText(/language/i), { target: { value: 'en' } });
 
     await waitFor(() => {
       expect(screen.getByRole('link', { name: /view full catalog/i })).toBeInTheDocument();

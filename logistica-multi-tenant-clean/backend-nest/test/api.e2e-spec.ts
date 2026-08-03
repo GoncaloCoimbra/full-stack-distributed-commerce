@@ -30,13 +30,26 @@ describe('API Health Checks - E2E', () => {
       const response = await request(app.getHttpServer()).get('/health');
 
       expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty('status', 'ok');
+      expect(response.body).toHaveProperty('ok', true);
+      expect(response.body).toHaveProperty('status', 'ready');
       expect(response.body).toHaveProperty('database');
       expect(response.body).toHaveProperty('redis');
       expect(response.body.database).toHaveProperty('configured');
       expect(response.body.database).toHaveProperty('connected');
       expect(response.body.redis).toHaveProperty('configured');
       expect(response.body.redis).toHaveProperty('connected');
+    });
+
+    it('should expose readiness and liveness probes', async () => {
+      const readyResponse = await request(app.getHttpServer()).get('/readyz');
+      expect(readyResponse.status).toBe(200);
+      expect(readyResponse.body).toHaveProperty('ok', true);
+      expect(readyResponse.body).toHaveProperty('status', 'ready');
+
+      const liveResponse = await request(app.getHttpServer()).get('/livez');
+      expect(liveResponse.status).toBe(200);
+      expect(liveResponse.body).toHaveProperty('ok', true);
+      expect(liveResponse.body).toHaveProperty('status', 'alive');
     });
   });
 

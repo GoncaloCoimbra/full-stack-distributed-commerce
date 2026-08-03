@@ -9,8 +9,10 @@ services:
     environment:
       PORT: 3002
       WS_PORT: 9001
+      CORS_ORIGIN: http://localhost:5173,http://localhost:3006
       DATABASE_URL: postgresql://chatops:chatops@postgres_chatops:5432/chatops_db
       REDIS_URL: redis://redis:6379
+      LOGISTICS_URL: http://logistica-backend:3000
     ports:
       - "3002:3002"
       - "9001:9001"
@@ -21,6 +23,12 @@ services:
         condition: service_healthy
     command: sh -c "apt-get update && apt-get install -y libssl1.1 --no-install-recommends && npm install && npx prisma generate && npm run build && npm start"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3002/health', res => process.exit(res.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   chatops-frontend:
     image: node:20-bullseye
@@ -64,6 +72,12 @@ services:
         condition: service_healthy
     command: sh -c "npm install && npm run build && npm start"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3000/health', res => process.exit(res.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   logistica-frontend:
     image: node:20-bullseye

@@ -26,8 +26,7 @@ describe('RecentlyViewedPage language switching', () => {
 
     expect(screen.getByRole('heading', { name: /vistos recentemente/i })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: /language selector/i }));
-    fireEvent.click(screen.getByRole('button', { name: /english/i }));
+    fireEvent.change(screen.getByLabelText(/language/i), { target: { value: 'en' } });
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: /recently viewed/i })).toBeInTheDocument();

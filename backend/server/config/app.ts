@@ -24,6 +24,7 @@ import { env } from './env';
 import { getAllowedOrigins } from './cors';
 // logger intentionally not imported here to avoid unused variable in this module
 import { requestIdMiddleware } from '../utils/handlers';
+import client from 'prom-client';
 import { getMetricsSnapshot, metricsMiddleware } from '../utils/metrics';
 import { getCacheStatus } from '../utils/cache';
 import { getDatabaseStatus } from './db';
@@ -101,6 +102,35 @@ if (env.NODE_ENV !== 'test') {
 // Logging
 app.use(morgan('combined'));
 
+// Prometheus instrumentation
+client.collectDefaultMetrics();
+
+const httpRequestTotal = new client.Counter({
+  name: 'tranzor_http_requests_total',
+  help: 'Number of HTTP requests received',
+  labelNames: ['method', 'route', 'status_code'],
+});
+
+const httpRequestDurationMs = new client.Histogram({
+  name: 'tranzor_http_request_duration_ms',
+  help: 'HTTP request duration in milliseconds',
+  labelNames: ['method', 'route', 'status_code'],
+  buckets: [50, 100, 200, 300, 500, 1000, 2000, 5000],
+});
+
+app.use((req, res, next) => {
+  const start = process.hrtime.bigint();
+  res.on('finish', () => {
+    const durationMs = Number(process.hrtime.bigint() - start) / 1_000_000;
+    const route = req.route?.path || req.path;
+    const statusCode = String(res.statusCode);
+
+    httpRequestTotal.inc({ method: req.method, route, status_code: statusCode }, 1);
+    httpRequestDurationMs.observe({ method: req.method, route, status_code: statusCode }, durationMs);
+  });
+  next();
+});
+
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/products', productsRoutes);
@@ -123,11 +153,35 @@ app.get('/health', async (req, res) => {
 	const database = getDatabaseStatus();
 
 	res.json({
-		status: 'OK',
+		ok: true,
+		status: 'ready',
 		timestamp: new Date().toISOString(),
 		environment: process.env.NODE_ENV || 'development',
 		database,
 		redis,
+	});
+});
+
+app.get('/readyz', async (req, res) => {
+	const redis = await getCacheStatus();
+	const database = getDatabaseStatus();
+
+	res.json({
+		ok: true,
+		status: 'ready',
+		timestamp: new Date().toISOString(),
+		environment: process.env.NODE_ENV || 'development',
+		database,
+		redis,
+	});
+});
+
+app.get('/livez', async (req, res) => {
+	res.json({
+		ok: true,
+		status: 'alive',
+		timestamp: new Date().toISOString(),
+		uptime: process.uptime(),
 	});
 });
 
@@ -136,6 +190,7 @@ app.get('/api/v1/health', async (req, res) => {
 	const database = getDatabaseStatus();
 
 	res.json({
+		ok: true,
 		status: 'healthy',
 		timestamp: new Date().toISOString(),
 		uptime: process.uptime(),
@@ -143,6 +198,11 @@ app.get('/api/v1/health', async (req, res) => {
 		database,
 		redis,
 	});
+});
+
+app.get('/metrics', async (req, res) => {
+	res.set('Content-Type', client.register.contentType);
+	res.send(await client.register.metrics());
 });
 
 app.get('/api/v1/metrics', (req, res) => {

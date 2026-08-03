@@ -461,12 +461,12 @@ export default function PrintPage() {
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   Envie para{' '}
                   <a
-                    href="mailto:centrocopias@Tranzor.pt"
+                    href="mailto:centrocopias@Tranzor.com"
                     style={{ color: '#c81c1c', textDecoration: 'none', fontWeight: 700, borderBottom: '1px solid rgba(200,28,28,0.35)' }}
                     onMouseEnter={e => (e.currentTarget.style.borderBottomColor = '#c81c1c')}
                     onMouseLeave={e => (e.currentTarget.style.borderBottomColor = 'rgba(200,28,28,0.35)')}
                   >
-                    centrocopias@Tranzor.pt
+                    centrocopias@Tranzor.com
                   </a>
                 </span>
               </div>
@@ -694,7 +694,7 @@ export default function PrintPage() {
             {[
               {
                 q: 'Posso enviar o ficheiro por email antes de ir à loja?',
-                a: 'Sim. Envie o ficheiro para centrocopias@Tranzor.pt com o assunto "Pedido de impressão" e confirme com a equipa os detalhes.',
+                a: 'Sim. Envie o ficheiro para centrocopias@Tranzor.com com o assunto "Pedido de impressão" e confirme com a equipa os detalhes.',
               },
               {
                 q: 'Qual o prazo para os carimbos personalizados?',
