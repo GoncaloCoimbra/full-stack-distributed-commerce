@@ -194,6 +194,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          # Provide Sonar project and organization via repo secrets:
+          # - SONAR_PROJECT_KEY
+          # - SONAR_ORGANIZATION
+          # If these are not set the job will be skipped because the job itself
+          # is gated by `if: ${{ secrets.SONAR_TOKEN != '' }}` above.
+          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+          organization: ${{ secrets.SONAR_ORGANIZATION }}
 
   # ============ SECURITY ============
   security:
@@ -211,6 +219,9 @@ jobs:
           output: 'trivy-results.sarif'
 
       - name: Upload Trivy results to GitHub Security tab
+        # Skip SARIF upload for forked PRs because the integration token
+        # (GITHUB_TOKEN) doesn't have permission to write security alerts on forks.
+        if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork) }}
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
