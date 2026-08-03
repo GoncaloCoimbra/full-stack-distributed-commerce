@@ -1,5 +1,9 @@
 name: ChatOps Backend CI
 
+permissions:
+  contents: read
+  security-events: write
+
 on:
   push:
     paths:
