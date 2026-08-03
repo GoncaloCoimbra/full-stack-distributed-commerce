@@ -6,6 +6,7 @@
 
 import Redis from 'ioredis';
 import { env } from '../config/env';
+import Product from '../models/Product';
 
 export class BloomFilterCache {
   private redis: Redis | null;
@@ -162,7 +163,6 @@ export class BloomFilterCache {
     if (!redis) return;
 
     try {
-      const Product = require('../models/Product').default;
       const products = await Product.find({ isActive: true }).select('_id').lean();
 
       const productIds = products.map((p: any) => p._id.toString());
@@ -188,7 +188,6 @@ export class BloomFilterCache {
 
     // Bloom Filter diz que PODE existir, mas pode ser false positive
     // Então bate na BD para confirmar
-    const Product = require('../models/Product').default;
     const exists = await Product.exists({ _id: productId });
     return exists !== null;
   }

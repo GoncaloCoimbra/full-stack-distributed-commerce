@@ -7,7 +7,7 @@ import { createBullQueue, QueueJob, QueueLike } from '../core/queues';
 import Picking from '../models/Picking';
 import Order from '../models/Order';
 import Product from '../models/Product';
-import { PackingService, PackedBox } from './packingService';
+import { PackingService } from './packingService';
 import { eventStore } from './eventSourcing';
 import { OrderEventType } from './eventSourcing';
 
@@ -36,7 +36,7 @@ class PickingQueueService {
    */
   private setupProcessors() {
     (this.pickingQueue as any).process(async (job: QueueJob<PickingJobData>) => {
-      const { orderId, orderNumber, userId, items, priority = 'normal' } = job.data;
+      const { orderId, orderNumber, items, priority = 'normal' } = job.data;
 
       try {
         // 1. Buscar order e produtos
@@ -73,7 +73,6 @@ class PickingQueueService {
 
           // Mapear box items para picking items
           const pickingItems = box.items.map((boxItem) => {
-            const originalItem = items.find((i) => i.productId === boxItem.productId);
             const product = productsData.find((p) => p._id.toString() === boxItem.productId);
 
             return {

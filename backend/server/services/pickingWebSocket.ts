@@ -5,7 +5,6 @@
 
 import { Server as SocketIOServer, Socket } from 'socket.io';
 import Picking from '../models/Picking';
-import Order from '../models/Order';
 
 export interface PickingSocketEvents {
   // Cliente → Servidor
@@ -43,7 +42,7 @@ export class PickingWebSocketHandler {
       socket.on('picking:subscribe', async (data: { status: string; userId?: string }) => {
         const { status, userId } = data;
 
-        let query: any = {};
+        const query: any = {};
         if (status && status !== 'all') {
           query.status = status;
         }

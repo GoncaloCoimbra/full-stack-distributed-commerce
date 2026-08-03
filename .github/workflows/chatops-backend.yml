@@ -28,7 +28,7 @@ jobs:
         options: >-
           --health-cmd="pg_isready -U postgres"
           --health-timeout=5s
-          --health-retry=5
+          --health-retries=5
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/chatops
     steps:

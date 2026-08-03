@@ -293,7 +293,7 @@ async function findBestProductMatch(searchTerm: string) {
 	if (!normalized) return null;
 
 	const skuCandidate = searchTerm.trim().toUpperCase();
-	let product = await Product.findOne({ sku: skuCandidate, isActive: true });
+	const product = await Product.findOne({ sku: skuCandidate, isActive: true });
 	if (product) return product;
 
 	const candidates = await Product.find({

@@ -36,7 +36,7 @@ async function findBestProductMatch(searchTerm: string) {
   if (!normalized) return null;
 
   const skuCandidate = searchTerm.trim().toUpperCase();
-  let product = await Product.findOne({ sku: skuCandidate, isActive: true });
+  const product = await Product.findOne({ sku: skuCandidate, isActive: true });
   if (product) return product;
 
   const candidates = await Product.find({
@@ -75,7 +75,7 @@ function parseCsvRows(buffer: Buffer) {
   return rows;
 }
 
-function parseSpreadsheetRows(buffer: Buffer, filename: string) {
+function parseSpreadsheetRows(buffer: Buffer) {
   const workbook = XLSX.read(buffer, { type: 'buffer' });
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
@@ -350,7 +350,7 @@ router.post('/rfq/upload', authenticate, authorize('b2b'), upload.single('file')
     }
 
     const isCsv = file.originalname.toLowerCase().endsWith('.csv');
-    const rows = isCsv ? parseCsvRows(file.buffer) : parseSpreadsheetRows(file.buffer, file.originalname);
+    const rows = isCsv ? parseCsvRows(file.buffer) : parseSpreadsheetRows(file.buffer);
     const rfqLines = extractRfqLines(rows);
     if (!rfqLines.length) {
       return res.status(400).json({ success: false, error: 'Ficheiro sem linhas válidas de encomenda' });

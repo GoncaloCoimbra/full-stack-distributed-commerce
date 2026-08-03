@@ -1,4 +1,3 @@
-import Stripe from 'stripe';
 import { env } from '../../config/env';
 import { createProtectedPaymentIntent } from '../../utils/stripeBreaker';
 

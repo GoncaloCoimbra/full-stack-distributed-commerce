@@ -11,7 +11,7 @@
  * 5. Fila processa com garantias de linearizabilidade
  */
 
-import { CheckoutQueueData, enqueueCheckout, waitForCheckout } from './checkoutQueueService';
+import { CheckoutQueueData, enqueueCheckout } from './checkoutQueueService';
 import Order from '../models/Order';
 
 export interface CheckoutIntegrationResult {

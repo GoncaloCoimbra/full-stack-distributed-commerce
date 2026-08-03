@@ -10,7 +10,6 @@
 import type { Job as BullJob } from 'bull';
 import Order from '../models/Order';
 import Product from '../models/Product';
-import User from '../models/User';
 import { acquireStockLock, releaseStockLock } from './stockLockService';
 
 // Configuração da fila
@@ -61,7 +60,8 @@ class MemoryQueue<T = any> {
     this.listeners.set(event, listeners);
   }
 
-  async add(data: T, _opts?: any): Promise<MemoryJob<T>> {
+  async add(data: T, _opts?: unknown): Promise<MemoryJob<T>> {
+    void _opts;
     const job = new MemoryJob<T>(data, `memory-${Date.now()}-${Math.random().toString(16).slice(2)}`);
 
     if (this.processor) {
@@ -122,7 +122,7 @@ export interface CheckoutQueueData {
  * 4. Se erro: Liberta lock e coloca na dead-letter queue
  */
 checkoutQueue.process(async (job: BullJob<CheckoutQueueData> | MemoryJob<CheckoutQueueData>) => {
-  const { orderId, userId, items } = job.data;
+  const { orderId, items } = job.data;
   const locks: Map<string, string> = new Map();
 
   try {
@@ -278,6 +278,7 @@ export async function enqueueCheckout(data: CheckoutQueueData): Promise<BullJob<
  * Aguarda conclusão de um checkout
  */
 export async function waitForCheckout(job: BullJob<CheckoutQueueData> | MemoryJob<CheckoutQueueData>, timeoutMs: number = 30000): Promise<any> {
+  void timeoutMs;
   return job.finished();
 }
 

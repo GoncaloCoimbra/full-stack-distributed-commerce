@@ -4,7 +4,6 @@
  * e alertar sobre risco de esgotar limite de crédito.
  */
 
-import { Types } from 'mongoose';
 import User from '../models/User';
 import Order from '../models/Order';
 

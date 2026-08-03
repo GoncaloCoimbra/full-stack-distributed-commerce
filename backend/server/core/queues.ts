@@ -57,7 +57,8 @@ class MemoryJob<T = any> implements QueueJob<T> {
     });
   }
 
-  progress(_: number) {
+  progress(value: number) {
+    void value;
     return;
   }
 
@@ -89,7 +90,8 @@ class MemoryQueue<T = any> implements QueueLike<T> {
     this.listeners.set(event, listeners);
   }
 
-  async add(data: T, _opts?: any): Promise<QueueJob<T>> {
+  async add(data: T, opts?: unknown): Promise<QueueJob<T>> {
+    void opts;
     const job = new MemoryJob<T>(data, `memory-${Date.now()}-${this.counter++}`);
 
     if (this.processor) {
@@ -109,11 +111,13 @@ class MemoryQueue<T = any> implements QueueLike<T> {
     return job;
   }
 
-  async getJobs(_statuses?: string[]): Promise<QueueJob<T>[]> {
+  async getJobs(statuses?: string[]): Promise<QueueJob<T>[]> {
+    void statuses;
     return [];
   }
 
-  async clean(..._args: any[]) {
+  async clean(...args: unknown[]) {
+    void args;
     return [];
   }
 

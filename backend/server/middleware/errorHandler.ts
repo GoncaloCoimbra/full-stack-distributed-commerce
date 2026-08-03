@@ -25,8 +25,9 @@ export function errorHandler(
 	err: Error | AppError,
 	req: Request,
 	res: Response,
-	next: any
+	next: unknown
 ) {
+	void next;
 	// Set response header to prevent caching error responses
 	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
 

@@ -9,7 +9,6 @@ import { asyncHandler } from '../utils/handlers';
 import { authenticate } from '../middleware/auth';
 import Picking from '../models/Picking';
 import Order from '../models/Order';
-import Product from '../models/Product';
 import { pickingQueueService } from '../services/pickingQueueService';
 import { eventStore, OrderEventType } from '../services/eventSourcing';
 

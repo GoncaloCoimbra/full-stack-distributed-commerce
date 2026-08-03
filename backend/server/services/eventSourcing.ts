@@ -4,7 +4,6 @@
  * Permite reconstruir o estado exato de uma encomenda em qualquer ponto do tempo.
  */
 
-import Order from '../models/Order';
 import { prisma } from '../config/prisma';
 
 export enum OrderEventType {

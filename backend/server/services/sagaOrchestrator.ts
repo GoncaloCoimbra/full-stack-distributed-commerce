@@ -4,7 +4,6 @@
  * Se uma etapa falhar, dispara automaticamente compensações.
  */
 
-import { prisma } from '../config/prisma';
 import Order from '../models/Order';
 import Product from '../models/Product';
 import Stripe from 'stripe';

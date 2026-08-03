@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { env } from '../config/env';
 import { getRedisClient } from '../utils/cache';
 import { logger } from '../config/logger';
 

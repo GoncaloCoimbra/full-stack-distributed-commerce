@@ -19,7 +19,6 @@ import { evaluateCheckoutRules } from '../services/rulesEngine';
 import { incrementBusinessMetric } from '../utils/metrics';
 import { createManagedPaymentIntent } from '../services/payments';
 import { dispatchWebhookEvent } from '../services/webhookDispatcher';
-import { clearProductCache } from '../utils/cache';
 import { processCheckoutWithFila } from '../services/checkoutIntegrationService';
 import { pickingQueueService } from '../services/pickingQueueService';
 
@@ -341,7 +340,6 @@ router.post('/checkout', authenticate, userRateLimit, asyncHandler(async (req: R
       await order.save();
     }
 
-    const updatedProducts: any[] = [];
     try {
       // NOVO: Enfileirar checkout com garantias de linearizabilidade
       // Isto envia para BullMQ que vai:

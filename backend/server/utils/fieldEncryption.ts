@@ -46,6 +46,7 @@ export class FieldEncryption {
 
     // Extrair componentes
     const salt = buffer.slice(0, this.saltLength);
+    void salt;
     const iv = buffer.slice(this.saltLength, this.saltLength + this.ivLength);
     const tag = buffer.slice(this.saltLength + this.ivLength, this.saltLength + this.ivLength + this.tagLength);
     const encrypted = buffer.slice(this.saltLength + this.ivLength + this.tagLength);
@@ -78,6 +79,8 @@ export function Encrypted() {
   return function (target: any, propertyKey: string) {
     const originalGetter = Object.getOwnPropertyDescriptor(target, propertyKey)?.get;
     const originalSetter = Object.getOwnPropertyDescriptor(target, propertyKey)?.set;
+    void originalGetter;
+    void originalSetter;
 
     const encryption = new FieldEncryption();
 
