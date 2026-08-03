@@ -294,7 +294,7 @@ export default function RegisterForm({
             </button>
           </div>
           {fieldErrors.password && <p className="auth-field-err" role="alert">{fieldErrors.password}</p>}
-          <PasswordStrengthMeter password={password} />
+          <PasswordStrengthMeter password={password} t={t} />
         </div>
 
         {/* Confirmar password */}

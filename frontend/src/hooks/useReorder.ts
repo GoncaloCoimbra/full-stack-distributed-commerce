@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { apiClient } from '@/utils/api';
+import { apiClient } from '@/services/apiClient';
 import { useCartStore } from '@/store/cartStore';
 
 interface ClonedItem {
@@ -40,17 +40,17 @@ export function useReorder(): UseReorderReturn {
       setClonedItems(null);
 
       try {
-        const response = await apiClient.post(`/b2b/orders/${orderId}/clone`, {}, {
+        const response = await apiClient.post<any>(`/b2b/orders/${orderId}/clone`, {}, {
           withCredentials: true
         });
 
-        if (response.data.success) {
+        if (response.success) {
           setSuccess(true);
-          setClonedItems(response.data.clonedItems || []);
+          setClonedItems((response.data as any)?.clonedItems || []);
           // Recarregar carrinho após clonar
           await loadCart();
         } else {
-          setError(response.data.error || 'Erro ao clonar encomenda');
+          setError(response.error?.message || 'Erro ao clonar encomenda');
         }
       } catch (err: any) {
         const errorMessage = err.response?.data?.error || 'Erro ao clonar encomenda';

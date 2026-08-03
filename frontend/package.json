@@ -2,6 +2,7 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^6.4.0",
     "@stripe/stripe-js": "^9.6.0",
+    "@tanstack/react-query": "^5.101.4",
     "@vitejs/plugin-react": "^6.0.1",
     "i18next": "^26.3.1",
     "i18next-browser-languagedetector": "^8.2.1",
@@ -9,8 +10,8 @@
     "react-dom": "^19.2.5",
     "react-i18next": "^17.0.8",
     "react-router-dom": "^6.16.0",
-    "vite": "^8.0.10",
-    "zustand": "^5.0.12"
+    "scheduler": "^0.26.0",
+    "zustand": "^4.5.1"
   },
   "devDependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -24,7 +25,9 @@
     "jsdom": "^29.1.1",
     "react-helmet-async": "^3.0.0",
     "react-hook-form": "^7.74.0",
+    "rolldown": "^1.0.0-beta.20",
     "typescript": "^6.0.3",
+    "vite": "^8.0.10",
     "vitest": "^4.1.5",
     "zod": "^4.4.1"
   },

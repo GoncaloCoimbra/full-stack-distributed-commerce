@@ -28,7 +28,7 @@ export interface ShopFiltersProps {
   onTagsChange: (tags: string[]) => void;
 
   sortBy: 'relevance' | 'price-asc' | 'price-desc' | 'rating' | 'newest';
-  onSortChange: (sort: typeof sortBy) => void;
+  onSortChange: (sort: ShopFiltersProps['sortBy']) => void;
 
   totalProducts: number;
 }
@@ -55,23 +55,20 @@ export const ShopFilters: React.FC<ShopFiltersProps> = ({
   const { t } = useTranslation();
   
   const toggleBrand = (brand: string) => {
-    setSelectedBrands(prev =>
-      prev.includes(brand)
-        ? prev.filter(b => b !== brand)
-        : [...prev, brand]
-    );
+    if (selectedBrands.includes(brand)) {
+      onBrandChange(selectedBrands.filter(b => b !== brand));
+    } else {
+      onBrandChange([...selectedBrands, brand]);
+    }
   };
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
+    if (selectedTags.includes(tag)) {
+      onTagsChange(selectedTags.filter(t => t !== tag));
+    } else {
+      onTagsChange([...selectedTags, tag]);
+    }
   };
-
-  const setSelectedBrands = onBrandChange;
-  const setSelectedTags = onTagsChange;
 
   return (
     <aside className="shop-filters">

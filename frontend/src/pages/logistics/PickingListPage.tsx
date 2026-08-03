@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AppLayout from '../../layouts/AppLayout';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { apiClient } from '../../utils/apiClient';
+import { apiClient } from '@/services/apiClient';
 import './PickingListPage.css';
 
 interface PickingItem {
@@ -36,10 +36,10 @@ export default function PickingListPage() {
 	const [selectedPicking, setSelectedPicking] = useState<Picking | null>(null);
 
 	// Fetch picking list
-	const { data: pickingsData, isLoading, refetch } = useQuery({
+	const { data: pickingsData, isLoading, refetch } = useQuery<any>({
 		queryKey: ['pickings', filter],
-		queryFn: async () => {
-			const response = await apiClient.get('/wms/picking/list', {
+		queryFn: async (): Promise<any> => {
+			const response = await apiClient.get<any>('/wms/picking/list', {
 				params: { status: filter === 'all' ? undefined : filter, limit: 50 },
 			});
 			return response.data;
@@ -48,10 +48,10 @@ export default function PickingListPage() {
 	});
 
 	// Fetch picking stats
-	const { data: statsData } = useQuery({
+	const { data: statsData } = useQuery<any>({
 		queryKey: ['picking-stats'],
-		queryFn: async () => {
-			const response = await apiClient.get('/wms/picking/stats');
+		queryFn: async (): Promise<any> => {
+			const response = await apiClient.get<any>('/wms/picking/stats');
 			return response.data;
 		},
 		refetchInterval: 10000,
@@ -93,8 +93,8 @@ export default function PickingListPage() {
 		},
 	});
 
-	const pickings = pickingsData?.data || [];
-	const stats = statsData?.data;
+	const pickings = (pickingsData as any)?.data || [];
+	const stats = (statsData as any)?.data;
 
 	const getPriorityBadge = (priority: string) => {
 		const badgeClass = {

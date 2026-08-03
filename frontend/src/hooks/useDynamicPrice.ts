@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { apiClient } from '@/utils/api';
+import { apiClient } from '@/services/apiClient';
 import { useAuthStore } from '@/store/authStore';
 
 export interface VolumeTier {
@@ -47,15 +47,15 @@ export function useDynamicPrice(): UseDynamicPriceReturn {
       setError(null);
 
       try {
-        const response = await apiClient.get(`/shop/products/${productId}/dynamic-price`, {
+        const response = await apiClient.get<any>(`/shop/products/${productId}/dynamic-price`, {
           params: { quantity },
           withCredentials: true
         });
 
-        if (response.data.success) {
-          setPriceData(response.data.product);
+        if (response.success) {
+          setPriceData(response.data?.product);
         } else {
-          setError(response.data.error || 'Erro ao calcular preço');
+          setError(response.error?.message || 'Erro ao calcular preço');
         }
       } catch (err: any) {
         const errorMessage = err.response?.data?.error || 'Erro ao calcular preço dinâmico';

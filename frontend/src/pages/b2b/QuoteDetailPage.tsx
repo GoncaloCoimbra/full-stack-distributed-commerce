@@ -34,7 +34,7 @@ export default function QuoteDetailPage() {
 			setLoading(true);
 			setError('');
 			try {
-				const res = await apiClient.get(`/b2b/quotes/${id}`);
+				const res = await apiClient.get<any>(`/b2b/quotes/${id}`);
 				if (!res.success || !res.data) throw new Error(res.error?.message || 'Orçamento não encontrado.');
 				const q = res.data.quote;
 				setQuote({

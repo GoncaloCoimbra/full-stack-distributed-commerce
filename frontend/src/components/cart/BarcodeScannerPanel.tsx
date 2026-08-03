@@ -174,7 +174,6 @@ export default function BarcodeScannerPanel() {
           type="button"
           onClick={() => setIsOpen((current) => !current)}
           style={{
-            border: 'none',
             borderRadius: 999,
             padding: '12px 16px',
             background: isOpen ? 'transparent' : 'var(--red)',

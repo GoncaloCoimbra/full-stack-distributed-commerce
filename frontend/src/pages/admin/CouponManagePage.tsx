@@ -39,7 +39,7 @@ export default function CouponManagePage(){
       const params: Record<string, any> = { page, limit };
       if (filter) params.status = filter;
       const qs = new URLSearchParams(params).toString();
-      const res = await apiClient.get(`/admin/coupons${qs?`?${qs}`:''}`);
+      const res = await apiClient.get<any>(`/admin/coupons${qs?`?${qs}`:''}`);
       if (!res.success || !res.data) throw new Error(res.error?.message || 'Erro ao obter cupões');
 
       const coupons = (res.data.items || res.data.coupons || []).map((c: any) => ({

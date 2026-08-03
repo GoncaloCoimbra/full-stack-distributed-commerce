@@ -40,9 +40,7 @@ export default function ContentManagePage() {
       if (type) params.type = type;
 
       const qs = new URLSearchParams(params).toString();
-      const res = await apiClient.get(`/admin/contents${qs?`?${qs}`:''}`);
-
-      if (!res.success || !res.data) throw new Error(res.error?.message || 'Erro a obter conteúdos');
+      const res = await apiClient.get<any>(`/admin/contents${qs ? `?${qs}` : ''}`);
 
       setItems((res.data.items || res.data.contents || []).map((c: any) => ({
         id: c._id || c.id,
@@ -50,10 +48,10 @@ export default function ContentManagePage() {
         type: c.type,
         status: c.status,
         updated: c.updatedAt || c.updated || c.modifiedAt,
-        author: c.author?.name || c.author || c.updatedBy
+        author: c.author?.name || c.author || c.updatedBy,
       })));
 
-      const pagination = res.data.pagination || { currentPage: page, totalPages: 1, totalItems: (res.data.items||res.data.contents||[]).length };
+      const pagination = res.data.pagination || { currentPage: page, totalPages: 1, totalItems: (res.data.items || res.data.contents || []).length };
       setPage(pagination.currentPage || page);
       setTotalPages(pagination.totalPages || 1);
       setTotalItems(pagination.totalItems || (res.data.items||res.data.contents||[]).length || 0);

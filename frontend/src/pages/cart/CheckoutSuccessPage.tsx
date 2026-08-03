@@ -140,7 +140,7 @@ export default function CheckoutSuccessPage() {
         </div>
       </section>
 
-      <style jsx>{`
+      <style>{`
         .page-hero {
           text-align: center;
           padding: 4rem 0;

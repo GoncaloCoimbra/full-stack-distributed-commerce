@@ -60,7 +60,7 @@ const params: Record<string, string> = { page: String(page), limit: '20' };
 if (filterStatus !== 'all') params.status = filterStatus;
 if (filterPriority !== 'all') params.priority = filterPriority;
 const queryString = new URLSearchParams(params).toString();
-const res = await apiClient.get(`/b2b/quotes?${queryString}`);
+const res = await apiClient.get<any>(`/b2b/quotes?${queryString}`);
 if (!res.success || !res.data) throw new Error(res.error?.message || 'Erro ao carregar orçamentos.');
 const loaded = (res.data.quotes || []).map((quote: any) => ({
 id: quote._id || quote.id,

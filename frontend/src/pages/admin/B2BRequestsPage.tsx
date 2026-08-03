@@ -25,7 +25,7 @@ export default function B2BRequestsPage() {
   const load = async () => {
     setLoading(true); setError(null);
     try {
-      const res = await apiClient.get('/admin/b2b/quotes');
+      const res = await apiClient.get<any>('/admin/b2b/quotes');
       if (!res.success || !res.data) throw new Error(res.error?.message || 'Erro ao obter orçamentos');
       const payload = (res.data.quotes || res.data.items || []).map((q: any) => ({
         id: q._id || q.id,
