@@ -45,8 +45,8 @@ export default defineConfig({
     },
     {
       // Ensure migrations are applied before starting the backend server in CI
-      // Run migrate deploy then start dev server
-      command: "cd ./backend && npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev",
+      // Run migrate deploy then start dev server (no extra cd because cwd is './backend')
+      command: "npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev",
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
       cwd: './backend',
