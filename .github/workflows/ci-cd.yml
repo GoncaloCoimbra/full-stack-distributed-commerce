@@ -148,16 +148,42 @@ jobs:
 
       - name: Start backend
         working-directory: backend
-        run: npm run dev &
+        run: |
+          # start backend in background and log stdout/stderr for debugging
+          nohup bash -c "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/Tranzor_test npm run dev" > backend-dev.log 2>&1 &
+          echo "Started backend (logging to backend-dev.log)"
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/Tranzor_test
 
       - name: Start frontend
         working-directory: frontend
-        run: npm run dev &
+        run: |
+          # start frontend in background with Vite debug logs redirected
+          nohup bash -c "DEBUG=vite:* npm run dev" > frontend-dev.log 2>&1 &
+          echo "Started frontend (logging to frontend-dev.log)"
 
       - name: Wait for services
-        run: sleep 10
+        run: sleep 15
+
+      - name: Print frontend dev log
+        working-directory: frontend
+        run: |
+          echo '--- FRONTEND LOG (tail, 200 lines) ---'
+          if [ -f frontend-dev.log ]; then tail -n 200 frontend-dev.log; else echo 'No frontend-dev.log yet'; fi
+
+      - name: Collect dev logs
+        run: |
+          mkdir -p logs || true
+          cp frontend/frontend-dev.log logs/frontend-dev.log 2>/dev/null || echo 'no frontend log' > logs/frontend-dev.log
+          cp backend/backend-dev.log logs/backend-dev.log 2>/dev/null || echo 'no backend log' > logs/backend-dev.log
+
+      - name: Upload dev logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-logs
+          path: logs/
+          retention-days: 30
 
       - name: Run E2E tests
         working-directory: backend
