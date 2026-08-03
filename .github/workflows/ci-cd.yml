@@ -175,7 +175,6 @@ jobs:
   # ============ CODE QUALITY ============
   code-quality:
     runs-on: ubuntu-latest
-    if: ${{ secrets.SONAR_TOKEN != '' && secrets.SONAR_PROJECT_KEY != '' && secrets.SONAR_ORGANIZATION != '' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -190,6 +189,7 @@ jobs:
         run: npm ci
 
       - name: SonarCloud Scan
+        if: ${{ secrets.SONAR_TOKEN != '' && secrets.SONAR_PROJECT_KEY != '' && secrets.SONAR_ORGANIZATION != '' }}
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
