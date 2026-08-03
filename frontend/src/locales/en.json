@@ -441,13 +441,13 @@
   },
   "home": {
     "heroAriaLabel": "Welcome to Tranzor",
-    "heroEyebrow": "Since 1973 · São João da Madeira · Porto",
+    "heroEyebrow": "Since 1973 · Lisbon · Porto",
     "heroLine1": "Material that",
     "heroLine2": "inspires",
-    "heroLine3": "for 50 years.",
-    "heroBody": "More than {{count}} references from the best global brands. We deliver across Portugal — or visit us in person at our megastores.",
+    "heroLine3": "with its own identity.",
+    "heroBody": "More than {{count}} references from the best global brands. We deliver across Portugal — or visit us in person at our physical stores.",
     "seoTitle": "Tranzor — Office, School and Stationery Supplies in Portugal",
-    "seoDescription": "More than 25,000 stationery, office, school and technology products. Delivery across Portugal. Megastores in São João da Madeira and Porto. Since 1973.",
+    "seoDescription": "More than 25,000 stationery, office, school and technology products. Delivery across Portugal. Stores in Lisbon and Porto.",
     "seoOgTitle": "Tranzor — Office Supplies and Stationery",
     "seoOgDescription": "More than 25,000 products. Delivery across Portugal.",
     "viewCatalog": "View Catalog",
@@ -620,7 +620,7 @@
     "supportBody": "Our team prepares objective proposals with clear timelines, fair costs and dedicated support from the first contact."
   },
   "footer": {
-    "description": "Office, school and stationery supplies in Portugal since 1973.",
+    "description": "Office, school and stationery supplies in Portugal with a practical and modern offer.",
     "shopTitle": "Shop",
     "catalog": "Catalog",
     "promotions": "Promotions",

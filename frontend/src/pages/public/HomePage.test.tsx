@@ -53,4 +53,17 @@ describe('HomePage language switching', () => {
       expect(screen.getByText(/why tranzor/i)).toBeInTheDocument();
     });
   });
+
+  it('renders fictional store addresses and removes the copied location references', () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
+    );
+
+    expect(screen.getAllByText(/rua da imaginação, 123/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/avenida dos sonhos, 45/i).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/centro empresarial da circumvalação/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/s\. j\. da madeira/i)).not.toBeInTheDocument();
+  });
 });

@@ -13,8 +13,8 @@ function SEOHead() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'Organization', name: 'Tranzor', url: 'https://www.tranzor.pt', foundingDate: '1973' },
-      { '@type': 'WebSite', url: 'https://www.tranzor.pt', potentialAction: { '@type': 'SearchAction', target: 'https://www.tranzor.pt/shop?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
+      { '@type': 'Organization', name: 'Loja de Exemplo', url: 'https://example.com', foundingDate: '2010' },
+      { '@type': 'WebSite', url: 'https://example.com', potentialAction: { '@type': 'SearchAction', target: 'https://example.com/shop?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
     ],
   };
 
@@ -22,11 +22,11 @@ function SEOHead() {
     <Helmet>
       <title>{t('home.seoTitle')}</title>
       <meta name="description" content={t('home.seoDescription')} />
-      <link rel="canonical" href="https://www.tranzor.pt" />
+      <link rel="canonical" href="https://example.com" />
       <meta property="og:title" content={t('home.seoOgTitle')} />
       <meta property="og:description" content={t('home.seoOgDescription')} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.tranzor.pt" />
+      <meta property="og:url" content="https://example.com" />
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
     </Helmet>
   );
@@ -516,7 +516,7 @@ export default function HomePage() {
           <div className="why-list">
             {[
               { num: '01', title: '+25.000 Referências', desc: 'Das principais marcas mundiais — Pilot, Stabilo, HP, Leitz, Faber-Castell e muito mais. Tudo num só lugar, sem compromissos de qualidade.', link: '/shop' },
-              { num: '02', title: 'Entrega em Todo Portugal', desc: 'Mais de 700 entregas diárias para todo o território nacional. Receba em 24–48h ou levante gratuitamente nas nossas megastores em SJM e Porto.', link: '/shipping-info' },
+              { num: '02', title: 'Entrega em Todo Portugal', desc: 'Mais de 700 entregas diárias para todo o território nacional. Receba em 24–48h ou levante gratuitamente nas nossas lojas físicas em Lisboa e Porto.', link: '/shipping-info' },
               { num: '03', title: 'Centro de Impressão', desc: 'Cópias, scan, encadernação, plastificação, carimbos e convites personalizados. Um serviço completo disponível nas lojas físicas Tranzor.', link: '/shop/impressao' },
               { num: '04', title: 'Soluções para Empresas', desc: 'Contratos anuais, conta corrente, faturação simplificada e preços especiais para volume. Para empresas, escolas e instituições de qualquer dimensão.', link: '/b2b' },
             ].map(({ num, title, desc, link }, i) => (
@@ -620,15 +620,15 @@ export default function HomePage() {
           </div>
           <div className="stores-grid">
             {[
-              { city: 'São João da Madeira', address: 'R. Bartolomeu Dias, 3700-057', hours: 'Seg–Sex 9h–20h · Sab–Dom 10h–19h', phone: '+351 256 880 390', mapsUrl: 'https://maps.google.com/?q=Tranzor+São+João+da+Madeira', since: 'Aberto desde 1973' },
-              { city: 'Porto', address: 'Centro Empresarial da Circunvalação', hours: 'Seg–Sex 9h–20h · Sab–Dom 10h–19h', phone: '+351 222 000 000', mapsUrl: 'https://maps.google.com/?q=Tranzor+Porto', since: 'Megastore Porto' },
+              { city: 'Lisboa', address: 'Rua da Imaginação, 123', hours: 'Seg–Sex 9h–20h · Sab–Dom 10h–19h', phone: '+351 210 000 000', mapsUrl: 'https://maps.google.com/?q=Tranzor+Lisboa', since: 'Loja principal' },
+              { city: 'Porto', address: 'Avenida dos Sonhos, 45', hours: 'Seg–Sex 9h–20h · Sab–Dom 10h–19h', phone: '+351 220 000 000', mapsUrl: 'https://maps.google.com/?q=Tranzor+Porto', since: 'Loja de apoio' },
             ].map(({ city, address, hours, phone, mapsUrl, since }) => (
               <div key={city} className="store-card">
                 <div className="store-header">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" strokeWidth="1.8" aria-hidden><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   <span className="store-since">{since}</span>
                 </div>
-                <h3 className="store-city">Megastore<br />{city}</h3>
+                <h3 className="store-city">Loja<br />{city}</h3>
                 <address style={{ fontStyle: 'normal', display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <span style={{ fontSize: 14, color: 'var(--muted-light)' }}>{address}</span>
                   <time style={{ fontSize: 13, color: 'var(--muted)' }}>{hours}</time>

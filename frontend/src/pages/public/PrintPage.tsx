@@ -133,8 +133,8 @@ const STEPS = [
 ];
 
 const LOJAS = [
-  { nome: 'Tranzor São João da Madeira', morada: 'R. Bartolomeu Dias, 3700-057 SJM', horario: 'Seg–Sex 9h–20h · Sáb–Dom 10h–19h', tel: '+351 256 880 390' },
-  { nome: 'Tranzor Porto',               morada: 'Centro Empresarial da Circunvalação, Porto', horario: 'Seg–Sex 9h–20h · Sáb–Dom 10h–19h', tel: '+351 222 000 000' },
+  { nome: 'Tranzor Lisboa', morada: 'Rua da Imaginação, 123 Lisboa', horario: 'Seg–Sex 9h–20h · Sáb–Dom 10h–19h', tel: '+351 210 000 000' },
+  { nome: 'Tranzor Porto', morada: 'Avenida dos Sonhos, 45 Porto', horario: 'Seg–Sex 9h–20h · Sáb–Dom 10h–19h', tel: '+351 220 000 000' },
 ];
 
 /* ═══════════════════════════════════════
@@ -297,7 +297,7 @@ export default function PrintPage() {
   return (
     <AppLayout
       title="Centro de Cópias & Impressão — Tranzor"
-      description="Cópias, encadernação, plastificação, carimbos, digitalização e muito mais. Disponível nas lojas Tranzor em São João da Madeira e Porto."
+      description="Cópias, encadernação, plastificação, carimbos, digitalização e muito mais. Disponível nas lojas Tranzor em Lisboa e Porto."
       canonical="/shop/impressao"
     >
       <style>{`

@@ -439,13 +439,13 @@
   },
   "home": {
     "heroAriaLabel": "Bem-vindo à Tranzor",
-    "heroEyebrow": "Desde 1973 · São João da Madeira · Porto",
+    "heroEyebrow": "Desde 1973 · Lisboa · Porto",
     "heroLine1": "Material que",
     "heroLine2": "inspira",
-    "heroLine3": "há 50 anos.",
-    "heroBody": "Mais de {{count}} referências das melhores marcas mundiais. Entregamos em todo Portugal — ou visite-nos pessoalmente nas nossas megastores.",
+    "heroLine3": "com presença própria.",
+    "heroBody": "Mais de {{count}} referências das melhores marcas mundiais. Entregamos em todo Portugal — ou visite-nos pessoalmente nas nossas lojas físicas.",
     "seoTitle": "Tranzor — Material de Escritório, Escolar e Papelaria em Portugal",
-    "seoDescription": "Mais de 25.000 produtos de papelaria, escritório, escola e tecnologia. Entrega em todo Portugal. Megastores em São João da Madeira e Porto. Desde 1973.",
+    "seoDescription": "Mais de 25.000 produtos de papelaria, escritório, escola e tecnologia. Entrega em todo Portugal. Lojas em Lisboa e Porto.",
     "seoOgTitle": "Tranzor — Material de Escritório e Papelaria",
     "seoOgDescription": "Mais de 25.000 produtos. Entrega em todo Portugal.",
     "viewCatalog": "Ver Catálogo",
@@ -653,7 +653,7 @@
     "profile": "O meu perfil"
   },
   "footer": {
-    "description": "Material de escritório, escolar e papelaria em Portugal desde 1973.",
+    "description": "Material de escritório, escolar e papelaria em Portugal com uma oferta prática e moderna.",
     "shopTitle": "Loja",
     "catalog": "Catálogo",
     "promotions": "Promoções",

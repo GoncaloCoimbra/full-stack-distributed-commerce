@@ -240,19 +240,19 @@ export default function PrivacyPage() {
   return (
     <AppLayout
       title="Política de Privacidade"
-      description="Saiba como a Tranzor recolhe, utiliza e protege os seus dados pessoais em conformidade com o RGPD."
+      description="Saiba como esta loja recolhe, utiliza e protege os seus dados pessoais em conformidade com o RGPD."
       canonical="/privacy"
       structuredData={{
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: 'Política de Privacidade — Tranzor',
-        url: 'https://www.Tranzor.pt/privacy',
-        description: 'Política de privacidade e proteção de dados da Tranzor, em conformidade com o RGPD.',
+        name: 'Política de Privacidade — Loja de Exemplo',
+        url: 'https://example.com/privacy',
+        description: 'Política de privacidade e proteção de dados desta loja de exemplo, em conformidade com o RGPD.',
         inLanguage: 'pt-PT',
         publisher: {
           '@type': 'Organization',
-          name: 'Tranzor',
-          url: 'https://www.Tranzor.pt',
+          name: 'Loja de Exemplo',
+          url: 'https://example.com',
         },
         dateModified: '2026-01-01',
       }}
@@ -383,13 +383,13 @@ export default function PrivacyPage() {
 
           <PolicySection id="compromisso" number="01" title="Compromisso Tranzor">
             <p>
-              A <strong style={{ color: 'var(--offwhite)' }}>Tranzor — Papelaria Industrial, Lda.</strong>, com sede em São João da Madeira, Portugal, é responsável pelo tratamento dos dados pessoais recolhidos através dos seus canais digitais e físicos.
+              A <strong style={{ color: 'var(--offwhite)' }}>Tranzor — Empresa de Exemplo, Lda.</strong>, com sede em Lisboa, Portugal, é responsável pelo tratamento dos dados pessoais recolhidos através dos seus canais digitais e físicos.
             </p>
             <p>
               Garantimos que todo o tratamento de dados pessoais é realizado de forma lícita, leal e transparente, sendo os dados recolhidos para finalidades determinadas, explícitas e legítimas, não sendo posteriormente tratados de forma incompatível com essas finalidades.
             </p>
             <Callout>
-              Esta Política aplica-se ao website <strong>Tranzor.pt</strong>, à apTranzornzor e a todas as interações presenciais nas nossas megastores. A utilização dos nossos serviços implica a aceitação dos termos aqui descritos.
+              Esta Política aplica-se ao website <strong>Tranzor.pt</strong>, à app Tranzor e a todas as interações presenciais nas nossas lojas físicas. A utilização dos nossos serviços implica a aceitação dos termos aqui descritos.
             </Callout>
           </PolicySection>
 
@@ -544,7 +544,7 @@ export default function PrivacyPage() {
               {[
                 { label: 'Email', value: 'dpo@Tranzor.pt' },
                 { label: 'Telefone', value: '+351 256 880 390' },
-                { label: 'Morada', value: 'R. Bartolomeu Dias, 3700-057 S. J. da Madeira' },
+                { label: 'Morada', value: 'Rua da Imaginação, 123, Lisboa' },
                 { label: 'Prazo de resposta', value: 'Até 30 dias úteis (RGPD, art. 12.º)' },
               ].map(({ label, value }) => (
                 <div key={label} style={{

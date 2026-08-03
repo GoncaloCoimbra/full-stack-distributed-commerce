@@ -23,7 +23,7 @@ export default function ContactPage() {
 					<h2 className="page-heading">{t('contact.detailsTitle')}</h2>
 					<p className="page-copy">{t('contact.detailsBody')}</p>
 					<ul style={{ listStyle: 'none', padding: 0, margin: '1.5rem 0 0 0', display: 'grid', gap: '1rem' }}>
-						<li><strong>{t('contact.emailLabel')}:</strong> <a href="mailto:geral@tranzor.pt" style={{ color: 'var(--red)', textDecoration: 'none' }}>geral@tranzor.pt</a></li>
+						<li><strong>{t('contact.emailLabel')}:</strong> <a href="mailto:geral@example.com" style={{ color: 'var(--red)', textDecoration: 'none' }}>geral@example.com</a></li>
 						<li><strong>{t('contact.phoneLabel')}:</strong> <a href="tel:+351234000000" style={{ color: 'var(--red)', textDecoration: 'none' }}>+351 234 000 000</a></li>
 						<li><strong>{t('contact.locationLabel')}:</strong> {t('contact.locationValue')}</li>
 						<li><strong>{t('contact.hoursLabel')}:</strong> {t('contact.hoursValue')}</li>

@@ -85,7 +85,7 @@ export default function LoginPage() {
               ))}
             </ul>
 
-            <div className="lp-side-since">Tranzor · Desde 1973 · Portugal</div>
+            <div className="lp-side-since">Tranzor · Loja de exemplo · Portugal</div>
           </div>
 
           <div className="lp-deco" aria-hidden>
