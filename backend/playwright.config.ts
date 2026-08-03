@@ -41,12 +41,16 @@ export default defineConfig({
       command: 'npm run dev',
       url: 'http://localhost:5173',
       reuseExistingServer: !process.env.CI,
+      timeout: 120000,
     },
     {
-      command: 'npm run dev',
+      // Ensure migrations are applied before starting the backend server in CI
+      // Run migrate deploy then start dev server
+      command: "cd ./backend && npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev",
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
       cwd: './backend',
+      timeout: 180000,
     },
   ],
 });
