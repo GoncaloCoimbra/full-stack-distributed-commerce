@@ -1,20 +1,16 @@
 # Tranzor — Full-Stack Distributed Commerce Platform
 
-Ecossistema integrado de três serviços em produção: **Commerce** (e-commerce com checkout resiliente), **Logistics** (WMS/TMS multi-tenant), **ChatOps** (motor operacional em tempo real). Demonstração prática de arquitetura distribuída, Docker, Redis, autenticação segura e fail-fast em produção.
+Ecossistema integrado de três serviços: **Commerce** (e-commerce com checkout resiliente), **Logistics** (WMS/TMS multi-tenant) e **ChatOps** (motor operacional em tempo real). Projeto com foco em arquitetura distribuída, Docker, Redis, autenticação segura e comportamento fail-fast em ambiente de produção.
 
 **Stack:** 52k+ linhas TypeScript | React + NestJS + Fastify | Docker | Redis | PostgreSQL | Prisma
 
-> Consulte o plano de melhorias detalhado em [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) para as ações necessárias para atingir 8/10 em cada módulo.
-
----
-
-
+> Consulte o plano de melhorias em [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) para os próximos passos do projeto.
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisitos
+### Pré-requisitos
 - Node.js 20+
 - Docker Desktop
 - npm
@@ -28,7 +24,7 @@ npm run install:all
 # 2. Validar configuração do Docker Compose
 npm run validate:deploy
 
-# 3. Subir os 13 containers (5 serviços + bases de dados)
+# 3. Subir os containers
 npm run start:all
 
 # 4. Verificar status
@@ -59,7 +55,7 @@ npm run stop:all
 
 ## 🏗️ Arquitetura
 
-### Comunicação entre Serviços
+### Comunicação entre serviços
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -84,127 +80,97 @@ npm run stop:all
     └───────────────────┘
 ```
 
-### Race Condition Prevention
+### Race condition prevention
 
-**Commerce** implementa lock distribuído com Redis:
-- `SET NX EX` atómico para adquirir lock por produto
-- Lua script para verificar ownership antes de libertar
-- Fallback em memória apenas em dev/teste
+- Lock distribuído com Redis para operações críticas de stock
+- Verificação de ownership antes de libertar lock
+- Fallback em memória apenas em ambiente de desenvolvimento
 - Fail-fast em produção se Redis indisponível
 
-### Fail-Fast em Produção
+### Fail-fast em produção
 
-- **Prisma:** Valida conexão com `SELECT 1` no arranque; falha se BD inacessível
-- **Redis:** Lança erro se `REDIS_URL` indefinida em produção
-- **Auth WebSocket:** Rejeita tokens inválidos com código 4001
+- **Prisma:** valida conexão com `SELECT 1` no arranque
+- **Redis:** falha se `REDIS_URL` não estiver configurado em ambiente de produção
+- **WebSocket Auth:** tokens inválidos são rejeitados imediatamente com código 4001
 
 ---
 
 ## ✅ Validação
 
-### Testes Unitários
+### Testes unitários
 
 ```bash
 cd website/backend
 npm test
-# Result: 35/35 passing
 
 cd Chatops/backend
 npm test
-# Result: 9/9 passing (incluindo autenticação e parsing de token)
 
 cd logistica-multi-tenant-clean/backend-nest
 npm test
-# Result: 43/43 passing (notificações como best-effort non-blocking)
 ```
 
-### Arranque Conjunto Verificado
+### Arranque conjunto
 
-- ✅ 13/13 containers a subir e healthy
-- ✅ Commerce health: 200 OK
-- ✅ ChatOps health: 200 OK
-- ✅ Logistics health: 200 OK (GET /health público)
-- ✅ Logistics API: 401 Unauthorized em GET /api (autenticação requerida)
+- Scripts de arranque e validação disponíveis no root
+- Health checks ativos nos serviços principais
+- Endpoints autenticados exigem JWT quando aplicável
 
-### Fluxos E2E Validados Manualmente
+### Fluxos validados
 
-- ✅ `/stock` ChatOps → Logistics: comando de consulta de stock via HTTP
-- ✅ `/approve-credit` ChatOps: aprovação de crédito com sucesso/falha
-- ✅ Token inválido no WebSocket: rejeição com close code 4001
-- ✅ Redis fallback não silencioso: erro em produção se variável indefinida
+- Comando de stock via ChatOps para Logistics
+- Rejeição de token inválido no WebSocket
+- Fallback de comunicação em ambiente de desenvolvimento
 
 ---
 
-## 🧭 Roadmap para atingir 8/10
-Este projeto tem uma base técnica sólida, mas cada módulo precisa de melhorias específicas para ser considerado 8/10 em maturidade e produção.
+## 🧭 Roadmap de melhoria
+O projeto está funcional, mas precisa de maturidade adicional para produção completa.
 
 ### Commerce
-- Completar validação de produção real em ambiente de staging ou cluster.
-- Adicionar observabilidade e métricas (logs estruturados, health checks aprimorados, alertas).
-- Documentar deployment de produção e ambiente seguro.
-- Criar testes E2E para os fluxos críticos de checkout e rollback.
+- Validar staging ou cluster real
+- Adicionar observabilidade e métricas
+- Documentar deployment em produção
+- Criar testes E2E para checkout e rollback
 
 ### Logistics
-- Validar o `k8s/` em cluster real (minikube, Kind ou ambiente cloud leve).
-- Separar/limpar o código legado e histórico que não faz parte do fluxo ativo.
-- Adicionar testes de integração tenant-aware e RBAC automatizados.
-- Configurar monitoramento e alertas para isolamento de empresa e segurança.
+- Validar o `k8s/` em cluster real
+- Limpar código legado e separar fluxo ativo
+- Adicionar testes tenant-aware e RBAC
+- Configurar monitoramento e alertas
 
 ### ChatOps
-- Formalizar deployment em produção e operação do WebSocket.
-- Adicionar métricas e logs de uso do canal (presença, comandos, retries).
-- Implementar testes E2E que validem o fluxo ChatOps → Logistics.
-- Documentar de forma completa as variáveis de ambiente e dependências Redis/PostgreSQL.
+- Formalizar deployment em produção
+- Adicionar métricas de canal e uso
+- Implementar testes E2E para ChatOps → Logistics
+- Documentar variáveis de ambiente e dependências
 
-> Nota: esta seção reflete o estado atual do repositório e as ações necessárias para tornar a plataforma mais madura.
->
-> Para ver o plano de melhoria completo com tarefas concretas e uso recomendado, consulte [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md).
+> Consulte [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) para tarefas detalhadas e prioridades.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Estrutura do projeto
 
 ```
 tranzor/
-├── website/                          # Commerce backend + DB config
-│   ├── backend/                      # Express/Node, Mongoose, Prisma
-│   │   ├── server/
-│   │   │   ├── services/
-│   │   │   │   ├── stockLockService.ts     # Lock distribuído Redis
-│   │   │   │   ├── checkoutQueueService.ts # Compensação de falha
-│   │   │   └── config/
-│   │   │       └── prisma.ts              # Fail-fast BD + fallback
-│   │   ├── test-race-condition.ts         # Teste de 10 checkouts paralelos
-│   │   └── package.json
+├── website/                          # Commerce backend e configuração
+│   ├── backend/                      # Node/Prisma/Fastify + lógica de checkout
 │   └── docker-compose.override.yml
 │
-├── Chatops/                          # ChatOps backend + frontend
+├── Chatops/                          # ChatOps backend e integração
 │   └── backend/
-│       ├── src/
-│       │   ├── server.ts             # WebSocket com auth token
-│       │   ├── chatOpsEngine.ts      # Lógica de comandos
-│       │   └── redis-subscriber.ts   # Pub/sub com retry
-│       ├── tests/
-│       │   └── auth.test.ts          # Token inválido → close 4001
-│       └── package.json
+│       ├── src/                      # WebSocket, comandos e Redis
+│       └── tests/
 │
-├── logistica-multi-tenant-clean/     # Logistics WMS/TMS
-│   ├── backend-nest/                 # NestJS
-│   │   ├── src/
-│   │   │   ├── services/
-│   │   │   └── guards/
-│   │   │       └── tenant.guard.ts   # Isolamento por companyId
-│   │   ├── prisma/
-│   │   │   └── schema.prisma         # 3 roles: SUPER_ADMIN, ADMIN, OPERATOR
-│   │   └── package.json
-│   ├── frontend/                     # React
-│   └── scripts/
-│       └── legacy-refactor/          # Ferramentas de migração (histórico)
+├── logistica-multi-tenant-clean/     # Logistics WMS/TMS multi-tenant
+│   ├── backend-nest/                 # NestJS com isolamento por tenant
+│   ├── frontend/                     # React frontend
+│   └── docs/                         # Documentação e integração
 │
 ├── docker-compose.yml                # Produção
 ├── docker-compose.override.yml       # Dev overrides
-├── package.json                      # Scripts root (install:all, start:all, etc.)
-└── README.md                         # Este ficheiro
+├── package.json                      # Scripts root
+└── README.md
 ```
 
 ---
@@ -213,50 +179,61 @@ tranzor/
 
 ### Autenticação WebSocket (ChatOps)
 
-```typescript
-wss.on('connection', (ws: WebSocket, req) => {
-  const authHeader = req.headers.authorization || '';
-  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
-  const userId = authHeader ? parseUserIdFromToken(authHeader) : null;
-  
-  if (!userId) {
-    ws.close(4001, 'invalid token');
-    return;
-  }
-  connectionMeta.set(ws, { userId });
-});
+- Tokens inválidos são rejeitados com código `4001`
+- Sem token ou token malformado, a conexão é fechada
+- Cada mensagem é tratada com contexto de usuário
+
+### Isolamento multi-tenant (Logistics)
+
+- `companyId` é verificado em todas as queries
+- Não há acesso cruzado entre empresas
+- Guards e middlewares reforçam o isolamento por tenant
+
+### Prisma fail-fast
+
+- O serviço valida `DATABASE_URL` no arranque
+- Se o banco não estiver disponível em produção, o processo encerra
+
+---
+
+## 🛠️ Variáveis de ambiente
+
+### Website (Commerce)
+
+```env
+NODE_ENV=production
+PORT=3001
+DATABASE_URL=<database-url>
+REDIS_URL=<redis-url>
 ```
 
-- Tokens inválidos são rejeitados com código 4001
-- Sem token ou com token malformado: ligação fechada imediatamente
-- Cada mensagem é auditada com userId
+### ChatOps
 
-### Multi-Tenant Isolation (Logistics)
-
-```typescript
-// Filtro companyId em todas as queries
-const products = await prisma.product.findMany({
-  where: { companyId: req.user.companyId }
-});
+```env
+NODE_ENV=production
+PORT=3002
+WS_PORT=9001
+REDIS_URL=<redis-url>
+JWT_SECRET=<jwt-secret>
 ```
 
-- Guard valida `companyId` em cada request
-- Sem acesso cruzado entre empresas
+### Logistics
 
-### Prisma Fail-Fast (Website)
-
-```typescript
-if (!env.DATABASE_URL) {
-  logger.error('DATABASE_URL is not configured');
-  if (env.NODE_ENV === 'production') process.exit(1);
-}
-
-await primaryPrisma.$connect();
-await primaryPrisma.$queryRaw`SELECT 1`;
+```env
+NODE_ENV=production
+PORT=3000
+DATABASE_URL=<database-url>
+REDIS_URL=<redis-url>
 ```
 
-- Valida conexão no arranque
-- Mata o processo em produção se BD inacessível
+---
+
+## 📄 Documentação
+
+- [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md)
+- `website/backend/README.md`
+- `Chatops/backend/README.md`
+- `logistica-multi-tenant-clean/README.md`
 
 ---
 
