@@ -1,5 +1,8 @@
+/// <reference types="node" />
 import { defineConfig, devices } from '@playwright/test';
-import path from 'path';
+import * as path from 'path';
+
+const isCI = !!process.env.CI && !process.env.PLAYWRIGHT_FULL; // when CI is set, limit projects unless PLAYWRIGHT_FULL is provided
 
 export default defineConfig({
   testDir: './tests',
@@ -7,7 +10,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: isCI ? 2 : undefined,
   reporter: 'html',
 
   use: {
@@ -17,33 +20,40 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
 
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+  projects: isCI
+    ? [
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] },
+        },
+      ]
+    : [
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] },
+        },
+        {
+          name: 'firefox',
+          use: { ...devices['Desktop Firefox'] },
+        },
+        {
+          name: 'webkit',
+          use: { ...devices['Desktop Safari'] },
+        },
 
-    // Mobile testing
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-  ],
+        // Mobile testing
+        {
+          name: 'Mobile Chrome',
+          use: { ...devices['Pixel 5'] },
+        },
+      ],
 
   webServer: [
     {
       command: 'npm run dev',
       url: 'http://localhost:5174',
       reuseExistingServer: !process.env.CI,
-      cwd: path.resolve(__dirname, '../frontend'),
+      cwd: path.resolve(process.cwd(), '../frontend'),
       timeout: 120000,
     },
     {
@@ -52,10 +62,10 @@ export default defineConfig({
       command: 'npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev',
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
-      cwd: __dirname,
+      cwd: process.cwd(),
       env: {
         ...process.env,
-        DATABASE_URL: process.env.DATABASE_URL,
+        DATABASE_URL: process.env.DATABASE_URL ?? '',
       },
       timeout: 180000,
     },
