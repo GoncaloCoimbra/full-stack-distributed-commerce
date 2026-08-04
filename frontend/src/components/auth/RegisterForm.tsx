@@ -128,6 +128,7 @@ export default function RegisterForm({
         name.trim(),
         email,
         password,
+        confirmPassword,
         isB2B ? 'b2b' : 'user',
         isB2B ? {
           company: company.trim() || undefined,

@@ -63,12 +63,13 @@ export const useAuthStore = create<AuthState>((set) => ({
 		name: string,
 		email: string,
 		password: string,
+		confirmPassword: string,
 		role: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager' = 'user',
 		profile?: { company?: string; taxId?: string; phone?: string }
 	) => {
 		set({ isLoading: true, error: null });
 		try {
-			const payload: Record<string, any> = { name, email, password, role };
+			const payload: Record<string, any> = { name, email, password, confirmPassword, role };
 			if (profile) {
 				payload.company = profile.company;
 				payload.taxId = profile.taxId;
