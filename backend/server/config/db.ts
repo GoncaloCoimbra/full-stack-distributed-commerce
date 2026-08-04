@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import { env } from './env';
 import { logger } from './logger';
 
-const DEFAULT_RETRY_COUNT = 3;
-const DEFAULT_RETRY_DELAY_MS = 2000;
+const DEFAULT_RETRY_COUNT = 5;
+const DEFAULT_RETRY_DELAY_MS = 3000;
 
 let dbConnected = false;
 
@@ -17,8 +17,8 @@ const connectDB = async (): Promise<void> => {
 	const options = {
 		maxPoolSize: 20,
 		minPoolSize: 5,
-		connectTimeoutMS: 10000,
-		serverSelectionTimeoutMS: 10000,
+		connectTimeoutMS: 30000,
+		serverSelectionTimeoutMS: 30000,
 	};
 
 	for (let attempt = 1; attempt <= DEFAULT_RETRY_COUNT; attempt += 1) {

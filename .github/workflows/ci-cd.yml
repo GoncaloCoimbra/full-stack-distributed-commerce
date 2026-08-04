@@ -119,6 +119,11 @@ jobs:
           - 5432:5432
       mongo:
         image: mongo:7
+        options: >-
+          --health-cmd "mongosh --quiet --eval \"db.adminCommand({ ping: 1 })\" || mongo --eval \"db.adminCommand({ ping: 1 })\""
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
           - 27017:27017
 
