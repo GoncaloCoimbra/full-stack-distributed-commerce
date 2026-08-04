@@ -12,8 +12,7 @@ import { logger } from '../config/logger';
 import {
 	UnauthorizedError,
 	ConflictError,
-	BadRequestError,
-	EmailServiceError
+	BadRequestError
 } from '../utils/errors';
 import { isB2BRole, optionalAuth, type AuthRequest } from '../middleware/auth';
 
