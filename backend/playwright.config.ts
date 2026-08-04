@@ -1,5 +1,6 @@
+/// <reference types="node" />
 import { defineConfig, devices } from '@playwright/test';
-import path from 'path';
+import * as path from 'path';
 
 const isCI = !!process.env.CI && !process.env.PLAYWRIGHT_FULL; // when CI is set, limit projects unless PLAYWRIGHT_FULL is provided
 
@@ -52,7 +53,7 @@ export default defineConfig({
       command: 'npm run dev',
       url: 'http://localhost:5174',
       reuseExistingServer: !process.env.CI,
-      cwd: path.resolve(__dirname, '../frontend'),
+      cwd: path.resolve(process.cwd(), '../frontend'),
       timeout: 120000,
     },
     {
@@ -61,7 +62,7 @@ export default defineConfig({
       command: 'npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev',
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
-      cwd: __dirname,
+      cwd: process.cwd(),
       env: {
         ...process.env,
         DATABASE_URL: process.env.DATABASE_URL,
