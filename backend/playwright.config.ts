@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
@@ -42,7 +41,7 @@ export default defineConfig({
       command: 'npm run dev',
       url: 'http://localhost:5174',
       reuseExistingServer: !process.env.CI,
-      cwd: path.resolve(__dirname, '../frontend'),
+      cwd: '../frontend',
       timeout: 120000,
     },
     {
@@ -51,7 +50,7 @@ export default defineConfig({
       command: 'npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev',
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
-      cwd: path.resolve(__dirname, './backend'),
+      cwd: './backend',
       timeout: 180000,
     },
   ],
