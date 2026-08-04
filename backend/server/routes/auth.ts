@@ -166,8 +166,8 @@ router.post('/register', validate(registerSchema), asyncHandler(async (req: Requ
 				`
 			});
 		} catch (emailError) {
+			// Email send failed — do not fail the registration. Log and continue.
 			logger.warn(`Email sending failed for: ${email}`, emailError);
-			throw new EmailServiceError('Falha ao enviar email de verificação');
 		}
 
 		const token = (jwt.sign as unknown as (
