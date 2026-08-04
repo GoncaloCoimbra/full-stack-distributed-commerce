@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import multer from 'multer';
 import { Types } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 import XLSX from 'xlsx';
 import B2BQuote from '../models/B2BQuote';
 import Product from '../models/Product';
@@ -139,6 +140,8 @@ router.post('/quotes', optionalAuth, async (req: Request, res: Response) => {
     if ((req as any).user && (req as any).user.role === 'b2b') {
       quoteData.user = (req as any).user.userId;
     }
+
+    quoteData.quoteNumber = quoteData.quoteNumber || `B2B-${uuidv4()}`;
 
     const quote = new B2BQuote(quoteData);
     await quote.save();
