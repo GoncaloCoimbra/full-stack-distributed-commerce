@@ -68,6 +68,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
             key={product.id}
             to={`/shop/product/${product.id}`}
             className="product-card"
+            data-testid="product-card"
             onClick={() => onProductClick?.(product)}
           >
             {/* Badge */}

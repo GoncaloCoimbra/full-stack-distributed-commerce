@@ -82,6 +82,7 @@ export default function LoginForm({
             </svg>
             <input
               id="lf-email"
+              name="email"
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
@@ -110,6 +111,7 @@ export default function LoginForm({
             </svg>
             <input
               id="lf-password"
+              name="password"
               type={showPass ? 'text' : 'password'}
               value={password}
               onChange={e => setPassword(e.target.value)}
