@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import { PrismaClient } from '@prisma/client';
 import { catalogImportSchema } from '../server/core/validators';
 import { importCatalogRows } from '../server/core/catalogSeeder';
+import { getMongoUri } from '../server/config/mongo';
 import { parseSeedFile } from '../server/utils/enterpriseOps';
 
 dotenv.config();
@@ -17,7 +18,7 @@ async function main() {
   const parsed = parseSeedFile(input, filePath);
   const rows = catalogImportSchema.parse(parsed);
 
-  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Tranzor');
+  await mongoose.connect(getMongoUri());
   await prisma.$connect();
 
   const summary = await importCatalogRows(rows);

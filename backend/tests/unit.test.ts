@@ -131,6 +131,21 @@ describe('Authentication Controller', () => {
       expect(response.body.message).toBeDefined();
     });
 
+    it('should accept registration with a plus-addressed email', async () => {
+      const response = await request(server)
+        .post('/api/v1/auth/register')
+        .send({
+          email: `plus+${Date.now()}@example.com`,
+          password: 'TestPassword123!',
+          confirmPassword: 'TestPassword123!',
+          name: 'John Doe',
+        });
+
+      expect(response.status).toBe(201);
+      expect(response.body.success).toBe(true);
+      expect(response.body.user.email).toBeDefined();
+    });
+
     it('should reject registration with invalid email', async () => {
       const response = await request(server)
         .post('/api/v1/auth/register')
