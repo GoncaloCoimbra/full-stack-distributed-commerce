@@ -43,7 +43,7 @@ test.describe('E2E - E-commerce Flow', () => {
     
     // Filter by category using the visible category label
     await page.locator('label', { hasText: 'Artes' }).first().click();
-    await expect(page.locator('label.filter-option.active')).toContainText('Artes');
+    await expect(page.locator('label.filter-option.active', { hasText: 'Artes' })).toContainText('Artes');
   });
 
   test('Add to cart and checkout', async ({ page }) => {

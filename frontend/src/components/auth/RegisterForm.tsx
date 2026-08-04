@@ -136,7 +136,7 @@ export default function RegisterForm({
         } : undefined
       );
       if (onSuccess) onSuccess();
-      else navigate(from, { replace: true });
+      else navigate('/account/profile', { replace: true });
     } catch (err: any) {
       setError(err.message || t('auth.validation.registrationFailed'));
     } finally {
