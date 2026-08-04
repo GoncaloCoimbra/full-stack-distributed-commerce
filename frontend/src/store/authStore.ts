@@ -28,6 +28,7 @@ export interface AuthState {
 		name: string,
 		email: string,
 		password: string,
+		confirmPassword: string,
 		role?: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager',
 		profile?: { company?: string; taxId?: string; phone?: string }
 	) => Promise<void>;
