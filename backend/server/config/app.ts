@@ -33,21 +33,11 @@ import { swaggerSpec } from '../docs/swagger';
 import feedsRoutes from '../routes/feeds';
 import tenantRoutes from '../routes/tenant';
 import wmsRoutes from '../routes/wms';
-import connectDB from './db';
 
 const allowDegradedMode = process.env.ALLOW_DEGRADED_MODE === 'true' || process.env.NODE_ENV === 'development';
 
 const app = express();
 app.set('trust proxy', Number(process.env.TRUST_PROXY || 1));
-
-// Connect to database
-try {
-  connectDB();
-} catch (error) {
-  if (!allowDegradedMode) {
-    throw error;
-  }
-}
 
 // Request middleware
 app.use(compression());
