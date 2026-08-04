@@ -52,6 +52,10 @@ export default defineConfig({
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
       cwd: __dirname,
+      env: {
+        ...process.env,
+        DATABASE_URL: process.env.DATABASE_URL,
+      },
       timeout: 180000,
     },
   ],
