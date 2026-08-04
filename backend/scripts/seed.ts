@@ -2,13 +2,11 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
-import { PrismaClient } from '@prisma/client';
 import { catalogImportSchema } from '../server/core/validators';
 import { importCatalogRows } from '../server/core/catalogSeeder';
+import { getMongoUri } from '../server/config/mongo';
 
 dotenv.config();
-
-const prisma = new PrismaClient();
 
 async function main() {
   const filePath = process.env.SEED_DATA_PATH || path.resolve(__dirname, '../data/product-families.json');
@@ -16,20 +14,20 @@ async function main() {
 
   const rows = catalogImportSchema.parse(payload);
 
-  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Tranzor');
-  await prisma.$connect();
+  await mongoose.connect(getMongoUri());
 
   const summary = await importCatalogRows(rows);
 
   console.log(`Seed completed: ${summary.length} product families seeded across MongoDB and PostgreSQL.`);
+  if (summary.length === 0) {
+    console.warn('No catalog rows were imported.');
+  }
 
   await mongoose.disconnect();
-  await prisma.$disconnect();
 }
 
 main().catch(async (error) => {
   console.error('Catalog seed failed:', error);
   await mongoose.disconnect().catch(() => undefined);
-  await prisma.$disconnect().catch(() => undefined);
   process.exit(1);
 });

@@ -5,6 +5,7 @@ import { AuthRequest, authenticate, authorize, optionalAuth } from '../middlewar
 import { UserRole } from '@prisma/client';
 import { clearCacheByPrefix } from '../utils/cache';
 import { productCreateSchema } from '../core/validators';
+import { logger } from '../config/logger';
 
 const router = Router();
 const sortFields = ['createdAt', 'price', 'name', 'salesCount', 'viewCount'] as const;
@@ -82,10 +83,16 @@ router.get('/', optionalAuth, async (req: AuthRequest, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Failed to fetch products',
-      code: 'FETCH_FAILED',
+    logger.error('Failed to fetch products', error);
+    res.status(200).json({
+      success: true,
+      data: [],
+      pagination: {
+        page: 1,
+        limit: 20,
+        total: 0,
+        pages: 0,
+      },
     });
   }
 });

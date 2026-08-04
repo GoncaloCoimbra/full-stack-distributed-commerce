@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { env } from './env';
 import { logger } from './logger';
+import { getMongoUri } from './mongo';
 
 const DEFAULT_RETRY_COUNT = 5;
 const DEFAULT_RETRY_DELAY_MS = 3000;
@@ -13,7 +14,7 @@ const connectDB = async (): Promise<void> => {
 		return;
 	}
 
-	const mongoURI = env.MONGODB_URI;
+	const mongoURI = getMongoUri();
 	const options = {
 		maxPoolSize: 20,
 		minPoolSize: 5,

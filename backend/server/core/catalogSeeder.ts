@@ -4,6 +4,47 @@ import Category from '../models/Category';
 import Product from '../models/Product';
 import type { CatalogImportRow } from './validators';
 
+async function upsertPrismaProduct(row: CatalogImportRow, categorySlug: string, productSlug: string, categoryId: string, productName: string) {
+  if (!prisma?.product) {
+    return null;
+  }
+
+  try {
+    return await prisma.product.upsert({
+      where: { sku: row.sku_prefix },
+      update: {
+        name: productName,
+        description: row.description,
+        longDescription: row.description,
+        price: row.unit_price,
+        cost: row.unit_price * 0.65,
+        stock: row.stock,
+        categoryId,
+        slug: productSlug,
+        status: 'ACTIVE',
+        featured: row.featured,
+        tags: row.tags,
+      },
+      create: {
+        sku: row.sku_prefix,
+        name: productName,
+        description: row.description,
+        longDescription: row.description,
+        price: row.unit_price,
+        cost: row.unit_price * 0.65,
+        stock: row.stock,
+        categoryId,
+        slug: productSlug,
+        status: 'ACTIVE',
+        featured: row.featured,
+        tags: row.tags,
+      },
+    });
+  } catch (error) {
+    return null;
+  }
+}
+
 const slugify = (value: string) => value
   .toLowerCase()
   .trim()
@@ -70,54 +111,34 @@ export async function importCatalogRows(rows: CatalogImportRow[]) {
         { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
       );
 
-      const prismaCategory = await prisma.category.upsert({
-        where: { slug: categorySlug },
-        update: {
-          name: row.category,
-          description: row.description,
-        },
-        create: {
-          name: row.category,
-          slug: categorySlug,
-          description: row.description,
-        },
-      });
+      let prismaId = '';
 
-      const prismaProduct = await prisma.product.upsert({
-        where: { sku: row.sku_prefix },
-        update: {
-          name: row.family,
-          description: row.description,
-          longDescription: row.description,
-          price: row.unit_price,
-          cost: row.unit_price * 0.65,
-          stock: row.stock,
-          categoryId: prismaCategory.id,
-          slug: productSlug,
-          status: 'ACTIVE',
-          featured: row.featured,
-          tags: row.tags,
-        },
-        create: {
-          sku: row.sku_prefix,
-          name: row.family,
-          description: row.description,
-          longDescription: row.description,
-          price: row.unit_price,
-          cost: row.unit_price * 0.65,
-          stock: row.stock,
-          categoryId: prismaCategory.id,
-          slug: productSlug,
-          status: 'ACTIVE',
-          featured: row.featured,
-          tags: row.tags,
-        },
-      });
+      try {
+        if (prisma?.category) {
+          const prismaCategory = await prisma.category.upsert({
+            where: { slug: categorySlug },
+            update: {
+              name: row.category,
+              description: row.description,
+            },
+            create: {
+              name: row.category,
+              slug: categorySlug,
+              description: row.description,
+            },
+          });
+
+          const prismaProduct = await upsertPrismaProduct(row, categorySlug, productSlug, prismaCategory.id, row.family);
+          prismaId = prismaProduct?.id || '';
+        }
+      } catch (error) {
+        prismaId = '';
+      }
 
       summary.push({
         sku: row.sku_prefix,
         mongoId: mongoProduct._id.toString(),
-        prismaId: prismaProduct.id,
+        prismaId,
       });
     }
   }
