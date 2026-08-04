@@ -200,19 +200,7 @@ router.post('/register', validate(registerSchema), asyncHandler(async (req: Requ
 			// swallow logging errors
 		}
 
-		// Also append to a specific file for quick retrieval in CI artifacts
-		try {
-			const fs = await import('fs');
-			const logsDir = 'logs';
-			if (!fs.existsSync(logsDir)) {
-				fs.mkdirSync(logsDir, { recursive: true });
-			}
-			const entry = `${new Date().toISOString()} - Register error: ${err && (err.stack || JSON.stringify(err))}\n`;
-			fs.appendFileSync(`${logsDir}/auth-register-error.log`, entry, { encoding: 'utf8' });
-		} catch (fileErr) {
-			// ignore file write errors
-		}
-
+		// Do not write log files here (user requested). Re-throw after logging.
 		throw err;
 	}
 }));
