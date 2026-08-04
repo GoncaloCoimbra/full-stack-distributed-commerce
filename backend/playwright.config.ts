@@ -1,6 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
 
+// Temporary debug logs (added per request) — remove after CI diagnosis
+console.log('DEBUG __dirname:', __dirname);
+console.log('DEBUG frontend path:', path.resolve(__dirname, '../frontend'), 
+  'exists:', require('fs').existsSync(path.resolve(__dirname, '../frontend')));
+console.log('DEBUG backend path:', path.resolve(__dirname, './backend'), 
+  'exists:', require('fs').existsSync(path.resolve(__dirname, './backend')));
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
