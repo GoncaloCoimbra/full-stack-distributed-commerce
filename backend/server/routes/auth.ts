@@ -126,72 +126,95 @@ router.post('/login', validate(loginSchema), asyncHandler(async (req: Request, r
 // POST /auth/register
 router.post('/register', validate(registerSchema), asyncHandler(async (req: Request, res: Response) => {
 	const { name, email, password, role = 'user', company, taxId, phone } = req.body;
-
 	logger.info(`Register attempt for email: ${email}`);
 
-	const existingUser = await User.findOne({ email });
-	if (existingUser) {
-		logger.warn(`Register failed: email already exists: ${email}`);
-		throw new ConflictError('Email já registado');
-	}
-
-	const hashedPassword = await bcrypt.hash(password, 12);
-	const emailVerificationToken = crypto.randomBytes(32).toString('hex');
-
-	const user = new User({
-		name,
-		email,
-		password: hashedPassword,
-		role,
-		b2bDiscountRate: isB2BRole(role) ? 10 : 0,
-		emailVerificationToken,
-		profile: {
-			company,
-			taxId,
-			phone
-		}
-	});
-
-	await user.save();
-
 	try {
-		await sendEmail({
-			to: email,
-			subject: 'Verifique seu email - Tranzor.pt',
-			html: `
-				<h2>Bem-vindo ao Tranzor.pt!</h2>
-				<p>Clique no link abaixo para verificar seu email:</p>
-				<a href="${env.FRONTEND_URL}/verify-email?token=${emailVerificationToken}">Verificar Email</a>
-				<p>Este link expira em 24 horas.</p>
-			`
+		const existingUser = await User.findOne({ email });
+		if (existingUser) {
+			logger.warn(`Register failed: email already exists: ${email}`);
+			throw new ConflictError('Email já registado');
+		}
+
+		const hashedPassword = await bcrypt.hash(password, 12);
+		const emailVerificationToken = crypto.randomBytes(32).toString('hex');
+
+		const user = new User({
+			name,
+			email,
+			password: hashedPassword,
+			role,
+			b2bDiscountRate: isB2BRole(role) ? 10 : 0,
+			emailVerificationToken,
+			profile: {
+				company,
+				taxId,
+				phone
+			}
 		});
-	} catch (emailError) {
-		logger.warn(`Email sending failed for: ${email}`, emailError);
-		throw new EmailServiceError('Falha ao enviar email de verificação');
+
+		await user.save();
+
+		try {
+			await sendEmail({
+				to: email,
+				subject: 'Verifique seu email - Tranzor.pt',
+				html: `
+					<h2>Bem-vindo ao Tranzor.pt!</h2>
+					<p>Clique no link abaixo para verificar seu email:</p>
+					<a href="${env.FRONTEND_URL}/verify-email?token=${emailVerificationToken}">Verificar Email</a>
+					<p>Este link expira em 24 horas.</p>
+				`
+			});
+		} catch (emailError) {
+			logger.warn(`Email sending failed for: ${email}`, emailError);
+			throw new EmailServiceError('Falha ao enviar email de verificação');
+		}
+
+		const token = (jwt.sign as unknown as (
+			payload: string | object | Buffer,
+			secretOrPrivateKey: string,
+			options?: { expiresIn?: string | number }
+		) => string)(
+			{
+				userId: user._id,
+				email: user.email,
+				role: user.role
+			},
+			env.JWT_SECRET as unknown as string,
+			{ expiresIn: env.JWT_EXPIRE }
+		);
+
+		setAuthCookie(res, token);
+		logger.info(`User registered successfully: ${email}`);
+
+		res.status(201).json({
+			success: true,
+			user: buildUserPayload(user),
+			message: 'Conta criada com sucesso. Verifique seu email para ativar a conta.'
+		});
+	} catch (err: any) {
+		// Temporary detailed logging to capture root-cause stack traces during E2E runs
+		try {
+			logger.error('Register handler error:', err && (err.stack || err));
+		} catch (logErr) {
+			// swallow logging errors
+		}
+
+		// Also append to a specific file for quick retrieval in CI artifacts
+		try {
+			const fs = await import('fs');
+			const logsDir = 'logs';
+			if (!fs.existsSync(logsDir)) {
+				fs.mkdirSync(logsDir, { recursive: true });
+			}
+			const entry = `${new Date().toISOString()} - Register error: ${err && (err.stack || JSON.stringify(err))}\n`;
+			fs.appendFileSync(`${logsDir}/auth-register-error.log`, entry, { encoding: 'utf8' });
+		} catch (fileErr) {
+			// ignore file write errors
+		}
+
+		throw err;
 	}
-
-	const token = (jwt.sign as unknown as (
-		payload: string | object | Buffer,
-		secretOrPrivateKey: string,
-		options?: { expiresIn?: string | number }
-	) => string)(
-		{
-			userId: user._id,
-			email: user.email,
-			role: user.role
-		},
-		env.JWT_SECRET as unknown as string,
-		{ expiresIn: env.JWT_EXPIRE }
-	);
-
-	setAuthCookie(res, token);
-	logger.info(`User registered successfully: ${email}`);
-
-	res.status(201).json({
-		success: true,
-		user: buildUserPayload(user),
-		message: 'Conta criada com sucesso. Verifique seu email para ativar a conta.'
-	});
 }));
 
 // POST /auth/verify-email
