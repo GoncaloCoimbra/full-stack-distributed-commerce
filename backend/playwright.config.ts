@@ -1,13 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
 
-// Temporary debug logs (added per request) — remove after CI diagnosis
-console.log('DEBUG __dirname:', __dirname);
-console.log('DEBUG frontend path:', path.resolve(__dirname, '../frontend'), 
-  'exists:', require('fs').existsSync(path.resolve(__dirname, '../frontend')));
-console.log('DEBUG backend path:', path.resolve(__dirname, './backend'), 
-  'exists:', require('fs').existsSync(path.resolve(__dirname, './backend')));
-
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -58,7 +51,7 @@ export default defineConfig({
       command: 'npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev',
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
-      cwd: path.resolve(__dirname, './backend'),
+      cwd: __dirname,
       timeout: 180000,
     },
   ],
