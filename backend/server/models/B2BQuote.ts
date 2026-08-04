@@ -85,13 +85,12 @@ const B2BQuoteSchema = new Schema<IB2BQuote>({
   timestamps: true
 });
 
-B2BQuoteSchema.pre('save', function(next: any) {
+B2BQuoteSchema.pre('save', function() {
   if (this.isNew && !this.quoteNumber) {
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.random().toString(36).substring(2, 6).toUpperCase();
     this.quoteNumber = `B2B-${timestamp}-${random}`;
   }
-  next();
 });
 
 B2BQuoteSchema.index({ quoteNumber: 1 });

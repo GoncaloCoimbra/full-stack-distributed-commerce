@@ -16,7 +16,6 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
-  globalTimeout: process.env.CI ? 5 * 60 * 1000 : undefined,
 
   projects: [
     {
