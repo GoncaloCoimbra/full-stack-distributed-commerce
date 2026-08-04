@@ -58,14 +58,16 @@ export default defineConfig({
     },
     {
       // Ensure migrations are applied before starting the backend server in CI
-      // Run migrate deploy then start dev server from the backend directory
-      command: 'npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev',
+      // Run migrate deploy, attempt to seed data for tests and then start dev server.
+      // Behavior: in CI (process.env.CI set) run seed and fail loudly if it fails; locally, attempt seed but ignore failures.
+      // Use a Node wrapper for cross-platform behavior.
+      command: `npx prisma migrate deploy --schema prisma/schema.prisma && node -e "const cp=require('child_process'); if(process.env.CI){ const r=cp.spawnSync('npm',['run','db:seed'],{stdio:'inherit'}); if(r.status!==0){ console.error('Seed failed in CI with code', r.status); process.exit(r.status);} } else { try{ cp.spawnSync('npm',['run','db:seed'],{stdio:'inherit'}); } catch(e){} }" && npm run dev`,
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
       cwd: process.cwd(),
       env: {
         ...process.env,
-        DATABASE_URL: process.env.DATABASE_URL ?? '',
+        DATABASE_URL: process.env.DATABASE_URL ?? 'postgresql://postgres:postgres@localhost:5432/Tranzor_test',
       },
       timeout: 180000,
     },
