@@ -149,6 +149,7 @@ app.get('/health', async (req, res) => {
 		environment: process.env.NODE_ENV || 'development',
 		database,
 		redis,
+		degradedMode: allowDegradedMode,
 	});
 });
 
@@ -163,6 +164,7 @@ app.get('/readyz', async (req, res) => {
 		environment: process.env.NODE_ENV || 'development',
 		database,
 		redis,
+		degradedMode: allowDegradedMode,
 	});
 });
 
@@ -187,6 +189,7 @@ app.get('/api/v1/health', async (req, res) => {
 		environment: process.env.NODE_ENV || 'development',
 		database,
 		redis,
+		degradedMode: allowDegradedMode,
 	});
 });
 

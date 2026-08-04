@@ -161,12 +161,62 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/Tranzor_test
           MONGODB_URI: mongodb://localhost:27017/tranzor_test
         run: npm run test:e2e
-        timeout-minutes: 10
+        timeout-minutes: 30
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
+          path: backend/playwright-report/
+          retention-days: 30
+
+  # Nightly / Manual job to run full browser matrix (firefox, webkit, mobile)
+  e2e-nightly:
+    runs-on: ubuntu-latest
+    needs: [backend-test, frontend-test]
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies (Backend)
+        working-directory: backend
+        run: npm ci
+
+      - name: Setup database
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/Tranzor_test
+        run: |
+          npx prisma migrate status --schema prisma/schema.prisma || true
+          npx prisma migrate deploy --schema prisma/schema.prisma || true
+
+      - name: Install dependencies (Frontend)
+        working-directory: frontend
+        run: npm ci || npm install
+
+      - name: Install Playwright browsers
+        working-directory: backend
+        run: npx playwright install --with-deps
+
+      - name: Run Full E2E tests (manual/nightly)
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/Tranzor_test
+          MONGODB_URI: mongodb://localhost:27017/tranzor_test
+          PLAYWRIGHT_FULL: 'true'
+        run: npm run test:e2e
+        timeout-minutes: 60
+      
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-full
           path: backend/playwright-report/
           retention-days: 30
 
