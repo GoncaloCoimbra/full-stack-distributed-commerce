@@ -65,7 +65,7 @@ export default defineConfig({
       cwd: process.cwd(),
       env: {
         ...process.env,
-        DATABASE_URL: process.env.DATABASE_URL,
+        DATABASE_URL: process.env.DATABASE_URL ?? '',
       },
       timeout: 180000,
     },

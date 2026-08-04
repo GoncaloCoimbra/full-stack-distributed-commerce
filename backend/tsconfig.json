@@ -8,6 +8,7 @@
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
+    "types": ["node", "jest"],
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "noEmitOnError": true
@@ -15,6 +16,7 @@
   "include": [
     "server/**/*.ts",
     "server/**/*.d.ts",
+    "playwright.config.ts",
     "server.ts"
   ],
   "exclude": [
