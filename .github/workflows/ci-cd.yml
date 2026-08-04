@@ -150,6 +150,7 @@ jobs:
         working-directory: backend
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/Tranzor_test
+          MONGODB_URI: mongodb://localhost:27017/tranzor_test
         run: npm run test:e2e
         timeout-minutes: 10
 
