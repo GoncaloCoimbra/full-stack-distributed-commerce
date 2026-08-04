@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const FRONTEND_URL = 'http://localhost:5173';
+const FRONTEND_URL = 'http://localhost:5174';
 
 test.describe('Admin CMS basic checks', () => {
   test('Admin can access Content and Coupons pages', async ({ page }) => {

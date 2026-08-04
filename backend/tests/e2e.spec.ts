@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const API_URL = 'http://localhost:3001/api/v1';
-const FRONTEND_URL = 'http://localhost:5173';
+const FRONTEND_URL = 'http://localhost:5174';
 
 test.describe('E2E - E-commerce Flow', () => {
   test('User Registration and Login Flow', async ({ page }) => {
