@@ -38,7 +38,7 @@ export default defineConfig({
 
   webServer: [
     {
-      command: "DEBUG=vite:* npm run dev",
+      command: 'npm run dev',
       url: 'http://localhost:5174',
       reuseExistingServer: !process.env.CI,
       cwd: '../frontend',
@@ -50,6 +50,7 @@ export default defineConfig({
       command: "npx prisma migrate deploy --schema prisma/schema.prisma && npm run dev",
       url: 'http://localhost:3001/health',
       reuseExistingServer: !process.env.CI,
+      cwd: './backend',
       timeout: 180000,
     },
   ],
