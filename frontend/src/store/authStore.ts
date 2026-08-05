@@ -18,20 +18,23 @@ export interface User {
 	};
 }
 
+export type RegisterPayload = {
+	name: string;
+	email: string;
+	password: string;
+	confirmPassword: string;
+	role?: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager';
+	profile?: { company?: string; taxId?: string; phone?: string };
+	agreeTerms?: boolean;
+};
+
 export interface AuthState {
 	user: User | null;
 	isLoading: boolean;
 	error: string | null;
 
 	login: (email: string, password: string) => Promise<void>;
-	register: (
-		name: string,
-		email: string,
-		password: string,
-		confirmPassword: string,
-		role?: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager',
-		profile?: { company?: string; taxId?: string; phone?: string }
-	) => Promise<void>;
+	register: (payload: RegisterPayload) => Promise<void>;
 	logout: () => Promise<void>;
 	clearError: () => void;
 	restoreSession: () => Promise<void>;
@@ -60,23 +63,23 @@ export const useAuthStore = create<AuthState>((set) => ({
 		}
 	},
 
-	register: async (
-		name: string,
-		email: string,
-		password: string,
-		confirmPassword: string,
-		role: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager' = 'user',
-		profile?: { company?: string; taxId?: string; phone?: string }
-	) => {
+	register: async (payload: RegisterPayload) => {
 		set({ isLoading: true, error: null });
 		try {
-			const payload: Record<string, any> = { name, email, password, confirmPassword, role };
-			if (profile) {
-				payload.company = profile.company;
-				payload.taxId = profile.taxId;
-				payload.phone = profile.phone;
+			const requestBody: Record<string, any> = {
+				name: payload.name,
+				email: payload.email,
+				password: payload.password,
+				confirmPassword: payload.confirmPassword,
+				role: payload.role ?? 'user',
+				agreeTerms: payload.agreeTerms
+			};
+			if (payload.profile) {
+				requestBody.company = payload.profile.company;
+				requestBody.taxId = payload.profile.taxId;
+				requestBody.phone = payload.profile.phone;
 			}
-			const response = await apiClient.post<{ user: User }>('/auth/register', payload);
+			const response = await apiClient.post<{ user: User }>('/auth/register', requestBody);
 
 			if (!response.success || !response.data) {
 				throw new Error(response.error?.message || 'Registro falhou');

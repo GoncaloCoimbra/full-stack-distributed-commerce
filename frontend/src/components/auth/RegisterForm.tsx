@@ -124,18 +124,19 @@ export default function RegisterForm({
     setError('');
     setLoading(true);
     try {
-      await register(
-        name.trim(),
+      await register({
+        name: name.trim(),
         email,
         password,
         confirmPassword,
-        isB2B ? 'b2b' : 'user',
-        isB2B ? {
+        role: isB2B ? 'b2b' : 'user',
+        profile: isB2B ? {
           company: company.trim() || undefined,
           taxId: taxId.trim() || undefined,
           phone: phone.trim() || undefined
-        } : undefined
-      );
+        } : undefined,
+        agreeTerms: agreed
+      });
       if (onSuccess) onSuccess();
       else navigate('/account/profile', { replace: true });
     } catch (err: any) {
