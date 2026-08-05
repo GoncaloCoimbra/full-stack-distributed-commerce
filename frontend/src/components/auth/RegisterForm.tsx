@@ -92,7 +92,7 @@ export default function RegisterForm({
   const location = useLocation();
   const { t } = useTranslation();
   const register = useAuthStore(state => state.register);
-  const from = (location.state as { from?: string })?.from ?? '/';
+  const from = (location.state as { from?: string })?.from ?? '/account/profile';
 
   /* Validação cliente */
   const validate = () => {
@@ -124,20 +124,21 @@ export default function RegisterForm({
     setError('');
     setLoading(true);
     try {
-      await register(
-        name.trim(),
+      await register({
+        name: name.trim(),
         email,
         password,
         confirmPassword,
-        isB2B ? 'b2b' : 'user',
-        isB2B ? {
+        role: isB2B ? 'b2b' : 'user',
+        profile: isB2B ? {
           company: company.trim() || undefined,
           taxId: taxId.trim() || undefined,
           phone: phone.trim() || undefined
-        } : undefined
-      );
+        } : undefined,
+        agreeTerms: agreed
+      });
       if (onSuccess) onSuccess();
-      else navigate('/account/profile', { replace: true });
+      else navigate(from, { replace: true });
     } catch (err: any) {
       console.error('REGISTER ERROR:', err.message, err);
       setError(err.message || t('auth.validation.registrationFailed'));

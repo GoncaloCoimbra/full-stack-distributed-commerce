@@ -1,5 +1,6 @@
+/// <reference types="jest" />
 import bcrypt from 'bcryptjs';
-import { describe, it, expect, beforeAll } from '@jest/globals';
+import { describe, it, expect, beforeAll, jest } from '@jest/globals';
 import request from 'supertest';
 
 const mockUsers: Record<string, any> = {};
@@ -8,7 +9,7 @@ const mockUsersById: Record<string, any> = {};
 function queryMatches(user: any, query: any) {
   return Object.entries(query).every(([key, value]) => {
     if (value && typeof value === 'object' && '$gt' in value) {
-      return user[key] && user[key] > value.$gt;
+      return user[key] && user[key] > (value as any).$gt;
     }
     return user[key] === value;
   });
@@ -16,10 +17,10 @@ function queryMatches(user: any, query: any) {
 
 class MockUser {
   public _id?: string;
-  public name: string;
-  public email: string;
-  public password: string;
-  public role: string;
+  public name!: string;
+  public email!: string;
+  public password!: string;
+  public role!: string;
   public isActive = true;
   public emailVerified = false;
   public loyaltyPoints = 0;
@@ -74,7 +75,7 @@ jest.mock('../server/models/User', () => ({
 }));
 
 jest.mock('../server/services/emailService', () => ({
-  sendEmail: jest.fn().mockResolvedValue(undefined),
+  sendEmail: jest.fn(async () => undefined),
 }));
 
 const sampleProducts = [
@@ -123,6 +124,7 @@ describe('Authentication Controller', () => {
           password: 'TestPassword123!',
           confirmPassword: 'TestPassword123!',
           name: 'John Doe',
+          agreeTerms: true,
         });
 
       expect(response.status).toBe(201);
@@ -139,6 +141,7 @@ describe('Authentication Controller', () => {
           password: 'TestPassword123!',
           confirmPassword: 'TestPassword123!',
           name: 'John Doe',
+          agreeTerms: true,
         });
 
       expect(response.status).toBe(201);
@@ -154,6 +157,7 @@ describe('Authentication Controller', () => {
           password: 'TestPassword123!',
           confirmPassword: 'TestPassword123!',
           name: 'John Doe',
+          agreeTerms: true,
         });
 
       expect(response.status).toBe(422);
@@ -169,6 +173,7 @@ describe('Authentication Controller', () => {
           password: 'weak',
           confirmPassword: 'weak',
           name: 'John Doe',
+          agreeTerms: true,
         });
 
       expect(response.status).toBe(422);
@@ -187,6 +192,7 @@ describe('Authentication Controller', () => {
           password: 'TestPassword123!',
           confirmPassword: 'TestPassword123!',
           name: 'John Doe',
+          agreeTerms: true,
         });
 
       // Try duplicate
@@ -197,6 +203,7 @@ describe('Authentication Controller', () => {
           password: 'TestPassword123!',
           confirmPassword: 'TestPassword123!',
           name: 'John Doe',
+          agreeTerms: true,
         });
 
       expect(response.status).toBe(409);
@@ -218,6 +225,7 @@ describe('Authentication Controller', () => {
           password: testPassword,
           confirmPassword: testPassword,
           name: 'Test User',
+          agreeTerms: true,
         });
     });
 

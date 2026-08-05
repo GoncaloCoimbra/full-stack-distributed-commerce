@@ -333,6 +333,7 @@ export default function ProductDetailPage() {
             {/* CTAs */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <button
+                data-testid="add-to-cart"
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
                 style={{

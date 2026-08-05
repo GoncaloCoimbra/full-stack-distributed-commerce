@@ -225,7 +225,7 @@ function OrderSummary({
       </form>
 
       {/* CTA */}
-      <Link to="/checkout" className="btn-checkout" aria-label="Finalizar compra" onClick={() => trackEvent('checkout_started', { source: 'cart' })}>
+      <Link data-testid="checkout-btn" to="/checkout" className="btn-checkout" aria-label="Finalizar compra" onClick={() => trackEvent('checkout_started', { source: 'cart' })}>
         Finalizar compra
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
           <path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -354,7 +354,7 @@ export default function CartPage() {
 
               <div className="cart-list" role="list">
                 {items.map(item => (
-                  <div key={item.id} role="listitem">
+                  <div key={item.id} role="listitem" data-testid="cart-item">
                     <CartRow
                       {...item}
                       onQty={updateQuantity}

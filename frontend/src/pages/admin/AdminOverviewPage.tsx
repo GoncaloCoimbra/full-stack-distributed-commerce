@@ -95,7 +95,7 @@ export default function AdminOverviewPage() {
         <meta name="description" content="Visão geral das operações administrativas Tranzor." />
       </Helmet>
 
-      <div className="adm-root">
+      <div className="adm-root" data-testid="admin-dashboard">
         <header className="adm-hero">
           <div>
             <div className="adm-tag">Administração</div>
@@ -112,7 +112,7 @@ export default function AdminOverviewPage() {
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
                 </svg>
               </div>
-              <div className="adm-kpi-val">{loading ? '...' : stats?.totalUsers ?? '—'}</div>
+              <div data-testid="total-users" className="adm-kpi-val">{loading ? '...' : stats?.totalUsers ?? '—'}</div>
               <div className="adm-kpi-label">Utilizadores</div>
               <div className="adm-kpi-change adm-kpi-change--up">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden>
@@ -128,7 +128,7 @@ export default function AdminOverviewPage() {
                   <path d="M6 6L8 18H16L18 6H6ZM9 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm6 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM6 6L4 3H1" />
                 </svg>
               </div>
-              <div className="adm-kpi-val">{loading ? '...' : stats?.totalOrders ?? '—'}</div>
+              <div data-testid="total-orders" className="adm-kpi-val">{loading ? '...' : stats?.totalOrders ?? '—'}</div>
               <div className="adm-kpi-label">Encomendas</div>
               <div className="adm-kpi-change adm-kpi-change--up">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden>
@@ -144,7 +144,7 @@ export default function AdminOverviewPage() {
                   <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                 </svg>
               </div>
-              <div className="adm-kpi-val">{loading ? '...' : formatCurrency(stats?.totalRevenue ?? 0)}</div>
+              <div data-testid="total-revenue" className="adm-kpi-val">{loading ? '...' : formatCurrency(stats?.totalRevenue ?? 0)}</div>
               <div className="adm-kpi-label">Receitas</div>
               <div className="adm-kpi-change adm-kpi-change--up">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden>

@@ -51,7 +51,7 @@ export default function LoginForm({
   const location = useLocation();
   const { t } = useTranslation();
   const login    = useAuthStore(state => state.login);
-  const from = (location.state as { from?: string })?.from ?? '/';
+  const from = (location.state as { from?: string })?.from ?? '/account/profile';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

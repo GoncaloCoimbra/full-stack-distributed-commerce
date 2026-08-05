@@ -85,6 +85,7 @@ test.describe('E2E - E-commerce Flow', () => {
         password: 'TestPassword123!',
         confirmPassword: 'TestPassword123!',
         name: 'Test User',
+        agreeTerms: true,
       }),
     });
 

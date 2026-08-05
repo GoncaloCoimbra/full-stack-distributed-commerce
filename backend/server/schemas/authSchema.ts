@@ -17,7 +17,11 @@ export const registerSchema = z.object({
   role: z.enum(['user', 'admin', 'b2b', 'b2b_buyer', 'b2b_manager']).optional(),
   company: z.string().min(2, 'Nome da empresa deve ter no mínimo 2 caracteres').optional(),
   taxId: z.string().regex(/^[0-9]{9}$/, 'NIF inválido. Deve ter 9 dígitos').optional(),
-  phone: z.string().optional()
+  phone: z.string().optional(),
+  agreeTerms: z.boolean().refine((value) => value === true, {
+    message: 'É necessário aceitar os termos e condições',
+    path: ['agreeTerms']
+  })
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'As senhas não correspondem',
   path: ['confirmPassword']

@@ -154,6 +154,19 @@ const demoCartItems = [
 	},
 ];
 
+const AUTH_TOKEN_KEY = 'auth_token';
+
+const getAuthToken = () => {
+	if (typeof window === 'undefined') return null;
+	return localStorage.getItem(AUTH_TOKEN_KEY);
+};
+
+const setAuthTokenInternal = (token: string | null) => {
+	if (typeof window === 'undefined') return;
+	if (token) localStorage.setItem(AUTH_TOKEN_KEY, token);
+	else localStorage.removeItem(AUTH_TOKEN_KEY);
+};
+
 const previewDashboard = {
 	stats: {
 		totalUsers: 248,
@@ -376,6 +389,17 @@ class ApiClient {
 			},
 		});
 
+		this.instance.interceptors.request.use((config) => {
+			const token = getAuthToken();
+			if (token) {
+				config.headers = config.headers ?? {};
+				if (typeof config.headers === 'object') {
+					(config.headers as Record<string, string>).Authorization = `Bearer ${token}`;
+				}
+			}
+			return config;
+		});
+
 		// O interceptor devolve response.data directamente,
 		// por isso os métodos recebem já o ApiResponse<T>
 		this.instance.interceptors.response.use(
@@ -446,4 +470,7 @@ class ApiClient {
 }
 
 export const apiClient = new ApiClient();
+export function setAuthToken(token: string | null) {
+	setAuthTokenInternal(token);
+}
 export type { ApiResponse, ApiError };

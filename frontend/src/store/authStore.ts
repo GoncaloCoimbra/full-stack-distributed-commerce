@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { apiClient } from '../services/apiClient';
+import { apiClient, setAuthToken } from '../services/apiClient';
 
 
 export interface User {
@@ -18,20 +18,23 @@ export interface User {
 	};
 }
 
+export type RegisterPayload = {
+	name: string;
+	email: string;
+	password: string;
+	confirmPassword: string;
+	role?: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager';
+	profile?: { company?: string; taxId?: string; phone?: string };
+	agreeTerms?: boolean;
+};
+
 export interface AuthState {
 	user: User | null;
 	isLoading: boolean;
 	error: string | null;
 
 	login: (email: string, password: string) => Promise<void>;
-	register: (
-		name: string,
-		email: string,
-		password: string,
-		confirmPassword: string,
-		role?: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager',
-		profile?: { company?: string; taxId?: string; phone?: string }
-	) => Promise<void>;
+	register: (payload: RegisterPayload) => Promise<void>;
 	logout: () => Promise<void>;
 	clearError: () => void;
 	restoreSession: () => Promise<void>;
@@ -46,10 +49,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 	login: async (email: string, password: string) => {
 		set({ isLoading: true, error: null });
 		try {
-			const response = await apiClient.post<{ user: User }>('/auth/login', { email, password });
+			const response = await apiClient.post<{ user: User; token?: string }>('/auth/login', { email, password });
 
 			if (!response.success || !response.data) {
 				throw new Error(response.error?.message || 'Login falhou');
+			}
+
+			if (response.data.token) {
+				setAuthToken(response.data.token);
 			}
 
 			set({ user: response.data.user, isLoading: false });
@@ -60,26 +67,30 @@ export const useAuthStore = create<AuthState>((set) => ({
 		}
 	},
 
-	register: async (
-		name: string,
-		email: string,
-		password: string,
-		confirmPassword: string,
-		role: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager' = 'user',
-		profile?: { company?: string; taxId?: string; phone?: string }
-	) => {
+	register: async (payload: RegisterPayload) => {
 		set({ isLoading: true, error: null });
 		try {
-			const payload: Record<string, any> = { name, email, password, confirmPassword, role };
-			if (profile) {
-				payload.company = profile.company;
-				payload.taxId = profile.taxId;
-				payload.phone = profile.phone;
+			const requestBody: Record<string, any> = {
+				name: payload.name,
+				email: payload.email,
+				password: payload.password,
+				confirmPassword: payload.confirmPassword,
+				role: payload.role ?? 'user',
+				agreeTerms: payload.agreeTerms
+			};
+			if (payload.profile) {
+				requestBody.company = payload.profile.company;
+				requestBody.taxId = payload.profile.taxId;
+				requestBody.phone = payload.profile.phone;
 			}
-			const response = await apiClient.post<{ user: User }>('/auth/register', payload);
+			const response = await apiClient.post<{ user: User; token?: string }>('/auth/register', requestBody);
 
 			if (!response.success || !response.data) {
 				throw new Error(response.error?.message || 'Registro falhou');
+			}
+
+			if (response.data.token) {
+				setAuthToken(response.data.token);
 			}
 
 			set({ user: response.data.user, isLoading: false });
@@ -97,13 +108,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 		} catch {
 			// ignore logout failures; force local state reset
 		} finally {
+			setAuthToken(null);
 			set({ user: null, isLoading: false, error: null });
 		}
 	},
 
 	clearError: () => set({ error: null }),
 
-	// Restaurar sessão do backend com o cookie de autenticação
+	// Restaurar sessão do backend com o token de autenticação
 	restoreSession: async () => {
 		set({ isLoading: true, error: null });
 		try {
