@@ -167,6 +167,18 @@ const setAuthTokenInternal = (token: string | null) => {
 	else localStorage.removeItem(AUTH_TOKEN_KEY);
 };
 
+const isAuthPublicEndpoint = (url?: string): boolean => {
+	if (!url) return false;
+	const normalized = url.toString();
+	return [
+		'/auth/register',
+		'/auth/login',
+		'/auth/forgot-password',
+		'/auth/reset-password',
+		'/auth/verify-email',
+	].some((path) => normalized.endsWith(path) || normalized.includes(path));
+};
+
 const previewDashboard = {
 	stats: {
 		totalUsers: 248,
@@ -391,7 +403,7 @@ class ApiClient {
 
 		this.instance.interceptors.request.use((config) => {
 			const token = getAuthToken();
-			if (token) {
+			if (token && !isAuthPublicEndpoint(config.url as string)) {
 				config.headers = config.headers ?? {};
 				if (typeof config.headers === 'object') {
 					(config.headers as Record<string, string>).Authorization = `Bearer ${token}`;
@@ -413,6 +425,10 @@ class ApiClient {
 		const data = error.response?.data as
 			| { error?: { message?: string; errors?: Record<string, string[]> } }
 			| undefined;
+
+		if (status === 401 && !isAuthPublicEndpoint(error.config?.url as string)) {
+			setAuthTokenInternal(null);
+		}
 
 		const apiError: ApiError = {
 			message: data?.error?.message || error.message || 'Erro desconhecido',
