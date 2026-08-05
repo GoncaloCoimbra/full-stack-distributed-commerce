@@ -1,0 +1,4 @@
+﻿
+> Tranzor-backend@2.0.0 db:seed
+> ts-node scripts/seed.ts
+
