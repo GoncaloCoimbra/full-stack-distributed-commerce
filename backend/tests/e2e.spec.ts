@@ -5,6 +5,9 @@ const FRONTEND_URL = 'http://localhost:5174';
 
 test.describe('E2E - E-commerce Flow', () => {
   test('User Registration and Login Flow', async ({ page }) => {
+    page.on('console', msg => console.log('BROWSER:', msg.text()));
+    page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
+
     // Register
     await page.goto(`${FRONTEND_URL}/auth/register`, { waitUntil: 'networkidle' });
     await page.waitForSelector('input[name="email"]', { state: 'visible', timeout: 15000 });
