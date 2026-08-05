@@ -93,7 +93,6 @@ B2BQuoteSchema.pre('save', function() {
   }
 });
 
-B2BQuoteSchema.index({ quoteNumber: 1 });
 B2BQuoteSchema.index({ user: 1 });
 B2BQuoteSchema.index({ status: 1 });
 B2BQuoteSchema.index({ createdAt: -1 });

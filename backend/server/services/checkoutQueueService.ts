@@ -168,7 +168,7 @@ checkoutQueue.process(async (job: BullJob<CheckoutQueueData> | MemoryJob<Checkou
             salesCount: item.quantity,
           },
         },
-        { new: true }
+        { returnDocument: 'after' }
       );
 
       if (!updatedProduct) {

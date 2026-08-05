@@ -72,7 +72,7 @@ export async function importCatalogRows(rows: CatalogImportRow[]) {
             sortOrder: 0,
           },
         },
-        { upsert: true, new: true, setDefaultsOnInsert: true }
+        { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
       );
 
       const mongoProduct = await Product.findOneAndUpdate(
@@ -108,7 +108,7 @@ export async function importCatalogRows(rows: CatalogImportRow[]) {
             createdBy: new mongoose.Types.ObjectId(),
           },
         },
-        { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
+        { upsert: true, returnDocument: 'after', runValidators: true, setDefaultsOnInsert: true }
       );
 
       let prismaId = '';

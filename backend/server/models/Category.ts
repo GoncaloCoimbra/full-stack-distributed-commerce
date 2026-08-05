@@ -82,7 +82,6 @@ const CategorySchema = new Schema<ICategory, ICategoryModel>({
 });
 
 // Indexes
-CategorySchema.index({ slug: 1 });
 CategorySchema.index({ parent: 1 });
 CategorySchema.index({ isActive: 1 });
 CategorySchema.index({ sortOrder: 1 });

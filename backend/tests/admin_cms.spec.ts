@@ -29,12 +29,22 @@ async function ensureAdminUser(page: Parameters<typeof test>[0]['page']) {
 }
 
 async function signInAdmin(page: Parameters<typeof test>[0]['page']) {
-  await page.goto(`${FRONTEND_URL}/auth/login`, { waitUntil: 'networkidle' });
-  await page.waitForSelector('input[name="email"]', { state: 'visible', timeout: 15000 });
-  await page.fill('input[name="email"]', ADMIN_EMAIL);
-  await page.fill('input[name="password"]', ADMIN_PASSWORD);
-  await page.click('button[type="submit"]');
-  await page.waitForURL(`${FRONTEND_URL}/account/profile`, { timeout: 20000 });
+  const response = await page.request.post(`${API_URL}/auth/login`, {
+    headers: { 'Content-Type': 'application/json' },
+    data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD },
+  });
+
+  expect(response.ok()).toBeTruthy();
+  const body = await response.json();
+  expect(body.success).toBeTruthy();
+  expect(body.token).toBeTruthy();
+
+  await page.goto(FRONTEND_URL, { waitUntil: 'networkidle' });
+  await page.evaluate((token) => {
+    localStorage.setItem('auth_token', token);
+  }, body.token);
+
+  await page.goto(`${FRONTEND_URL}/admin/content`, { waitUntil: 'networkidle' });
 }
 
 test.describe('Admin CMS basic checks', () => {

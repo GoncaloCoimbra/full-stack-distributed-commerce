@@ -187,7 +187,7 @@ class SagaOrchestrator {
       const updated = await Product.findOneAndUpdate(
         { _id: item.productId, stockQuantity: { $gte: item.quantity } },
         { $inc: { stockQuantity: -item.quantity } },
-        { new: true }
+        { returnDocument: 'after' }
       );
 
       if (!updated) {
@@ -204,7 +204,7 @@ class SagaOrchestrator {
         paymentStatus: 'paid',
         paymentIntentId: context.metadata.paymentIntentId,
       },
-      { new: true }
+      { returnDocument: 'after' }
     );
 
     if (!order) {

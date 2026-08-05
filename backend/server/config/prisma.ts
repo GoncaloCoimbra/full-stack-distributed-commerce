@@ -136,7 +136,7 @@ const createProductAdapter = () => ({
       delete updateData.categoryId;
     }
 
-    const product = await Product.findByIdAndUpdate(where.id, updateData, { new: true, runValidators: true })
+    const product = await Product.findByIdAndUpdate(where.id, updateData, { returnDocument: 'after', runValidators: true })
       .populate(include.category ? 'category' : '')
       .lean({ virtuals: true });
 

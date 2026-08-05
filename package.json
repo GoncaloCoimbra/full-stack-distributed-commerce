@@ -23,6 +23,7 @@
     "rollback:staging": "node scripts/rollback-staging.js",
     "smoke:check": "node scripts/smoke-check.js",
     "integration:smoke": "node scripts/integration-smoke.js",
+    "test:e2e": "npm run test:e2e --prefix backend",
     "test:all": "npm run chatops:test && npm run logistica:test"
   },
   "dependencies": {

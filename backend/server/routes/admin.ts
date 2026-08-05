@@ -210,7 +210,7 @@ router.put('/users/:id', async (req: Request, res: Response) => {
 		const user = await User.findByIdAndUpdate(
 			req.params.id,
 			updateData,
-			{ new: true, runValidators: true }
+			{ returnDocument: 'after', runValidators: true }
 		).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken');
 
 		if (!user) {
@@ -347,7 +347,7 @@ router.put('/b2b/quotes/:id', async (req: Request, res: Response) => {
 		if (notes !== undefined) updateData.notes = notes;
 		if (totalEstimate !== undefined) updateData.totalEstimate = totalEstimate;
 
-		const quote = await B2BQuote.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true });
+		const quote = await B2BQuote.findByIdAndUpdate(req.params.id, updateData, { returnDocument: 'after', runValidators: true });
 		if (!quote) {
 			return res.status(404).json({ success: false, error: 'Orçamento não encontrado' });
 		}
@@ -403,7 +403,7 @@ router.put('/products/:id', async (req: Request, res: Response) => {
 		const product = await Product.findByIdAndUpdate(
 			req.params.id,
 			req.body,
-			{ new: true, runValidators: true }
+			{ returnDocument: 'after', runValidators: true }
 		)
 		.populate('category', 'name')
 		.populate('createdBy', 'name');
@@ -444,7 +444,7 @@ router.delete('/products/:id', async (req: Request, res: Response) => {
 		const product = await Product.findByIdAndUpdate(
 			req.params.id,
 			{ isActive: false, isDeleted: true, deletedAt: new Date() },
-			{ new: true }
+			{ returnDocument: 'after' }
 		);
 
 		if (!product) {
@@ -652,7 +652,7 @@ router.put('/reviews/:id/approve', async (req: Request, res: Response) => {
 		const review = await Review.findByIdAndUpdate(
 			req.params.id,
 			{ isApproved: true },
-			{ new: true }
+			{ returnDocument: 'after' }
 		)
 		.populate('user', 'name')
 		.populate('product', 'name');
