@@ -110,7 +110,11 @@ export default function App() {
   const location = useLocation();
 
   useEffect(() => {
-    restoreSession().catch(() => undefined);
+    restoreSession().catch((error) => {
+      if (error?.statusCode === 401) {
+        localStorage.removeItem('auth_token');
+      }
+    });
   }, [restoreSession]);
 
   useEffect(() => {

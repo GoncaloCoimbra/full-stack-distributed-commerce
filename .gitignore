@@ -8,3 +8,5 @@ build/
 *.log
 coverage/
 *.tsbuildinfo
+backend/playwright-report/
+backend/test-results/
