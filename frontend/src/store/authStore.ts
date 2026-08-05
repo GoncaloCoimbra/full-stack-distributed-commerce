@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { apiClient } from '../services/apiClient';
+import { apiClient, setAuthToken } from '../services/apiClient';
 
 
 export interface User {
@@ -49,10 +49,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 	login: async (email: string, password: string) => {
 		set({ isLoading: true, error: null });
 		try {
-			const response = await apiClient.post<{ user: User }>('/auth/login', { email, password });
+			const response = await apiClient.post<{ user: User; token?: string }>('/auth/login', { email, password });
 
 			if (!response.success || !response.data) {
 				throw new Error(response.error?.message || 'Login falhou');
+			}
+
+			if (response.data.token) {
+				setAuthToken(response.data.token);
 			}
 
 			set({ user: response.data.user, isLoading: false });
@@ -79,10 +83,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 				requestBody.taxId = payload.profile.taxId;
 				requestBody.phone = payload.profile.phone;
 			}
-			const response = await apiClient.post<{ user: User }>('/auth/register', requestBody);
+			const response = await apiClient.post<{ user: User; token?: string }>('/auth/register', requestBody);
 
 			if (!response.success || !response.data) {
 				throw new Error(response.error?.message || 'Registro falhou');
+			}
+
+			if (response.data.token) {
+				setAuthToken(response.data.token);
 			}
 
 			set({ user: response.data.user, isLoading: false });
@@ -100,13 +108,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 		} catch {
 			// ignore logout failures; force local state reset
 		} finally {
+			setAuthToken(null);
 			set({ user: null, isLoading: false, error: null });
 		}
 	},
 
 	clearError: () => set({ error: null }),
 
-	// Restaurar sessão do backend com o cookie de autenticação
+	// Restaurar sessão do backend com o token de autenticação
 	restoreSession: async () => {
 		set({ isLoading: true, error: null });
 		try {

@@ -1,6 +1,5 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import User from '../models/User';
 import { sendEmail } from '../services/emailService';
@@ -14,14 +13,15 @@ import {
 	ConflictError,
 	BadRequestError
 } from '../utils/errors';
-import { isB2BRole, optionalAuth, type AuthRequest } from '../middleware/auth';
+import { generateToken, isB2BRole, optionalAuth, type AuthRequest } from '../middleware/auth';
 
 const router = Router();
 
 const cookieOptions = {
 	httpOnly: true,
-	sameSite: 'lax' as const,
+	sameSite: 'none' as const,
 	secure: env.NODE_ENV === 'production',
+	path: '/',
 	maxAge: 24 * 60 * 60 * 1000
 };
 
@@ -98,19 +98,7 @@ router.post('/login', validate(loginSchema), asyncHandler(async (req: Request, r
 	user.lastLogin = new Date();
 	await user.save();
 
-	const token = (jwt.sign as unknown as (
-		payload: string | object | Buffer,
-		secretOrPrivateKey: string,
-		options?: { expiresIn?: string | number }
-	) => string)(
-		{
-			userId: user._id,
-			email: user.email,
-			role: user.role
-		},
-		env.JWT_SECRET as unknown as string,
-		{ expiresIn: env.JWT_EXPIRE }
-	);
+	const token = generateToken(user._id.toString(), user.email, user.role);
 
 	setAuthCookie(res, token);
 
@@ -118,7 +106,8 @@ router.post('/login', validate(loginSchema), asyncHandler(async (req: Request, r
 
 	res.json({
 		success: true,
-		user: buildUserPayload(user)
+		user: buildUserPayload(user),
+		token,
 	});
 }));
 
@@ -171,19 +160,7 @@ router.post('/register', validate(registerSchema), asyncHandler(async (req: Requ
 			logger.warn(`Email sending failed for: ${email}`, emailError);
 		}
 
-		const token = (jwt.sign as unknown as (
-			payload: string | object | Buffer,
-			secretOrPrivateKey: string,
-			options?: { expiresIn?: string | number }
-		) => string)(
-			{
-				userId: user._id,
-				email: user.email,
-				role: user.role
-			},
-			env.JWT_SECRET as unknown as string,
-			{ expiresIn: env.JWT_EXPIRE }
-		);
+		const token = generateToken(user._id.toString(), user.email, user.role);
 
 		setAuthCookie(res, token);
 		logger.info(`User registered successfully: ${email}`);
@@ -191,6 +168,7 @@ router.post('/register', validate(registerSchema), asyncHandler(async (req: Requ
 		res.status(201).json({
 			success: true,
 			user: buildUserPayload(user),
+			token,
 			message: 'Conta criada com sucesso. Verifique seu email para ativar a conta.'
 		});
 	} catch (err: any) {

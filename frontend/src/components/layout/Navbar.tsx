@@ -495,7 +495,7 @@ export default function Navbar() {
                 </svg>
               </Link>
               {cartCount > 0 && (
-                <span aria-hidden style={{ position: 'absolute', top: -6, right: -6, minWidth: 18, height: 18, borderRadius: 99, background: 'var(--red)', color: 'white', fontSize: 10, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', animation: 'badgePop 0.3s cubic-bezier(.22,1,.36,1)' }}>
+                <span data-testid="cart-count" aria-hidden style={{ position: 'absolute', top: -6, right: -6, minWidth: 18, height: 18, borderRadius: 99, background: 'var(--red)', color: 'white', fontSize: 10, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', animation: 'badgePop 0.3s cubic-bezier(.22,1,.36,1)' }}>
                   {cartCount > 99 ? '99+' : cartCount}
                 </span>
               )}

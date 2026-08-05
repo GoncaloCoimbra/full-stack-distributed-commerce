@@ -92,7 +92,7 @@ export default function RegisterForm({
   const location = useLocation();
   const { t } = useTranslation();
   const register = useAuthStore(state => state.register);
-  const from = (location.state as { from?: string })?.from ?? '/';
+  const from = (location.state as { from?: string })?.from ?? '/account/profile';
 
   /* Validação cliente */
   const validate = () => {
@@ -138,7 +138,7 @@ export default function RegisterForm({
         agreeTerms: agreed
       });
       if (onSuccess) onSuccess();
-      else navigate('/account/profile', { replace: true });
+      else navigate(from, { replace: true });
     } catch (err: any) {
       console.error('REGISTER ERROR:', err.message, err);
       setError(err.message || t('auth.validation.registrationFailed'));
