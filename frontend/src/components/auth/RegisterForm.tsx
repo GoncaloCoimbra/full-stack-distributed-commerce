@@ -139,6 +139,7 @@ export default function RegisterForm({
       if (onSuccess) onSuccess();
       else navigate('/account/profile', { replace: true });
     } catch (err: any) {
+      console.error('REGISTER ERROR:', err.message, err);
       setError(err.message || t('auth.validation.registrationFailed'));
     } finally {
       setLoading(false);
