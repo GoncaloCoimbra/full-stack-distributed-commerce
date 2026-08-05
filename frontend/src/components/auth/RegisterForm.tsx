@@ -124,17 +124,19 @@ export default function RegisterForm({
     setError('');
     setLoading(true);
     try {
+      const profile = isB2B ? {
+        company: company.trim() || undefined,
+        taxId: taxId.trim() || undefined,
+        phone: phone.trim() || undefined,
+      } : undefined;
+
       await register({
         name: name.trim(),
         email,
         password,
         confirmPassword,
         role: isB2B ? 'b2b' : 'user',
-        profile: isB2B ? {
-          company: company.trim() || undefined,
-          taxId: taxId.trim() || undefined,
-          phone: phone.trim() || undefined
-        } : undefined,
+        profile,
         agreeTerms: agreed
       });
       if (onSuccess) onSuccess();

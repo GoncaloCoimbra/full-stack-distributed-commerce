@@ -31,7 +31,7 @@ async function ensureAdminUser() {
     emailVerified: true,
     profile: {
       company: 'Tranzor',
-      phone: '000000000',
+      phone: '912345678',
     },
   });
 
