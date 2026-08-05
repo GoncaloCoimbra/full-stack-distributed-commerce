@@ -11,7 +11,8 @@ async function ensureAdminUser(page: Parameters<typeof test>[0]['page']) {
     email: ADMIN_EMAIL,
     password: ADMIN_PASSWORD,
     confirmPassword: ADMIN_PASSWORD,
-    role: 'admin'
+    role: 'admin',
+    agreeTerms: true
   };
 
   const response = await page.request.post(`${API_URL}/auth/register`, {

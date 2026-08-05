@@ -25,7 +25,7 @@ export type RegisterPayload = {
 	confirmPassword: string;
 	role?: 'user' | 'admin' | 'b2b' | 'b2b_buyer' | 'b2b_manager';
 	profile?: { company?: string; taxId?: string; phone?: string };
-	agreeTerms?: boolean;
+	agreeTerms: boolean;
 };
 
 export interface AuthState {
