@@ -89,7 +89,7 @@ router.put('/profile', async (req: Request, res: Response) => {
 		const user = await User.findByIdAndUpdate(
 			userId,
 			updateData,
-			{ new: true, runValidators: true }
+			{ returnDocument: 'after', runValidators: true }
 		).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken');
 
 		if (!user) {
@@ -773,7 +773,7 @@ router.put('/addresses', async (req: Request, res: Response) => {
 		const user = await User.findByIdAndUpdate(
 			userId,
 			{ 'profile.address': address },
-			{ new: true, runValidators: true }
+			{ returnDocument: 'after', runValidators: true }
 		).select('profile.address');
 
 		if (!user) {

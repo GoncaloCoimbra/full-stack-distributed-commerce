@@ -76,6 +76,4 @@ const CartSchema = new Schema<ICart>(
   }
 );
 
-CartSchema.index({ user: 1 }, { unique: true });
-
 export default model<ICart>('Cart', CartSchema);
