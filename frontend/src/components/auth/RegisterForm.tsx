@@ -335,6 +335,7 @@ export default function RegisterForm({
         <div className="auth-field">
           <label className="auth-checkbox-label">
             <input
+              name="agreeTerms"
               type="checkbox"
               checked={agreed}
               onChange={e => { setAgreed(e.target.checked); setFieldErrors(p => ({ ...p, agreed: '' })); }}
