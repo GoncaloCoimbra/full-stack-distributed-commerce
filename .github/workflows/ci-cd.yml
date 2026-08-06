@@ -305,6 +305,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Debug deployment script permissions
+        run: |
+          ls -la scripts/
+          stat -c '%n %A %a' scripts/validate-staging.sh scripts/deploy-staging.sh || true
+
       - name: Deploy to production
         run: |
           echo "Deploying to production environment..."
