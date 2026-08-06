@@ -70,11 +70,15 @@ function formatAddress(address: any) {
 const api = {
 	fetchProfile: async (): Promise<Omit<Profile, 'studentProof' | 'clientCard'> & { clientCard: ClientCard | null }> => {
 		const response = await apiClient.get<{ user: any }>('/account/profile');
-		if (!response.success || !response.data) {
+		if (!response.success) {
 			throw new Error(response.error?.message || 'account.profile.errors.fetchProfile');
 		}
 
-		const user = response.data.user;
+		const user = response.data?.user ?? (response as any).user;
+		if (!user) {
+			throw new Error(response.error?.message || 'account.profile.errors.fetchProfile');
+		}
+
 		return {
 			name: user.name || '',
 			email: user.email || '',

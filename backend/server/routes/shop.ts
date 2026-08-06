@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { Types } from 'mongoose';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import Review from '../models/Review';
@@ -48,6 +49,14 @@ function applyAccountPricing(product: any, pricing: { discountRate: number; over
 		}, product._id?.toString(), undefined, 1),
 		accountDiscountRate: pricing.discountRate
 	};
+}
+
+function findProductByIdOrSlug(idOrSlug: string) {
+	if (Types.ObjectId.isValid(idOrSlug)) {
+		return Product.findById(idOrSlug);
+	}
+
+	return Product.findOne({ slug: idOrSlug });
 }
 
 
@@ -189,7 +198,7 @@ router.get('/products', optionalAuth, async (req: Request, res: Response) => {
 router.get('/products/:id', optionalAuth, async (req: Request, res: Response) => {
 	try {
 		const accountPricing = await getB2BPricing(req);
-		const product = await Product.findById(req.params.id)
+const product = await findProductByIdOrSlug(req.params.id)
 			.populate('category', 'name slug description')
 			.populate('createdBy', 'name');
 
@@ -200,9 +209,8 @@ router.get('/products/:id', optionalAuth, async (req: Request, res: Response) =>
 			});
 		}
 
-		// Increment view count
-		product.viewCount += 1;
-		await product.save();
+		// Increment view count without triggering save hooks
+		await Product.updateOne({ _id: product._id }, { $inc: { viewCount: 1 } });
 
 		// Get reviews
 		const reviews = await Review.getProductReviews(product._id as any);
@@ -226,9 +234,11 @@ router.get('/products/:id', optionalAuth, async (req: Request, res: Response) =>
 
 		res.json({
 			success: true,
-			product: responseProduct,
-			reviews,
-			ratingStats
+			data: {
+				product: responseProduct,
+				reviews,
+				ratingStats
+			}
 		});
 	} catch (error) {
 		console.error('Get product error:', error);
@@ -506,7 +516,7 @@ router.get('/products/:id/dynamic-price', optionalAuth, async (req: Request, res
 			});
 		}
 
-		const product = await Product.findById(req.params.id);
+const product = await findProductByIdOrSlug(req.params.id);
 		if (!product || !product.isActive) {
 			return res.status(404).json({
 				success: false,

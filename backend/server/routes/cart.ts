@@ -53,6 +53,15 @@ async function getPricingContext(userId: string) {
 	return resolvePricingContext(user as any, 1);
 }
 
+async function findProductByIdOrSlug(idOrSlug: string) {
+	if (Types.ObjectId.isValid(idOrSlug)) {
+		const product = await Product.findById(idOrSlug);
+		if (product) return product;
+	}
+
+	return Product.findOne({ slug: idOrSlug });
+}
+
 function calculateB2BPrice(product: any, pricing: { discountRate: number; overrides: any[]; pricingTier: string } | null, quantity = 1) {
 	const basePrice = product.currentPrice ?? product.price ?? 0;
 	if (!pricing) {
@@ -86,7 +95,7 @@ router.post('/add', validate(addCartItemSchema), asyncHandler(async (req: Reques
 	const userId = getUserId(req);
 	const { productId, quantity, variants } = req.body;
 
-	const product = await Product.findById(productId);
+	const product = await findProductByIdOrSlug(productId);
 	if (!product) {
 		throw new NotFoundError('Produto não encontrado');
 	}
@@ -139,7 +148,7 @@ router.put('/update', validate(updateCartItemSchema), asyncHandler(async (req: R
 	const userId = getUserId(req);
 	const { productId, quantity } = req.body;
 
-	const product = await Product.findById(productId);
+	const product = await findProductByIdOrSlug(productId);
 	if (!product) {
 		throw new NotFoundError('Produto não encontrado');
 	}

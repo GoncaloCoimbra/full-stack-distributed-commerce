@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import AppLayout from '../../layouts/AppLayout';
+import { apiClient } from '@/services/apiClient';
 
 /* ─────────────────────────────────────────
    MAPA: rótulo → slug interno
@@ -28,6 +29,19 @@ const INTERNAL_SLUG: Record<string, string> = {
 interface SubSubCat { label: string; promo?: boolean }
 interface SubCat    { label: string; children?: SubSubCat[] }
 interface Category  { label: string; count: string; children?: SubCat[] }
+
+interface HighlightProduct {
+  title: string;
+  price: string;
+  rating: number;
+  to: string;
+  badge?: string;
+}
+
+const currencyFormatter = new Intl.NumberFormat('pt-PT', {
+  style: 'currency',
+  currency: 'EUR',
+});
 
 const CATEGORIES: Category[] = [
   {
@@ -457,21 +471,61 @@ function Stars({ rating }: { rating: number }) {
 export default function ShopPage() {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
+  const [highlights, setHighlights] = useState<HighlightProduct[]>([]);
+  const [highlightsLoading, setHighlightsLoading] = useState(true);
   const searchRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const highlights = [
-    { title: 'Caneta Pilot G-2',    price: '12,99€', rating: 4.8, to: '/shop/product/caneta-pilot-g2',    badge: 'Sale' },
-    { title: 'Caderno Oxford A4',   price: '5,49€',  rating: 4.6, to: '/shop/product/caderno-oxford-a4',  badge: '' },
-    { title: 'Marcadores Stabilo',  price: '8,29€',  rating: 4.7, to: '/shop/product/marcadores-stabilo', badge: 'Novo' },
-    { title: 'Papel Navigator A4',  price: '7,99€',  rating: 4.9, to: '/shop/product/papel-navigator-a4', badge: '' },
-    { title: 'Agenda 2025',         price: '14,99€', rating: 4.5, to: '/shop/product/agenda-2025',        badge: 'Sale' },
-    { title: 'Porta-lápis Metal',   price: '3,99€',  rating: 4.3, to: '/shop/product/porta-lapis-metal',  badge: '' },
-    { title: 'Mochila Escolar 24L', price: '39,99€', rating: 4.7, to: '/shop/product/mochila-escolar-24l', badge: 'Novo' },
-    { title: 'Caderno de Bolso',    price: '4,99€',  rating: 4.5, to: '/shop/product/caderno-bolso',       badge: '' },
-    { title: 'Estojo Premium',      price: '18,99€', rating: 4.6, to: '/shop/product/estojo-premium',     badge: '' },
-    { title: 'Marca-textos Stabilo',price: '9,49€',  rating: 4.8, to: '/shop/product/marcatextos-stabilo', badge: '' },
-  ];
+  useEffect(() => {
+    let active = true;
+
+    async function loadHighlights() {
+      setHighlightsLoading(true);
+      try {
+        let products: any[] = [];
+        const featuredResponse = await apiClient.get<{ products: any[] }>('/shop/featured?limit=10');
+        if (!active) return;
+
+        if (featuredResponse.success && Array.isArray((featuredResponse as any).products)) {
+          products = (featuredResponse as any).products;
+        }
+
+        if (products.length === 0) {
+          const fallbackResponse = await apiClient.get<{ products: any[] }>('/shop/products?limit=10');
+          if (!active) return;
+          products = Array.isArray((fallbackResponse as any).products)
+            ? (fallbackResponse as any).products
+            : Array.isArray(fallbackResponse.data?.products)
+              ? fallbackResponse.data.products
+              : [];
+        }
+
+        if (products.length > 0) {
+          setHighlights(products.map((product: any) => {
+            const idOrSlug = product.slug ?? product._id ?? product.id;
+            const identifier = typeof idOrSlug === 'string' ? idOrSlug : String(idOrSlug);
+            const price = currencyFormatter.format(Number(product.accountPrice ?? product.currentPrice ?? product.price ?? 0));
+            const rating = Number(product.rating?.average ?? product.rating ?? 0) || 0;
+
+            return {
+              title: product.name || 'Produto',
+              price,
+              rating,
+              to: `/shop/product/${identifier}`,
+              badge: product.isNew ? 'Novo' : product.isFeatured ? 'Sale' : undefined,
+            };
+          }));
+        }
+      } catch (error) {
+        console.error('Failed to load highlight products', error);
+      } finally {
+        if (active) setHighlightsLoading(false);
+      }
+    }
+
+    loadHighlights();
+    return () => { active = false; };
+  }, []);
   const quickFilters = [
     t('shop.shopPage.quickFilters.pens'),
     t('shop.shopPage.quickFilters.notebooks'),
@@ -590,8 +644,21 @@ export default function ShopPage() {
               </Link>
             </div>
             <div className="highlights-grid">
-              {highlights.map((prod, i) => (
-                <Link key={prod.title} to={prod.to} className="highlight-card" style={{ animationDelay: `${i * 60}ms` }}>
+              {highlightsLoading && Array.from({ length: 6 }).map((_, i) => (
+                <div key={`skeleton-${i}`} className="highlight-card" style={{ animationDelay: `${i * 60}ms`, minHeight: 180, opacity: 0.5 }}>
+                  <ProductThumb />
+                  <div style={{ width: '100%', height: 20, background: '#ececec', borderRadius: 10, marginTop: 16 }} />
+                </div>
+              ))}
+
+              {!highlightsLoading && highlights.length === 0 && (
+                <div style={{ gridColumn: '1/-1', padding: '2rem', textAlign: 'center', color: 'var(--c-muted)' }}>
+                  {t('shop.shopPage.noHighlights', 'Ainda não há produtos em destaque.')}
+                </div>
+              )}
+
+              {!highlightsLoading && highlights.map((prod, i) => (
+                <Link key={`${prod.title}-${i}`} to={prod.to} className="highlight-card" data-testid="product-card" style={{ animationDelay: `${i * 60}ms` }}>
                   {prod.badge && (
                     <span className={`hcard-badge ${prod.badge === 'Sale' ? 'hcard-badge--sale' : 'hcard-badge--novo'}`}>{prod.badge}</span>
                   )}

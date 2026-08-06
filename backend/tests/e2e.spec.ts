@@ -2,14 +2,36 @@ import { test, expect } from '@playwright/test';
 
 const API_URL = 'http://localhost:3001/api/v1';
 const FRONTEND_URL = 'http://localhost:5174';
+const debug = Boolean(process.env.DEBUG);
 
 test.describe('E2E - E-commerce Flow', () => {
   test('User Registration and Login Flow', async ({ page }) => {
-    page.on('console', msg => console.log('BROWSER:', msg.text()));
-    page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
+    page.on('console', msg => { if (debug) console.log('BROWSER:', msg.text()); });
+    page.on('pageerror', err => { if (debug) console.log('PAGE ERROR:', err.message); });
+
+    page.on('request', req => {
+      if (req.url().startsWith('http://localhost:3001')) {
+        debug && console.log(`[${new Date().toISOString()}] REQUEST:`, req.method(), req.url(), 'Cookie header:', req.headers()['cookie']);
+      }
+    });
+    page.on('response', res => {
+      if (res.url().startsWith('http://localhost:3001')) {
+        debug && console.log(`[${new Date().toISOString()}] RESPONSE:`, res.status(), res.url(), 'Set-Cookie:', res.headers()['set-cookie']);
+      }
+    });
+    page.on('requestfinished', req => {
+      if (req.url().startsWith('http://localhost:3001')) {
+        debug && console.log(`[${new Date().toISOString()}] REQUEST-FINISHED:`, req.method(), req.url());
+      }
+    });
+    page.on('requestfailed', req => {
+      if (req.url().startsWith('http://localhost:3001')) {
+        debug && console.log(`[${new Date().toISOString()}] REQUEST-FAILED:`, req.method(), req.url(), 'failure:', req.failure()?.errorText);
+      }
+    });
 
     // Register
-    await page.goto(`${FRONTEND_URL}/auth/register`, { waitUntil: 'networkidle' });
+    await page.goto(`${FRONTEND_URL}/auth/register`);
     await page.waitForSelector('input[name="email"]', { state: 'visible', timeout: 15000 });
     await page.waitForSelector('input[name="name"]', { state: 'visible', timeout: 15000 });
     
@@ -20,14 +42,24 @@ test.describe('E2E - E-commerce Flow', () => {
     await page.fill('input[name="confirmPassword"]', 'TestPassword123!');
     await page.check('input[type="checkbox"]');
     
-    await page.click('button[type="submit"]');
+    const [response] = await Promise.all([
+      page.waitForResponse(res => res.url().includes('/auth/register') && res.request().method() === 'POST'),
+      page.click('button[type="submit"]')
+    ]);
+    const cookies = await page.context().cookies();
+    debug && console.log('COOKIES IN CONTEXT AFTER REGISTER:', JSON.stringify(cookies, null, 2));
     
     // Should be redirected to profile
-    await expect(page).toHaveURL(`${FRONTEND_URL}/account/profile`);
+    const [profileResponse] = await Promise.all([
+      page.waitForResponse(res => res.url().includes('/account/profile') && res.request().method() === 'GET'),
+      expect(page).toHaveURL(`${FRONTEND_URL}/account/profile`)
+    ]);
+    const body = await profileResponse.json();
+    debug && console.log('PROFILE RESPONSE BODY:', JSON.stringify(body));
     await expect(page.locator('input[name="email"]').first()).toHaveValue(email);
     
     // Logout via API cleanup if available
-    await page.goto(`${FRONTEND_URL}/auth/login`, { waitUntil: 'networkidle' });
+    await page.goto(`${FRONTEND_URL}/auth/login`);
     await page.waitForSelector('input[name="email"]', { state: 'visible', timeout: 15000 });
     await page.fill('input[name="email"]', email);
     await page.fill('input[name="password"]', 'TestPassword123!');
@@ -37,7 +69,7 @@ test.describe('E2E - E-commerce Flow', () => {
   });
 
   test('Product browsing and filtering', async ({ page }) => {
-    await page.goto(`${FRONTEND_URL}/shop/enhanced`, { waitUntil: 'networkidle' });
+    await page.goto(`${FRONTEND_URL}/shop/enhanced`);
     await page.waitForSelector('[data-testid="product-card"]', { state: 'visible', timeout: 15000 });
     
     // Check products are displayed
@@ -50,29 +82,63 @@ test.describe('E2E - E-commerce Flow', () => {
   });
 
   test('Add to cart and checkout', async ({ page }) => {
-    // Login first
-    await page.goto(`${FRONTEND_URL}/auth/login`);
     const email = `checkout-test${Date.now()}@example.com`;
-    // ... (login flow)
-    
-    // Add to cart
+
+    page.on('console', msg => { if (debug) console.log('BROWSER:', msg.text()); });
+    page.on('pageerror', err => { if (debug) console.log('PAGE ERROR:', err.message); });
+    page.on('dialog', async dialog => {
+      if (debug) console.log('DIALOG:', dialog.type(), dialog.message());
+      await dialog.accept();
+    });
+    page.on('request', req => {
+      if (req.url().startsWith(API_URL)) {
+        debug && console.log(`[${new Date().toISOString()}] REQUEST:`, req.method(), req.url(), 'Cookie:', req.headers()['cookie']);
+      }
+    });
+    page.on('response', async res => {
+      if (res.url().startsWith(API_URL)) {
+        debug && console.log(`[${new Date().toISOString()}] RESPONSE:`, res.status(), res.url());
+      }
+    });
+
+    // Register a fresh user so checkout can be completed.
+    await page.goto(`${FRONTEND_URL}/auth/register`);
+    await page.waitForSelector('input[name="email"]', { state: 'visible', timeout: 15000 });
+    await page.fill('input[name="email"]', email);
+    await page.fill('input[name="password"]', 'TestPassword123!');
+    await page.fill('input[name="name"]', 'Checkout User');
+    await page.fill('input[name="confirmPassword"]', 'TestPassword123!');
+    await page.check('input[type="checkbox"]');
+
+    await Promise.all([
+      page.waitForResponse(res => res.url().includes('/auth/register') && res.request().method() === 'POST'),
+      page.click('button[type="submit"]'),
+    ]);
+
+    await expect(page).toHaveURL(`${FRONTEND_URL}/account/profile`);
+
+    // Browse products from the real shop page where product cards are rendered.
     await page.goto(`${FRONTEND_URL}/shop`);
-    await page.click('[data-testid="product-card"] >> first');
+    await page.waitForSelector('[data-testid="product-card"]', { state: 'visible', timeout: 15000 });
+
+    await page.locator('[data-testid="product-card"]').first().click();
+    await page.waitForURL(/\/shop\/product\//, { timeout: 15000 });
+    await page.waitForSelector('[data-testid="add-to-cart"]', { state: 'visible', timeout: 15000 });
+
     await page.click('[data-testid="add-to-cart"]');
-    
     await expect(page.locator('[data-testid="cart-count"]')).toContainText('1');
-    
-    // Go to cart
+
+    const cartStorage = await page.evaluate(() => localStorage.getItem('cart-storage'));
+    debug && console.log('CART STORAGE AFTER ADD:', cartStorage);
+
     await page.goto(`${FRONTEND_URL}/cart`);
-    
-    // Verify item in cart
-    const cartItem = await page.locator('[data-testid="cart-item"]');
+    const cartItem = page.locator('[data-testid="cart-item"]');
     await expect(cartItem).toBeVisible();
-    
-    // Checkout
+
+    const cartStorageAfterNav = await page.evaluate(() => localStorage.getItem('cart-storage'));
+    debug && console.log('CART STORAGE ON /cart:', cartStorageAfterNav);
+
     await page.click('[data-testid="checkout-btn"]');
-    
-    // Should be on checkout page
     await expect(page).toHaveURL(/\/checkout/);
   });
 
@@ -92,8 +158,8 @@ test.describe('E2E - E-commerce Flow', () => {
     expect(response.status).toBe(201);
     const data = await response.json();
     expect(data.success).toBe(true);
-    expect(data.user?.email).toBeTruthy();
-    expect(data.user?.id).toBeTruthy();
+    expect(data.data?.user?.email).toBeTruthy();
+    expect(data.data?.user?.id).toBeTruthy();
     expect(data.message).toContain('Conta criada');
 
     const setCookieHeader = response.headers.get('set-cookie') ?? '';
@@ -113,21 +179,16 @@ test.describe('E2E - E-commerce Flow', () => {
   });
 
   test('Admin Dashboard Access', async ({ page }) => {
-    // Login as admin
-    await page.goto(`${FRONTEND_URL}/auth/login`);
+    await page.goto(`${FRONTEND_URL}/admin`);
+    await page.waitForURL('**/auth/login', { timeout: 20000 });
+
     await page.waitForSelector('input[name="email"]', { state: 'visible', timeout: 15000 });
     await page.fill('input[name="email"]', 'admin@tranzor.pt');
     await page.fill('input[name="password"]', 'ChangeMe123!');
     await page.click('button[type="submit"]');
-    await page.waitForLoadState('networkidle');
-    
-    // Navigate to admin
-    await page.goto(`${FRONTEND_URL}/admin`, { waitUntil: 'networkidle' });
-    
-    // Verify admin dashboard is visible
+    await page.waitForURL('**/admin', { timeout: 20000 });
+
     await expect(page.locator('[data-testid="admin-dashboard"]')).toBeVisible();
-    
-    // Check key metrics are displayed
     await expect(page.locator('[data-testid="total-orders"]')).toBeVisible();
     await expect(page.locator('[data-testid="total-revenue"]')).toBeVisible();
   });
@@ -137,7 +198,7 @@ test.describe('Performance Tests', () => {
   test('Page load time - Homepage', async ({ page }) => {
     const startTime = Date.now();
     
-    await page.goto(`${FRONTEND_URL}/`, { waitUntil: 'networkidle' });
+    await page.goto(`${FRONTEND_URL}/`);
     
     const loadTime = Date.now() - startTime;
     
@@ -148,7 +209,7 @@ test.describe('Performance Tests', () => {
   test('Page load time - Shop', async ({ page }) => {
     const startTime = Date.now();
     
-    await page.goto(`${FRONTEND_URL}/shop`, { waitUntil: 'networkidle' });
+    await page.goto(`${FRONTEND_URL}/shop`);
     
     const loadTime = Date.now() - startTime;
     
