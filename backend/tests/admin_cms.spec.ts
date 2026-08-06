@@ -37,12 +37,12 @@ async function signInAdmin(page: Parameters<typeof test>[0]['page']) {
   expect(response.ok()).toBeTruthy();
   const body = await response.json();
   expect(body.success).toBeTruthy();
-  expect(body.token).toBeTruthy();
+  expect(body.data.token).toBeTruthy();
 
   await page.goto(FRONTEND_URL, { waitUntil: 'networkidle' });
   await page.evaluate((token) => {
     localStorage.setItem('auth_token', token);
-  }, body.token);
+  }, body.data.token);
 
   await page.goto(`${FRONTEND_URL}/admin/content`, { waitUntil: 'networkidle' });
 }
