@@ -129,7 +129,7 @@ describe('Authentication Controller', () => {
 
       expect(response.status).toBe(201);
       expect(response.body.success).toBe(true);
-      expect(response.body.user.email).toBeDefined();
+      expect(response.body.data.user.email).toBeDefined();
       expect(response.body.message).toBeDefined();
     });
 
@@ -146,7 +146,7 @@ describe('Authentication Controller', () => {
 
       expect(response.status).toBe(201);
       expect(response.body.success).toBe(true);
-      expect(response.body.user.email).toBeDefined();
+      expect(response.body.data.user.email).toBeDefined();
     });
 
     it('should reject registration with invalid email', async () => {
@@ -239,7 +239,7 @@ describe('Authentication Controller', () => {
 
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
-      expect(response.body.user.email).toBe(testEmail);
+      expect(response.body.data.user.email).toBe(testEmail);
     });
 
     it('should reject login with incorrect password', async () => {
