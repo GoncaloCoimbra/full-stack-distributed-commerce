@@ -19,7 +19,7 @@ const router = Router();
 
 const cookieOptions = {
 	httpOnly: true,
-	sameSite: 'none' as const,
+	sameSite: env.NODE_ENV === 'production' ? 'none' : 'lax',
 	secure: env.NODE_ENV === 'production',
 	path: '/',
 	maxAge: 24 * 60 * 60 * 1000
@@ -68,7 +68,9 @@ router.get('/me', optionalAuth, asyncHandler(async (req: AuthRequest, res: Respo
 
 	res.json({
 		success: true,
-		user: buildUserPayload(user)
+		data: {
+			user: buildUserPayload(user)
+		}
 	});
 }));
 
@@ -106,26 +108,33 @@ router.post('/login', validate(loginSchema), asyncHandler(async (req: Request, r
 
 	res.json({
 		success: true,
-		user: buildUserPayload(user),
-		token,
+		data: {
+			user: buildUserPayload(user),
+			token
+		}
 	});
 }));
 
 // POST /auth/register
 router.post('/register', validate(registerSchema), asyncHandler(async (req: Request, res: Response) => {
 	const { name, email, password, role = 'user', company, taxId, phone } = req.body;
-	console.log('DEBUG POST /auth/register body:', JSON.stringify(req.body));
+	if (process.env.DEBUG) {
+		console.log('DEBUG POST /auth/register body:', JSON.stringify(req.body));
+	}
 	logger.info(`Register attempt for email: ${email}`);
 
 	try {
 		const existingUser = await User.findOne({ email });
 		if (existingUser) {
-			console.log(`DEBUG Register failed: email already exists: ${email}`);
+			if (process.env.DEBUG) {
+				console.log(`DEBUG Register failed: email already exists: ${email}`);
+			}
 			logger.warn(`Register failed: email already exists: ${email}`);
 			throw new ConflictError('Email já registado');
 		}
 
-		const hashedPassword = await bcrypt.hash(password, 12);
+		const bcryptCost = process.env.NODE_ENV === 'test' ? 6 : 12;
+		const hashedPassword = await bcrypt.hash(password, bcryptCost);
 		const emailVerificationToken = crypto.randomBytes(32).toString('hex');
 
 		const user = new User({
@@ -167,8 +176,10 @@ router.post('/register', validate(registerSchema), asyncHandler(async (req: Requ
 
 		res.status(201).json({
 			success: true,
-			user: buildUserPayload(user),
-			token,
+			data: {
+				user: buildUserPayload(user),
+				token
+			},
 			message: 'Conta criada com sucesso. Verifique seu email para ativar a conta.'
 		});
 	} catch (err: any) {
@@ -258,7 +269,8 @@ router.post('/reset-password', validate(resetPasswordSchema), asyncHandler(async
 		throw new BadRequestError('Token inválido ou expirado');
 	}
 
-	user.password = await bcrypt.hash(password, 12);
+	const bcryptCost = process.env.NODE_ENV === 'test' ? 6 : 12;
+	user.password = await bcrypt.hash(password, bcryptCost);
 	user.passwordResetToken = undefined;
 	user.passwordResetExpires = undefined;
 	await user.save();

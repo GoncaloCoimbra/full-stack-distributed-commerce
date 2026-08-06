@@ -32,7 +32,9 @@ router.get('/profile', async (req: Request, res: Response) => {
 
 		res.json({
 			success: true,
-			user
+			data: {
+				user
+			}
 		});
 	} catch (error) {
 		console.error('Get profile error:', error);
@@ -102,7 +104,9 @@ router.put('/profile', async (req: Request, res: Response) => {
 		res.json({
 			success: true,
 			message: 'Perfil atualizado com sucesso',
-			user
+			data: {
+				user
+			}
 		});
 	} catch (error) {
 		console.error('Update profile error:', error);

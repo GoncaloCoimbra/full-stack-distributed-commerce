@@ -66,6 +66,16 @@ const mapBackendItems = (items: any[]): CartItem[] => {
   });
 };
 
+const extractItemsFromResponse = (response: any): any[] => {
+  if (Array.isArray(response.data?.items)) {
+    return response.data.items;
+  }
+  if (Array.isArray(response.items)) {
+    return response.items;
+  }
+  return [];
+};
+
 const getCurrentUser = () => useAuthStore.getState().user;
 
 // ─── Store ────────────────────────────────────────────────────────────────────
@@ -81,8 +91,9 @@ export const useCartStore = create<CartState>()(
 
         try {
           const response = await apiClient.get<{ items: any[] }>('/cart');
-          if (response.success && Array.isArray(response.data?.items)) {
-            set({ items: mapBackendItems(response.data.items) });
+          const items = extractItemsFromResponse(response);
+          if (Array.isArray(items)) {
+            set({ items: mapBackendItems(items) });
           }
         } catch {
           // fallback silently to local cart state
@@ -99,8 +110,9 @@ export const useCartStore = create<CartState>()(
               productId: newItem.id,
               quantity,
             });
-            if (response.success && Array.isArray(response.data?.items)) {
-              set({ items: mapBackendItems(response.data.items) });
+            const items = extractItemsFromResponse(response);
+            if (Array.isArray(items) && items.length > 0) {
+              set({ items: mapBackendItems(items) });
               return;
             }
           } catch {
@@ -167,8 +179,9 @@ export const useCartStore = create<CartState>()(
               productId: id,
               quantity,
             });
-            if (response.success && Array.isArray(response.data?.items)) {
-              set({ items: mapBackendItems(response.data.items) });
+            const items = extractItemsFromResponse(response);
+            if (Array.isArray(items) && items.length > 0) {
+              set({ items: mapBackendItems(items) });
               return;
             }
           } catch {
@@ -191,8 +204,9 @@ export const useCartStore = create<CartState>()(
             const response = await apiClient.delete<{ items: any[] }>('/cart/remove', {
               data: { productId: id },
             });
-            if (response.success && Array.isArray(response.data?.items)) {
-              set({ items: mapBackendItems(response.data.items) });
+            const items = extractItemsFromResponse(response);
+            if (Array.isArray(items)) {
+              set({ items: mapBackendItems(items) });
               return;
             }
           } catch {

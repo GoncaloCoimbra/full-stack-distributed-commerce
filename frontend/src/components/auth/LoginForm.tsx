@@ -51,7 +51,14 @@ export default function LoginForm({
   const location = useLocation();
   const { t } = useTranslation();
   const login    = useAuthStore(state => state.login);
-  const from = (location.state as { from?: string })?.from ?? '/account/profile';
+
+  const fallbackDestination = '/account/profile';
+  const fromState = location.state as { from?: string | { pathname?: string; search?: string } } | null;
+  const from = typeof fromState?.from === 'string'
+    ? fromState.from
+    : fromState?.from
+      ? `${fromState.from.pathname ?? ''}${fromState.from.search ?? ''}`
+      : fallbackDestination;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,8 +66,11 @@ export default function LoginForm({
     setError('');
     try {
       await login(email, password);
-      if (onSuccess) onSuccess();
-      else navigate(from, { replace: true });
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        navigate(from, { replace: true });
+      }
     } catch (err: any) {
       setError(err.message || t('auth.invalidLogin'));
     } finally {

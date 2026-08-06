@@ -7,7 +7,6 @@ import { useAuthStore } from '@/store/authStore';
 import { useCartStore } from '../../store/cartStore';
 import { trackEvent } from '../../services/analytics';
 import { getVariant } from '../../services/experiments';
-import { MOCK_PRODUCTS } from '@/data/mockProducts';
 
 /* ─────────────────────────────────────────
    TIPOS
@@ -60,7 +59,7 @@ export default function ProductDetailPage() {
     try {
       // Tenta buscar do backend
       const response = await apiClient.get<{ product: any; reviews: any[]; ratingStats: any }>(`/shop/products/${productId}`);
-      if (!response.success || !response.data) {
+      if (!response.success || !response.data?.product) {
         throw new Error(response.error?.message || t('shop.productDetail.errors.loadProduct'));
       }
 
@@ -68,6 +67,8 @@ export default function ProductDetailPage() {
       const accountPrice = data.accountPrice ?? data.currentPrice ?? data.price;
       setProduct({
         ...data,
+        id: data._id?.toString() ?? data.id?.toString?.() ?? data.slug ?? '',
+        slug: data.slug ?? data._id?.toString() ?? data.id?.toString?.(),
         image: data.images?.[0] || data.image || '',
         price: accountPrice,
         originalPrice: data.accountPrice ? (data.currentPrice ?? data.price) : undefined,
@@ -75,24 +76,8 @@ export default function ProductDetailPage() {
         reviews: response.data.reviews?.length ?? data.reviews ?? 0,
       });
     } catch (err: any) {
-      // Se falhar, tenta usar mockProducts
-      let mockProduct = MOCK_PRODUCTS.find(p => String(p.id) === productId || p.id === `prod-${String(productId).padStart(3, '0')}`);
-      
-      // Se ainda não encontrar, tenta por índice numérico
-      if (!mockProduct && !isNaN(Number(productId))) {
-        const index = Math.max(0, Number(productId) - 1);
-        mockProduct = MOCK_PRODUCTS[index];
-      }
-      
-      if (mockProduct) {
-        setProduct({
-          ...mockProduct,
-          inStock: true,
-        });
-      } else {
-        setError(t('shop.productDetail.errors.notFound'));
-        setProduct(null);
-      }
+      setError(err?.message || t('shop.productDetail.errors.loadProduct'));
+      setProduct(null);
     } finally {
       setLoading(false);
     }
@@ -227,8 +212,25 @@ export default function ProductDetailPage() {
   } : undefined;
 
   if (loading) return <AppLayout title={pageTitle} description={pageDescription} canonical={canonicalUrl} structuredData={structuredData}><div style={{ padding: '6rem 2rem', textAlign: 'center', color: 'var(--muted)' }}>{t('shop.productDetail.loading')}</div></AppLayout>;
-  if (error && !product) return <AppLayout><div style={{ padding: '6rem 2rem', textAlign: 'center', color: 'var(--red)' }}>{t('common.error')}: {error}</div></AppLayout>;
-  if (!product) return <AppLayout><div style={{ padding: '6rem 2rem', textAlign: 'center' }}>{t('shop.productDetail.errors.notFound')}</div></AppLayout>;
+  if (error) return (
+    <AppLayout title={pageTitle} description={pageDescription} canonical={canonicalUrl} structuredData={structuredData}>
+      <div style={{ padding: '6rem 2rem', textAlign: 'center', color: 'var(--red)' }}>
+        <p style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700 }}>{t('common.error')}:</p>
+        <p style={{ margin: '1rem 0 1.5rem', fontSize: '1rem' }}>{error}</p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
+          <button
+            onClick={loadProduct}
+            style={{ padding: '12px 24px', borderRadius: 10, border: 'none', background: 'var(--red)', color: 'white', cursor: 'pointer', fontWeight: 700 }}
+          >
+            {t('common.retry')}
+          </button>
+          <Link to="/shop" style={{ padding: '12px 24px', borderRadius: 10, border: '1px solid var(--border)', color: 'var(--text)', textDecoration: 'none', fontWeight: 700 }}>
+            {t('shop.productDetail.backToShop')}
+          </Link>
+        </div>
+      </div>
+    </AppLayout>
+  );
 
   return (
     <AppLayout title={pageTitle} description={pageDescription} canonical={canonicalUrl} structuredData={structuredData}>

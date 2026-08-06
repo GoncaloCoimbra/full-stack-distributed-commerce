@@ -1,19 +1,67 @@
-import React from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import AppLayout from '../../layouts/AppLayout';
+import { apiClient } from '@/services/apiClient';
 
-const MOCK_PRODUCTS = [
-  { id: 1, name: 'Produto Linha A', price: '€14,90', badge: 'Destaque' },
-  { id: 2, name: 'Produto Linha B', price: '€9,50',  badge: null },
-  { id: 3, name: 'Produto Linha C', price: '€22,00', badge: 'Novo' },
-  { id: 4, name: 'Produto Linha D', price: '€7,80',  badge: null },
-];
+interface BrandProduct {
+  _id?: string;
+  id?: string;
+  name: string;
+  slug?: string;
+  price?: number | string;
+  currentPrice?: number | string;
+  badge?: string;
+}
+
+const formatBrandLabel = (brand?: string) => {
+  if (!brand) return 'Marca';
+  return brand.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+};
+
+const formatPrice = (price?: number | string) => {
+  if (price === undefined || price === null) return '—';
+  if (typeof price === 'number') {
+    return new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' }).format(price);
+  }
+  return String(price);
+};
 
 export default function BrandPage() {
   const { brand } = useParams<{ brand?: string }>();
-  const label = brand
-    ? brand.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-    : 'Marca';
+  const label = useMemo(() => formatBrandLabel(brand), [brand]);
+  const [products, setProducts] = useState<BrandProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      if (!brand) {
+        setProducts([]);
+        setError('Marca inválida');
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+      setProducts([]);
+
+      try {
+        const response = await apiClient.get<{ products: BrandProduct[] }>(`/shop/products?brand=${encodeURIComponent(brand)}`);
+        if (!response.success) {
+          throw new Error(response.error?.message || 'Erro ao carregar produtos da marca');
+        }
+
+        setProducts(response.data?.products ?? []);
+      } catch (err: any) {
+        setError(err?.message || 'Erro ao carregar produtos da marca');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, [brand]);
 
   return (
     <AppLayout
@@ -44,7 +92,6 @@ export default function BrandPage() {
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-            {/* logo placeholder */}
             <div style={{
               width: 64, height: 64, borderRadius: 12, flexShrink: 0,
               background: 'linear-gradient(135deg,#f0f0f0,#e0e0e0)',
@@ -74,7 +121,7 @@ export default function BrandPage() {
       <section style={{ background: '#f5f5f3', padding: '3rem 2rem 5rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: 12 }}>
-            <span style={{ fontSize: 13, color: '#666' }}>{MOCK_PRODUCTS.length} produtos da marca</span>
+            <span style={{ fontSize: 13, color: '#666' }}>{loading ? 'Carregando produtos...' : `${products.length} produto${products.length === 1 ? '' : 's'} da marca`}</span>
             <select style={{
               fontSize: 12, fontWeight: 600, color: '#111',
               border: '1px solid rgba(0,0,0,0.12)', borderRadius: 8,
@@ -86,47 +133,63 @@ export default function BrandPage() {
             </select>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1.25rem' }}>
-            {MOCK_PRODUCTS.map(p => (
-              <Link key={p.id} to={`/shop/product/${p.id}`} style={{ textDecoration: 'none' }}>
-                <article style={{
-                  background: '#fff', border: '1px solid rgba(0,0,0,0.08)',
-                  borderRadius: 12, overflow: 'hidden',
-                  transition: 'box-shadow 0.2s, transform 0.2s',
-                }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
-                    (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = 'none';
-                    (e.currentTarget as HTMLElement).style.transform = 'none';
-                  }}
-                >
-                  <div style={{
-                    height: 160, background: 'linear-gradient(135deg,#f5f5f5,#eaeaea)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative',
-                  }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5" aria-hidden>
-                      <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                      <polyline points="21,15 16,10 5,21"/>
-                    </svg>
-                    {p.badge && (
-                      <span style={{
-                        position: 'absolute', top: 10, left: 10,
-                        background: '#D90429', color: '#fff',
-                        fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 99,
-                      }}>{p.badge}</span>
-                    )}
-                  </div>
-                  <div style={{ padding: '1rem' }}>
-                    <p style={{ fontWeight: 700, fontSize: 13, color: '#111', marginBottom: 6 }}>{p.name}</p>
-                    <p style={{ fontSize: 15, fontWeight: 800, color: '#D90429' }}>{p.price}</p>
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </div>
+          {error ? (
+            <div style={{ padding: '3rem 1rem', textAlign: 'center', color: '#b00020', background: '#fff', borderRadius: 12 }}>
+              <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>Não foi possível carregar os produtos.</p>
+              <p style={{ margin: '0.75rem 0 0', color: '#555' }}>{error}</p>
+            </div>
+          ) : loading ? (
+            <div style={{ padding: '3rem 1rem', textAlign: 'center', color: '#555' }}>Carregando produtos...</div>
+          ) : products.length === 0 ? (
+            <div style={{ padding: '3rem 1rem', textAlign: 'center', color: '#555' }}>
+              Não há produtos disponíveis para a marca {label} no momento.
+            </div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1.25rem' }}>
+              {products.map((product) => {
+                const key = product._id ?? product.id ?? product.slug ?? product.name;
+                return (
+                  <Link key={key} to={`/shop/product/${product.slug ?? product._id ?? product.id}`} style={{ textDecoration: 'none' }}>
+                    <article style={{
+                      background: '#fff', border: '1px solid rgba(0,0,0,0.08)',
+                      borderRadius: 12, overflow: 'hidden',
+                      transition: 'box-shadow 0.2s, transform 0.2s',
+                    }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
+                        (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                        (e.currentTarget as HTMLElement).style.transform = 'none';
+                      }}
+                    >
+                      <div style={{
+                        height: 160, background: 'linear-gradient(135deg,#f5f5f5,#eaeaea)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative',
+                      }}>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5" aria-hidden>
+                          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                          <polyline points="21,15 16,10 5,21"/>
+                        </svg>
+                        {product.badge && (
+                          <span style={{
+                            position: 'absolute', top: 10, left: 10,
+                            background: '#D90429', color: '#fff',
+                            fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 99,
+                          }}>{product.badge}</span>
+                        )}
+                      </div>
+                      <div style={{ padding: '1rem' }}>
+                        <p style={{ fontWeight: 700, fontSize: 13, color: '#111', marginBottom: 6 }}>{product.name}</p>
+                        <p style={{ fontSize: 15, fontWeight: 800, color: '#D90429' }}>{formatPrice(product.currentPrice ?? product.price)}</p>
+                      </div>
+                    </article>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
     </AppLayout>
