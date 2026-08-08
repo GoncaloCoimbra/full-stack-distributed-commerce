@@ -281,6 +281,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
       - name: Validate staging configuration
         run: |
           bash scripts/validate-staging.sh
@@ -304,6 +307,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
 
       - name: Debug deployment script permissions
         run: |
