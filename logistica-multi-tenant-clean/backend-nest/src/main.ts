@@ -132,7 +132,9 @@ export async function createApp(): Promise<NestExpressApplication> {
 
   const redisSubscriber = new LogisticsRedisSubscriber();
   if (process.env.NODE_ENV !== 'test') {
+    console.log('Starting Redis subscriber...');
     await redisSubscriber.start();
+    console.log('Redis subscriber started');
   } else {
     logger.log('⚠️ Skipping Redis subscriber initialization in test environment');
   }

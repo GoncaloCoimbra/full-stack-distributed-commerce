@@ -1,5 +1,26 @@
 import Redis from 'ioredis';
 
+async function subscribeWithTimeout(
+  subscriber: Redis,
+  channel: string,
+  timeoutMs = 5000,
+): Promise<void> {
+  return Promise.race([
+    subscriber.subscribe(channel).then(() => undefined),
+    new Promise<void>((_, reject) =>
+      setTimeout(
+        () =>
+          reject(
+            new Error(
+              `Redis subscribe to '${channel}' timed out after ${timeoutMs}ms`,
+            ),
+        ),
+        timeoutMs,
+      ),
+    ),
+  ]);
+}
+
 export class LogisticsRedisSubscriber {
   private subscriber: Redis;
 
@@ -31,13 +52,8 @@ export class LogisticsRedisSubscriber {
           console.error('[logistics] Redis subscriber error', err);
         });
 
-        await new Promise<void>((resolve, reject) => {
-          this.subscriber.subscribe('portfolio:stock-sync', (err) => {
-            if (err) return reject(err);
-            console.log('[logistics] Subscribed to portfolio:stock-sync');
-            resolve();
-          });
-        });
+        await subscribeWithTimeout(this.subscriber, 'portfolio:stock-sync', 5000);
+        console.log('[logistics] Subscribed to portfolio:stock-sync');
 
         this.subscriber.on('message', (channel, message) => {
           if (channel === 'portfolio:stock-sync') {
